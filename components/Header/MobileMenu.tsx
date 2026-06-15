@@ -1,29 +1,28 @@
-// components/PopupMenu.tsx
 "use client";
 
 import Link from "next/link";
 import Image from "next/image";
 import { FiX } from "react-icons/fi";
-import { 
-  FiHome, 
-  FiBookOpen,        
-  FiCoffee,          
-  FiUsers,           
-  FiSun,             
-  FiActivity,        
-  FiGift,            
-  FiPhone            
+import {
+  FiHome,
+  FiBookOpen,
+  FiCoffee,
+  FiUsers,
+  FiSun,
+  FiActivity,
+  FiGift,
+  FiPhone
 } from "react-icons/fi";
 
 const mainMenuItems = [
-  { name: "Home", icon: FiHome },
-  { name: "Rooms & Suites", icon: FiBookOpen },
-  { name: "Restaurants & Cafes", icon: FiCoffee },
-  { name: "Meetings & Events", icon: FiUsers },
-  { name: "Relaxation", icon: FiSun },
-  { name: "Recreations", icon: FiActivity },
-  { name: "Special Offers", icon: FiGift },
-  { name: "Contact Us", icon: FiPhone },
+  { name: "Home", icon: FiHome, path:"/" },
+  { name: "Rooms & Suites", icon: FiBookOpen, path: "/roomsandsuites" },
+  { name: "Restaurants & Cafes", icon: FiCoffee, path: "#" },
+  { name: "Meetings & Events", icon: FiUsers, path: "#" },
+  { name: "Relaxation", icon: FiSun, path: ""},
+  { name: "Recreations", icon: FiActivity, path: "#" },
+  { name: "Special Offers", icon: FiGift, path: "#" },
+  { name: "Contact Us", icon: FiPhone, path: "#" },
 ];
 
 const bottomMenuItems = [
@@ -57,53 +56,58 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
       {/* Close Button */}
       <button
         onClick={onClose}
-        className="absolute top-8 right-8 text-white hover:text-amber-400 transition z-10"
+        className="absolute top-6 right-6 md:top-8 md:right-8 text-white hover:text-primary transition z-10 cursor-pointer"
       >
-        <FiX size={40} />
+        <FiX size={36} className="md:size-10" />
       </button>
 
-      <div className="relative h-full flex flex-col items-center justify-center px-6 py-12">
+      <div className="relative h-full flex flex-col items-center justify-center px-4 py-6 md:py-12 overflow-auto">
         {/* Logo */}
-        <div className="mb-10">
-          <Image 
-            src="/images/logo.png" 
-            alt="Grand Sultan Logo" 
-            width={180} 
-            height={80}
-            className="mx-auto"
+        <div className="mb-8 md:mb-10">
+          <Image
+            src="/images/logo.png"
+            alt="Grand Sultan Logo"
+            width={150}
+            height={65}
+            className="md:w-[180px] mx-auto"
             priority
           />
         </div>
 
-        {/* Table Style Menu */}
-        <div className="w-full max-w-5xl border-1 border-amber-400/80 bg-black/30 overflow-hidden rounded-2xl">
-          <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-amber-400/30 divide-y divide-amber-400/30">
-            {mainMenuItems.map((item, index) => (
-              <Link
-                key={index}
-                href="#"
-                onClick={onClose}
-                className="group flex flex-col items-center justify-center py-10 px-6 hover:bg-amber-400/10 transition duration-300 text-center border-amber-400/20"
-              >
-                <div className="text-5xl mb-4 text-amber-300 group-hover:scale-110 transition-transform duration-300">
-                  <item.icon />
-                </div>
-                <span className="text-lg font-light tracking-wider text-amber-100 group-hover:text-amber-400">
-                  {item.name}
-                </span>
-              </Link>
-            ))}
+        {/* Table Style Menu - Responsive */}
+        <div className="w-full max-w-5xl border border-primary/80 bg-black/40 backdrop-blur-none overflow-hidden rounded-2xl">
+          {/* Scrollable Container */}
+          <div className="max-h-[45vh] sm:max-h-[52vh] md:max-h-none overflow-y-auto scrollbar-thin scrollbar-thumb-primary/70 scrollbar-track-transparent">
+            <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-primary/30 divide-y divide-primary/30">
+              {mainMenuItems.map((item, index) => (
+                <Link
+                  key={index}
+                  href={item.path}
+                  onClick={onClose}
+                  className="group flex flex-col items-center justify-center py-6 sm:py-8 md:py-10 px-3 sm:px-4 md:px-6 hover:bg-primary/10 transition duration-300 text-center min-h-[110px] sm:min-h-[125px] md:min-h-[150px]"
+                >
+                  <div className="text-4xl sm:text-5xl mb-2 sm:mb-3 md:mb-4 text-primary group-hover:scale-110 transition-transform duration-300">
+                    <item.icon />
+                  </div>
+                  <span className="text-[14px] sm:text-base md:text-lg font-light tracking-wider text-white group-hover:text-primary text-center leading-tight px-1">
+                    {item.name}
+                  </span>
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
 
         {/* Bottom Rounded Buttons */}
-        <div className="flex flex-wrap justify-center gap-3 mt-12">
+        <div className="flex flex-wrap justify-center gap-2 md:gap-3 mt-8 md:mt-12 px-4">
           {bottomMenuItems.map((item, index) => (
             <Link
               key={index}
               href="#"
               onClick={onClose}
-              className="border border-amber-400/70 hover:border-amber-400 text-amber-100 hover:text-amber-400 px-6 py-2.5 rounded-full text-sm font-light tracking-widest transition duration-300"
+              className="border border-primary/70 hover:border-primary text-white hover:text-primary 
+                         px-5 py-2.5 md:px-6 md:py-3 rounded-full text-xs md:text-sm font-light 
+                         tracking-widest transition duration-300 whitespace-nowrap"
             >
               {item}
             </Link>
