@@ -17,7 +17,7 @@ import {
 const mainMenuItems = [
   { name: "Home", icon: FiHome, path:"/" },
   { name: "Rooms & Suites", icon: FiBookOpen, path: "/roomsandsuites" },
-  { name: "Restaurants & Cafes", icon: FiCoffee, path: "#" },
+  { name: "Restaurants & Cafes", icon: FiCoffee, path: "/restaurantsandcafes" },
   { name: "Meetings & Events", icon: FiUsers, path: "#" },
   { name: "Relaxation", icon: FiSun, path: ""},
   { name: "Recreations", icon: FiActivity, path: "#" },
