@@ -1,11 +1,11 @@
-import Navbar from "@/components/Header/Navbar";
 import BannerSlider from "@/components/Home/BannerSlider";
+import Introduction from "@/components/Home/Introduction";
 
 export default function Home() {
   return (
     <>
-      <Navbar />
       <BannerSlider />
+      <Introduction />
     </>
   );
 }
