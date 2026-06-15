@@ -5,6 +5,7 @@ import { FiMenu, FiPhone } from "react-icons/fi";
 import MobileMenu from "./MobileMenu";
 import ThemeToggle from "../ThemeToggle/ThemeToggle";
 import Image from "next/image";
+import Link from "next/link";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -30,7 +31,7 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <div className="flex items-center justify-between py-6">
             {/* Logo */}
-            <div>
+            <Link href="/">
               <Image
                 src="/images/logo.png"
                 alt="TRAC Resort"
@@ -39,7 +40,7 @@ export default function Navbar() {
                 className="h-16 w-auto object-contain"
                 priority
               />
-            </div>
+            </Link>
 
             {/* Right Side */}
             <div className="flex items-center gap-6 text-foreground">
