@@ -106,63 +106,33 @@ const RestaurantsCardSlider = ({ room, onImageClick }: RoomCardProps) => {
           </div>
 
           {/* Right Block Descriptive Information Summary */}
-          <div className="w-full flex flex-col items-center justify-center text-center px-2 py-4">
-            
-            {/* Flanked Decorative Room Header */}
-            <div className="flex items-center gap-3 mb-5">
-              <span className="h-[1px] w-8 sm:w-14 bg-[#556B2F]" />
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-medium text-[#4A5D26] tracking-wide whitespace-nowrap">
-                {room.name}
-              </h2>
-              <span className="h-[1px] w-8 sm:w-14 bg-[#556B2F]" />
-            </div>
+<div className="w-full flex flex-col items-center justify-center text-center px-2 py-4 animate-slide-in-right">
+  
+  <div className="flex items-center gap-3 mb-5">
+    <span className="h-[1px] w-8 sm:w-14 bg-[#556B2F]" />
+    <h2 className="text-xl sm:text-2xl md:text-3xl font-medium text-[#4A5D26] tracking-wide whitespace-nowrap">
+      {room.name}
+    </h2>
+    <span className="h-[1px] w-8 sm:w-14 bg-[#556B2F]" />
+  </div>
 
-            {/* Vertical Metrics Breakdown */}
-            {/* <div className="flex items-start justify-center gap-8 sm:gap-14 my-4">
-              <div className="flex flex-col items-center">
-                <span className="text-2xl sm:text-3xl md:text-4xl font-normal text-neutral-700 leading-none">
-                  {room.sizeSQM}
-                </span>
-                <span className="text-[11px] font-medium text-[#D4AF37] tracking-widest uppercase mt-2">
-                  size sqm
-                </span>
-              </div>
-              <div className="flex flex-col items-center">
-                <span className="text-2xl sm:text-3xl md:text-4xl font-normal text-neutral-700 leading-none">
-                  {room.sizeSQF}
-                </span>
-                <span className="text-[11px] font-medium text-[#D4AF37] tracking-widest uppercase mt-2">
-                  size sqf
-                </span>
-              </div>
-              <div className="flex flex-col items-center">
-                <span className="text-2xl sm:text-3xl md:text-4xl font-normal text-neutral-700 line-tight">
-                  {room.maxGuests}
-                </span>
-                <span className="text-[11px] font-medium text-[#D4AF37] tracking-widest uppercase mt-2">
-                  max guests
-                </span>
-              </div>
-            </div> */}
+  <p className="text-neutral-600 font-normal text-xs sm:text-sm leading-relaxed max-w-md mt-4 mb-6">
+    {room.description}
+  </p>
 
-            {/* Room Copy Summary */}
-            <p className="text-neutral-600 font-normal text-xs sm:text-sm leading-relaxed max-w-md mt-4 mb-6">
-              {room.description}
-            </p>
+  <div>
+    <Link
+      href="#"
+      className="inline-flex items-center text-xs font-bold text-[#D4AF37] hover:text-[#B3922E] transition-colors duration-300 group tracking-widest uppercase"
+    >
+      <span>Find More</span>
+      <span className="ml-1.5 transform group-hover:translate-x-1 transition-transform duration-300">
+        →
+      </span>
+    </Link>
+  </div>
 
-            {/* Redirection Navigation Link */}
-            <div>
-              <Link
-                href="#"
-                className="inline-flex items-center text-xs font-bold text-[#D4AF37] hover:text-[#B3922E] transition-colors duration-300 group tracking-widest uppercase"
-              >
-                <span>Find More</span>
-                <span className="ml-1.5 transform group-hover:translate-x-1 transition-transform duration-300">
-                  →
-                </span>
-              </Link>
-            </div>
-          </div>
+</div>
 
         </div>
       </div>

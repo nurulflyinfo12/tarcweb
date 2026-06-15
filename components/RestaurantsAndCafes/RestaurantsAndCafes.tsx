@@ -4,6 +4,8 @@ import React, { useState, useRef } from "react";
 import { FiX, FiChevronLeft, FiChevronRight, FiShare2, FiMaximize, FiDownload } from "react-icons/fi";
 import RestaurantsCardSlider from "./RestaurantsCardSlider";
 import ImageModal from "./ImageModal";
+import { motion } from "framer-motion";
+import CallToAction from "../common/calltoaction";
 
 const Restaurants = [
     {
@@ -161,24 +163,11 @@ const RestaurantSAndCafes = () => {
                 </div>
             </section>
 
-            <section className="bg-secondary py-16 overflow-hidden">
-                <div className="max-w-4xl mx-auto px-6 text-center animate-slide-in-right">
-                    <h2 className="text-4xl font-light text-white mb-4">
-                        Ready to Book Your Stay?
-                    </h2>
-
-                    <p className="text-white/80 mb-8 text-lg">
-                        Call us now to check availability
-                    </p>
-
-                    <a
-                        href="tel:+8809678785959"
-                        className="inline-block bg-primary text-black font-semibold px-10 py-4 rounded transition text-lg"
-                    >
-                        +880 9678 785959
-                    </a>
-                </div>
-            </section>
+            <CallToAction
+                title="Ready to Reserve Your Table?"
+                description="Call us now to make a reservation at our restaurant."
+                phone="+880 9678 785959"
+            />
 
             {/* Modal */}
             {selectedRoom && (
