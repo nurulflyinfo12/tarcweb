@@ -18,9 +18,9 @@ const ExclusiveDelights = () => {
   };
 
   return (
-    <section className=" text-white py-16 px-4 sm:px-6 lg:px-8">
+    <section className=" text-white max-w-7xl mx-auto px-6 lg:px-10">
       {/* Top Section Header */}
-      <div className="max-w-7xl mx-auto text-center mb-10">
+      <div className=" text-center mb-10">
         <div className="flex items-center justify-center gap-3 mb-1">
           <span className="w-8 h-[1px] bg-primary-dark"></span>
           <p className="text-primary-dark text-xs font-semibold tracking-widest uppercase">
@@ -34,7 +34,7 @@ const ExclusiveDelights = () => {
       </div>
 
       {/* Main Container Box */}
-      <div className="max-w-6xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden p-4 sm:p-6 md:p-8 relative">
+      <div className="bg-white rounded-2xl shadow-xl overflow-hidden p-4 sm:p-6 md:p-8 relative">
         {/* Soft background border decorative glow layer matching design */}
         <div className="absolute inset-0 bg-emerald-800/5 pointer-events-none rounded-2xl m-2 border border-emerald-900/10" />
 

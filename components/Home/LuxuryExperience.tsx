@@ -10,8 +10,8 @@ import {
 
 const LuxuryExperience = () => {
   return (
-    <section className=" py-20 px-6">
-      <div className="max-w-7xl mx-auto bg-white rounded-3xl p-10 shadow-2xl">
+   <section className="py-16 bg-background max-w-7xl mx-auto px-6 lg:px-10">
+      <div className="bg-white p-10 rounded-3xl shadow-2xl">
 
         {/* TOP SECTION */}
         <div className="grid lg:grid-cols-2 gap-10 items-center">

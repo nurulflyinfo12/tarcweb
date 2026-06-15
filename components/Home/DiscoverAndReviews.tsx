@@ -83,8 +83,8 @@ const DiscoverAndReviews = () => {
     setAwardIndex((prev) => (prev - 1 + awards.length) % awards.length);
   };
   return (
-    <section className=" py-16 px-4 sm:px-6 lg:px-8 text-left">
-      <div className="max-w-6xl mx-auto bg-white rounded-2xl p-6 sm:p-10 shadow-2xl space-y-20">
+    <section className=" py-16 max-w-7xl mx-auto px-6 lg:px-10 text-left">
+      <div className=" bg-white rounded-2xl p-6 sm:p-10 shadow-2xl space-y-20">
         {/* =========================================================
             SECTION 1: DINE & DRINK BANNER
            ========================================================= */}
