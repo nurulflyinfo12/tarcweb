@@ -6,6 +6,7 @@ import RestaurantsCardSlider from "./RestaurantsCardSlider";
 import ImageModal from "./ImageModal";
 import { motion } from "framer-motion";
 import CallToAction from "../common/calltoaction";
+import ImageGalleryModal from "../common/ImageGalleryModal";
 
 const Restaurants = [
     {
@@ -171,8 +172,9 @@ const RestaurantSAndCafes = () => {
 
             {/* Modal */}
             {selectedRoom && (
-                <ImageModal
-                    room={selectedRoom}
+                <ImageGalleryModal
+                    title={selectedRoom.name}
+                    images={selectedRoom.images}
                     initialIndex={initialIndex}
                     onClose={closeModal}
                 />

@@ -5,6 +5,7 @@ import { FiX, FiChevronLeft, FiChevronRight, FiShare2, FiMaximize, FiDownload } 
 import RoomsCardSlider from "./RoomsCardSlider";
 import ImageModal from "./ImageModal";
 import CallToAction from "../common/calltoaction";
+import ImageGalleryModal from "../common/ImageGalleryModal";
 
 const rooms = [
     {
@@ -221,10 +222,10 @@ const RoomsAndSuites = () => {
                 phone="+880 9678 785959"
             />
 
-            {/* Modal */}
             {selectedRoom && (
-                <ImageModal
-                    room={selectedRoom}
+                <ImageGalleryModal
+                    title={selectedRoom.name}
+                    images={selectedRoom.images}
                     initialIndex={initialIndex}
                     onClose={closeModal}
                 />
