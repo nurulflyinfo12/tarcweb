@@ -20,9 +20,9 @@ const Footer = () => {
           {/* Logo & Contact */}
           <div>
             <img 
-              src="/logo.png" 
-              alt="Trace Resort" 
-              className="w-40 mb-6 brightness-110" 
+              src="/images/logo.png" 
+              alt="Tarc Resort" 
+              className="w-15 mb-6 brightness-110" 
             />
 
             <div className="space-y-4 text-sm text-foreground/90">
@@ -182,7 +182,7 @@ const Footer = () => {
 
         {/* Copyright */}
         <div className="text-center text-foreground/60 text-sm mt-16 pt-8 border-t border-border/50">
-          © 2026 Trace Resort. All Rights Reserved.
+          © 2026 Tarc Resort. All Rights Reserved.
         </div>
       </div>
     </footer>

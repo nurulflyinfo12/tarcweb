@@ -16,11 +16,11 @@ export default function ThemeToggle() {
 
   return (
     <button
-      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+      onClick={() => setTheme(theme === "light" ? "dark" : "light")}
       className="p-2.5 text-white hover:text-primary transition-all rounded-full hover:bg-white/10 dark:hover:bg-white/10"
       aria-label="Toggle theme"
     >
-      {theme === "dark" ? <FiSun size={24} /> : <FiMoon size={24} />}
+      {theme === "light" ? <FiSun size={24} /> : <FiMoon size={24} />}
     </button>
   );
 }

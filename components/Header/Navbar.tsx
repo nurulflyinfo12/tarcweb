@@ -32,7 +32,7 @@ export default function Navbar() {
             {/* Logo */}
             <div>
               <h2 className="text-2xl font-light tracking-widest text-primary">
-                TRACE
+                TARC
               </h2>
               <p className="text-xs text-secondary tracking-[4px]">RESORT</p>
             </div>
