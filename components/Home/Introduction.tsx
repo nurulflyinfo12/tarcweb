@@ -2,6 +2,7 @@ import React from "react";
 import { FaArrowRight } from "react-icons/fa";
 
 const Introduction = () => {
+  
   const sectionData = {
     subtitle: "Welcome To",
     title: "Grand Sultan Tea Resort & Golf",
@@ -12,25 +13,26 @@ const Introduction = () => {
       "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1200&auto=format&fit=crop",
   };
 
+
   return (
-    <section className="py-16">
+    <section className="py-16 bg-background">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <div className="flex flex-col lg:flex-row items-center gap-12">
           {/* Text Column */}
           <div className="w-full lg:w-1/2">
-            <p className="text-primary-dark font-semibold  tracking-wider mb-3">
+            <p className="text-primary font-semibold tracking-wider mb-3">
               {sectionData.subtitle}
             </p>
 
-            <h2 className="text-3xl lg:text-4xl font-bold text-white leading-tight mb-6">
+            <h2 className="text-3xl lg:text-4xl font-bold text-foreground leading-tight mb-6">
               {sectionData.title}
             </h2>
 
-            <p className="text-white-600 leading-8 mb-5">
+            <p className="text-foreground/80 leading-8 mb-5">
               {sectionData.description}
             </p>
 
-            <button className="text-primary-dark hover:text-white transition-all duration-300 flex items-center gap-2">
+            <button className="text-primary hover:text-primary-dark transition-all duration-300 flex items-center gap-2 font-medium">
               {sectionData.buttonText}
               <FaArrowRight className="text-sm" />
             </button>
