@@ -1,4 +1,3 @@
-// components/BannerSlider.tsx
 "use client";
 
 import { useState, useEffect } from "react";
@@ -87,7 +86,8 @@ export default function BannerSlider() {
                 {slide.subtitle}
               </h1>
 
-              <button className="mt-6 bg-primary hover:bg-primary-dark transition px-12 py-4 text-black font-semibold text-lg rounded-sm">
+              {/* Button*/}
+              <button className="mt-6 bg-primary hover:bg-secondary transition px-12 py-4 text-black font-semibold text-lg rounded-sm cursor-pointer">
                 {slide.buttonText}
               </button>
             </div>
@@ -98,14 +98,14 @@ export default function BannerSlider() {
       {/* Navigation Arrows */}
       <button
         onClick={goToPrev}
-        className="absolute left-6 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-4 rounded-full transition z-10"
+        className="absolute left-6 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-4 rounded-full transition z-10 hover:text-primary"
       >
         <FiChevronLeft size={28} />
       </button>
 
       <button
         onClick={goToNext}
-        className="absolute right-6 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-4 rounded-full transition z-10"
+        className="absolute right-6 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-4 rounded-full transition z-10 hover:text-primary"
       >
         <FiChevronRight size={28} />
       </button>
@@ -118,8 +118,8 @@ export default function BannerSlider() {
             onClick={() => goToSlide(index)}
             className={`w-3 h-3 rounded-full transition-all ${
               index === currentIndex
-                ? "bg-white scale-125"
-                : "bg-white/50 hover:bg-white/80"
+                ? "bg-primary scale-125"
+                : "bg-white/50 hover:bg-primary/70"
             }`}
           />
         ))}

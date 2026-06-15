@@ -15,14 +15,14 @@ import {
 } from "react-icons/fi";
 
 const mainMenuItems = [
-  { name: "Home", icon: FiHome },
-  { name: "Rooms & Suites", icon: FiBookOpen },
-  { name: "Restaurants & Cafes", icon: FiCoffee },
-  { name: "Meetings & Events", icon: FiUsers },
-  { name: "Relaxation", icon: FiSun },
-  { name: "Recreations", icon: FiActivity },
-  { name: "Special Offers", icon: FiGift },
-  { name: "Contact Us", icon: FiPhone },
+  { name: "Home", icon: FiHome, path:"#" },
+  { name: "Rooms & Suites", icon: FiBookOpen, path: "/roomsandsuites" },
+  { name: "Restaurants & Cafes", icon: FiCoffee, path: "#" },
+  { name: "Meetings & Events", icon: FiUsers, path: "#" },
+  { name: "Relaxation", icon: FiSun, path: ""},
+  { name: "Recreations", icon: FiActivity, path: "#" },
+  { name: "Special Offers", icon: FiGift, path: "#" },
+  { name: "Contact Us", icon: FiPhone, path: "#" },
 ];
 
 const bottomMenuItems = [
@@ -82,7 +82,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
               {mainMenuItems.map((item, index) => (
                 <Link
                   key={index}
-                  href="#"
+                  href={item.path}
                   onClick={onClose}
                   className="group flex flex-col items-center justify-center py-6 sm:py-8 md:py-10 px-3 sm:px-4 md:px-6 hover:bg-primary/10 transition duration-300 text-center min-h-[110px] sm:min-h-[125px] md:min-h-[150px]"
                 >
