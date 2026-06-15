@@ -41,7 +41,7 @@ export default function RootLayout({
           storageKey="trac-resort-theme"
         >
           <Navbar />
-          <SpecialOfferButton /> {/* NEW BUTTON ADDED HERE */}
+          <SpecialOfferButton /> 
           {children}
           <Footer />
         </ThemeProvider>
