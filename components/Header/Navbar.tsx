@@ -1,0 +1,56 @@
+// components/Navbar.tsx
+"use client";
+
+import Link from "next/link";
+import { useState } from "react";
+import { FiMenu, FiPhone } from "react-icons/fi";
+import MobileMenu from "./MobileMenu";
+
+export default function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <>
+      {/* Navbar */}
+      <header className="fixed top-0 left-0 w-full z-50">
+        <div className="max-w-7xl mx-auto px-6 lg:px-10">
+          <div className="flex items-center justify-between py-6">
+            {/* Logo */}
+            <div>
+              <h2 className="text-2xl font-light tracking-widest text-primary">
+                TRACE
+              </h2>
+              <p className="text-xs text-secondary tracking-[4px]">RESORT</p>
+            </div>
+
+            {/* Right Side */}
+            <div className="flex items-center gap-8 text-white">
+              <div className="hidden lg:flex items-center gap-6">
+                <div className="flex items-center gap-2">
+                  <FiPhone size={16} />
+                  <span>+880 9678 785959</span>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <FiPhone size={16} />
+                  <span>+880 1730 793555</span>
+                </div>
+              </div>
+
+              <button
+                onClick={() => setIsOpen(true)}
+                className="flex items-center gap-3 group cursor-pointer"
+              >
+                <span className="text-lg">Menu</span>
+                <FiMenu size={34} className="group-hover:text-primary transition" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* Popup Menu - Now a separate component */}
+      <MobileMenu isOpen={isOpen} onClose={() => setIsOpen(false)} />
+    </>
+  );
+}
