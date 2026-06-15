@@ -18,9 +18,13 @@ const Introduction = () => {
         <div className="flex flex-col lg:flex-row items-center gap-12">
           {/* Text Column */}
           <div className="w-full lg:w-1/2">
-            <p className="text-primary-dark font-semibold  tracking-wider mb-3">
-              {sectionData.subtitle}
-            </p>
+            <div className="flex items-center gap-3 mb-3">
+              <p className="text-primary-dark font-semibold tracking-wider">
+                {sectionData.subtitle}
+              </p>
+
+              <span className="w-12 h-[2px] bg-primary-dark"></span>
+            </div>
 
             <h2 className="text-3xl lg:text-4xl font-bold text-white leading-tight mb-6">
               {sectionData.title}
