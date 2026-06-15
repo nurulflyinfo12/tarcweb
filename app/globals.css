@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  /* DARK MODE */
+  /* Light Mode */
   --background: #0b2400;
   --foreground: #f5f5dc;
   --primary: #d4af37;
@@ -12,7 +12,7 @@
   --border: #2d4f1e;
 }
 
-/* LIGHT MODE */
+/* Dark Mode */
 .light {
   --background: #f8f7f0;
   --foreground: #f5f5dc;
@@ -42,6 +42,12 @@ body {
 }
 
 /* Improve readability */
-.text-foreground { color: var(--foreground); }
-.bg-background { background-color: var(--background); }
-.bg-card { background-color: var(--card); }
+.text-foreground {
+  color: var(--foreground);
+}
+.bg-background {
+  background-color: var(--background);
+}
+.bg-card {
+  background-color: var(--card);
+}

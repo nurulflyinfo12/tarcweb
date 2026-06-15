@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { FiMenu, FiPhone } from "react-icons/fi";
 import MobileMenu from "./MobileMenu";
 import ThemeToggle from "../ThemeToggle/ThemeToggle";
-
+import Image from "next/image";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -31,10 +31,14 @@ export default function Navbar() {
           <div className="flex items-center justify-between py-6">
             {/* Logo */}
             <div>
-              <h2 className="text-2xl font-light tracking-widest text-primary">
-                TARC
-              </h2>
-              <p className="text-xs text-secondary tracking-[4px]">RESORT</p>
+              <Image
+                src="/images/logo.png"
+                alt="TRAC Resort"
+                width={180}
+                height={80}
+                className="h-16 w-auto object-contain"
+                priority
+              />
             </div>
 
             {/* Right Side */}
@@ -59,7 +63,10 @@ export default function Navbar() {
                 className="flex items-center gap-3 group cursor-pointer"
               >
                 <span className="text-lg">Menu</span>
-                <FiMenu size={34} className="group-hover:text-primary transition" />
+                <FiMenu
+                  size={34}
+                  className="group-hover:text-primary transition"
+                />
               </button>
             </div>
           </div>
