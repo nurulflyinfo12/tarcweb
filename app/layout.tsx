@@ -17,9 +17,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Trac Resort - Luxury Getaway & Natural Escape",
+  title: "Tarc Resort - Luxury Getaway & Natural Escape",
   description:
-    "Discover Trac Resort - a serene retreat offering premium accommodations, breathtaking views, and unforgettable experiences. Book your stay today.",
+    "Discover tarc Resort - a serene retreat offering premium accommodations, breathtaking views, and unforgettable experiences. Book your stay today.",
 };
 
 export default function RootLayout({
@@ -36,8 +36,8 @@ export default function RootLayout({
       <body className="min-h-screen bg-background text-foreground">
         <ThemeProvider
           attribute="class"
-          defaultTheme="light"
-          enableSystem={false}
+          defaultTheme="light"     
+          enableSystem={false}      
           storageKey="trac-resort-theme"
         >
           <Navbar />
