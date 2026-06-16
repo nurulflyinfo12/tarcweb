@@ -94,7 +94,7 @@ const LuxuryExperience: React.FC<LuxuryExperienceProps> = ({
         <div className="relative group">
           <div className="absolute inset-x-10 -top-3 -bottom-3 bg-white/20 rounded-2xl md:inset-x-20 backdrop-blur-[2px] pointer-events-none z-0" />
 
-          <div className="relative z-10 bg-white dark:bg-card/50 p-8 lg:p-16 rounded-[30px] shadow-2xl border border-border/40 overflow-hidden">
+          <div className="relative z-10 bg-white dark:bg-white p-8 lg:p-16 rounded-[30px] shadow-2xl border border-border/40 overflow-hidden">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               <div className="relative">
                 <div className="relative z-0">
