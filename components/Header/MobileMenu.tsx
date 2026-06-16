@@ -21,8 +21,8 @@ const mainMenuItems = [
   { name: "Meetings & Events", icon: FiUsers, path: "/meetingsandevents" },
   { name: "Relaxation", icon: FiSun, path: "/relaxation"},
   { name: "Recreations", icon: FiActivity, path: "/recreations" },
-  { name: "Special Offers", icon: FiGift, path: "#" },
-  { name: "Contact Us", icon: FiPhone, path: "#" },
+  { name: "Special Offers", icon: FiGift, path: "/specialoffers" },
+  { name: "Contact Us", icon: FiPhone, path: "/contactus" },
 ];
 
 const bottomMenuItems = [

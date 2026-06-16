@@ -50,11 +50,11 @@ const ImageCardSlider = ({
   const showButton = !!(buttonText || buttonHref || onButtonClick);
 
   return (
-    <div className="w-full py-8 md:py-12">
+    <div className="w-full py-8 md:py-8">
       <div className="relative w-full max-w-7xl mx-auto">
         
         {/* Background Accent */}
-        <div className="absolute inset-x-6 md:inset-x-10 -top-3 -bottom-3 bg-white/10 rounded-2xl md:inset-x-20 backdrop-blur-[2px] pointer-events-none z-0" />
+        <div className="absolute inset-x-6 md:inset-x-10 -top-3 -bottom-3 bg-white/20 rounded-2xl md:inset-x-20 backdrop-blur-[2px] pointer-events-none z-0" />
 
         <div
           className={`relative bg-white rounded-3xl p-6 sm:p-8 md:p-10 lg:p-12 flex flex-col lg:flex-row items-center gap-8 lg:gap-12 shadow-xl border border-neutral-100/80 z-10 ${
