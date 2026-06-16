@@ -541,7 +541,7 @@ const SummerBreeze = () => {
             </section>
 
             {/* Booking Form (unchanged) */}
-            <section className="py-20 bg-card">
+            <section className="py-20">
                 <div className="max-w-4xl mx-auto px-6 lg:px-10">
                     <h2 className="text-4xl font-light text-center mb-4">Book This Package Now!</h2>
                     <p className="text-center text-foreground/70 mb-12">Booking rooms has never been this simple. Fill up the form below with all the necessary information.</p>
