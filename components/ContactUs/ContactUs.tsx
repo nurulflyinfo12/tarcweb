@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { BiLocationPlus } from "react-icons/bi";
 import { FiPhone, FiMapPin } from "react-icons/fi";
+import CallToAction from "../common/calltoaction";
 
 const ContactUs = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -195,23 +196,13 @@ const ContactUs = () => {
                     </div>
                 </div>
             </section>
-
-            {/* Ready to Book */}
-            <section className="bg-[#1A3F2F] py-12 md:py-16 text-center">
-                <div className="max-w-3xl mx-auto px-4 sm:px-6">
-                    <h2 className="text-3xl sm:text-4xl font-medium text-white mb-4">Ready to Book Your Stay?</h2>
-                    <p className="text-white/80 mb-8 text-base sm:text-lg px-4">
-                        Call us now to check availability and secure your desired rooms before they're all gone!
-                    </p>
-                    <a
-                        href="tel:+8809678785959"
-                        className="inline-flex items-center gap-3 bg-[#D4AF37] hover:bg-amber-500 text-black font-semibold px-8 sm:px-10 py-4 rounded-full text-base sm:text-lg transition mx-auto"
-                    >
-                        <FiPhone size={26} />
-                        +880 9678 785959
-                    </a>
-                </div>
-            </section>
+            
+            {/* Booking CTA */}
+            <CallToAction
+                title="Ready to Book Your Stay?"
+                description="Call us now to check availability and secure your desired rooms before they're all gone!"
+                phone="+880 9678 785959"
+            />
         </>
     );
 };
