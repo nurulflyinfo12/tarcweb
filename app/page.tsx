@@ -4,6 +4,8 @@ import LuxuryExperience from "@/components/Home/LuxuryExperience";
 import AtAGlance from "@/components/Home/AtAGlance";
 import ExclusiveDelights from "@/components/Home/ExclusiveDelights";
 import DiscoverAndReviews from "@/components/Home/DiscoverAndReviews";
+import MeetingsAndEvents from "@/components/Home/MeetingsAndEvents";
+
 
 export default function Home() {
   return (
@@ -13,6 +15,7 @@ export default function Home() {
       <LuxuryExperience />
       <AtAGlance />
       <ExclusiveDelights />
+      <MeetingsAndEvents />
       <DiscoverAndReviews />
     </>
   );
