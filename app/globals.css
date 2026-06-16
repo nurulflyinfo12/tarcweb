@@ -1,7 +1,19 @@
 @import "tailwindcss";
 
-/* DEFAULT (fallback) */
 :root {
+  /* Default: Dark Mode */
+  --background: #0b2400;
+  --foreground: #f5f5dc;
+  --primary: #d4af37;
+  --primary-dark: #b8860b;
+  --secondary: #45741f;
+  --accent: #e9c46a;
+  --card: #143601;
+  --border: #2d4f1e;
+  --text-muted: rgba(245, 245, 220, 0.75);
+}
+.dark{
+  /* Default: Dark Mode */
   --background: #0b2400;
   --foreground: #f5f5dc;
   --primary: #d4af37;
@@ -13,20 +25,7 @@
   --text-muted: rgba(245, 245, 220, 0.75);
 }
 
-/* DARK MODE (IMPORTANT FIX) */
-.dark {
-  --background: #0b2400;
-  --foreground: #f5f5dc;
-  --primary: #d4af37;
-  --primary-dark: #b8860b;
-  --secondary: #45741f;
-  --accent: #e9c46a;
-  --card: #143601;
-  --border: #2d4f1e;
-  --text-muted: rgba(245, 245, 220, 0.75);
-}
-
-/* LIGHT MODE */
+/* Light Mode */
 .light {
   --background: #f8f7f0;
   --foreground: #0b2400;
@@ -38,6 +37,7 @@
   --border: #a3b89a;
   --text-muted: #4a5d43;
 }
+
 @theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
