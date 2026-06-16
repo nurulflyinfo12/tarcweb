@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import Link from "next/link";
 
-interface Room {
+interface meetings {
   id: number;
   name: string;
   //   sizeSQM: number;
@@ -15,12 +15,12 @@ interface Room {
   reverse: boolean;
 }
 
-interface RoomCardProps {
-  room: Room;
+interface MeetingCardProps {
+  room: meetings;
   onImageClick: (images: string[], name: string, index: number) => void;
 }
 
-const RestaurantsCardSlider = ({ room, onImageClick }: RoomCardProps) => {
+const MeetingsCardSlider = ({ room, onImageClick }: MeetingCardProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   // Auto Slider
@@ -138,4 +138,4 @@ const RestaurantsCardSlider = ({ room, onImageClick }: RoomCardProps) => {
   );
 };
 
-export default RestaurantsCardSlider;
+export default MeetingsCardSlider;

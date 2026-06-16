@@ -18,9 +18,9 @@ const mainMenuItems = [
   { name: "Home", icon: FiHome, path:"/" },
   { name: "Rooms & Suites", icon: FiBookOpen, path: "/roomsandsuites" },
   { name: "Restaurants & Cafes", icon: FiCoffee, path: "/restaurantsandcafes" },
-  { name: "Meetings & Events", icon: FiUsers, path: "#" },
-  { name: "Relaxation", icon: FiSun, path: ""},
-  { name: "Recreations", icon: FiActivity, path: "#" },
+  { name: "Meetings & Events", icon: FiUsers, path: "/meetingsandevents" },
+  { name: "Relaxation", icon: FiSun, path: "/relaxation"},
+  { name: "Recreations", icon: FiActivity, path: "/recreations" },
   { name: "Special Offers", icon: FiGift, path: "#" },
   { name: "Contact Us", icon: FiPhone, path: "#" },
 ];

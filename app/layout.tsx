@@ -4,7 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Header/Navbar";
 import Footer from "@/components/Footer/Footer";
 import { ThemeProvider } from "next-themes";
-import SpecialOfferButton from "@/components/SpecialOfferButton"; // New Import
+import SpecialOfferButton from "@/components/SpecialOfferButton"; 
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
