@@ -1,5 +1,7 @@
 "use client";
-import React, { useState, useEffect } from "react";
+
+import React, { useState, useEffect, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   FaChevronLeft,
   FaChevronRight,
@@ -68,131 +70,161 @@ const AtAGlance = () => {
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % roomsData.length);
-    }, 4000);
-
-    return () => clearInterval(interval);
+  const nextSlide = useCallback(() => {
+    setCurrentIndex((prev) => (prev + 1) % roomsData.length);
   }, [roomsData.length]);
 
-  const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % roomsData.length);
-  };
-
-  const prevSlide = () => {
+  const prevSlide = useCallback(() => {
     setCurrentIndex((prev) => (prev - 1 + roomsData.length) % roomsData.length);
-  };
+  }, [roomsData.length]);
+
+  useEffect(() => {
+    if (isPaused) return;
+
+    const interval = setInterval(() => {
+      nextSlide();
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [nextSlide, isPaused]);
 
   const currentRoom = roomsData[currentIndex];
 
   return (
-    <section className="text-white py-16 overflow-hidden">
+    <section className="bg-background py-16 overflow-hidden transition-colors duration-300">
       {/* HEADER */}
-      <div className="max-w-7xl mx-auto px-4 text-center mb-8">
-        <div className="flex items-center justify-center gap-3 mb-1">
-          <span className="w-8 h-[1px] bg-primary-dark"></span>
-          <p className="text-primary-dark text-xs font-semibold tracking-widest uppercase">
+      <div className="max-w-7xl mx-auto px-4 text-center mb-10">
+        <div className="flex items-center justify-center gap-4 mb-2">
+          <span className="w-10 h-[1px] bg-primary/40"></span>
+          <p className="text-primary text-xs font-bold tracking-[0.2em] uppercase">
             At A Glance
           </p>
-          <span className="w-8 h-[1px] bg-primary-dark"></span>
+          <span className="w-10 h-[1px] bg-primary/40"></span>
         </div>
 
-        <h2 className="text-3xl font-serif font-bold">Our Rooms & Suites</h2>
+        <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground transition-colors">
+          Our Rooms & Suites
+        </h2>
       </div>
 
       {/* SLIDER */}
-      <div className="relative w-full mb-8 px-0">
-        <div className="relative h-[300px] sm:h-[450px] md:h-[550px] flex items-center justify-center overflow-hidden">
-          {roomsData.map((room, index) => {
-            let positionClass =
-              "opacity-0 scale-90 pointer-events-none absolute z-0";
+      <div
+        className="relative w-full mb-12 h-[320px] sm:h-[480px] md:h-[580px] flex items-center justify-center"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+      >
+        {roomsData.map((room, index) => {
+          const isCenter = index === currentIndex;
+          const isLeft =
+            index === (currentIndex - 1 + roomsData.length) % roomsData.length;
+          const isRight = index === (currentIndex + 1) % roomsData.length;
 
-            if (index === currentIndex) {
-              positionClass =
-                "opacity-100 scale-100 z-10 w-[85%] md:w-[65%] h-full relative";
-            } else if (
-              index ===
-              (currentIndex - 1 + roomsData.length) % roomsData.length
-            ) {
-              positionClass =
-                "opacity-60 scale-95 -translate-x-[75%] absolute left-[15%] md:left-[22%] z-0 w-[85%] md:w-[65%] h-full cursor-pointer";
-            } else if (index === (currentIndex + 1) % roomsData.length) {
-              positionClass =
-                "opacity-60 scale-95 translate-x-[75%] absolute right-[15%] md:right-[22%] z-0 w-[85%] md:w-[65%] h-full cursor-pointer";
-            }
+          const isVisible = isCenter || isLeft || isRight;
 
-            return (
-              <div
-                key={room.id}
-                className={`transition-all duration-700 ease-in-out transform ${positionClass}`}
-                onClick={() => setCurrentIndex(index)}
-              >
-                <img
-                  src={room.image}
-                  alt={room.title}
-                  className="w-full h-full object-cover select-none shadow-2xl"
-                />
+          return (
+            <motion.div
+              key={room.id}
+              layout
+              initial={false}
+              animate={{
+                x: isCenter ? 0 : isLeft ? -350 : isRight ? 350 : 0,
+                scale: isCenter ? 1 : 0.9,
+                opacity: isVisible ? (isCenter ? 1 : 0.55) : 0,
+                zIndex: isCenter ? 20 : 10,
+              }}
+              transition={{
+                type: "spring",
+                stiffness: 120,
+                damping: 20,
+                mass: 1.2,
+              }}
+              onClick={() => setCurrentIndex(index)}
+              style={{
+                pointerEvents: isVisible ? "auto" : "none",
+              }}
+              className="absolute w-[90%] md:w-[65%] h-full cursor-pointer select-none will-change-transform"
+            >
+              <img
+                src={room.image}
+                alt={room.title}
+                draggable={false}
+                className="w-full h-full object-cover rounded-sm shadow-2xl transform-gpu"
+              />
 
-                {/* ARROWS */}
-                {index === currentIndex && (
-                  <>
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        prevSlide();
-                      }}
-                      className="absolute left-6 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 p-3 rounded-full"
-                    >
-                      <FaChevronLeft />
-                    </button>
+              {/* Navigation */}
+              {isCenter && (
+                <div className="absolute inset-0 flex items-center justify-between px-4 md:px-8 opacity-0 hover:opacity-100 transition-opacity duration-300">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      prevSlide();
+                    }}
+                    className="bg-black/20 hover:bg-primary p-3 md:p-4 rounded-full text-white backdrop-blur-sm transition-all duration-300"
+                  >
+                    <FaChevronLeft size={18} />
+                  </button>
 
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        nextSlide();
-                      }}
-                      className="absolute right-6 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 p-3 rounded-full"
-                    >
-                      <FaChevronRight />
-                    </button>
-                  </>
-                )}
-              </div>
-            );
-          })}
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      nextSlide();
+                    }}
+                    className="bg-black/20 hover:bg-primary p-3 md:p-4 rounded-full text-white backdrop-blur-sm transition-all duration-300"
+                  >
+                    <FaChevronRight size={18} />
+                  </button>
+                </div>
+              )}
+            </motion.div>
+          );
+        })}
 
-          {/* GRADIENTS */}
-          <div className="absolute left-0 top-0 w-[20%] h-full bg-gradient-to-r from-[#051c05] to-transparent z-20 pointer-events-none" />
-          <div className="absolute right-0 top-0 w-[20%] h-full bg-gradient-to-l from-[#051c05] to-transparent z-20 pointer-events-none" />
-        </div>
+        {/* EDGE GRADIENTS */}
+        <div className="absolute left-0 top-0 w-[25%] h-full bg-gradient-to-r from-background to-transparent z-30 pointer-events-none" />
+        <div className="absolute right-0 top-0 w-[25%] h-full bg-gradient-to-l from-background to-transparent z-30 pointer-events-none" />
       </div>
 
-      {/* INFO */}
-      <div className="mx-auto px-8 md:px-[18%]">
-        <h3 className="text-xl font-bold text-primary-dark mb-2">
-          {currentRoom.title}
-        </h3>
+      {/* ROOM INFO */}
+      <div className="max-w-4xl mx-auto  text-center md:text-left">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentIndex}
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -15 }}
+            transition={{
+              duration: 0.45,
+              ease: "easeOut",
+            }}
+          >
+            <h3 className="text-2xl font-serif font-bold text-primary mb-3">
+              {currentRoom.title}
+            </h3>
 
-        <div className="flex items-center gap-6 text-xs text-gray-300 mb-4">
-          <div className="flex items-center gap-1.5">
-            <FaUsers className="text-primary-dark" />
-            {currentRoom.guests}
-          </div>
+            <div className="flex flex-wrap justify-center md:justify-start items-center gap-6 text-sm text-text-muted mb-5">
+              <div className="flex items-center gap-2">
+                <FaUsers className="text-primary" />
+                <span className="font-medium">{currentRoom.guests} Guests</span>
+              </div>
 
-          <div className="flex items-center gap-1.5">
-            <FaBed className="text-primary-dark" />
-            {currentRoom.beds}
-          </div>
+              <div className="flex items-center gap-2">
+                <FaBed className="text-primary" />
+                <span className="font-medium">{currentRoom.beds} Beds</span>
+              </div>
 
-          <div className="flex items-center gap-1.5">
-            <FaRulerCombined className="text-primary-dark" />
-            {currentRoom.size} sqft
-          </div>
-        </div>
+              <div className="flex items-center gap-2">
+                <FaRulerCombined className="text-primary" />
+                <span className="font-medium">{currentRoom.size} sqft</span>
+              </div>
+            </div>
 
-        <p className="text-sm text-gray-400">{currentRoom.description}</p>
+            <p className="text-text-muted leading-relaxed max-w-2xl font-light">
+              {currentRoom.description}
+            </p>
+          </motion.div>
+        </AnimatePresence>
       </div>
     </section>
   );

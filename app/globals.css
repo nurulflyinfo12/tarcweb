@@ -1,29 +1,43 @@
 @import "tailwindcss";
 
+/* DEFAULT (fallback) */
 :root {
-  /* Light Mode */
   --background: #0b2400;
   --foreground: #f5f5dc;
   --primary: #d4af37;
   --primary-dark: #b8860b;
-  --secondary: #1b4332;
+  --secondary: #45741f;
   --accent: #e9c46a;
   --card: #143601;
   --border: #2d4f1e;
+  --text-muted: rgba(245, 245, 220, 0.75);
 }
 
-/* Dark Mode */
+/* DARK MODE (IMPORTANT FIX) */
+.dark {
+  --background: #0b2400;
+  --foreground: #f5f5dc;
+  --primary: #d4af37;
+  --primary-dark: #b8860b;
+  --secondary: #45741f;
+  --accent: #e9c46a;
+  --card: #143601;
+  --border: #2d4f1e;
+  --text-muted: rgba(245, 245, 220, 0.75);
+}
+
+/* LIGHT MODE */
 .light {
   --background: #f8f7f0;
-  --foreground: #f5f5dc;
+  --foreground: #0b2400;
   --primary: #b8860b;
   --primary-dark: #8b5a00;
   --secondary: #5f8c6f;
   --accent: #d4af37;
-  --card: #e8f0e0;
+  --card: #ffffff;
   --border: #a3b89a;
+  --text-muted: #4a5d43;
 }
-
 @theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -33,32 +47,43 @@
   --color-accent: var(--accent);
   --color-card: var(--card);
   --color-border: var(--border);
+  --color-text-muted: var(--text-muted);
 }
 
+/* GLOBAL FONT (Biryani everywhere) */
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-geist-sans);
+  font-family: var(--font-biryani), sans-serif;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
-/* Improve readability */
+/* Utility classes */
 .text-foreground {
   color: var(--foreground);
 }
+
 .bg-background {
   background-color: var(--background);
 }
+
 .bg-card {
   background-color: var(--card);
 }
 
+/* Optional utility */
+.font-biryani {
+  font-family: var(--font-biryani), sans-serif;
+}
 
+/* Animations */
 @keyframes slideInRight {
   from {
     opacity: 0;
     transform: translateX(80px);
   }
-
   to {
     opacity: 1;
     transform: translateX(0);
@@ -67,4 +92,23 @@ body {
 
 .animate-slide-in-right {
   animation: slideInRight 1.2s ease-out forwards;
+}
+
+/* Awards marquee */
+@keyframes awardsMarquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.awards-marquee {
+  width: max-content;
+  animation: awardsMarquee 25s linear infinite;
+}
+
+.awards-marquee:hover {
+  animation-play-state: paused;
 }

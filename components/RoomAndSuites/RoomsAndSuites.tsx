@@ -6,6 +6,7 @@ import RoomsCardSlider from "./RoomsCardSlider";
 import ImageModal from "./ImageModal";
 import CallToAction from "../common/calltoaction";
 import ImageGalleryModal from "../common/ImageGalleryModal";
+import ImageCardSlider from "../common/ImageCardSlider";
 
 const rooms = [
     {
@@ -205,12 +206,14 @@ const RoomsAndSuites = () => {
             {/* Rooms List */}
             <section className="bg-background py-16">
                 <div className="max-w-7xl mx-auto px-6 lg:px-10 ">
-                    {rooms.map((room) => (
-                        <RoomsCardSlider
-                            key={room.id}
-                            room={room}
-                            onImageClick={openModal}
-                        />
+                    {rooms.map(room => (
+                      <ImageCardSlider
+                        key={room.id}
+                        {...room}
+                        onImageClick={openModal}
+                        buttonText="Find More"
+                        buttonHref="#"
+                      />
                     ))}
                 </div>
             </section>
