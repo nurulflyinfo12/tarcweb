@@ -86,7 +86,7 @@ const SpecialOffers = ({ offers = defaultOffers }: SpecialOffersProps) => {
                                         )}
 
                                         <a
-                                            href="#"
+                                            href="/specialoffers/summer-breeze"
                                             className="inline-flex items-center text-[#D4AF37] hover:text-amber-600 font-medium group"
                                         >
                                             → Discover More
