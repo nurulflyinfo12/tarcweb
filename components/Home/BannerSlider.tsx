@@ -30,7 +30,7 @@ const slides: Slide[] = [
     buttonText: "DISCOVER MORE",
   },
   {
-    image: "https://images.unsplash.com/photo-1571896349842-33c89424de2d",
+    image: "/images/cooridoor.jpg",
     title: "Relax & Rejuvenate",
     subtitle: "World-Class Spa",
     buttonText: "VISIT SPA",
