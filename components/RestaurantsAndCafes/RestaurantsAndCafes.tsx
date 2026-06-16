@@ -2,19 +2,18 @@
 
 import React, { useState, useRef } from "react";
 import { FiX, FiChevronLeft, FiChevronRight, FiShare2, FiMaximize, FiDownload } from "react-icons/fi";
-import RoomsCardSlider from "./RoomsCardSlider";
+import RestaurantsCardSlider from "./RestaurantsCardSlider";
 import ImageModal from "./ImageModal";
+import { motion } from "framer-motion";
 import CallToAction from "../common/calltoaction";
 import ImageGalleryModal from "../common/ImageGalleryModal";
 
-const rooms = [
+const Restaurants = [
     {
         id: 1,
-        name: "King Deluxe",
-        sizeSQM: 36,
-        sizeSQF: 382,
-        maxGuests: 2,
-        description: "Our King Deluxe room has a spacious layout, with an abundance of natural light coming in and a spectacular view. The lavish and cozy King size bed is ideal for a couple.",
+        name: "Fowara Dine",
+        type: "All Day Dine",
+        description: "Time spend all day dining restaurant Fowara Dine provides a stunning atmosphere in which to sample European, Asian, Pan Asian...",
         images: [
             "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=2070",
             "https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=2070",
@@ -24,105 +23,55 @@ const rooms = [
     },
     {
         id: 2,
-        name: "Queen Deluxe",
-        sizeSQM: 36,
-        sizeSQF: 382,
-        maxGuests: 2,
-        description: "Our Queen Deluxe room has a spacious layout, with an abundance of natural light and a spectacular view. The two luxurious Queen size beds are ideal for 2-4 adults.",
+        name: "Oronno Bilash",
+        type: "Hilltop Restaurant",
+        description: "Experience our BBQ in the perfect ambiance against the backdrop of the green tea gardens at our hilltop Restaurant Oronno Bilash...",
         images: [
-            "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=2070",
-            "https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=2070",
             "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=2070",
+            "https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=2070",
+            "https://images.unsplash.com/photo-1566665797739-1674de7a421a?q=80&w=2070",
         ],
         reverse: true,
     },
     {
         id: 3,
-        name: "Triple Deluxe",
-        sizeSQM: 36,
-        sizeSQF: 382,
-        maxGuests: 3,
-        description: "Our Triple Deluxe room has a spacious layout, with an abundance of natural light and a spectacular view.",
+        name: "Shahi Dine",
+        type: "Fine Dine",
+        description: "For your special occasion with your special one, shahi dine (Fine Dining) at Grand Sultan Tea Resort & Golf can be your resort...",
         images: [
+            "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=2070",
             "https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=2070",
             "https://images.unsplash.com/photo-1566665797739-1674de7a421a?q=80&w=2070",
-            "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=2070",
         ],
         reverse: false,
     },
     {
         id: 4,
-        name: "Executive Suite King",
-        sizeSQM: 53,
-        sizeSQF: 569,
-        maxGuests: 2,
-        description: "For a finer experience of a luxurious stay, our Executive Suite King is perfect.",
+        name: "Cafe Mongal",
+        type: "Cafe & Lounge",
+        description: "The casual wooden floored cafe Mongal welcomes you all day to sit, relax with a book and to enjoy leisure of specialty blends...",
         images: [
             "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=2070",
-            "https://images.unsplash.com/photo-1611892440504-42a792e24d32?q=80&w=2070",
-            "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=2070",
+            "https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=2070",
+            "https://images.unsplash.com/photo-1566665797739-1674de7a421a?q=80&w=2070",
         ],
         reverse: true,
     },
     {
         id: 5,
-        name: "Executive Suite Queen",
-        sizeSQM: 53,
-        sizeSQF: 569,
-        maxGuests: 2,
-        description: "For a finer experience of a luxurious stay, our Executive Suite Queen is ideal for 2 to 4 adults.",
+        name: "Pool Deck Cafe",
+        type: "Poolside Cafe",
+        description: "Enjoy our mocktails and juices in the relaxed atmosphere of the Pool Deck or if you have a favorite drink or wish to create...",
         images: [
             "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=2070",
             "https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=2070",
             "https://images.unsplash.com/photo-1566665797739-1674de7a421a?q=80&w=2070",
         ],
         reverse: false,
-    },
-    {
-        id: 6,
-        name: "Royal Suite Deluxe",
-        sizeSQM: 86,
-        sizeSQF: 920,
-        maxGuests: 4,
-        description: "For larger groups or families, our spacious and beautifully designed Royal Suite Deluxe is perfect.",
-        images: [
-            "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=2070",
-            "https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=2070",
-            "https://images.unsplash.com/photo-1566665797739-1674de7a421a?q=80&w=2070",
-        ],
-        reverse: true,
-    },
-    {
-        id: 7,
-        name: "Royal Suite Superior",
-        sizeSQM: 108,
-        sizeSQF: 1160,
-        maxGuests: 4,
-        description: "For families and larger groups to enjoy an exquisite luxurious space.",
-        images: [
-            "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=2070",
-            "https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=2070",
-            "https://images.unsplash.com/photo-1566665797739-1674de7a421a?q=80&w=2070",
-        ],
-        reverse: false,
-    },
-    {
-        id: 8,
-        name: "Presidential Suite",
-        sizeSQM: 162,
-        sizeSQF: 1750,
-        maxGuests: 6,
-        description: "A luxury suite with two bedrooms, a living room, and dining space ideal for 4-6 guests.",
-        images: [
-            "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=2070",
-            "https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=2070",
-            "https://images.unsplash.com/photo-1566665797739-1674de7a421a?q=80&w=2070",
-        ],
-        reverse: true,
-    },
+    }
 ];
 
-const RoomsAndSuites = () => {
+const RestaurantSAndCafes = () => {
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
     const [selectedRoomName, setSelectedRoomName] = useState("");
     const [currentModalIndex, setCurrentModalIndex] = useState(0);
@@ -184,7 +133,7 @@ const RoomsAndSuites = () => {
         document.body.removeChild(link);
     };
 
-    const currentRoom = rooms.find((r) => r.name === selectedRoomName);
+    const currentRoom = Restaurants.find((r) => r.name === selectedRoomName);
 
     return (
         <>
@@ -194,7 +143,7 @@ const RoomsAndSuites = () => {
                 <div className="absolute inset-0 bg-black/60" />
                 <div className="relative z-10 text-center px-6">
                     <h1 className="text-5xl md:text-7xl font-light tracking-widest text-white mb-4">
-                        Rooms &amp; Suites
+                        Restaurants &amp; Cafes
                     </h1>
                     <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto">
                         Discover comfort and style in our rooms and suites.
@@ -205,8 +154,8 @@ const RoomsAndSuites = () => {
             {/* Rooms List */}
             <section className="bg-background py-16">
                 <div className="max-w-7xl mx-auto px-6 lg:px-10 ">
-                    {rooms.map((room) => (
-                        <RoomsCardSlider
+                    {Restaurants.map((room) => (
+                        <RestaurantsCardSlider
                             key={room.id}
                             room={room}
                             onImageClick={openModal}
@@ -215,13 +164,13 @@ const RoomsAndSuites = () => {
                 </div>
             </section>
 
-            {/* Booking CTA */}
             <CallToAction
                 title="Ready to Reserve Your Table?"
                 description="Call us now to make a reservation at our restaurant."
                 phone="+880 9678 785959"
             />
 
+            {/* Modal */}
             {selectedRoom && (
                 <ImageGalleryModal
                     title={selectedRoom.name}
@@ -234,4 +183,4 @@ const RoomsAndSuites = () => {
     );
 };
 
-export default RoomsAndSuites;
+export default RestaurantSAndCafes;

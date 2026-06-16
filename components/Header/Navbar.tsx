@@ -5,6 +5,7 @@ import { FiMenu, FiPhone } from "react-icons/fi";
 import MobileMenu from "./MobileMenu";
 import ThemeToggle from "../ThemeToggle/ThemeToggle";
 import Image from "next/image";
+import Link from "next/link";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -21,16 +22,18 @@ export default function Navbar() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-          scrolled
-            ? "bg-background/95 backdrop-blur-md shadow-[0px_3px_9px_0px_rgba(0,0,0,0.72)]"
-            : "bg-transparent"
-        }`}
+        // className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+        //   scrolled
+        //     ? "bg-background/95 backdrop-blur-md shadow-[0px_3px_9px_0px_rgba(0,0,0,0.72)]"
+        //     : "bg-transparent"
+        // }`}
+
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-white backdrop-blur-md shadow-[0px_1px_6px_0px_rgba(0,0,0,0.72)]`}
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <div className="flex items-center justify-between py-6">
             {/* Logo */}
-            <div>
+            <Link href="/">
               <Image
                 src="/images/logo.png"
                 alt="TRAC Resort"
@@ -39,10 +42,10 @@ export default function Navbar() {
                 className="h-16 w-auto object-contain"
                 priority
               />
-            </div>
+            </Link>
 
             {/* Right Side */}
-            <div className="flex items-center gap-6 text-foreground">
+            <div className="flex items-center gap-6 text-black">
               <div className="hidden lg:flex items-center gap-6">
                 <div className="flex items-center gap-2">
                   <FiPhone size={16} />
