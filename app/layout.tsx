@@ -1,19 +1,16 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Biryani } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Header/Navbar";
 import Footer from "@/components/Footer/Footer";
 import { ThemeProvider } from "next-themes";
-import SpecialOfferButton from "@/components/SpecialOfferButton"; // New Import
+import SpecialOfferButton from "@/components/SpecialOfferButton";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const biryani = Biryani({
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: ["200", "300", "400", "600", "700", "800", "900"],
+  variable: "--font-biryani",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -30,23 +27,23 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${biryani.variable} h-full antialiased`}
       suppressHydrationWarning
     >
-      <body className="min-h-screen bg-background text-foreground">
+      <body className="min-h-screen bg-background text-foreground font-biryani">
         <ThemeProvider
           attribute="class"
-          defaultTheme="light"     
-          enableSystem={false}      
+          defaultTheme="light"
+          // forcedTheme="dark"
+          enableSystem={false}
           storageKey="trac-resort-theme"
         >
           <Navbar />
-          <SpecialOfferButton /> 
+          <SpecialOfferButton />
           {children}
           <Footer />
         </ThemeProvider>
       </body>
-
     </html>
   );
 }

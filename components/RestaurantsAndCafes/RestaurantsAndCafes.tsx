@@ -7,6 +7,7 @@ import ImageModal from "./ImageModal";
 import { motion } from "framer-motion";
 import CallToAction from "../common/calltoaction";
 import ImageGalleryModal from "../common/ImageGalleryModal";
+import ImageCardSlider from "../common/ImageCardSlider";
 
 const Restaurants = [
     {
@@ -154,11 +155,13 @@ const RestaurantSAndCafes = () => {
             {/* Rooms List */}
             <section className="bg-background py-16">
                 <div className="max-w-7xl mx-auto px-6 lg:px-10 ">
-                    {Restaurants.map((room) => (
-                        <RestaurantsCardSlider
-                            key={room.id}
-                            room={room}
+                    {Restaurants.map((restaurant) => (
+                        <ImageCardSlider
+                            key={restaurant.id}
+                            {...restaurant}
                             onImageClick={openModal}
+                            buttonText="Find More"
+                            buttonHref="#"
                         />
                     ))}
                 </div>

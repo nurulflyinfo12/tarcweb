@@ -1,36 +1,43 @@
 @import "tailwindcss";
 
+/* DEFAULT (fallback) */
 :root {
-  /* Default: Dark Mode */
-  --background: #0b2400; /* Deep Jungle Green */
-  --foreground: #f5f5dc; /* Light Beige Text */
-  --primary: #d4af37; /* Bright Gold */
-  --primary-dark: #b8860b; /* Deep Gold Accent */
-  --secondary: #45741F; /* Medium Emerald */
-  --accent: #e9c46a; /* Soft Warm Gold */
-  --card: #143601; /* Dark Emerald Card Base */
-  --border: #2d4f1e; /* Muted Moss Border */
-  --text-muted: rgba(
-    245,
-    245,
-    220,
-    0.75
-  ); /* Beige with opacity for dark mode text */
+  --background: #0b2400;
+  --foreground: #f5f5dc;
+  --primary: #d4af37;
+  --primary-dark: #b8860b;
+  --secondary: #45741f;
+  --accent: #e9c46a;
+  --card: #143601;
+  --border: #2d4f1e;
+  --text-muted: rgba(245, 245, 220, 0.75);
 }
 
-/* Light Mode Overrides */
+/* DARK MODE (IMPORTANT FIX) */
+.dark {
+  --background: #0b2400;
+  --foreground: #f5f5dc;
+  --primary: #d4af37;
+  --primary-dark: #b8860b;
+  --secondary: #45741f;
+  --accent: #e9c46a;
+  --card: #143601;
+  --border: #2d4f1e;
+  --text-muted: rgba(245, 245, 220, 0.75);
+}
+
+/* LIGHT MODE */
 .light {
-  --background: #f8f7f0; /* Premium Creamy Off-White */
-  --foreground: #0b2400; /* Deep Forest Green Text for sharp readability */
-  --primary: #b8860b; /* Dark Gold for text components */
-  --primary-dark: #8b5a00; /* Deep Antique Gold */
-  --secondary: #5f8c6f; /* Sage / Herbal Green Accent */
-  --accent: #d4af37; /* Classic Gold */
-  --card: #ffffff; /* Pure Crisp White Cards */
-  --border: #a3b89a; /* Soft Mossy Border Line */
-  --text-muted: #4a5d43; /* Soft Charcoal-Green for descriptions */
+  --background: #f8f7f0;
+  --foreground: #0b2400;
+  --primary: #b8860b;
+  --primary-dark: #8b5a00;
+  --secondary: #5f8c6f;
+  --accent: #d4af37;
+  --card: #ffffff;
+  --border: #a3b89a;
+  --text-muted: #4a5d43;
 }
-
 @theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -43,26 +50,35 @@
   --color-text-muted: var(--text-muted);
 }
 
+/* GLOBAL FONT (Biryani everywhere) */
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-geist-sans);
+  font-family: var(--font-biryani), sans-serif;
   transition:
     background-color 0.3s ease,
     color 0.3s ease;
 }
 
-/* Base Variable Utility Classes */
+/* Utility classes */
 .text-foreground {
   color: var(--foreground);
 }
+
 .bg-background {
   background-color: var(--background);
 }
+
 .bg-card {
   background-color: var(--card);
 }
 
+/* Optional utility */
+.font-biryani {
+  font-family: var(--font-biryani), sans-serif;
+}
+
+/* Animations */
 @keyframes slideInRight {
   from {
     opacity: 0;
@@ -76,4 +92,23 @@ body {
 
 .animate-slide-in-right {
   animation: slideInRight 1.2s ease-out forwards;
+}
+
+/* Awards marquee */
+@keyframes awardsMarquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.awards-marquee {
+  width: max-content;
+  animation: awardsMarquee 25s linear infinite;
+}
+
+.awards-marquee:hover {
+  animation-play-state: paused;
 }

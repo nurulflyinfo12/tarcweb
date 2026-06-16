@@ -9,7 +9,6 @@ import {
 import { FcGoogle } from "react-icons/fc";
 
 const DiscoverAndReviews = () => {
-  // --- MOCK API DATA SHAPES ---
   const diningData = {
     subtitle: "Dine & Drink",
     title: "Discover a Grand Dining Experience",
@@ -72,7 +71,6 @@ const DiscoverAndReviews = () => {
     },
   ];
 
-  // --- STATE FOR SLIDERS ---
   const [reviewIdx, setReviewIdx] = useState(0);
   const [awardIndex, setAwardIndex] = useState(0);
   const nextAward = () => {
@@ -108,7 +106,6 @@ const DiscoverAndReviews = () => {
                 </button>
               </div>
 
-              {/* Masked Custom Framed Images */}
               <div className="w-full lg:w-1/2 flex items-center justify-center gap-4">
                 <div className="w-1/2 h-56 sm:h-64 rounded-tl-[60px] rounded-br-[60px] overflow-hidden shadow-md">
                   <img
@@ -127,16 +124,12 @@ const DiscoverAndReviews = () => {
               </div>
             </div>
 
-            {/* =========================================================
-            SECTION 2: GUEST REVIEWS (MASONRY GRAPHIC + SLIDER)
-           ========================================================= */}
             <div className="space-y-8">
               <h3 className="text-2xl font-serif font-bold text-center text-emerald-900">
                 Guest Reviews
               </h3>
 
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                {/* Left Side Mosaic Mini-Grid */}
                 <div className="lg:col-span-6 grid grid-cols-3 gap-2 auto-rows-[90px] sm:auto-rows-[110px]">
                   <div className="col-span-1 row-span-1 rounded overflow-hidden">
                     <img
@@ -176,25 +169,21 @@ const DiscoverAndReviews = () => {
                   </div>
                 </div>
 
-                {/* Right Side Review slider box */}
                 <div className="lg:col-span-6 bg-gray-50 border border-gray-100 p-6 sm:p-8 rounded-xl relative shadow-sm">
                   <div className="absolute right-6 top-6">
                     <FcGoogle size={24} />
                   </div>
 
-                  {/* Stars */}
                   <div className="flex items-center gap-1 text-amber-400 mb-4">
                     {[...Array(reviews[reviewIdx].rating)].map((_, i) => (
                       <FaStar key={i} size={14} />
                     ))}
                   </div>
 
-                  {/* Review Text */}
                   <p className="text-sm text-gray-700 italic min-h-[80px] leading-relaxed">
                     "{reviews[reviewIdx].text}"
                   </p>
 
-                  {/* Profile Wrapper */}
                   <div className="mt-6 flex items-center justify-between border-t border-gray-200/60 pt-4">
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 bg-stone-700 text-white rounded-full flex items-center justify-center font-bold text-sm">
@@ -210,7 +199,6 @@ const DiscoverAndReviews = () => {
                       </div>
                     </div>
 
-                    {/* Slider Controls */}
                     <div className="flex items-center gap-2">
                       <button
                         onClick={() =>
@@ -235,7 +223,6 @@ const DiscoverAndReviews = () => {
                     </div>
                   </div>
 
-                  {/* All Reviews link */}
                   <div className="mt-4 text-center lg:text-right">
                     <button className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-600 hover:underline">
                       <span>All Reviews</span>
@@ -246,70 +233,36 @@ const DiscoverAndReviews = () => {
               </div>
             </div>
 
-            {/* =========================================================
-            SECTION 3: AWARDS & HONORS
-           ========================================================= */}
-            <div className="space-y-6 border-t border-gray-100 pt-12 text-center">
-              <h3 className="text-2xl font-serif font-bold text-emerald-900">
-                Award & Honors
-              </h3>
-
-              <div className="relative max-w-4xl mx-auto flex items-center justify-center gap-4 px-8 overflow-hidden">
-                {/* LEFT BUTTON */}
-                <button
-                  onClick={prevAward}
-                  className="absolute left-0 z-10 p-2 bg-gray-100 hover:bg-gray-200 text-gray-600 rounded-full transition"
-                >
-                  <FaChevronLeft size={12} />
-                </button>
-
-                {/* SLIDER WRAPPER */}
-                <div className="w-full overflow-hidden">
-                  <div
-                    className="flex transition-transform duration-700 ease-in-out"
-                    style={{
-                      transform: `translateX(-${awardIndex * 100}%)`,
-                    }}
-                  >
-                    {awards.map((award) => (
-                      <div
-                        key={award.id}
-                        className="w-full flex-shrink-0 flex flex-col items-center justify-center text-center px-6"
-                      >
-                        <div className="w-20 h-20 bg-gray-200 rounded-full mb-2 flex items-center justify-center text-[10px] text-gray-400 font-mono">
-                          LOGO
-                        </div>
-
-                        <span className="text-[10px] text-gray-500 max-w-[120px] font-medium leading-tight">
-                          {award.name}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* RIGHT BUTTON */}
-                <button
-                  onClick={nextAward}
-                  className="absolute right-0 z-10 p-2 bg-gray-100 hover:bg-gray-200 text-gray-600 rounded-full transition"
-                >
-                  <FaChevronRight size={12} />
-                </button>
+            <div className="space-y-8 border-t border-gray-100 pt-12 text-center">
+              <div>
+                <h3 className="mt-2 text-3xl font-serif font-bold text-emerald-900">
+                  Awards & Honors
+                </h3>
               </div>
 
-              {/* DOTS */}
-              <div className="flex items-center justify-center gap-1.5 pt-4">
-                {awards.map((_, i) => (
-                  <span
-                    key={i}
-                    onClick={() => setAwardIndex(i)}
-                    className={`cursor-pointer rounded-full transition-all ${
-                      i === awardIndex
-                        ? "w-2 h-2 bg-stone-800"
-                        : "w-1.5 h-1.5 bg-stone-300"
-                    }`}
-                  />
-                ))}
+              <div className="relative overflow-hidden py-6">
+                <div className="absolute left-0 top-0 h-full w-24 bg-gradient-to-r from-white via-white to-transparent z-10 pointer-events-none" />
+
+                <div className="absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-white via-white to-transparent z-10 pointer-events-none" />
+
+                <div className="awards-marquee flex gap-10">
+                  {[...awards, ...awards].map((award, index) => (
+                    <div
+                      key={index}
+                      className="group flex flex-col items-center min-w-[220px] shrink-0"
+                    >
+                      <div className="relative">
+                        <div className="relative h-28 w-28 rounded-full bg-gradient-to-br flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:-translate-y-1">
+                          <img
+                            src={award.logo}
+                            alt={award.name}
+                            className="w-25 h-25 object-cover rounded-full"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
