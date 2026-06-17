@@ -36,26 +36,33 @@ const NearbyAttractions: React.FC<NearbyAttractionsProps> = ({
 
             <div className="grid lg:grid-cols-2 gap-12">
               {/* Attractions List */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-8">
-                {attractions.map((column, colIndex) => (
-                  <div key={colIndex}>
-                    <ul className="space-y-3 text-black text-[14px]">
-                      {column.map((place, index) => (
-                        <li key={index}>
-                          <span>{place.name}</span>
-                          <br />
-                          <span className="text-sm">
-                            {place.distance}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-8 items-start">
+                  {attractions.map((column, colIndex) => (
+                    <div key={colIndex}>
+                      <ul
+                        className={`
+                          inline-block
+                          space-y-3
+                          text-black
+                          text-[14px]
+                          pr-1
+                          ${colIndex !== attractions.length - 1 ? "border-r border-primary-dark" : ""}
+                        `}
+                      >
+                        {column.map((place, index) => (
+                          <li key={index}>
+                            <span>{place.name}</span>
+                            <br />
+                            <span className="text-sm">{place.distance}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
 
               {/* Map */}
-              <div className="relative rounded-2xl overflow-hidden shadow-lg border border-gray-200 h-[520px]">
+              <div className="relative rounded-2xl overflow-hidden shadow-lg border border-gray-200">
                 <div className="rounded-2xl overflow-hidden border border-gray-100">
                   <iframe
                     src={mapUrl}
@@ -66,13 +73,6 @@ const NearbyAttractions: React.FC<NearbyAttractionsProps> = ({
                     allowFullScreen
                     loading="lazy"
                   />
-                </div>
-
-                <div className="absolute bottom-6 right-6 bg-white px-5 py-3 rounded-2xl text-sm shadow flex items-center gap-2">
-                  <span>📍</span>
-                  <span className="font-medium">
-                    You are here
-                  </span>
                 </div>
               </div>
             </div>

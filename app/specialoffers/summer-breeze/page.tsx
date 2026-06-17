@@ -300,8 +300,7 @@ const SummerBreeze = () => {
         alert("Booking request submitted successfully! (Demo)");
     };
 
-    const mapUrl =
-  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3628.5!2d91.45!3d24.3!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjTCsDE4JzAwLjAiTiA5McKwMjcnMDAuMCJF!5e0!3m2!1sen!2sbd!4v1720000000000";
+    const mapUrl ="https://www.google.com/maps/place/Rural+Reconostruction+Foundation+(RRF)+Unit+Office,/@23.8603983,90.42897,17z/data=!3m1!4b1!4m6!3m5!1s0x3755c67400000001:0x92bf49b7104c546!8m2!3d23.8603983!4d90.4315503!16s%2Fg%2F11c51vkdy3?entry=ttu&g_ep=EgoyMDI2MDYxMy4wIKXMDSoASAFQAw%3D%3D";
 
     return (
         <div className="">
