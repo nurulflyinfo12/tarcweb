@@ -17,9 +17,10 @@ import ImageGalleryModal from "../common/ImageGalleryModal";
 import ImageCardSlider from "../common/ImageCardSlider";
 import PageHero from "../common/pagehero";
 
-const Restaurants = [
+export const Restaurants = [
   {
-    id: 1,
+    id: "1",
+    slug: "fowara-dine",
     name: "Taste & Tradition",
     type: "Signature Dining",
     description:
@@ -30,9 +31,30 @@ const Restaurants = [
       "/images/room1.jpg",
     ],
     reverse: false,
+
+    // ✅ Newly Added Properties
+    heroImage: "/images/fowara-dine-hero.jpg",
+    cuisine: [
+      "Continental",
+      "Mexican",
+      "Sea Food",
+      "Arabic",
+      "Thai",
+      "Chinese",
+      "Indian & Bangla",
+    ],
+    atmosphere: "Friendly and Informal",
+    serviceStyle: "Buffet & A la Carte",
+    serviceHours: {
+      breakfast: "7:00 a.m. to 10:30 a.m.",
+      lunch: "12:30 p.m. to 3:00 p.m.",
+      dinner: "7:00 p.m. to 10:30 p.m.",
+    },
+    location: "At Lobby Level",
   },
   {
-    id: 2,
+    id: "2",
+    slug: "the-grand-flavor",
     name: "The Grand Flavor",
     type: "Premium Culinary Experience",
     description:
@@ -43,9 +65,22 @@ const Restaurants = [
       "/images/room1.jpg",
     ],
     reverse: true,
+
+    // ✅ Newly Added Properties
+    heroImage: "/images/grand-flavor-hero.jpg",
+    cuisine: ["European", "Asian", "Fusion"],
+    atmosphere: "Elegant & Sophisticated",
+    serviceStyle: "A la Carte",
+    serviceHours: {
+      breakfast: "7:00 a.m. to 11:00 a.m.",
+      lunch: "12:00 p.m. to 4:00 p.m.",
+      dinner: "6:30 p.m. to 11:00 p.m.",
+    },
+    location: "First Floor",
   },
   {
-    id: 3,
+    id: "3",
+    slug: "the-hub-eatery",
     name: "The Hub Eatery",
     type: "Dine & Unwind",
     description:
@@ -56,6 +91,18 @@ const Restaurants = [
       "/images/room1.jpg",
     ],
     reverse: false,
+
+    // ✅ Newly Added Properties
+    heroImage: "/images/hub-eatery-hero.jpg",
+    cuisine: ["International", "Fast Casual", "Beverages"],
+    atmosphere: "Casual & Vibrant",
+    serviceStyle: "Buffet & A la Carte",
+    serviceHours: {
+      breakfast: "6:30 a.m. to 11:00 a.m.",
+      lunch: "11:30 a.m. to 5:00 p.m.",
+      dinner: "6:00 p.m. to 10:30 p.m.",
+    },
+    location: "Ground Floor",
   },
 ];
 
@@ -144,7 +191,7 @@ const RestaurantSAndCafes = () => {
               {...restaurant}
               onImageClick={openModal}
               buttonText="Find More"
-              buttonHref="#"
+              buttonHref={`/restaurantsandcafes/${restaurant.id}`}
             />
           ))}
         </div>
