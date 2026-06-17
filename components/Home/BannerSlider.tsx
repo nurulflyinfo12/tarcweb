@@ -12,7 +12,7 @@ interface Slide {
 
 const slides: Slide[] = [
   {
-    image: "/images/home.png",
+    image: "/images/room4.jpg",
     title: "Experience",
     subtitle: "The Elegance",
     buttonText: "BOOK NOW",

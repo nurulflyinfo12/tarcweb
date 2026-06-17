@@ -45,9 +45,9 @@ const LuxuryExperience: React.FC<LuxuryExperienceProps> = ({
   sectionTitleMain = "We Invite You to",
   sectionTitleItalic = "Indulge in a Luxurious Escape",
   paragraphs = [
-    "Whether you're seeking a romantic escape, a family vacation, or a corporate retreat, Grand Sultan Tea Resort & Golf is the ideal destination. Browse through our website to explore the diverse range of packages and offers tailored to make your stay unforgettable.",
+    "Whether you're seeking a romantic escape, a family vacation, or a corporate retreat, The Imperial Institute Of Hospitality & Hotel Management is the ideal destination. Browse through our website to explore the diverse range of packages and offers tailored to make your stay unforgettable.",
     "Embark on a virtual tour of our resort through this website and get a glimpse of the luxury retreat we want to ensure for our prestigious guests. Sitting at the heart of the lush tea gardens, Grand Sultan brings the beauty of the Tea Capital of Bangladesh closer to you in an opulent sanctuary.",
-    "Come, experience the grandeur of Grand Sultan Tea Resort & Golf—where luxury meets nature, and every moment is a celebration of the finer things in life. Your extraordinary journey begins here!",
+    "Come, experience the grandeur of The Imperial Institute Of Hospitality & Hotel Management—where luxury meets nature, and every moment is a celebration of the finer things in life. Your extraordinary journey begins here!",
   ],
   ctaLink = "/roomsandsuites",
   ctaText = "Discover More",
