@@ -8,12 +8,11 @@ const ExclusiveDelights = () => {
     offerTitle: "Summer Breeze",
     validity: "Validity till 31st July 2026",
     description:
-      "This season indulge in something special. Exclusive Special Rate awaits at Grand Sultan Tea Resort & Golf. Enjoy a vacation to remember with a delicious complimentary breakfast and so much more!",
+      "This season indulge in something special. Exclusive Special Rate awaits at The Imperial Institute Of Hospitality & Hotel Management. Enjoy a vacation to remember with a delicious complimentary breakfast and so much more!",
     tagline:
       "Don't miss out on this special offer to relax and unwind in luxury.",
     buttonText: "Discover More",
-    bannerImage:
-      "/images/summer.jpeg",
+    bannerImage: "/images/summer.jpeg",
   };
 
   return (
@@ -52,8 +51,8 @@ const ExclusiveDelights = () => {
 
                 <p className="text-sm text-gray-600 leading-relaxed mb-4">
                   This season indulge in something special. Exclusive Special
-                  Rate awaits at Grand Sultan Tea Resort & Golf. Enjoy a
-                  vacation to remember with a delicious{" "}
+                  Rate awaits at The Imperial Institute Of Hospitality & Hotel
+                  Management. Enjoy a vacation to remember with a delicious{" "}
                   <span className="font-bold text-gray-800">
                     complimentary breakfast
                   </span>{" "}

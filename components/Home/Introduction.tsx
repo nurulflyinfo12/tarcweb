@@ -15,7 +15,7 @@ interface IntroductionProps {
 
 const Introduction: React.FC<IntroductionProps> = ({
   subtitle = "Welcome To",
-  title = "Grand Sultan Tea Resort & Golf",
+  title = "The Imperial Institute Of Hospitality & Hotel Management",
   description = "The best five-star resort in the Sylhet region of Bangladesh. Equipped with all modern state-of-the-art amenities and facilities, located in Srimongal (the tea capital of Bangladesh), around four hours drive from Dhaka. This resort near Dhaka is the true combination of ultimate luxury, gracious hospitality and admirable greenery. Classified in 08 categories with 134 hotel rooms and suites Grand Sultan welcomes you in Srimongal to enjoy your holiday or vacation with comfort and luxury.",
   buttonText = "Discover More",
   buttonLink = "/roomsandsuites",
