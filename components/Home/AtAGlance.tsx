@@ -20,8 +20,7 @@ const AtAGlance = () => {
       size: 1160,
       description:
         "Elevate your senses in our Royal Suites with elegant interiors and serene luxury surrounded by nature.",
-      image:
-        "https://images.unsplash.com/photo-1618773928121-c32242e63f39?q=80&w=1200&auto=format&fit=crop",
+      image: "/images/room1.jpg",
     },
     {
       id: 2,
@@ -31,8 +30,7 @@ const AtAGlance = () => {
       size: 650,
       description:
         "A perfect blend of comfort and modern design ideal for business and leisure travelers.",
-      image:
-        "https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=1200&auto=format&fit=crop",
+      image: "/images/room2.jpg",
     },
     {
       id: 3,
@@ -42,8 +40,7 @@ const AtAGlance = () => {
       size: 2200,
       description:
         "Experience unmatched luxury with panoramic views, premium services, and exclusive comfort.",
-      image:
-        "https://images.unsplash.com/photo-1582719508461-905c673771fd?q=80&w=1200&auto=format&fit=crop",
+      image: "/images/room3.jpg",
     },
     {
       id: 4,
@@ -53,8 +50,7 @@ const AtAGlance = () => {
       size: 780,
       description:
         "A romantic private cottage surrounded by greenery, perfect for couples seeking peace and privacy.",
-      image:
-        "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1200&auto=format&fit=crop",
+      image: "/images/room4.jpg",
     },
     {
       id: 5,
@@ -64,8 +60,7 @@ const AtAGlance = () => {
       size: 1400,
       description:
         "Spacious family suite with multiple beds, living area, and modern amenities for a comfortable stay.",
-      image:
-        "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?q=80&w=1200&auto=format&fit=crop",
+      image: "/images/room5.jpg",
     },
   ];
 

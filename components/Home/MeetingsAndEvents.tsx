@@ -14,7 +14,7 @@ const MeetingsAndEvents = () => {
     buttonText: "Discover More",
 
     imageSrc:
-      "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?q=80&w=1000&auto=format&fit=crop",
+      "/images/hallroom.jpg",
   };
 
   return (
