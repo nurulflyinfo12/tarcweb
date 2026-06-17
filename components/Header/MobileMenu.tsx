@@ -17,20 +17,21 @@ import {
 const mainMenuItems = [
   { name: "Home", icon: FiHome, path: "/" },
   { name: "Rooms & Suites", icon: FiBookOpen, path: "/roomsandsuites" },
-  { name: "Restaurants & Cafes", icon: FiCoffee, path: "/restaurantsandcafes" },
-  { name: "Meetings & Events", icon: FiUsers, path: "/meetingsandevents" },
+  { name: "Restaurants", icon: FiCoffee, path: "/restaurantsandcafes" },
+  { name: "Meetings", icon: FiUsers, path: "/meetingsandevents" },
   { name: "Relaxation", icon: FiSun, path: "/relaxation" },
   { name: "Recreations", icon: FiActivity, path: "/recreations" },
   { name: "Special Offers", icon: FiGift, path: "/specialoffers" },
   { name: "Contact Us", icon: FiPhone, path: "/contactus" },
 ];
 
+// Updated with paths
 const bottomMenuItems = [
-  "Surrounding Us",
-  "Getting There",
-  "Photo Gallery",
-  "Contact",
-  "Guest Policy",
+  { name: "Surrounding Us", path: "/surrounding-us" },
+  { name: "Getting There", path: "/getting-there" },
+  { name: "Photo Gallery", path: "/photo-gallery" },
+  { name: "Contact", path: "/contactus" },
+  { name: "Guest Policy", path: "/guestpolicy" },
 ];
 
 interface MobileMenuProps {
@@ -103,13 +104,13 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
           {bottomMenuItems.map((item, index) => (
             <Link
               key={index}
-              href="#"
+              href={item.path}
               onClick={onClose}
               className="border border-primary/70 hover:border-primary text-white hover:text-primary 
                          px-5 py-2.5 md:px-6 md:py-3 rounded-full text-xs md:text-sm font-light 
                          tracking-widest transition duration-300 whitespace-nowrap"
             >
-              {item}
+              {item.name}
             </Link>
           ))}
         </div>

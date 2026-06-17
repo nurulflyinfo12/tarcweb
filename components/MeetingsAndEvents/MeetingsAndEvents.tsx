@@ -9,11 +9,11 @@ import PageHero from "../common/pagehero";
 const Meetings = [
     {
         id: 1,
-        name: "Dewan-E-Khas",
+        name: "Boardroom Meeting",
         // type: "All Day Dine",
-        description: "Dewan e Khas is a set of business meeting and conference rooms all designed to meet the expectations of the discerning busine...",
+        description: "Our sophisticated boardroom offers a perfect setting for focused discussions, strategic planning, and high-level business meetings...",
         images: [
-            "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=2070",
+            "/images/boardmeeting.jpg",
             "https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=2070",
             "https://images.unsplash.com/photo-1566665797739-1674de7a421a?q=80&w=2070",
         ],
@@ -21,9 +21,9 @@ const Meetings = [
     },
     {
         id: 2,
-        name: "Panshala",
+        name: "Conference Hall",
         // type: "Hilltop Restaurant",
-        description: "Offers you luxurious environment with up to 100 guests in the banquet setup. The total area of 2,820 sft with 9 feet...",
+        description: "Spacious circular conference hall designed for large meetings, seminars, trainings, and corporate events with modern facilities...",
         images: [
             "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=2070",
             "https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=2070",
@@ -74,9 +74,9 @@ const MeetingsAndEvents = () => {
         <>
             {/* Hero Section */}
             <PageHero
-              title="Meetings & Events"
+              title="Meetings"
               subtitle="Discover comfort and style in our meetings and events."
-              backgroundImage="https://images.unsplash.com/photo-1566073771259-6a8506099945"
+              backgroundImage="/images/boardmeeting.jpeg"
             />
 
             {/* Rooms List */}

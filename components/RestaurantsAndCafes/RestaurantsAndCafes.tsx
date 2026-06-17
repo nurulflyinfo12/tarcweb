@@ -20,66 +20,40 @@ import PageHero from "../common/pagehero";
 const Restaurants = [
   {
     id: 1,
-    name: "Fowara Dine",
-    type: "All Day Dine",
+    name: "Taste & Tradition",
+    type: "Signature Dining",
     description:
-      "Time spend all day dining restaurant Fowara Dine provides a stunning atmosphere in which to sample European, Asian, Pan Asian...",
+      "Experience a culinary journey featuring a diverse selection of local and international flavors. Prepared by our expert chefs using the freshest ingredients, our menu offers something delightful for every palate in a warm and welcoming ambiance",
     images: [
-      "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=2070",
-      "https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=2070",
-      "https://images.unsplash.com/photo-1566665797739-1674de7a421a?q=80&w=2070",
+      "/images/resturantone1.jpg",
+      "/images/resturanttwo.jpg",
+      "/images/room1.jpg",
     ],
     reverse: false,
   },
   {
     id: 2,
-    name: "Oronno Bilash",
-    type: "Hilltop Restaurant",
+    name: "The Grand Flavor",
+    type: "Premium Culinary Experience",
     description:
-      "Experience our BBQ in the perfect ambiance against the backdrop of the green tea gardens at our hilltop Restaurant Oronno Bilash...",
+      "Indulge in an exceptional dining experience where elegant design meets culinary artistry. From curated gourmet dishes to impeccable service, we offer the perfect setting for memorable family gatherings, romantic dinners, and special occasions..",
     images: [
-      "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=2070",
-      "https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=2070",
-      "https://images.unsplash.com/photo-1566665797739-1674de7a421a?q=80&w=2070",
+      "/images/resturantone1.jpg",
+      "/images/resturanttwo.jpg",
+      "/images/room1.jpg",
     ],
     reverse: true,
   },
   {
     id: 3,
-    name: "Shahi Dine",
-    type: "Fine Dine",
+    name: "The Hub Eatery",
+    type: "Dine & Unwind",
     description:
-      "For your special occasion with your special one, shahi dine (Fine Dining) at The Imperial Institute Of Hospitality & Hotel Management can be your resort...",
+      "Whether you are starting your morning with a freshly brewed coffee, stopping by for a hearty lunch, or enjoying a relaxed dinner with loved ones, our vibrant space welcomes you all day to sit back, relax, and savor exceptional food.",
     images: [
-      "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=2070",
-      "https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=2070",
-      "https://images.unsplash.com/photo-1566665797739-1674de7a421a?q=80&w=2070",
-    ],
-    reverse: false,
-  },
-  {
-    id: 4,
-    name: "Cafe Mongal",
-    type: "Cafe & Lounge",
-    description:
-      "The casual wooden floored cafe Mongal welcomes you all day to sit, relax with a book and to enjoy leisure of specialty blends...",
-    images: [
-      "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=2070",
-      "https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=2070",
-      "https://images.unsplash.com/photo-1566665797739-1674de7a421a?q=80&w=2070",
-    ],
-    reverse: true,
-  },
-  {
-    id: 5,
-    name: "Pool Deck Cafe",
-    type: "Poolside Cafe",
-    description:
-      "Enjoy our mocktails and juices in the relaxed atmosphere of the Pool Deck or if you have a favorite drink or wish to create...",
-    images: [
-      "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=2070",
-      "https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=2070",
-      "https://images.unsplash.com/photo-1566665797739-1674de7a421a?q=80&w=2070",
+      "/images/resturantone1.jpg",
+      "/images/resturanttwo.jpg",
+      "/images/room1.jpg",
     ],
     reverse: false,
   },
@@ -156,9 +130,9 @@ const RestaurantSAndCafes = () => {
     <>
       {/* Hero Section */}
       <PageHero
-        title="Restaurants &amp; Cafes"
-        subtitle="Discover comfort and style in our Restaurants and Cafes."
-        backgroundImage="https://images.unsplash.com/photo-1566073771259-6a8506099945"
+        title="Restaurants"
+        subtitle="Discover comfort and style in our Restaurants."
+        backgroundImage="/images/resturantone.jpg"
       />
 
       {/* Rooms List */}

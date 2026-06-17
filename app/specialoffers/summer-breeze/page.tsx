@@ -13,8 +13,8 @@ import { FiCheck } from "react-icons/fi";
 const packages = [
     {
         name: "Vip room regular",
-        price: "3500",
-        offer: "3000",
+        price: "6500",
+        offer: "5500",
         size: "382 sqft",
         images: [
             "/images/viproom.jpeg",
