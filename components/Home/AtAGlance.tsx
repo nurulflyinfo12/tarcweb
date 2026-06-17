@@ -20,8 +20,7 @@ const AtAGlance = () => {
       size: 1160,
       description:
         "Elevate your senses in our Royal Suites with elegant interiors and serene luxury surrounded by nature.",
-      image:
-        "https://images.unsplash.com/photo-1618773928121-c32242e63f39?q=80&w=1200&auto=format&fit=crop",
+      image: "/images/room1.jpg",
     },
     {
       id: 2,
@@ -31,8 +30,7 @@ const AtAGlance = () => {
       size: 650,
       description:
         "A perfect blend of comfort and modern design ideal for business and leisure travelers.",
-      image:
-        "https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=1200&auto=format&fit=crop",
+      image: "/images/room2.jpg",
     },
     {
       id: 3,
@@ -42,8 +40,7 @@ const AtAGlance = () => {
       size: 2200,
       description:
         "Experience unmatched luxury with panoramic views, premium services, and exclusive comfort.",
-      image:
-        "https://images.unsplash.com/photo-1582719508461-905c673771fd?q=80&w=1200&auto=format&fit=crop",
+      image: "/images/room3.jpg",
     },
     {
       id: 4,
@@ -53,8 +50,7 @@ const AtAGlance = () => {
       size: 780,
       description:
         "A romantic private cottage surrounded by greenery, perfect for couples seeking peace and privacy.",
-      image:
-        "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1200&auto=format&fit=crop",
+      image: "/images/room4.jpg",
     },
     {
       id: 5,
@@ -64,8 +60,7 @@ const AtAGlance = () => {
       size: 1400,
       description:
         "Spacious family suite with multiple beds, living area, and modern amenities for a comfortable stay.",
-      image:
-        "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?q=80&w=1200&auto=format&fit=crop",
+      image: "/images/room5.jpg",
     },
   ];
 
@@ -109,9 +104,11 @@ const AtAGlance = () => {
         </h2>
       </div>
 
-      {/* SLIDER */}
+      {/* =========================================================
+          DESKTOP ONLY CONTROLS: 3D THREE-COLUMN SPRING SLIDER
+         ========================================================= */}
       <div
-        className="relative w-full mb-12 h-[320px] sm:h-[480px] md:h-[580px] flex items-center justify-center"
+        className="hidden md:flex relative w-full mb-12 h-[480px] md:h-[580px] items-center justify-center"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
       >
@@ -144,7 +141,7 @@ const AtAGlance = () => {
               style={{
                 pointerEvents: isVisible ? "auto" : "none",
               }}
-              className="absolute w-[90%] md:w-[65%] h-full cursor-pointer select-none will-change-transform"
+              className="absolute w-[65%] h-full cursor-pointer select-none will-change-transform"
             >
               <img
                 src={room.image}
@@ -155,13 +152,13 @@ const AtAGlance = () => {
 
               {/* Navigation */}
               {isCenter && (
-                <div className="absolute inset-0 flex items-center justify-between px-4 md:px-8 opacity-0 hover:opacity-100 transition-opacity duration-300">
+                <div className="absolute inset-0 flex items-center justify-between px-8 opacity-0 hover:opacity-100 transition-opacity duration-300">
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
                       prevSlide();
                     }}
-                    className="bg-black/20 hover:bg-primary p-3 md:p-4 rounded-full text-white backdrop-blur-sm transition-all duration-300"
+                    className="bg-black/20 hover:bg-primary p-4 rounded-full text-white backdrop-blur-sm transition-all duration-300"
                   >
                     <FaChevronLeft size={18} />
                   </button>
@@ -171,7 +168,7 @@ const AtAGlance = () => {
                       e.stopPropagation();
                       nextSlide();
                     }}
-                    className="bg-black/20 hover:bg-primary p-3 md:p-4 rounded-full text-white backdrop-blur-sm transition-all duration-300"
+                    className="bg-black/20 hover:bg-primary p-4 rounded-full text-white backdrop-blur-sm transition-all duration-300"
                   >
                     <FaChevronRight size={18} />
                   </button>
@@ -186,8 +183,8 @@ const AtAGlance = () => {
         <div className="absolute right-0 top-0 w-[25%] h-full bg-gradient-to-l from-background to-transparent z-30 pointer-events-none" />
       </div>
 
-      {/* ROOM INFO */}
-      <div className="max-w-4xl mx-auto  text-center md:text-left">
+      {/* DESKTOP ONLY ROOM DETAIL PANELS */}
+      <div className="hidden md:block max-w-4xl mx-auto px-6 text-left">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentIndex}
@@ -203,7 +200,7 @@ const AtAGlance = () => {
               {currentRoom.title}
             </h3>
 
-            <div className="flex flex-wrap justify-center md:justify-start items-center gap-6 text-sm text-text-muted mb-5">
+            <div className="flex items-center gap-6 text-sm text-text-muted mb-5">
               <div className="flex items-center gap-2">
                 <FaUsers className="text-primary" />
                 <span className="font-medium">{currentRoom.guests} Guests</span>
@@ -225,6 +222,52 @@ const AtAGlance = () => {
             </p>
           </motion.div>
         </AnimatePresence>
+      </div>
+
+      <div className="block md:hidden max-w-7xl mx-auto px-6 space-y-10">
+        {roomsData.map((room) => (
+          <div
+            key={room.id}
+            className="flex flex-col gap-4 border-b border-border/40 pb-8 last:border-0 last:pb-0"
+          >
+            {/* Image */}
+            <div className="w-full h-[240px]  overflow-hidden shadow-lg">
+              <img
+                src={room.image}
+                alt={room.title}
+                className="w-full h-full object-cover"
+              />
+            </div>
+
+            {/* Info Content */}
+            <div className="space-y-2">
+              <h3 className="text-xl font-serif font-bold text-primary">
+                {room.title}
+              </h3>
+
+              {/* Key Features Icons */}
+              <div className="flex flex-wrap items-center gap-4 text-xs text-text-muted">
+                <div className="flex items-center gap-1.5">
+                  <FaUsers className="text-primary text-xs" />
+                  <span>{room.guests} Guests</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <FaBed className="text-primary text-xs" />
+                  <span>{room.beds} Beds</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <FaRulerCombined className="text-primary text-xs" />
+                  <span>{room.size} sqft</span>
+                </div>
+              </div>
+
+              {/* Description paragraph */}
+              <p className="text-text-muted text-sm leading-relaxed font-light pt-1">
+                {room.description}
+              </p>
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );

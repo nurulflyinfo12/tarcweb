@@ -9,7 +9,7 @@ interface IntroductionProps {
   description?: string;
   buttonText?: string;
   buttonLink?: string;
-  imageTopRight?: string; 
+  imageTopRight?: string;
   imageBottomLeft?: string;
 }
 
@@ -19,16 +19,15 @@ const Introduction: React.FC<IntroductionProps> = ({
   description = "The best five-star resort in the Sylhet region of Bangladesh. Equipped with all modern state-of-the-art amenities and facilities, located in Srimongal (the tea capital of Bangladesh), around four hours drive from Dhaka. This resort near Dhaka is the true combination of ultimate luxury, gracious hospitality and admirable greenery. Classified in 08 categories with 134 hotel rooms and suites Grand Sultan welcomes you in Srimongal to enjoy your holiday or vacation with comfort and luxury.",
   buttonText = "Discover More",
   buttonLink = "/roomsandsuites",
-  imageTopRight = "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=600&auto=format&fit=crop", 
-  imageBottomLeft = "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=600&auto=format&fit=crop",
+  imageTopRight = "/images/home.png",
+  imageBottomLeft = "/images/hallroom.jpg",
 }) => {
   return (
-    // Dynamic Section wrapper: uses light-mode tokens (bg-background, text-foreground) 
+    // Dynamic Section wrapper: uses light-mode tokens (bg-background, text-foreground)
     // and shifts back to your solid rich forest-green (#0b2411) when dark mode is present.
     <section className="py-20 bg-background dark:bg-[#0b2411] transition-colors duration-300 text-left">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          
           {/* LEFT COLUMN: TEXT CONTENT */}
           <div className="w-full lg:col-span-6 space-y-6">
             <div className="flex items-center gap-3">
@@ -61,7 +60,6 @@ const Introduction: React.FC<IntroductionProps> = ({
 
           {/* RIGHT COLUMN: DUAL ASYMMETRIC OVERLAPPING IMAGES */}
           <div className="w-full lg:col-span-6 relative min-h-[460px] sm:min-h-[520px]">
-            
             {/* 1. Top Right Main Admin Image */}
             <div className="absolute top-0 right-0 w-[80%] h-[300px] sm:h-[340px] rounded-xl overflow-hidden shadow-xl z-0">
               <img
@@ -82,9 +80,7 @@ const Introduction: React.FC<IntroductionProps> = ({
                 />
               </div>
             </div>
-
           </div>
-
         </div>
       </div>
     </section>

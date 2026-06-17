@@ -13,7 +13,7 @@ const ExclusiveDelights = () => {
       "Don't miss out on this special offer to relax and unwind in luxury.",
     buttonText: "Discover More",
     bannerImage:
-      "https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=1200&auto=format&fit=crop",
+      "/images/summer.jpeg",
   };
 
   return (
