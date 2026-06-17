@@ -33,8 +33,7 @@ export default function RootLayout({
       <body className="min-h-screen bg-background text-foreground font-biryani">
         <ThemeProvider
           attribute="class"
-          defaultTheme="light"
-          // forcedTheme="dark"
+          defaultTheme="dark"
           enableSystem={false}
           storageKey="trac-resort-theme"
         >
