@@ -2,10 +2,13 @@
 
 import ImageGalleryModal from "@/components/common/ImageGalleryModal";
 import PageHero from "@/components/common/pagehero";
+import ComplimentaryServices from "@/components/SummerBreeze/ComplimentaryServices";
+import NearbyAttractions from "@/components/SummerBreeze/NearbyAttractions";
+import RoomPackageCard from "@/components/SummerBreeze/RoomPackageCard";
 import React, { useState } from "react";
 import { FiCheck } from "react-icons/fi";
 
-// --- Data (unchanged) ---
+// Data 
 const packages = [
     {
         name: "King Deluxe (2 Persons)",
@@ -161,134 +164,6 @@ const packages = [
     },
 ];
 
-interface RoomPackageCardProps {
-    pkg: typeof packages[0];
-    index: number;
-    isEven: boolean;
-    currentSlide: number;
-    onSlideChange: (newIndex: number) => void;
-    onImageClick?: (images: string[], name: string, index: number) => void;
-}
-
-export const RoomPackageCard: React.FC<RoomPackageCardProps> = ({
-    pkg,
-    index,
-    isEven,
-    currentSlide,
-    onSlideChange,
-    onImageClick,
-}) => {
-    const imagesCount = pkg.images.length;
-
-    const handleImageClick = () => {
-        if (onImageClick) {
-            onImageClick(pkg.images, pkg.name, currentSlide);
-        }
-    };
-
-    return (
-        <div className="w-full py-8 md:py-8">
-            <div className="relative w-full max-w-7xl mx-auto">
-                <div className="absolute inset-x-6 md:inset-x-10 -top-3 -bottom-3 bg-white/20 rounded-2xl md:inset-x-15 backdrop-blur-[2px] pointer-events-none z-0" />
-                <div className="relative bg-white flex flex-col lg:flex-row rounded-2xl p-8">
-                    {/* Details (always first in DOM for mobile) */}
-                    <div className={`lg:w-1/2 p-8 lg:p-12 ${isEven ? 'lg:order-1' : 'lg:order-2'}`}>
-                        <h3 className="text-3xl font-bold text-secondary mb-2">
-                            {pkg.name}
-                        </h3>
-                        <p className="text-black font-medium mb-8">
-                            Room Size: {pkg.size || "569 sqft"}
-                        </p>
-
-                        <ul className="space-y-4 mb-10 text-black">
-                            {pkg.inclusions.map((item, i) => (
-                                <li key={i} className="flex gap-3">
-                                    <FiCheck className="text-green-600 mt-1.5 flex-shrink-0" />
-                                    <span>{item}</span>
-                                </li>
-                            ))}
-                        </ul>
-
-                        <div className="pt-6 border-t border-gray-200 flex items-end justify-between">
-                            <div>
-                                <p className="text-sm text-foreground/60">Total payable</p>
-                                <p className="text-4xl font-bold text-primary">{pkg.price}</p>
-                            </div>
-                            <button className="bg-[#0a3d0a] hover:bg-black text-white font-semibold px-10 py-4 rounded-xl transition flex items-center gap-2 cursor-pointer">
-                                BOOK NOW →
-                            </button>
-                        </div>
-                    </div>
-
-                    {/* Image slider (order swapped on lg) */}
-                    <div
-                        className={`lg:w-1/2 relative h-[500px] lg:h-auto group cursor-pointer ${isEven ? 'lg:order-2' : 'lg:order-1'}`}
-                        onClick={handleImageClick}
-                        role="button"
-                        tabIndex={0}
-                        onKeyDown={(e) => e.key === 'Enter' && handleImageClick()}
-                    >
-                        <div className="relative w-full h-full overflow-hidden">
-                            {pkg.images.map((img, imgIndex) => (
-                                <img
-                                    key={imgIndex}
-                                    src={img}
-                                    alt={`${pkg.name} ${imgIndex + 1}`}
-                                    className={`absolute inset-0 w-full h-full object-cover rounded-2xl transition-opacity duration-700 ${imgIndex === currentSlide ? "opacity-100" : "opacity-0"
-                                        }`}
-                                />
-                            ))}
-                        </div>
-
-                        {imagesCount > 1 && (
-                            <>
-                                <button
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        onSlideChange((currentSlide - 1 + imagesCount) % imagesCount);
-                                    }}
-                                    className="absolute left-3 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-all duration-300 z-10"
-                                >
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                                    </svg>
-                                </button>
-                                <button
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        onSlideChange((currentSlide + 1) % imagesCount);
-                                    }}
-                                    className="absolute right-3 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-all duration-300 z-10"
-                                >
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                    </svg>
-                                </button>
-                            </>
-                        )}
-
-                        {imagesCount > 1 && (
-                            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
-                                {pkg.images.map((_, dotIndex) => (
-                                    <button
-                                        key={dotIndex}
-                                        onClick={(e) => {
-                                            e.stopPropagation();
-                                            onSlideChange(dotIndex);
-                                        }}
-                                        className={`w-2.5 h-2.5 rounded-full transition-colors duration-300 ${dotIndex === currentSlide ? "bg-white" : "bg-white/40 hover:bg-white/70"
-                                            }`}
-                                    />
-                                ))}
-                            </div>
-                        )}
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
-};
-
 const nearbyAttractions = [
     [
         { name: "Lawachara National Park", distance: "4.2 km" },
@@ -342,7 +217,47 @@ const additionalFacilities = [
     },
 ];
 
-// --- Main SummerBreeze Component ---
+const services = [
+  { icon: "🍽️", label: "Breakfast" },
+  { icon: "🏊", label: "Swimming Pool" },
+  { icon: "🍎", label: "Fruit Basket" },
+  { icon: "🛁", label: "Outdoor Jacuzzi" },
+  { icon: "☕", label: "Tea & Coffee" },
+  { icon: "📚", label: "Library" },
+  { icon: "🏋️", label: "Gym" },
+  { icon: "📶", label: "Wi-Fi" },
+  { icon: "🎠", label: "Children Play Zone" },
+  { icon: "💧", label: "Mineral Water" },
+];
+
+const serviceImages = [
+  {
+    src: "https://images.unsplash.com/photo-1566665797739-1674de7a421a",
+    alt: "Restaurant",
+    className: "rounded-2xl w-full h-52 object-cover",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1571896349842-33c89424de2d",
+    alt: "Swimming Pool",
+    className: "rounded-2xl w-full h-52 object-cover",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
+    alt: "Kids Playground",
+    className: "rounded-2xl w-full h-52 object-cover",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b",
+    alt: "Gym",
+    className: "rounded-2xl w-full h-52 object-cover",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1540979388789-6cee28a1cdc9",
+    alt: "Library",
+    className: "rounded-2xl w-full h-40 object-cover",
+  },
+];
+
 const SummerBreeze = () => {
     const [formData, setFormData] = useState({
         firstName: "", lastName: "", phone: "", email: "", designation: "", address: "",
@@ -385,6 +300,9 @@ const SummerBreeze = () => {
         alert("Booking request submitted successfully! (Demo)");
     };
 
+    const mapUrl =
+  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3628.5!2d91.45!3d24.3!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjTCsDE4JzAwLjAiTiA5McKwMjcnMDAuMCJF!5e0!3m2!1sen!2sbd!4v1720000000000";
+
     return (
         <div className="">
             {/* hero section  */}
@@ -395,18 +313,20 @@ const SummerBreeze = () => {
             />
 
             {/* Room Packages */}
-            <section className="py-16">
+            <section className="py-10">
                 <div className="max-w-7xl mx-auto px-6 lg:px-10">
                     {packages.map((pkg, index) => (
-                        <RoomPackageCard
-                            key={index}
-                            pkg={pkg}
-                            index={index}
-                            isEven={index % 2 === 0}
-                            currentSlide={activeSlides[index] || 0}
-                            onSlideChange={(newIndex) => handleSlideChange(index, newIndex)}
-                            onImageClick={openModal}
-                        />
+                      <RoomPackageCard
+                        key={index}
+                        pkg={pkg}
+                        index={index}
+                        isEven={index % 2 === 0}
+                        currentSlide={activeSlides[index] || 0}
+                        onSlideChange={(newIndex) =>
+                          handleSlideChange(index, newIndex)
+                        }
+                        onImageClick={openModal}
+                      />
                     ))}
                 </div>
 
@@ -421,101 +341,17 @@ const SummerBreeze = () => {
                 )}
             </section>
 
-            {/* COMPLIMENTARY SERVICES (unchanged) */}
-            <section className="">
-                <div className="max-w-7xl mx-auto px-6 lg:px-10">
-                    <div className=" rounded-3xl p-8 lg:p-12 shadow-xl">
-                        <p className="text-center text-foreground/70 mb-8 text-lg">
-                            Along with the room, enjoy these complimentary services in this package.
-                        </p>
-                        <div className="grid lg:grid-cols-2 gap-12 items-center">
-                            <div className="relative">
-                                <div className="grid grid-cols-2 gap-3">
-                                    <div className="space-y-3">
-                                        <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a" alt="Restaurant" className="rounded-2xl w-full h-52 object-cover" />
-                                        <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d" alt="Swimming Pool" className="rounded-2xl w-full h-52 object-cover" />
-                                    </div>
-                                    <div className="space-y-3 pt-8">
-                                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" alt="Kids Playground" className="rounded-2xl w-full h-52 object-cover" />
-                                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b" alt="Gym" className="rounded-2xl w-full h-52 object-cover" />
-                                        <img src="https://images.unsplash.com/photo-1540979388789-6cee28a1cdc9" alt="Library" className="rounded-2xl w-full h-40 object-cover" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <h3 className="text-3xl font-semibold text-primary mb-8">Complimentary Services</h3>
-                                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                                    {[
-                                        { icon: "🍽️", label: "Breakfast" },
-                                        { icon: "🏊", label: "Swimming Pool" },
-                                        { icon: "🍎", label: "Fruit Basket" },
-                                        { icon: "🛁", label: "Outdoor Jacuzzi" },
-                                        { icon: "☕", label: "Tea & Coffee" },
-                                        { icon: "📚", label: "Library" },
-                                        { icon: "🏋️", label: "Gym" },
-                                        { icon: "📶", label: "Wi-Fi" },
-                                        { icon: "🎠", label: "Children Play Zone" },
-                                        { icon: "💧", label: "Mineral Water" },
-                                    ].map((service, index) => (
-                                        <div key={index} className="border border-primary/30 hover:border-primary rounded-2xl p-6 text-center hover:bg-primary/5 transition-all group">
-                                            <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">{service.icon}</div>
-                                            <p className="font-medium text-foreground">{service.label}</p>
-                                        </div>
-                                    ))}
-                                </div>
-                                <div className="mt-10 text-center">
-                                    <button className="bg-primary hover:bg-primary-dark text-black font-semibold px-12 py-4 rounded-xl text-lg inline-flex items-center gap-3 transition">
-                                        BOOK NOW →
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* NEARBY ATTRACTIONS (unchanged) */}
-            <section className="">
-                <div className="max-w-7xl mx-auto px-6 lg:px-10">
-                    <div className="bg-white rounded-3xl overflow-hidden shadow-2xl">
-                        <div className="p-8 lg:p-12">
-                            <h2 className="text-4xl font-bold text-center mb-12 text-secondary">NEARBY ATTRACTIONS</h2>
-                            <div className="grid lg:grid-cols-2 gap-12">
-                                <div className="grid grid-cols-1 md:grid-cols-3 gap-x-12 gap-y-10">
-                                    {nearbyAttractions.map((column, colIndex) => (
-                                        <div key={colIndex}>
-                                            <ul className="space-y-4 text-black">
-                                                {column.map((place, index) => (
-                                                    <li key={index}>
-                                                        <strong>{place.name}</strong><br />
-                                                        <span className="text-sm">{place.distance}</span>
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        </div>
-                                    ))}
-                                </div>
-                                <div className="relative rounded-2xl overflow-hidden shadow-lg border border-gray-200 h-[520px]">
-                                    <div className="rounded-2xl overflow-hidden border border-gray-100">
-                                        <iframe
-                                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3628.5!2d91.45!3d24.3!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjTCsDE4JzAwLjAiTiA5McKwMjcnMDAuMCJF!5e0!3m2!1sen!2sbd!4v1720000000000"
-                                            width="100%"
-                                            height="380"
-                                            className="md:h-[480px]"
-                                            style={{ border: 0 }}
-                                            allowFullScreen
-                                            loading="lazy"
-                                        />
-                                    </div>
-                                    <div className="absolute bottom-6 right-6 bg-white px-5 py-3 rounded-2xl text-sm shadow flex items-center gap-2">
-                                        <span>📍</span>
-                                        <span className="font-medium">You are here</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            {/* COMPLIMENTARY SERVICES*/}
+            <ComplimentaryServices 
+                services={services}
+                images={serviceImages}
+            />
+            <section className="py-8">
+            {/* NEARBY ATTRACTIONS */}
+            <NearbyAttractions
+              attractions={nearbyAttractions}
+              mapUrl={mapUrl}
+            />
             </section>
 
             {/* Additional Facilities (unchanged) */}
