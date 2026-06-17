@@ -219,14 +219,10 @@ const additionalFacilities = [
 
 const services = [
   { icon: "🍽️", label: "Breakfast" },
-  { icon: "🏊", label: "Swimming Pool" },
-  { icon: "🍎", label: "Fruit Basket" },
-  { icon: "🛁", label: "Outdoor Jacuzzi" },
   { icon: "☕", label: "Tea & Coffee" },
   { icon: "📚", label: "Library" },
   { icon: "🏋️", label: "Gym" },
   { icon: "📶", label: "Wi-Fi" },
-  { icon: "🎠", label: "Children Play Zone" },
   { icon: "💧", label: "Mineral Water" },
 ];
 
@@ -300,8 +296,8 @@ const SummerBreeze = () => {
         alert("Booking request submitted successfully! (Demo)");
     };
 
-    const mapUrl ="https://www.google.com/maps/place/Rural+Reconostruction+Foundation+(RRF)+Unit+Office,/@23.8603983,90.42897,17z/data=!3m1!4b1!4m6!3m5!1s0x3755c67400000001:0x92bf49b7104c546!8m2!3d23.8603983!4d90.4315503!16s%2Fg%2F11c51vkdy3?entry=ttu&g_ep=EgoyMDI2MDYxMy4wIKXMDSoASAFQAw%3D%3D";
-
+    const mapUrl =
+  "https://maps.google.com/maps?q=23.8603983,90.4315503&z=15&output=embed";
     return (
         <div className="">
             {/* hero section  */}
