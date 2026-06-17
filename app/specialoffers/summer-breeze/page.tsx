@@ -214,7 +214,7 @@ export const RoomPackageCard: React.FC<RoomPackageCardProps> = ({
                                 <p className="text-sm text-foreground/60">Total payable</p>
                                 <p className="text-4xl font-bold text-primary">{pkg.price}</p>
                             </div>
-                            <button className="bg-[#0a3d0a] hover:bg-black text-white font-semibold px-10 py-4 rounded-xl transition flex items-center gap-2">
+                            <button className="bg-[#0a3d0a] hover:bg-black text-white font-semibold px-10 py-4 rounded-xl transition flex items-center gap-2 cursor-pointer">
                                 BOOK NOW →
                             </button>
                         </div>

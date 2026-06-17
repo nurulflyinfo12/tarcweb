@@ -80,7 +80,7 @@ export default function Navbar() {
       {/* Menu Button */}
       <button
         onClick={() => setIsOpen(true)}
-        className="flex items-center gap-1 sm:gap-2"
+        className="flex items-center cursor-pointer gap-1 sm:gap-2"
       >
         <span className="hidden sm:block text-sm font-serif font-bold uppercase">
           Menu
