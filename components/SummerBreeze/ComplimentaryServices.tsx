@@ -24,8 +24,8 @@ const ComplimentaryServices = ({
 }: ComplimentaryServicesProps) => {
   return (
     <section>
-      <div className="relative max-w-7xl mx-auto px-6 lg:px-10 mb-8">
-         <div className="absolute inset-x-6 -top-3 -bottom-3 bg-white/20 rounded-2xl md:inset-x-25 backdrop-blur-[2px] pointer-events-none z-0" />
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-10">
+         <div className="absolute inset-x-8 -top-3 -bottom-3 bg-white/20 rounded-2xl md:inset-x-25 backdrop-blur-[2px] pointer-events-none z-0" />
         <div className="relative bg-white rounded-2xl p-8 lg:p-12 shadow-xl">          
 
           <div className="grid lg:grid-cols-2 gap-12">
