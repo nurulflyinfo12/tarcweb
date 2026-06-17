@@ -44,7 +44,7 @@ const ContactUs = () => {
               <div className="flex flex-col lg:flex-row">
                 {/* Left Column - Info Boxes */}
                 <div className="lg:w-5/12 p-6 sm:p-8 lg:p-5 space-y-6">
-                  {/* Grand Sultan Tea Resort */}
+                  {/* tarc Tea Resort */}
                   <div className="bg-[#4F6240] rounded-sm p-6 sm:p-7 text-white">
                     <div className="flex items-start gap-4">
                       <div className="mt-1 w-9 h-9 bg-[#D4AF37] text-[#0A2F1F] rounded-full flex items-center justify-center text-xl flex-shrink-0">

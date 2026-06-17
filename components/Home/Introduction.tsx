@@ -16,10 +16,10 @@ interface IntroductionProps {
 const Introduction: React.FC<IntroductionProps> = ({
   subtitle = "Welcome To",
   title = "The Imperial Institute Of Hospitality & Hotel Management",
-  description = "The best five-star resort in the Sylhet region of Bangladesh. Equipped with all modern state-of-the-art amenities and facilities, located in Srimongal (the tea capital of Bangladesh), around four hours drive from Dhaka. This resort near Dhaka is the true combination of ultimate luxury, gracious hospitality and admirable greenery. Classified in 08 categories with 134 hotel rooms and suites Grand Sultan welcomes you in Srimongal to enjoy your holiday or vacation with comfort and luxury.",
+  description = "The Imperial Institute Of Hospitality & Hotel Management is a premier hospitality education and training institute in Bangladesh, dedicated to developing world-class professionals for the hotel and tourism industry. It offers modern, industry-focused training programs with state-of-the-art facilities, experienced faculty, and practical learning environments. The institute prepares students for successful careers in five-star hotels, resorts, airlines, and global hospitality sectors, ensuring excellence in service, management, and professionalism.",
   buttonText = "Discover More",
   buttonLink = "/roomsandsuites",
-  imageTopRight = "/images/home.png",
+  imageTopRight = "/images/cooridoor.jpg",
   imageBottomLeft = "/images/hallroom.jpg",
 }) => {
   return (
