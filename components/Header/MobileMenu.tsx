@@ -11,15 +11,15 @@ import {
   FiSun,
   FiActivity,
   FiGift,
-  FiPhone
+  FiPhone,
 } from "react-icons/fi";
 
 const mainMenuItems = [
-  { name: "Home", icon: FiHome, path:"/" },
+  { name: "Home", icon: FiHome, path: "/" },
   { name: "Rooms & Suites", icon: FiBookOpen, path: "/roomsandsuites" },
   { name: "Restaurants & Cafes", icon: FiCoffee, path: "/restaurantsandcafes" },
   { name: "Meetings & Events", icon: FiUsers, path: "/meetingsandevents" },
-  { name: "Relaxation", icon: FiSun, path: "/relaxation"},
+  { name: "Relaxation", icon: FiSun, path: "/relaxation" },
   { name: "Recreations", icon: FiActivity, path: "/recreations" },
   { name: "Special Offers", icon: FiGift, path: "/specialoffers" },
   { name: "Contact Us", icon: FiPhone, path: "/contactus" },
@@ -66,7 +66,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
         <div className="mb-8 md:mb-10">
           <Image
             src="/images/logo.png"
-            alt="Grand Sultan Logo"
+            alt="tarc Logo"
             width={150}
             height={65}
             className="md:w-[180px] mx-auto"

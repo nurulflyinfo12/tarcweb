@@ -12,29 +12,31 @@ interface Slide {
 
 const slides: Slide[] = [
   {
-    image: "/images/room4.jpg",
-    title: "Experience",
-    subtitle: "The Elegance",
-    buttonText: "BOOK NOW",
+    image: "/images/cooridoor.jpg",
+    title: "Facilities",
+    subtitle: "Everything You Need",
+    buttonText: "SEE FACILITIES",
   },
   {
-    image: "/images/room1.jpg",
-    title: "Luxury Redefined",
-    subtitle: "Ocean View Suites",
-    buttonText: "EXPLORE ROOMS",
+    image: "/images/room4.jpg",
+    title: "Luxury Rooms",
+    subtitle: "Comfort Meets Elegance",
+    buttonText: "VIEW ROOMS",
+  },
+  {
+    image: "/images/resturantone.jpg",
+    title: "Food & Dining",
+    subtitle: "Taste The Finest Cuisine",
+    buttonText: "EXPLORE MENU",
   },
   {
     image: "/images/hallroom.jpg",
-    title: "Tropical Paradise",
-    subtitle: "Unforgettable Stays",
-    buttonText: "DISCOVER MORE",
+    title: "Meeting Rooms",
+    subtitle: "Business Made Premium",
+    buttonText: "BOOK SPACE",
   },
-  {
-    image: "/images/cooridoor.jpg",
-    title: "Relax & Rejuvenate",
-    subtitle: "World-Class Spa",
-    buttonText: "VISIT SPA",
-  },
+ 
+  
 ];
 
 export default function BannerSlider() {
