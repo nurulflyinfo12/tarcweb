@@ -9,7 +9,7 @@ import ImageGalleryModal from "../common/ImageGalleryModal";
 import ImageCardSlider from "../common/ImageCardSlider";
 import PageHero from "../common/pagehero";
 
-const rooms = [
+export const rooms = [
     {
         id: 1,
         name: "King Deluxe",
@@ -192,22 +192,22 @@ const RoomsAndSuites = () => {
         <>
             {/* Hero Section */}
             <PageHero
-              title="Rooms &amp; Suites"
-              subtitle="Discover comfort and style in our rooms and suites."
-              backgroundImage="https://images.unsplash.com/photo-1566073771259-6a8506099945"
+                title="Rooms &amp; Suites"
+                subtitle="Discover comfort and style in our rooms and suites."
+                backgroundImage="https://images.unsplash.com/photo-1566073771259-6a8506099945"
             />
 
             {/* Rooms List */}
             <section className="bg-background py-16">
                 <div className="max-w-7xl mx-auto px-6 lg:px-10 ">
-                    {rooms.map(room => (
-                      <ImageCardSlider
-                        key={room.id}
-                        {...room}
-                        onImageClick={openModal}
-                        buttonText="Find More"
-                        buttonHref="#"
-                      />
+                    {rooms.map((room) => (
+                        <ImageCardSlider
+                            key={room.id}
+                            {...room}
+                            onImageClick={openModal}
+                            buttonText="Find More"
+                            buttonHref={`roomsandsuites/${room.id}`}
+                        />
                     ))}
                 </div>
             </section>
