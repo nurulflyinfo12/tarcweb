@@ -1,6 +1,7 @@
 "use client";
 
 import ImageGalleryModal from "@/components/common/ImageGalleryModal";
+import PageHero from "@/components/common/pagehero";
 import React, { useState } from "react";
 import { FiCheck } from "react-icons/fi";
 
@@ -386,15 +387,12 @@ const SummerBreeze = () => {
 
     return (
         <div className="">
-            {/* Hero */}
-            <section className="relative h-[45vh] flex items-center justify-center text-white">
-                <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e')] bg-cover bg-center" />
-                <div className="absolute inset-0 bg-black/70" />
-                <div className="relative z-10 text-center px-6">
-                    <h1 className="text-6xl md:text-7xl font-light tracking-widest">Summer Breeze</h1>
-                    <p className="mt-4 text-xl">Refresh Your Soul This Summer</p>
-                </div>
-            </section>
+            {/* hero section  */}
+            <PageHero
+              title="Summer Breeze"
+              subtitle="Refresh Your Soul This Summer"
+              backgroundImage="https://images.unsplash.com/photo-1566073771259-6a8506099945"
+            />
 
             {/* Room Packages */}
             <section className="py-16">

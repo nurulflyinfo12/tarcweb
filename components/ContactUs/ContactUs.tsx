@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { BiLocationPlus } from "react-icons/bi";
 import { FiPhone, FiMapPin } from "react-icons/fi";
 import CallToAction from "../common/calltoaction";
+import PageHero from "../common/pagehero";
 
 const ContactUs = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -28,19 +29,11 @@ const ContactUs = () => {
     return (
         <>
             {/* Hero Section */}
-            <section className="relative h-[55vh] md:h-[65vh] flex items-center justify-center bg-black overflow-hidden">
-                <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1566073771259-6a8506099945')] bg-cover bg-center" />
-                <div className="absolute inset-0 bg-black/70" />
-
-                <div className="relative z-10 text-center px-4 sm:px-6">
-                    <h1 className="text-4xl sm:text-5xl md:text-7xl font-light tracking-widest text-white mb-4">
-                        Contact Us
-                    </h1>
-                    <p className="text-base sm:text-lg md:text-xl text-white/90 max-w-2xl mx-auto px-4">
-                        We would love to respond to your queries and help you succeeded. Feel free to get in touch with us
-                    </p>
-                </div>
-            </section>
+            <PageHero
+              title="Contact Us"
+              subtitle="We would love to respond to your queries and help you succeeded. Feel free to get in touch with us"
+              backgroundImage="https://images.unsplash.com/photo-1566073771259-6a8506099945"
+            />
 
             {/* Main Contact Card - Exact Design Match */}
             <section className="py-12 md:py-16">
