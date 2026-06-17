@@ -22,7 +22,7 @@ const Footer = () => {
             <div>
               <Image
                 src="/images/logo.png"
-                alt="TRAC Resort"
+                alt="Rural Reconstruction Foundation"
                 width={180}
                 height={80}
                 className="h-16 w-auto object-contain brightness-100 dark:brightness-110 select-none"
@@ -34,7 +34,7 @@ const Footer = () => {
               <div className="flex items-start gap-3">
                 <FaMapMarkerAlt className="mt-1 text-primary shrink-0 transition-colors duration-300" />
                 <p className="leading-relaxed">
-                  Srimongal, Moulvibazar - 3210, Bangladesh
+                  The Imperial Institute Of Hospitality & Hotel Management
                 </p>
               </div>
 
@@ -42,14 +42,12 @@ const Footer = () => {
                 <FaPhoneAlt className="mt-1 text-primary shrink-0 transition-colors duration-300" />
                 <div className="space-y-1">
                   <p>
-                    +880 2997 738501-3{" "}
-                    <span className="text-xs opacity-70">(Resort Office)</span>
+                    +880 2 XXX XXXX{" "}
+                    <span className="text-xs opacity-70">(Head Office)</span>
                   </p>
                   <p>
-                    +880 9678 782929{" "}
-                    <span className="text-xs opacity-70">
-                      (Corporate Office)
-                    </span>
+                    +880 1XXX XXX XXX{" "}
+                    <span className="text-xs opacity-70">(Field Office)</span>
                   </p>
                 </div>
               </div>
@@ -58,17 +56,17 @@ const Footer = () => {
                 <FaCalendarAlt className="mt-1 text-primary shrink-0 transition-colors duration-300" />
                 <div className="space-y-1">
                   <p className="font-semibold text-foreground transition-colors duration-300">
-                    For Reservation:
+                    For Program Inquiries:
                   </p>
-                  <p>+880 9678 785959 / +880 1730 793501-4</p>
+                  <p>+880 1XXX XXX XXX</p>
 
                   <p className="font-semibold text-foreground pt-2 transition-colors duration-300">
-                    For Corporate or Group Event:
+                    For Projects & Partnerships:
                   </p>
-                  <p>+880 1730 793555</p>
+                  <p>+880 1XXX XXX XXX</p>
 
                   <p className="pt-2 text-xs font-mono select-all">
-                    Email: reservations@grandsultanresort.com
+                    Email: info@rrf-bd.org
                   </p>
                 </div>
               </div>
