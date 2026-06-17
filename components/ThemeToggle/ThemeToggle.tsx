@@ -20,7 +20,7 @@ export default function ThemeToggle() {
       className="p-2.5 text-white hover:text-primary transition-all rounded-full hover:bg-white/10 dark:hover:bg-white/10 cursor-pointer"
       aria-label="Toggle theme"
     >
-      {theme === "dark" ? <FiSun size={24} /> : <FiMoon size={24} />}
+      {theme === "light" ? <FiSun size={24} /> : <FiMoon size={24} />}
     </button>
   );
 }

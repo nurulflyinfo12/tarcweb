@@ -42,9 +42,7 @@ export default function Navbar() {
                 width={160}
                 height={70}
                 className={`h-10 sm:h-12 md:h-16 w-auto object-contain transition-all duration-300 ${
-                  !scrolled
-                    ? "brightness-0 invert"
-                    : "dark:brightness-0 dark:invert-0"
+                  scrolled ? "" : ""
                 }`}
                 priority
               />
