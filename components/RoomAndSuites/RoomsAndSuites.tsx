@@ -12,115 +12,51 @@ import PageHero from "../common/pagehero";
 const rooms = [
     {
         id: 1,
-        name: "King Deluxe",
+        name: "Super Deluxe Twin",
         sizeSQM: 36,
         sizeSQF: 382,
         maxGuests: 2,
-        description: "Our King Deluxe room has a spacious layout, with an abundance of natural light coming in and a spectacular view. The lavish and cozy King size bed is ideal for a couple.",
+        price: "3000",
+        offer: "2500",
+        description: "Experience comfort and convenience in our Super Deluxe Twin Room, featuring two cozy twin beds and elegant modern interiors. Perfect for friends, colleagues, or family travelers seeking a relaxing and spacious stay.",
         images: [
-            "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=2070",
-            "https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=2070",
-            "https://images.unsplash.com/photo-1566665797739-1674de7a421a?q=80&w=2070",
+            "/images/superdeluxetwin.jpeg",
+            "/images/superdeluxe1.jpeg",
+            "/images/superdeluxe2.jpeg",
+            "/images/superdeluxe3.jpeg",
         ],
         reverse: false,
     },
     {
         id: 2,
-        name: "Queen Deluxe",
+        name: "Super Deluxe Couple",
         sizeSQM: 36,
         sizeSQF: 382,
         maxGuests: 2,
-        description: "Our Queen Deluxe room has a spacious layout, with an abundance of natural light and a spectacular view. The two luxurious Queen size beds are ideal for 2-4 adults.",
+        price: "3500",
+        offer: "3000",
+        description: "Our King Deluxe room has a spacious layout, with an abundance of natural light coming in and a spectacular view. The lavish and cozy King size bed is ideal for a couple.",
         images: [
-            "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=2070",
-            "https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=2070",
-            "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=2070",
+            "/images/superdeluxecouple.jpeg",
+            "/images/superdelux3.jpeg",
         ],
         reverse: true,
     },
     {
         id: 3,
-        name: "Triple Deluxe",
+        name: "Vip Room Regular",
         sizeSQM: 36,
         sizeSQF: 382,
         maxGuests: 3,
-        description: "Our Triple Deluxe room has a spacious layout, with an abundance of natural light and a spectacular view.",
+        price: "6500",
+        offer: "5500",
+        description: "Enjoy a comfortable and relaxing stay in our VIP Room Regular, thoughtfully designed with modern amenities and stylish interiors. Ideal for guests seeking extra comfort, privacy, and a premium hospitality experience.",
         images: [
-            "https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=2070",
-            "https://images.unsplash.com/photo-1566665797739-1674de7a421a?q=80&w=2070",
-            "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=2070",
+            "/images/viproom.jpeg",
+            "/images/vip1.jpeg",
+            "/images/vip2.jpeg"
         ],
         reverse: false,
-    },
-    {
-        id: 4,
-        name: "Executive Suite King",
-        sizeSQM: 53,
-        sizeSQF: 569,
-        maxGuests: 2,
-        description: "For a finer experience of a luxurious stay, our Executive Suite King is perfect.",
-        images: [
-            "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=2070",
-            "https://images.unsplash.com/photo-1611892440504-42a792e24d32?q=80&w=2070",
-            "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=2070",
-        ],
-        reverse: true,
-    },
-    {
-        id: 5,
-        name: "Executive Suite Queen",
-        sizeSQM: 53,
-        sizeSQF: 569,
-        maxGuests: 2,
-        description: "For a finer experience of a luxurious stay, our Executive Suite Queen is ideal for 2 to 4 adults.",
-        images: [
-            "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=2070",
-            "https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=2070",
-            "https://images.unsplash.com/photo-1566665797739-1674de7a421a?q=80&w=2070",
-        ],
-        reverse: false,
-    },
-    {
-        id: 6,
-        name: "Royal Suite Deluxe",
-        sizeSQM: 86,
-        sizeSQF: 920,
-        maxGuests: 4,
-        description: "For larger groups or families, our spacious and beautifully designed Royal Suite Deluxe is perfect.",
-        images: [
-            "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=2070",
-            "https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=2070",
-            "https://images.unsplash.com/photo-1566665797739-1674de7a421a?q=80&w=2070",
-        ],
-        reverse: true,
-    },
-    {
-        id: 7,
-        name: "Royal Suite Superior",
-        sizeSQM: 108,
-        sizeSQF: 1160,
-        maxGuests: 4,
-        description: "For families and larger groups to enjoy an exquisite luxurious space.",
-        images: [
-            "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=2070",
-            "https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=2070",
-            "https://images.unsplash.com/photo-1566665797739-1674de7a421a?q=80&w=2070",
-        ],
-        reverse: false,
-    },
-    {
-        id: 8,
-        name: "Presidential Suite",
-        sizeSQM: 162,
-        sizeSQF: 1750,
-        maxGuests: 6,
-        description: "A luxury suite with two bedrooms, a living room, and dining space ideal for 4-6 guests.",
-        images: [
-            "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=2070",
-            "https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=2070",
-            "https://images.unsplash.com/photo-1566665797739-1674de7a421a?q=80&w=2070",
-        ],
-        reverse: true,
     },
 ];
 
@@ -194,7 +130,7 @@ const RoomsAndSuites = () => {
             <PageHero
               title="Rooms &amp; Suites"
               subtitle="Discover comfort and style in our rooms and suites."
-              backgroundImage="https://images.unsplash.com/photo-1566073771259-6a8506099945"
+              backgroundImage="/images/cooridoor.jpg"
             />
 
             {/* Rooms List */}
