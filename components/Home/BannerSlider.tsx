@@ -12,19 +12,19 @@ interface Slide {
 
 const slides: Slide[] = [
   {
-    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945",
+    image: "/images/home.png",
     title: "Experience",
     subtitle: "The Elegance",
     buttonText: "BOOK NOW",
   },
   {
-    image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b",
+    image: "/images/room1.jpg",
     title: "Luxury Redefined",
     subtitle: "Ocean View Suites",
     buttonText: "EXPLORE ROOMS",
   },
   {
-    image: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4",
+    image: "/images/hallroom.jpg",
     title: "Tropical Paradise",
     subtitle: "Unforgettable Stays",
     buttonText: "DISCOVER MORE",

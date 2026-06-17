@@ -15,10 +15,8 @@ const DiscoverAndReviews = () => {
     description:
       "Enjoy an exquisite dining experience, at our multicuisine restaurants and cafes. With the most up to date, hygienic kitchen, maintained and operated by a highly skilled team, we ensure a delightful and lavish dining experience.",
     buttonText: "Discover More",
-    imgLeft:
-      "https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=600&auto=format&fit=crop", // outdoor dining
-    imgRight:
-      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=600&auto=format&fit=crop", // indoor dining
+    imgLeft: "/images/resturanttwo.jpg", // outdoor dining
+    imgRight: "/images/resturantone.jpg", // indoor dining
   };
 
   const reviews = [
@@ -39,13 +37,13 @@ const DiscoverAndReviews = () => {
   ];
 
   const galleryImages = [
-    "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=400&auto=format&fit=crop", // buffet
-    "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?q=80&w=400&auto=format&fit=crop", // pool
-    "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?q=80&w=400&auto=format&fit=crop", // cinema
-    "https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?q=80&w=400&auto=format&fit=crop", // sports/kids
-    "https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=400&auto=format&fit=crop", // kids zone
-    "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=400&auto=format&fit=crop", // gym
-    "https://images.unsplash.com/photo-1507842217343-583bb7270b66?q=80&w=400&auto=format&fit=crop", // library
+    "/images/resturanttwo.jpg", // buffet
+    "/images/resturantone.jpg", // pool
+    "/images/room1.jpg", // cinema
+    "/images/room2.jpg", // sports/kids
+    "/images/room3.jpg", // kids zone
+    "/images/room4.jpg", // gym
+    "/images/room5.jpg", // library
   ];
 
   const awards = [

@@ -51,8 +51,8 @@ const LuxuryExperience: React.FC<LuxuryExperienceProps> = ({
   ],
   ctaLink = "/roomsandsuites",
   ctaText = "Discover More",
-  heroImageMain = "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb",
-  heroImageOverlay = "https://images.unsplash.com/photo-1497366216548-37526070297c",
+  heroImageMain = "/images/room1.jpg",
+  heroImageOverlay = "/images/room5.jpg",
   amenitiesSubtitle = "Amenities",
   amenitiesTitle = "Facilities & Services",
   amenitiesData = [
@@ -106,7 +106,7 @@ const LuxuryExperience: React.FC<LuxuryExperienceProps> = ({
                 </div>
 
                 <div className="absolute -bottom-10 -right-4 lg:-right-10 z-10 w-[65%] h-[280px]">
-                  <div className="w-full h-full border-[10px] border-card dark:border-zinc-900 rounded-tl-[120px] rounded-br-[40px] overflow-hidden shadow-2xl">
+                  <div className="w-full h-full border-[10px] border-white rounded-tl-[120px] rounded-br-[40px] overflow-hidden shadow-2xl">
                     <img
                       src={heroImageOverlay}
                       alt="Luxury Lobby Interior View"
