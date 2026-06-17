@@ -3,6 +3,7 @@
 import Image from "next/image";
 import CallToAction from "../common/calltoaction";
 import Link from "next/link";
+import PageHero from "../common/pagehero";
 
 interface Offer {
     id: number;
@@ -40,18 +41,11 @@ const SpecialOffers = ({ offers = defaultOffers }: SpecialOffersProps) => {
     return (
         <>
             {/* Hero Section */}
-            <section className="relative h-[55vh] md:h-[65vh] flex items-center justify-center bg-black">
-                <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1566073771259-6a8506099945')] bg-cover bg-center" />
-                <div className="absolute inset-0 bg-black/60" />
-                <div className="relative z-10 text-center px-6">
-                    <h1 className="text-5xl md:text-7xl font-light tracking-widest text-white mb-4">
-                        Special Offers
-                    </h1>
-                    <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto">
-                        Make your stay all the more delightful by selecting our incredible packages and offers
-                    </p>
-                </div>
-            </section>
+            <PageHero
+              title="Special Offers"
+              subtitle="Make your stay all the more delightful by selecting our incredible packages and offers"
+              backgroundImage="https://images.unsplash.com/photo-1566073771259-6a8506099945"
+            />
 
             {/* Offers Card Section */}
             <section className="bg-[#0A2F1F] py-16 relative overflow-hidden">

@@ -29,66 +29,71 @@ export default function Navbar() {
             : "bg-transparent text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
-          <div className="flex items-center justify-between py-4 md:py-5 transition-all duration-300">
-            <Link
-              href="/"
-              className="flex-shrink-0 transition-opacity hover:opacity-90"
-            >
-              <Image
-                src="/images/logo.png"
-                alt="TRAC Resort"
-                width={160}
-                height={70}
-                className={`h-12 sm:h-14 md:h-16 w-auto object-contain transition-all duration-300 ${
-                  !scrolled
-                    ? "brightness-0 invert"
-                    : "dark:brightness-0 dark:invert-0"
-                }`}
-                priority
-              />
-            </Link>
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-10">
+  <div className="flex items-center justify-between py-3 md:py-5">
+    
+    {/* Logo */}
+    <Link
+      href="/"
+      className="flex-shrink-0 max-w-[140px] sm:max-w-none"
+    >
+      <Image
+        src="/images/logo.png"
+        alt="TRAC Resort"
+        width={160}
+        height={70}
+        className={`h-10 sm:h-12 md:h-16 w-auto object-contain transition-all duration-300 ${
+          !scrolled
+            ? "brightness-0 invert"
+            : "dark:brightness-0 dark:invert-0"
+        }`}
+        priority
+      />
+    </Link>
 
-            <div className="flex items-center gap-6">
-              <div className="hidden lg:flex items-center gap-6 text-sm font-medium tracking-wide">
-                <a
-                  href="tel:+8809678785959"
-                  className="flex items-center gap-2 hover:text-amber-600 dark:hover:text-amber-400 transition-colors duration-200"
-                >
-                  <FiPhone size={14} className="text-amber-500" />
-                  <span>+880 9678 785959</span>
-                </a>
-                <a
-                  href="tel:+8801730793555"
-                  className="flex items-center gap-2 hover:text-amber-600 dark:hover:text-amber-400 transition-colors duration-200"
-                >
-                  <FiPhone size={14} className="text-amber-500" />
-                  <span>+880 1730 793555</span>
-                </a>
-              </div>
+    {/* Right Side */}
+    <div className="flex items-center gap-2 sm:gap-4">
+      
+      {/* Desktop Phone */}
+      <div className="hidden xl:flex items-center gap-6 text-sm font-medium">
+        <a
+          href="tel:+8809678785959"
+          className="flex items-center gap-2"
+        >
+          <FiPhone size={14} />
+          <span>+880 9678 785959</span>
+        </a>
 
-              <ThemeToggle />
+        <a
+          href="tel:+8801730793555"
+          className="flex items-center gap-2"
+        >
+          <FiPhone size={14} />
+          <span>+880 1730 793555</span>
+        </a>
+      </div>
 
-              <div className="h-5 w-px bg-current opacity-20" />
+      <ThemeToggle />
 
-              <button
-                onClick={() => setIsOpen(true)}
-                className="flex items-center gap-2 md:gap-3 group cursor-pointer focus:outline-none"
-                aria-label="Open Menu"
-              >
-                <span className="text-sm md:text-base font-serif font-bold tracking-wider uppercase">
-                  Menu
-                </span>
-                <div className="p-1 rounded-lg transition-colors duration-200 group-hover:bg-black/5 dark:group-hover:bg-white/10">
-                  <FiMenu
-                    size={26}
-                    className="group-hover:text-amber-500 dark:group-hover:text-amber-400 transition-colors duration-200"
-                  />
-                </div>
-              </button>
-            </div>
-          </div>
-        </div>
+      <div className="hidden sm:block h-5 w-px bg-current opacity-20" />
+
+      {/* Menu Button */}
+      <button
+        onClick={() => setIsOpen(true)}
+        className="flex items-center cursor-pointer gap-1 sm:gap-2"
+      >
+        <span className="hidden sm:block text-sm font-serif font-bold uppercase">
+          Menu
+        </span>
+
+        <FiMenu
+          size={24}
+          className="sm:size-[26px]"
+        />
+      </button>
+    </div>
+  </div>
+</div>
       </header>
 
       <MobileMenu isOpen={isOpen} onClose={() => setIsOpen(false)} />

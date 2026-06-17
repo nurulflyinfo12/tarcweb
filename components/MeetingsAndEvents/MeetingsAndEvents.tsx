@@ -4,6 +4,7 @@ import React, { useState, useRef } from "react";
 import CallToAction from "../common/calltoaction";
 import ImageGalleryModal from "../common/ImageGalleryModal";
 import ImageCardSlider from "../common/ImageCardSlider";
+import PageHero from "../common/pagehero";
 
 const Meetings = [
     {
@@ -72,18 +73,11 @@ const MeetingsAndEvents = () => {
     return (
         <>
             {/* Hero Section */}
-            <section className="relative h-[45vh] flex items-center justify-center bg-black">
-                <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1566073771259-6a8506099945')] bg-cover bg-center" />
-                <div className="absolute inset-0 bg-black/60" />
-                <div className="relative z-10 text-center px-6">
-                    <h1 className="text-5xl md:text-7xl font-light tracking-widest text-white mb-4">
-                        Meetings &amp; Events
-                    </h1>
-                    <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto">
-                        Discover comfort and style in our meetings and events.
-                    </p>
-                </div>
-            </section>
+            <PageHero
+              title="Meetings & Events"
+              subtitle="Discover comfort and style in our meetings and events."
+              backgroundImage="https://images.unsplash.com/photo-1566073771259-6a8506099945"
+            />
 
             {/* Rooms List */}
             <section className="bg-background py-16">
