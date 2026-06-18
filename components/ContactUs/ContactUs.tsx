@@ -56,23 +56,22 @@ const ContactUs = () => {
                           Management
                         </h3>
                         <p className="text-sm opacity-90">
-                          Srimongal, Moulvibazar - 3210, Bangladesh.
+                          R R F Bhaban, C & B Road, Karbala, Jessore.
                         </p>
                         <div className="mt-4 space-y-1.5 text-sm">
                           <p>
                             <strong>Tel:</strong> +880 2997 738501-3
                           </p>
                           <p>
-                            <strong>For Reservation:</strong> (0421) 66906, 65663 /
-                            +880 1730 793501-4
+                            <strong>For Reservation:</strong> (0421) 66906, 65663
                           </p>
-                          <p>
+                          {/* <p>
                             <strong>For Corporate or Group Event:</strong> +880
                             1730 793555
-                          </p>
+                          </p> */}
                           <p>
                             <strong>Email:</strong>{" "}
-                            reservations@rrftarc.com
+                            Email: info@rrf-bd.org
                           </p>
                         </div>
                       </div>
@@ -90,30 +89,10 @@ const ContactUs = () => {
                           Corporate Office
                         </h3>
                         <p className="text-sm opacity-90">
-                          House# 108, Apt.# D2, Road 11, Block C, Banani, Dhaka
-                          1213, Bangladesh.
+                          R R F Bhaban, C & B Road, Karbala, Jessore.
                         </p>
                         <p className="mt-4 text-sm">
-                          <strong>Tel:</strong> +880 9678 762929
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Excursion & Resorts */}
-                  <div className="bg-[#4F6240] rounded-sm p-6 sm:p-7 text-white">
-                    <div className="flex items-start gap-4">
-                      <div className="mt-1 w-9 h-9 bg-[#D4AF37] text-[#0A2F1F] rounded-full flex items-center justify-center text-2xl flex-shrink-0">
-                        🗺️
-                      </div>
-                      <div className="min-w-0">
-                        <h3 className="text-lg sm:text-xl font-semibold mb-3">
-                          Excursion & Resorts Bangladesh Ltd
-                        </h3>
-                        <p className="text-sm opacity-90">
-                          The Imperial Institute Of Hospitality & Hotel
-                          Management is a wholly owned subsidiary of Excursion &
-                          Resorts Bangladesh Ltd.
+                          <strong>Tel:</strong> (0421) 66906, 65663
                         </p>
                       </div>
                     </div>
