@@ -27,9 +27,9 @@ const mainMenuItems = [
 
 // Updated with paths
 const bottomMenuItems = [
-  { name: "Surrounding Us", path: "/surrounding-us" },
-  { name: "Getting There", path: "/getting-there" },
-  { name: "Photo Gallery", path: "/photo-gallery" },
+  // { name: "Surrounding Us", path: "/surroundingus" },
+  { name: "Getting There", path: "/gettingthere" },
+  { name: "Photo Gallery", path: "/photogallery" },
   { name: "Contact", path: "/contactus" },
   { name: "Guest Policy", path: "/guestpolicy" },
 ];

@@ -7,86 +7,76 @@ import PageHero from "@/components/common/pagehero";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 
-const Restaurants = [
+const Meetings = [
     {
         id: "1",
-        name: "Taste & Tradition",
-        type: "Signature Dining",
-        description:
-            "Experience a culinary journey featuring a diverse selection of local and international flavors. Prepared by our expert chefs using the freshest ingredients, our menu offers something delightful for every palate in a warm and welcoming ambiance",
+        name: "Boardroom Meeting",
+        type: "Meeting",
+        description: "Our sophisticated boardroom offers a perfect setting for focused discussions, strategic planning, and high-level business meetings...",
         images: [
-            "/images/resturantone1.jpg",
-            "/images/resturanttwo.jpg",
-            "/images/room1.jpg",
+            "/images/boardmeeting.jpeg",
+            "/images/hallroom.jpg",
         ],
-        reverse: false,
-
-        heroImage: "/images/resturantone1.jpg",
-        cuisine: [
-            "Continental",
-            "Mexican",
-            "Sea Food",
-            "Arabic",
-            "Thai",
-            "Chinese",
-            "Indian & Bangla",
+        eventtypes: [
+            {
+                title: "Annual General Meeting",
+                image: "/images/conference.jpeg"
+            },
+            {
+                title: "Boardroom Sessions",
+                image: "/images/boardmeeting.jpeg"
+            },
+            {
+                title: "Corporate Meetings",
+                image: "/images/hallroom.jpg"
+            }
         ],
-        atmosphere: "Friendly and Informal",
-        serviceStyle: "Buffet & A la Carte",
-        serviceHours: {
-            breakfast: "7:00 a.m. to 10:30 a.m.",
-            lunch: "12:30 p.m. to 3:00 p.m.",
-            dinner: "7:00 p.m. to 10:30 p.m.",
-        },
-        location: "At Lobby Level",
-    },
-    {
-        id: "2",
-        name: "The Grand Flavor",
-        type: "Premium Culinary Experience",
-        description:
-            "Indulge in an exceptional dining experience where elegant design meets culinary artistry. From curated gourmet dishes to impeccable service, we offer the perfect setting for memorable family gatherings, romantic dinners, and special occasions..",
-        images: [
-            "/images/resturantone1.jpg",
-            "/images/resturanttwo.jpg",
-            "/images/room1.jpg",
-        ],
-        reverse: true,
-
-        heroImage: "/images/resturantone1.jpg",
-        cuisine: ["European", "Asian", "Fusion"],
-        atmosphere: "Elegant & Sophisticated",
-        serviceStyle: "A la Carte",
-        serviceHours: {
-            breakfast: "7:00 a.m. to 11:00 a.m.",
-            lunch: "12:00 p.m. to 4:00 p.m.",
-            dinner: "6:30 p.m. to 11:00 p.m.",
-        },
-        location: "First Floor",
-    },
-    {
-        id: "3",
-        name: "The Hub Eatery",
-        type: "Dine & Unwind",
-        description:
-            "Whether you are starting your morning with a freshly brewed coffee, stopping by for a hearty lunch, or enjoying a relaxed dinner with loved ones, our vibrant space welcomes you all day to sit back, relax, and savor exceptional food.",
-        images: [
-            "/images/resturantone1.jpg",
-            "/images/resturanttwo.jpg",
-            "/images/room1.jpg",
-        ],
-        reverse: false,
-
-        heroImage: "/images/resturantone1.jpg",
+        heroImage: "/images/boardmeeting.jpeg",
         cuisine: ["International", "Fast Casual", "Beverages"],
         atmosphere: "Casual & Vibrant",
         serviceStyle: "Buffet & A la Carte",
         serviceHours: {
-            breakfast: "6:30 a.m. to 11:00 a.m.",
-            lunch: "11:30 a.m. to 5:00 p.m.",
-            dinner: "6:00 p.m. to 10:30 p.m.",
+          breakfast: "6:30 a.m. to 11:00 a.m.",
+          lunch: "11:30 a.m. to 5:00 p.m.",
+          dinner: "6:00 p.m. to 10:30 p.m.",
+        },
+        reverse: false,
+    },
+    {
+        id: "2",
+        name: "Conference Hall",
+        // type: "Hilltop Restaurant",
+        description: "Spacious circular conference hall designed for large meetings, seminars, trainings, and corporate events with modern facilities...",
+        images: [
+            "/images/conference.jpeg",
+            "/images/boardmeeting.jpeg",
+            "/images/hallroom.jpg",
+        ],
+        eventtypes: [
+            {
+                title: "Annual General Meeting",
+                image: "/images/conference.jpeg"
+            },
+            {
+                title: "Boardroom Sessions",
+                image: "/images/boardmeeting.jpeg"
+            },
+            {
+                title: "Corporate Meetings",
+                image: "/images/hallroom.jpg"
+            }
+        ],
+        heroImage: "/images/conference.jpeg",
+        cuisine: ["International", "Fast Casual", "Beverages"],
+        atmosphere: "Casual & Vibrant",
+        serviceStyle: "Buffet & A la Carte",
+        serviceHours: {
+          breakfast: "6:30 a.m. to 11:00 a.m.",
+          lunch: "11:30 a.m. to 5:00 p.m.",
+          dinner: "6:00 p.m. to 10:30 p.m.",
         },
         location: "Ground Floor",
+        reverse: true,
     },
 ];
 
@@ -96,12 +86,190 @@ type PageProps = {
     }>;
 };
 
+
+type EventTypeItem = {
+    title: string;
+    image: string;
+};
+
+const EventTypesSection = ({ eventtypes }: { eventtypes: EventTypeItem[] }) => (
+    <div className="py-8">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
+            <div className="absolute inset-x-8 sm:inset-x-8 md:inset-x-20 -top-3 -bottom-3 bg-white/20 rounded-2xl backdrop-blur-[2px] pointer-events-none z-0" />
+            <div className="relative bg-white rounded-2xl p-5">
+            <div className="text-center mb-10">
+                <div className="flex items-center justify-center gap-3 mb-4">
+                    <span className="h-[1px] w-12 bg-[#556B2F]" />
+                    <h2 className="text-3xl sm:text-4xl font-medium text-secondary tracking-wide">Event Types</h2>
+                    <span className="h-[1px] w-12 bg-[#556B2F]" />
+                </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {eventtypes.map((event, index) => (
+                    <motion.div
+                        key={index}
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: index * 0.1 }}
+                        className="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300"
+                    >
+                        <div className="aspect-[16/11] overflow-hidden">
+                            <img
+                                src={event.image}
+                                alt={event.title}
+                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            />
+                        </div>
+                        <div className="p-6 text-center">
+                            <h3 className="text-xl font-medium text-secondary tracking-wide">
+                                {event.title}
+                            </h3>
+                        </div>
+                    </motion.div>
+                ))}
+            </div>
+            </div>
+        </div>
+    </div>
+);
+
+
+// Event Inquiry Form Component
+    const EventInquiryForm = () => {
+        const [formData, setFormData] = useState({
+            eventDate: "",
+            orgName: "",
+            orgAddress: "",
+            contactPerson: "",
+            contactNo: "",
+            email: "",
+            participants: "",
+            eventType: "",
+            specialRequests: "",
+            source: "",
+            message: "",
+        });
+
+        const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+            setFormData({ ...formData, [e.target.name]: e.target.value });
+        };
+
+        const handleSubmit = (e: React.FormEvent) => {
+            e.preventDefault();
+            console.log("Form Submitted:", formData);
+            alert("Thank you! Your event inquiry has been submitted successfully.");
+            // You can connect this to your backend/API later
+        };
+
+        return (
+            <div className="py-12">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6">
+                    <div className="text-center mb-10">
+                        <h2 className="text-3xl font-medium text-white tracking-wide">Book This Venue Now!</h2>
+                        <p className="text-gray-300 mt-2">Fill out the form below and our team will get back to you shortly.</p>
+                    </div>
+
+                    <div className="relative px-4">
+                        <div className="absolute inset-x-8 -top-3 -bottom-3 bg-white/20 rounded-2xl backdrop-blur-[2px] md:inset-x-15 pointer-events-none z-0" />
+                        <form onSubmit={handleSubmit} className="relative bg-white rounded-2xl p-8 md:p-12 shadow-xl">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                {/* Event Date */}
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-700 mb-1">Event Date</label>
+                                    <input type="date" name="eventDate" value={formData.eventDate} onChange={handleChange} required className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-[#5D7553] focus:border-transparent text-black/50" />
+                                </div>
+
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-700 mb-1">Organization Name</label>
+                                    <input type="text" name="orgName" value={formData.orgName} onChange={handleChange} required className="w-full border border-gray-300 rounded-lg px-4 py-3 text-black/50" placeholder="Enter Organization Name" />
+                                </div>
+
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-700 mb-1">Organization Address</label>
+                                    <input type="text" name="orgAddress" value={formData.orgAddress} onChange={handleChange} className="w-full border border-gray-300 rounded-lg px-4 py-3 text-black/50" placeholder="Enter Organization Address" />
+                                </div>
+
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-700 mb-1">Key Contact Person</label>
+                                    <input type="text" name="contactPerson" value={formData.contactPerson} onChange={handleChange} required className="w-full border border-gray-300 rounded-lg px-4 py-3 text-black/50" placeholder="Enter Name" />
+                                </div>
+
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-700 mb-1">Contact No</label>
+                                    <input type="tel" name="contactNo" value={formData.contactNo} onChange={handleChange} required className="w-full border border-gray-300 rounded-lg px-4 py-3 text-black/50" placeholder="Enter Your Contact Number" />
+                                </div>
+
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                                    <input type="email" name="email" value={formData.email} onChange={handleChange} required className="w-full border border-gray-300 rounded-lg px-4 py-3 text-black/50" placeholder="Enter Email Address" />
+                                </div>
+
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-700 mb-1">Number of Participants</label>
+                                    <input type="number" name="participants" value={formData.participants} onChange={handleChange} required className="w-full border border-gray-300 rounded-lg px-4 py-3 text-black/50" placeholder="Enter Number of participants" />
+                                </div>
+
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-700 mb-1">Event Type</label>
+                                    <select name="eventType" value={formData.eventType} onChange={handleChange} required className="w-full border border-gray-300 rounded-lg px-4 py-3 text-black/50">
+                                        <option value="">— Please choose an option —</option>
+                                        <option value="Corporate Meeting">Corporate Meeting</option>
+                                        <option value="Conference">Conference</option>
+                                        <option value="Training">Training</option>
+                                        <option value="Workshop">Workshop</option>
+                                        <option value="Seminar">Seminar</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+
+                                <div className="md:col-span-2">
+                                    <label className="block text-sm font-medium text-gray-700 mb-1">Special Requests</label>
+                                    <input type="text" name="specialRequests" value={formData.specialRequests} onChange={handleChange} className="w-full border border-gray-300 rounded-lg px-4 py-3 text-black/50" placeholder="Write special request" />
+                                </div>
+
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-700 mb-1">Where You Learned About Us</label>
+                                    <select name="source" value={formData.source} onChange={handleChange} className="w-full border border-gray-300 rounded-lg px-4 py-3 text-black/50">
+                                        <option value="">Where you learned about us?</option>
+                                        <option value="Website">Website</option>
+                                        <option value="Google">Google</option>
+                                        <option value="Referral">Referral</option>
+                                        <option value="Social Media">Social Media</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+
+                                <div className="md:col-span-2">
+                                    <label className="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                                    <textarea name="message" value={formData.message} onChange={handleChange} rows={5} className="w-full border border-gray-300 rounded-lg px-4 py-3 text-black/50" placeholder="Enter Your Message"></textarea>
+                                </div>
+                            </div>
+
+                            <div className="mt-10 flex justify-center">
+                                <button
+                                    type="submit"
+                                    className="bg-secondary hover:bg-background text-white font-medium px-8 py-2 rounded-xl transition-all duration-300 text-lg"
+                                >
+                                    SUBMIT
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        );
+    };
+
+
+
 export default async function Page({ params }: PageProps) {
     const { slug } = await params;
-    const restaurantId = slug;
+    const meetingId = slug;
 
-    const restaurant = Restaurants.find(
-        (r) => r.id === restaurantId
+    const restaurant = Meetings.find(
+        (r) => r.id === meetingId
     );
 
     if (!restaurant) {
@@ -258,7 +426,7 @@ export default async function Page({ params }: PageProps) {
             />
 
             {/* main card */}
-            <div className="py-8 sm:py-10 lg:py-14">
+            <div className="py-8">
                 <div className="relative max-w-7xl mx-auto w-full px-4 sm:px-6 md:px-8 lg:px-10">
                     {/* Background Layer */}
                     <div className="absolute inset-x-8 sm:inset-x-8 md:inset-x-20 lg:inset-x-20 -top-3 -bottom-3 bg-white/20 rounded-2xl backdrop-blur-[2px] pointer-events-none z-0" />
@@ -325,7 +493,7 @@ export default async function Page({ params }: PageProps) {
             {/* At a glance Section - Exact match to image */}
 
             {/* At a Glance Section */}
-            <div className="py-8 sm:py-10 lg:py-14">
+            <div className="py-8">
                 <div className="relative max-w-7xl mx-auto w-full px-4 sm:px-6 md:px-8 lg:px-10">
 
                     {/* Background */}
@@ -432,6 +600,12 @@ export default async function Page({ params }: PageProps) {
 
             {/* Photo Gallery - Two-image Slider */}
             <SliderComponent />
+
+            {/* event types  */}
+            <EventTypesSection eventtypes={restaurant.eventtypes}></EventTypesSection>
+
+            {/* Event Inquiry Form */}
+            <EventInquiryForm />
 
             {/* Reserve Your Table Today! */}
             <div className="py-12">

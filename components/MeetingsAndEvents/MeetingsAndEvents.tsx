@@ -8,53 +8,47 @@ import PageHero from "../common/pagehero";
 
 const Meetings = [
     {
-        id: 1,
+        id: "1",
         name: "Boardroom Meeting",
         // type: "All Day Dine",
         description: "Our sophisticated boardroom offers a perfect setting for focused discussions, strategic planning, and high-level business meetings...",
         images: [
-            "/images/boardmeeting.jpg",
-            "https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=2070",
-            "https://images.unsplash.com/photo-1566665797739-1674de7a421a?q=80&w=2070",
+            "/images/boardmeeting.jpeg",
+            "/images/hallroom.jpg",
         ],
+        heroImage: "/images/boardmeeting.jpeg",
+        cuisine: ["International", "Fast Casual", "Beverages"],
+        atmosphere: "Casual & Vibrant",
+        serviceStyle: "Buffet & A la Carte",
+        serviceHours: {
+          breakfast: "6:30 a.m. to 11:00 a.m.",
+          lunch: "11:30 a.m. to 5:00 p.m.",
+          dinner: "6:00 p.m. to 10:30 p.m.",
+        },
         reverse: false,
     },
     {
-        id: 2,
+        id: "2",
         name: "Conference Hall",
         // type: "Hilltop Restaurant",
         description: "Spacious circular conference hall designed for large meetings, seminars, trainings, and corporate events with modern facilities...",
         images: [
-            "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=2070",
-            "https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=2070",
-            "https://images.unsplash.com/photo-1566665797739-1674de7a421a?q=80&w=2070",
+            "/images/conference.jpeg",
+            "/images/boardmeeting.jpeg",
+            "/images/hallroom.jpg",
         ],
+        heroImage: "/images/conference.jpeg",
+        cuisine: ["International", "Fast Casual", "Beverages"],
+        atmosphere: "Casual & Vibrant",
+        serviceStyle: "Buffet & A la Carte",
+        serviceHours: {
+          breakfast: "6:30 a.m. to 11:00 a.m.",
+          lunch: "11:30 a.m. to 5:00 p.m.",
+          dinner: "6:00 p.m. to 10:30 p.m.",
+        },
+        location: "Ground Floor",
         reverse: true,
     },
-    {
-        id: 3,
-        name: "Rashni Mahal",
-        // type: "Cafe & Lounge",
-        description: "It is a perfect venue for wedding, family gathering, and any type of corporate events with up to 500 guests in the banquet...",
-        images: [
-            "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=2070",
-            "https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=2070",
-            "https://images.unsplash.com/photo-1566665797739-1674de7a421a?q=80&w=2070",
-        ],
-        reverse: true,
-    },
-    {
-        id: 4,
-        name: "Nowmi Manzil",
-        // type: "Poolside Cafe",
-        description: "Offers you luxurious environment with 200 guests in the banquet setup. The total area of 4,144 sft with 8 feet of height this...",
-        images: [
-            "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=2070",
-            "https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=2070",
-            "https://images.unsplash.com/photo-1566665797739-1674de7a421a?q=80&w=2070",
-        ],
-        reverse: false,
-    }
 ];
 
 const MeetingsAndEvents = () => {
@@ -88,7 +82,7 @@ const MeetingsAndEvents = () => {
                             {...meeting}
                             onImageClick={openModal}
                             buttonText="Find More"
-                            buttonHref="#"
+                            buttonHref={`/meetingsandevents/${meeting.id}`}
                         />
                     ))}
                 </div>

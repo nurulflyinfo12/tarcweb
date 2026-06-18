@@ -20,7 +20,6 @@ import PageHero from "../common/pagehero";
 export const Restaurants = [
   {
     id: "1",
-    slug: "fowara-dine",
     name: "Taste & Tradition",
     type: "Signature Dining",
     description:
@@ -32,7 +31,6 @@ export const Restaurants = [
     ],
     reverse: false,
 
-    // ✅ Newly Added Properties
     heroImage: "/images/fowara-dine-hero.jpg",
     cuisine: [
       "Continental",
@@ -54,7 +52,6 @@ export const Restaurants = [
   },
   {
     id: "2",
-    slug: "the-grand-flavor",
     name: "The Grand Flavor",
     type: "Premium Culinary Experience",
     description:
@@ -66,7 +63,6 @@ export const Restaurants = [
     ],
     reverse: true,
 
-    // ✅ Newly Added Properties
     heroImage: "/images/grand-flavor-hero.jpg",
     cuisine: ["European", "Asian", "Fusion"],
     atmosphere: "Elegant & Sophisticated",
@@ -80,7 +76,6 @@ export const Restaurants = [
   },
   {
     id: "3",
-    slug: "the-hub-eatery",
     name: "The Hub Eatery",
     type: "Dine & Unwind",
     description:
@@ -92,7 +87,6 @@ export const Restaurants = [
     ],
     reverse: false,
 
-    // ✅ Newly Added Properties
     heroImage: "/images/hub-eatery-hero.jpg",
     cuisine: ["International", "Fast Casual", "Beverages"],
     atmosphere: "Casual & Vibrant",
