@@ -113,7 +113,7 @@ const RoomPage = ({ params: initialParams }: RoomPageProps) => {
                             <div className="text-center lg:text-start">
                                 <div className="flex items-center gap-3 mb-4 justify-center lg:justify-start">
                                     <span className="h-[1px] w-10 sm:w-14 bg-[#556B2F]" />
-                                    <h2 className="text-2xl sm:text-3xl lg:text-4xl font-medium text-secondary tracking-wide text-center lg:text-left">
+                                    <h2 className="text-2xl sm:text-2xl lg:text-3xl font-medium text-secondary tracking-wide text-center lg:text-left">
                                         {room?.name}
                                     </h2>
                                     <span className="h-[1px] w-10 sm:w-14 bg-[#556B2F]" />
