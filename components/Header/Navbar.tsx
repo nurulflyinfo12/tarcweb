@@ -69,7 +69,7 @@ export default function Navbar() {
                 </a>
               </div>
 
-              <ThemeToggle scrolled={scrolled} />
+              {/* <ThemeToggle scrolled={scrolled} /> */}
 
               <div className="hidden sm:block h-5 w-px bg-current opacity-20" />
 
