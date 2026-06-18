@@ -211,7 +211,7 @@ const ContactUs = () => {
               </div>
               <div className="rounded-2xl overflow-hidden border border-gray-100">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3628.5!2d91.45!3d24.3!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjTCsDE4JzAwLjAiTiA5McKwMjcnMDAuMCJF!5e0!3m2!1sen!2sbd!4v1720000000000"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10478.229564444935!2d89.19960057836589!3d23.164956528855356!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ff1094a2327a8d%3A0xe15cd28ef02f9570!2sRural%20Reconstruction%20Foundation!5e1!3m2!1sen!2sbd!4v1781689838796!5m2!1sen!2sbd"
                   width="100%"
                   height="380"
                   className="md:h-[480px]"

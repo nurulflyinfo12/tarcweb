@@ -14,17 +14,14 @@ export default function SpecialOfferButton() {
         ease: "easeOut",
       }}
       className="
-fixed z-50
+        fixed z-50
+        bottom-4 left-4
+        top-auto translate-y-0
 
-```
-    bottom-4 left-4
-    top-auto translate-y-0
-
-    sm:left-0
-    sm:top-1/2
-    sm:bottom-auto
-    sm:-translate-y-1/2
-  "
+        sm:left-0
+        sm:top-auto
+        sm:bottom-30
+        sm:-translate-y-0"
     >
       <Link href="/specialoffers" className="group block">
         <motion.div

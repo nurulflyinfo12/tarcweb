@@ -46,7 +46,7 @@ const SpecialOffers = ({ offers = defaultOffers }: SpecialOffersProps) => {
       <PageHero
         title="Special Offers"
         subtitle="Make your stay all the more delightful by selecting our incredible packages and offers"
-        backgroundImage="https://images.unsplash.com/photo-1566073771259-6a8506099945"
+        backgroundImage="/images/cooridoor.jpg"
       />
 
       {/* Offers Card Section */}
