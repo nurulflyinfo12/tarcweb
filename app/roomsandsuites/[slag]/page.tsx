@@ -458,8 +458,8 @@ const RoomPage = ({ params: initialParams }: RoomPageProps) => {
 
 
 
-            
-<AtAGlance></AtAGlance>
+
+            <AtAGlance></AtAGlance>
             {/* Booking Form */}
             <div className="w-full bg-[#0A1F0D] py-16 px-4 sm:px-6 md:px-10 min-h-screen font-sans">
 
