@@ -35,7 +35,7 @@ const ContactUs = () => {
         backgroundImage="https://images.unsplash.com/photo-1566073771259-6a8506099945"
       />
 
-      {/* Main Contact Card - Exact Design Match */}
+      {/* Main Contact Card */}
       <section className="py-12 md:py-16">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
           <div className="absolute inset-x-8 sm:inset-x-12  -top-3 -bottom-3 bg-white/20 rounded-2xl md:inset-x-20 backdrop-blur-[2px] pointer-events-none z-0" />
