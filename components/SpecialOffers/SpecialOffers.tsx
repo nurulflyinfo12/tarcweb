@@ -28,7 +28,7 @@ const defaultOffers: Offer[] = [
       "This season indulge in something special. Exclusive Special Rate awaits at The Imperial Institute Of Hospitality & Hotel Management. Enjoy a vacation to remember with a delicious complimentary breakfast and so much more!",
     longDescription:
       "Don't miss out on this special offer to relax and unwind in luxury.",
-    image: "/images/specialoffers/Summeroffer.jpeg",
+    image: "/images/specialoffers/specialoffers.png",
     includes: [
       "BUFFET BREAKFAST",
       "SWIMMING POOL",
@@ -90,7 +90,7 @@ const SpecialOffers = ({ offers = defaultOffers }: SpecialOffersProps) => {
 
                   {/* Right Side - Image */}
                   <Link
-                    href="#"
+                    href="/specialoffers/summer-breeze"
                     className="lg:w-1/2 relative min-h-[420px] bg-neutral-100 rounded-r-3xl overflow-hidden"
                   >
                     <Image

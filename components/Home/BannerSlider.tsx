@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState, useEffect } from "react";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
@@ -8,32 +9,37 @@ interface Slide {
   title: string;
   subtitle: string;
   buttonText: string;
+  path: string;
 }
 
 const slides: Slide[] = [
-  {
-    image: "/images/cooridoor.jpg",
-    title: "Facilities",
-    subtitle: "Everything You Need",
-    buttonText: "SEE FACILITIES",
-  },
+  // {
+  //   image: "/images/cooridoor.jpg",
+  //   title: "Facilities",
+  //   subtitle: "Everything You Need",
+  //   buttonText: "SEE FACILITIES",
+  //   path: "#"
+  // },
   {
     image: "/images/room4.jpg",
     title: "Luxury Rooms",
     subtitle: "Comfort Meets Elegance",
     buttonText: "VIEW ROOMS",
+    path: "/roomsandsuites",
   },
   {
     image: "/images/resturantone.jpg",
     title: "Food & Dining",
     subtitle: "Taste The Finest Cuisine",
-    buttonText: "EXPLORE MENU",
+    buttonText: "EXPLORE RESTURENT",
+    path: "/restaurantsandcafes"
   },
   {
     image: "/images/hallroom.jpg",
     title: "Meeting Rooms",
     subtitle: "Business Made Premium",
-    buttonText: "BOOK SPACE",
+    buttonText: "BOOK NOW",
+    path: "/meetingsandevents"
   },
  
   
@@ -76,10 +82,11 @@ export default function BannerSlider() {
               <h1 className="text-foreground text-6xl md:text-7xl lg:text-8xl font-serif mb-8">
                 {slide.subtitle}
               </h1>
-
+              <Link href={slide.path}>
               <button className="mt-6 bg-primary hover:bg-primary-dark transition px-12 py-4 text-black font-semibold text-lg rounded-sm cursor-pointer">
                 {slide.buttonText}
               </button>
+              </Link>
             </div>
           </div>
         </div>

@@ -19,8 +19,8 @@ const mainMenuItems = [
   { name: "Rooms & Suites", icon: FiBookOpen, path: "/roomsandsuites" },
   { name: "Restaurants", icon: FiCoffee, path: "/restaurantsandcafes" },
   { name: "Meetings", icon: FiUsers, path: "/meetingsandevents" },
-  { name: "Relaxation", icon: FiSun, path: "/relaxation" },
-  { name: "Recreations", icon: FiActivity, path: "/recreations" },
+  // { name: "Relaxation", icon: FiSun, path: "/relaxation" },
+  // { name: "Recreations", icon: FiActivity, path: "/recreations" },
   { name: "Special Offers", icon: FiGift, path: "/specialoffers" },
   { name: "Contact Us", icon: FiPhone, path: "/contactus" },
 ];
@@ -64,7 +64,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 
       <div className="relative h-full flex flex-col items-center justify-center px-4 py-6 md:py-12 overflow-auto">
         {/* Logo */}
-        <div className="mb-8 md:mb-10 bg-white/50 rounded-2xl p-4">
+        <div className="mb-8 md:mb-10 bg-white/80 rounded-2xl p-4">
           <Image
             src="/images/logo.png"
             alt="tarc Logo"
@@ -85,7 +85,14 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                   key={index}
                   href={item.path}
                   onClick={onClose}
-                  className="group flex flex-col items-center justify-center py-6 sm:py-8 md:py-10 px-3 sm:px-4 md:px-6 hover:bg-primary/10 transition duration-300 text-center min-h-[110px] sm:min-h-[125px] md:min-h-[150px]"
+                  className={`group flex flex-col items-center justify-center
+                    py-6 sm:py-8 md:py-10
+                    px-3 sm:px-4 md:px-6
+                    hover:bg-primary/10
+                    transition duration-300
+                    text-center
+                    min-h-[110px] sm:min-h-[125px] md:min-h-[150px]
+                    ${item.name === "Contact Us" ? " md:border-r md:border-primary/30" : ""}`}
                 >
                   <div className="text-4xl sm:text-5xl mb-2 sm:mb-3 md:mb-4 text-primary group-hover:scale-110 transition-transform duration-300">
                     <item.icon />

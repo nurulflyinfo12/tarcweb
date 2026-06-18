@@ -82,8 +82,8 @@ const Footer = () => {
                 { label: "Rooms and Suites", path: "/roomsandsuites" },
                 { label: "Restaurants", path: "/restaurantsandcafes" },
                 { label: "Meetings", path: "/meetingsandevents" },
-                { label: "Recreations", path: "/recreations" },
-                { label: "Relaxation", path: "/relaxation" },
+                // { label: "Recreations", path: "/recreations" },
+                // { label: "Relaxation", path: "/relaxation" },
               ].map((link, idx) => (
                 <li key={idx}>
                   <Link
