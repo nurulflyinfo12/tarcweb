@@ -422,7 +422,7 @@ export default async function Page({ params }: PageProps) {
             <PageHero
                 title={restaurant.name}
                 subtitle={restaurant.type}
-                backgroundImage={restaurant.images[2]}
+                backgroundImage={restaurant.images[1]}
             />
 
             {/* main card */}
@@ -480,7 +480,7 @@ export default async function Page({ params }: PageProps) {
                             className="order-1 lg:order-2"
                         >
                             <img
-                                src={restaurant.images[2]}
+                                src={restaurant.images[1]}
                                 alt={restaurant.name}
                                 className="w-full h-[220px] sm:h-[320px] md:h-[420px] lg:h-[500px] object-cover rounded-xl shadow-2xl"
                             />
