@@ -72,7 +72,7 @@ const ContactUs = () => {
                           </p>
                           <p>
                             <strong>Email:</strong>{" "}
-                            reservations@grandsultanresort.com
+                            reservations@rrftarc.com
                           </p>
                         </div>
                       </div>
