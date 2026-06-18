@@ -19,11 +19,11 @@ export const rooms = [
         price: "3000",
         offer: "2500",
         description: "Experience comfort and convenience in our Super Deluxe Twin Room, featuring two cozy twin beds and elegant modern interiors. Perfect for friends, colleagues, or family travelers seeking a relaxing and spacious stay.",
+        coverImage:"/images/superdeluxetwin.jpeg",
         images: [
             "/images/superdeluxetwin.jpeg",
             "/images/superdeluxe1.jpeg",
-            "/images/superdeluxe2.jpeg",
-            "/images/superdeluxe3.jpeg",
+            "/images/superdeluxetwin.jpeg",
         ],
         reverse: false,
     },
@@ -36,9 +36,10 @@ export const rooms = [
         price: "3500",
         offer: "3000",
         description: "Our King Deluxe room has a spacious layout, with an abundance of natural light coming in and a spectacular view. The lavish and cozy King size bed is ideal for a couple.",
+        coverImage:"/images/superdeluxecouple.jpeg",
         images: [
             "/images/superdeluxecouple.jpeg",
-            "/images/superdelux3.jpeg",
+            "/images/superdeluxe2.jpeg",
         ],
         reverse: true,
     },
@@ -51,9 +52,10 @@ export const rooms = [
         price: "6500",
         offer: "5500",
         description: "Enjoy a comfortable and relaxing stay in our VIP Room Regular, thoughtfully designed with modern amenities and stylish interiors. Ideal for guests seeking extra comfort, privacy, and a premium hospitality experience.",
+        coverImage:"/images/vip1.jpeg",
         images: [
-            "/images/viproom.jpeg",
             "/images/vip1.jpeg",
+            "/images/viproom.jpeg",
             "/images/vip2.jpeg"
         ],
         reverse: false,

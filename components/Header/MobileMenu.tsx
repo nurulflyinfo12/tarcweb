@@ -29,7 +29,7 @@ const mainMenuItems = [
 const bottomMenuItems = [
   { name: "Surrounding Us", path: "/surrounding-us" },
   { name: "Getting There", path: "/getting-there" },
-  { name: "Photo Gallery", path: "/photo-gallery" },
+  { name: "Photo Gallery", path: "/photogallery" },
   { name: "Contact", path: "/contactus" },
   { name: "Guest Policy", path: "/guestpolicy" },
 ];
