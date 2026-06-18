@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import React, { useState } from "react";
 import {
   FaLongArrowAltRight,
@@ -98,10 +99,12 @@ const DiscoverAndReviews = () => {
                 <p className="text-sm text-gray-600 leading-relaxed">
                   {diningData.description}
                 </p>
-                <button className="flex items-center gap-2 text-sm font-semibold text-amber-600 hover:text-amber-700 transition-colors pt-2 group">
+                <Link href="/restaurantsandcafes ">
+                <button className="flex items-center gap-2 text-sm font-semibold text-amber-600 hover:text-amber-700 transition-colors pt-2 group cursor-pointer">
                   <span>{diningData.buttonText}</span>
                   <FaLongArrowAltRight className="transform group-hover:translate-x-1 transition-transform" />
                 </button>
+                </Link>
               </div>
 
               <div className="w-full lg:w-1/2 flex items-center justify-center gap-4">

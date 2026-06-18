@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const MeetingsAndEvents = () => {
   const data = {
@@ -71,12 +72,14 @@ const MeetingsAndEvents = () => {
           </p>
 
           <div className="pt-2">
-            <button className="inline-flex items-center gap-2 text-xs font-bold text-amber-600 hover:text-amber-700 transition-all duration-300 group">
+            <Link href="/meetingsandevents">
+            <button className="inline-flex cursor-pointer items-center gap-2 text-xs font-bold text-amber-600 hover:text-amber-700 transition-all duration-300 group">
               <span className="tracking-wider">{data.buttonText}</span>
               <span className="transform group-hover:translate-x-1 transition-transform font-serif text-sm">
                 →
               </span>
             </button>
+            </Link>
           </div>
         </div>
       </div>

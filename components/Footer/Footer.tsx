@@ -79,11 +79,11 @@ const Footer = () => {
             </h3>
             <ul className="space-y-3.5 text-sm md:text-base">
               {[
-                { label: "Rooms and Suites", path: "/rooms" },
-                { label: "Restaurants", path: "/dining" },
-                { label: "Meetings & Events", path: "/events" },
+                { label: "Rooms and Suites", path: "/roomsandsuites" },
+                { label: "Restaurants", path: "/restaurantsandcafes" },
+                { label: "Meetings", path: "/meetingsandevents" },
                 { label: "Recreations", path: "/recreations" },
-                { label: "Relaxation", path: "/spa" },
+                { label: "Relaxation", path: "/relaxation" },
               ].map((link, idx) => (
                 <li key={idx}>
                   <Link
