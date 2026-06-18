@@ -21,7 +21,7 @@ export default function ThemeToggle({ scrolled }: ThemeToggleProps) {
   return (
     <button
       onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-      className={`p-2.5  ${scrolled ? "text-black": "text-white"} hover:text-primary transition-all rounded-full hover:bg-white/10 dark:hover:bg-white/10 cursor-pointer`}
+      className={`p-2.5  ${scrolled ? "text-secondary": "text-white"} hover:text-primary transition-all rounded-full hover:bg-white/10 dark:hover:bg-white/10 cursor-pointer`}
       aria-label="Toggle theme"
     >
       {theme === "light" ? <FiSun size={24} /> : <FiMoon size={24} />}
