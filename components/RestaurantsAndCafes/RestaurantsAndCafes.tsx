@@ -27,7 +27,9 @@ export const Restaurants = [
     images: [
       "/images/resturantone1.jpg",
       "/images/resturanttwo.jpg",
-      "/images/room1.jpg",
+      "/images/resturent/resturent1.jpg",
+      "/images/resturent/resturent2.jpg",
+      "/images/resturent/resturent3.jpg",
     ],
     reverse: false,
 
@@ -59,7 +61,8 @@ export const Restaurants = [
     images: [
       "/images/resturantone1.jpg",
       "/images/resturanttwo.jpg",
-      "/images/room1.jpg",
+      "/images/resturent/resturent4.jpg",
+      "/images/resturent/resturent5.jpg",
     ],
     reverse: true,
 
@@ -81,9 +84,9 @@ export const Restaurants = [
     description:
       "Whether you are starting your morning with a freshly brewed coffee, stopping by for a hearty lunch, or enjoying a relaxed dinner with loved ones, our vibrant space welcomes you all day to sit back, relax, and savor exceptional food.",
     images: [
-      "/images/resturantone1.jpg",
+      "/images/resturent/resturent6.jpg",
       "/images/resturanttwo.jpg",
-      "/images/room1.jpg",
+      "/images/resturent/resturent3.jpg",
     ],
     reverse: false,
 

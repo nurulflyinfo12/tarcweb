@@ -64,13 +64,13 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 
       <div className="relative h-full flex flex-col items-center justify-center px-4 py-6 md:py-12 overflow-auto">
         {/* Logo */}
-        <div className="mb-8 md:mb-10">
+        <div className="mb-8 md:mb-10 bg-white/50 rounded-2xl p-4">
           <Image
             src="/images/logo.png"
             alt="tarc Logo"
             width={150}
             height={65}
-            className="md:w-[180px] mx-auto"
+            className="md:w-[300px] mx-auto"
             priority
           />
         </div>

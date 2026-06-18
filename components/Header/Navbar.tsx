@@ -60,13 +60,13 @@ export default function Navbar() {
                   <span>(0421) 66906, 65663</span>
                 </a>
 
-                <a
+                {/* <a
                   href="tel:68546"
                   className="flex items-center gap-2"
                 >
                   <FiPhone size={14} />
                   <span>68546</span>
-                </a>
+                </a> */}
               </div>
 
               {/* <ThemeToggle scrolled={scrolled} /> */}

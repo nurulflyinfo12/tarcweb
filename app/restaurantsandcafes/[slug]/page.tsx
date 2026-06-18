@@ -411,8 +411,8 @@ export default function Page() {
                         <div className="relative bg-white rounded-2xl items-center text-black p-10 space-x-2">
                             <span>Call:</span>
                             <a href="tel:(0421) 66906, 65663" className="hover:underline">(0421) 66906, 65663</a>
-                            <span className="text-gray-400">•</span>
-                            <a href="tel:68546" className="hover:underline">68546</a>
+                            {/* <span className="text-gray-400">•</span>
+                            <a href="tel:68546" className="hover:underline">68546</a> */}
                         </div>
                     </div>
                 </div>

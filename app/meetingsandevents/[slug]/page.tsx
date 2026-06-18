@@ -586,10 +586,10 @@ export default async function Page({ params }: PageProps) {
                             <a href="tel:(0421) 66906, 65663" className="hover:underline">
                                 (0421) 66906, 65663
                             </a>
-                            <span className="text-gray-400">•</span>
+                            {/* <span className="text-gray-400">•</span>
                             <a href="tel:68546" className="hover:underline">
                                 68546
-                            </a>
+                            </a> */}
                         </div>
                     </div>
                 </div>

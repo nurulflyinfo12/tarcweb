@@ -49,6 +49,27 @@ const Meetings = [
         location: "Ground Floor",
         reverse: true,
     },
+    {
+        id: "3",
+        name: "Training Room",
+        // type: "Hilltop Restaurant",
+        description: "Spacious circular conference hall designed for large meetings, seminars, trainings, and corporate events with modern facilities...",
+        images: [
+            "/images/trainingroom.jpeg",
+            "/images/trainingroom.jpeg",
+        ],
+        heroImage: "/images/conference.jpeg",
+        cuisine: ["International", "Fast Casual", "Beverages"],
+        atmosphere: "Casual & Vibrant",
+        serviceStyle: "Buffet & A la Carte",
+        serviceHours: {
+          breakfast: "6:30 a.m. to 11:00 a.m.",
+          lunch: "11:30 a.m. to 5:00 p.m.",
+          dinner: "6:00 p.m. to 10:30 p.m.",
+        },
+        location: "Ground Floor",
+        reverse: true,
+    },
 ];
 
 const MeetingsAndEvents = () => {

@@ -23,6 +23,7 @@ export const rooms = [
         description: "Experience comfort and convenience in our Super Deluxe Twin Room, featuring two cozy twin beds and elegant modern interiors. Perfect for friends, colleagues, or family travelers seeking a relaxing and spacious stay.",
         coverImage: "/images/superdeluxetwin.jpeg",
         images: [
+            "/images/tiwnroom.jpg",
             "/images/superdeluxetwin.jpeg",
             "/images/superdeluxe1.jpeg",
             "/images/superdeluxetwin.jpeg",
@@ -61,6 +62,8 @@ export const rooms = [
         images: [
             "/images/superdeluxecouple.jpeg",
             "/images/superdeluxe2.jpeg",
+            "/images/couple/couple.jpg",
+            "/images/couple/couple1.jpg",
         ],
         complimentaryServices: [
             { name: "Breakfast", icon: <FaUtensils size={14} /> },
@@ -90,8 +93,8 @@ export const rooms = [
         description: "Enjoy a comfortable and relaxing stay in our VIP Room Regular, thoughtfully designed with modern amenities and stylish interiors. Ideal for guests seeking extra comfort, privacy, and a premium hospitality experience.",
         coverImage: "/images/vip1.jpeg",
         images: [
-            "/images/vip1.jpeg",
             "/images/viproom.jpeg",
+            "/images/vip1.jpeg",            
             "/images/vip2.jpeg"
         ],
         complimentaryServices: [
