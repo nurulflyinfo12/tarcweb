@@ -53,19 +53,19 @@ export default function Navbar() {
               {/* Desktop Phone */}
               <div className="hidden xl:flex items-center gap-6 text-sm font-medium">
                 <a
-                  href="tel:+8809678785959"
+                  href="tel:(0421) 66906, 65663"
                   className="flex items-center gap-2"
                 >
                   <FiPhone size={14} />
-                  <span>+880 9678 785959</span>
+                  <span>(0421) 66906, 65663</span>
                 </a>
 
                 <a
-                  href="tel:+8801730793555"
+                  href="tel:68546"
                   className="flex items-center gap-2"
                 >
                   <FiPhone size={14} />
-                  <span>+880 1730 793555</span>
+                  <span>68546</span>
                 </a>
               </div>
 

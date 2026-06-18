@@ -86,7 +86,6 @@ type PageProps = {
     }>;
 };
 
-
 type EventTypeItem = {
     title: string;
     image: string;
@@ -160,11 +159,10 @@ const EventTypesSection = ({ eventtypes }: { eventtypes: EventTypeItem[] }) => (
             e.preventDefault();
             console.log("Form Submitted:", formData);
             alert("Thank you! Your event inquiry has been submitted successfully.");
-            // You can connect this to your backend/API later
         };
 
         return (
-            <div className="py-12">
+            <div id="eventInquiryForm" className="py-12">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6">
                     <div className="text-center mb-10">
                         <h2 className="text-3xl font-medium text-white tracking-wide">Book This Venue Now!</h2>
@@ -280,9 +278,18 @@ export default async function Page({ params }: PageProps) {
             </div>
         );
     }
-    console.log("restaurant object", restaurant);
 
-    // Two-image slider component (replaces the old single-image one)
+    // Smooth Scroll Function
+    const scrollToForm = () => {
+        const form = document.getElementById("eventInquiryForm");
+        if (form) {
+            form.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        }
+    };
+
     // Two-image slider component (responsive)
     const SliderComponent = () => {
         const [currentSlide, setCurrentSlide] = useState(0);
@@ -308,7 +315,6 @@ export default async function Page({ params }: PageProps) {
             </svg>
         );
 
-        // Single image case
         if (total === 1) {
             return (
                 <div className="py-8">
@@ -329,7 +335,6 @@ export default async function Page({ params }: PageProps) {
         return (
             <div className="py-8">
                 <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
-                    {/* Background accent */}
                     <div className="absolute inset-x-8 sm:inset-x-8 md:inset-x-20 -top-3 -bottom-3 bg-white/20 rounded-2xl backdrop-blur-[2px] pointer-events-none z-0" />
 
                     <div className="relative bg-white rounded-2xl p-6 sm:p-8">
@@ -342,7 +347,6 @@ export default async function Page({ params }: PageProps) {
                         </div>
 
                         <div className="relative overflow-hidden rounded-xl">
-                            {/* Slider Container */}
                             <div className="relative w-full h-[420px] sm:h-[480px] md:h-[420px] lg:h-[480px]">
                                 <AnimatePresence mode="wait">
                                     <motion.div
@@ -353,7 +357,6 @@ export default async function Page({ params }: PageProps) {
                                         exit={{ opacity: 0, x: -50 }}
                                         transition={{ duration: 0.5 }}
                                     >
-                                        {/* Mobile: 1 image | Desktop: 2 images */}
                                         <div className="w-full md:w-1/2 h-full">
                                             <img
                                                 src={restaurant.images[currentSlide]}
@@ -362,7 +365,6 @@ export default async function Page({ params }: PageProps) {
                                             />
                                         </div>
 
-                                        {/* Second image - hidden on mobile */}
                                         <div className="hidden md:block w-1/2 h-full">
                                             <img
                                                 src={
@@ -378,7 +380,6 @@ export default async function Page({ params }: PageProps) {
                                 </AnimatePresence>
                             </div>
 
-                            {/* Navigation Buttons */}
                             <button
                                 onClick={prevSlide}
                                 className="absolute top-1/2 left-4 -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 p-3 rounded-full shadow-lg transition z-10"
@@ -395,7 +396,6 @@ export default async function Page({ params }: PageProps) {
                                 <ChevronRightIcon className="w-6 h-6" />
                             </button>
 
-                            {/* Dots */}
                             <div className="flex justify-center mt-8 space-x-3">
                                 {restaurant.images.map((_, idx) => (
                                     <button
@@ -418,7 +418,6 @@ export default async function Page({ params }: PageProps) {
 
     return (
         <>
-            {/* Hero Section - Matches top banner style */}
             <PageHero
                 title={restaurant.name}
                 subtitle={restaurant.type}
@@ -428,13 +427,10 @@ export default async function Page({ params }: PageProps) {
             {/* main card */}
             <div className="py-8">
                 <div className="relative max-w-7xl mx-auto w-full px-4 sm:px-6 md:px-8 lg:px-10">
-                    {/* Background Layer */}
                     <div className="absolute inset-x-8 sm:inset-x-8 md:inset-x-20 lg:inset-x-20 -top-3 -bottom-3 bg-white/20 rounded-2xl backdrop-blur-[2px] pointer-events-none z-0" />
 
-                    {/* Main Card */}
                     <div className="relative bg-white rounded-2xl grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center p-5 sm:p-6 md:p-8 lg:p-10 overflow-hidden">
 
-                        {/* Text Section */}
                         <motion.div
                             initial={{ opacity: 0, x: 500 }}
                             whileInView={{ opacity: 1, x: 0 }}
@@ -442,7 +438,6 @@ export default async function Page({ params }: PageProps) {
                             transition={{ duration: 0.8, ease: "easeOut" }}
                             className="text-center lg:text-center order-2 lg:order-1"
                         >
-                            {/* Title */}
                             <div className="flex items-center justify-center lg:justify-center gap-2 sm:gap-3 flex-wrap">
                                 <span className="h-[1px] w-8 sm:w-12 bg-[#556B2F]" />
 
@@ -453,25 +448,25 @@ export default async function Page({ params }: PageProps) {
                                 <span className="h-[1px] w-8 sm:w-12 bg-[#556B2F]" />
                             </div>
 
-                            {/* Type */}
                             {restaurant.type && (
                                 <p className="text-secondary text-base sm:text-lg font-medium tracking-wide">
                                     ({restaurant.type})
                                 </p>
                             )}
 
-                            {/* Description */}
                             <p className="mt-6 text-gray-500 text-base sm:text-lg leading-7 sm:leading-8 max-w-xl mx-auto lg:mx-0">
                                 {restaurant.description}
                             </p>
 
-                            {/* Button */}
-                            <button className="mt-8 w-full sm:w-auto bg-secondary hover:bg-background text-white px-8 py-3 rounded-xl font-medium transition-all duration-300">
+                            {/* Updated Book Now Button */}
+                            <button 
+                                onClick={scrollToForm}
+                                className="mt-8 w-full sm:w-auto bg-secondary hover:bg-background text-white px-8 py-3 rounded-xl font-medium transition-all duration-300 cursor-pointer"
+                            >
                                 BOOK NOW →
                             </button>
                         </motion.div>
 
-                        {/* Image Section */}
                         <motion.div
                             initial={{ opacity: 0, x: 200 }}
                             whileInView={{ opacity: 1, x: 0 }}
@@ -490,19 +485,13 @@ export default async function Page({ params }: PageProps) {
                 </div>
             </div>
 
-            {/* At a glance Section - Exact match to image */}
-
             {/* At a Glance Section */}
             <div className="py-8">
                 <div className="relative max-w-7xl mx-auto w-full px-4 sm:px-6 md:px-8 lg:px-10">
-
-                    {/* Background */}
                     <div className="absolute inset-x-8 md:inset-x-20 lg:inset-x-20 -top-3 -bottom-3 bg-white/20 rounded-2xl backdrop-blur-[2px] pointer-events-none z-0" />
 
-                    {/* Main Card */}
                     <div className="relative bg-white rounded-2xl grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center p-5 sm:p-6 md:p-8 lg:p-10 overflow-hidden">
 
-                        {/* Left Side */}
                         <motion.div
                             initial={{ opacity: 0, x: 500 }}
                             whileInView={{ opacity: 1, x: 0 }}
@@ -512,11 +501,9 @@ export default async function Page({ params }: PageProps) {
                         >
                             <div className="flex items-center justify-center gap-2 sm:gap-3 mb-6 flex-wrap">
                                 <span className="h-[1px] w-8 sm:w-12 bg-[#556B2F]" />
-
                                 <h2 className="text-2xl sm:text-3xl md:text-4xl font-medium text-secondary tracking-wide text-center">
                                     At a glance
                                 </h2>
-
                                 <span className="h-[1px] w-8 sm:w-12 bg-[#556B2F]" />
                             </div>
 
@@ -527,7 +514,6 @@ export default async function Page({ params }: PageProps) {
                             />
                         </motion.div>
 
-                        {/* Right Side */}
                         <motion.div
                             initial={{ opacity: 0, x: 300 }}
                             whileInView={{ opacity: 1, x: 0 }}
@@ -536,9 +522,7 @@ export default async function Page({ params }: PageProps) {
                             className="order-2"
                         >
                             <div className="bg-[#5D7553] p-5 sm:p-6 md:p-8 rounded-xl text-white">
-
                                 <ul className="space-y-5 text-sm sm:text-base md:text-lg">
-
                                     <li>
                                         <span className="font-semibold">Cuisine:</span>
                                         <br />
@@ -546,7 +530,6 @@ export default async function Page({ params }: PageProps) {
                                             {restaurant.cuisine.join(", ")}
                                         </span>
                                     </li>
-
                                     <li>
                                         <span className="font-semibold">Atmosphere:</span>
                                         <br />
@@ -554,7 +537,6 @@ export default async function Page({ params }: PageProps) {
                                             {restaurant.atmosphere}
                                         </span>
                                     </li>
-
                                     <li>
                                         <span className="font-semibold">Service Style:</span>
                                         <br />
@@ -562,25 +544,14 @@ export default async function Page({ params }: PageProps) {
                                             {restaurant.serviceStyle}
                                         </span>
                                     </li>
-
                                     <li>
                                         <span className="font-semibold">Service Hours:</span>
-
                                         <ul className="mt-2 space-y-1 text-xs sm:text-sm md:text-base ml-4">
-                                            <li>
-                                                <strong>Breakfast:</strong> {restaurant.serviceHours.breakfast}
-                                            </li>
-
-                                            <li>
-                                                <strong>Lunch:</strong> {restaurant.serviceHours.lunch}
-                                            </li>
-
-                                            <li>
-                                                <strong>Dinner:</strong> {restaurant.serviceHours.dinner}
-                                            </li>
+                                            <li><strong>Breakfast:</strong> {restaurant.serviceHours.breakfast}</li>
+                                            <li><strong>Lunch:</strong> {restaurant.serviceHours.lunch}</li>
+                                            <li><strong>Dinner:</strong> {restaurant.serviceHours.dinner}</li>
                                         </ul>
                                     </li>
-
                                     <li>
                                         <span className="font-semibold">Location:</span>
                                         <br />
@@ -588,31 +559,22 @@ export default async function Page({ params }: PageProps) {
                                             {restaurant.location}
                                         </span>
                                     </li>
-
                                 </ul>
-
                             </div>
                         </motion.div>
-
                     </div>
                 </div>
             </div>
 
-            {/* Photo Gallery - Two-image Slider */}
             <SliderComponent />
-
-            {/* event types  */}
-            <EventTypesSection eventtypes={restaurant.eventtypes}></EventTypesSection>
-
-            {/* Event Inquiry Form */}
+            <EventTypesSection eventtypes={restaurant.eventtypes} />
             <EventInquiryForm />
 
-            {/* Reserve Your Table Today! */}
             <div className="py-12">
-                <div className=" text-center">
+                <div className="text-center">
                     <div className="flex items-center justify-center gap-3 px-4 md:px-0 mb-6">
                         <span className="h-[1px] w-10 sm:w-14 bg-white" />
-                        <h2 className="text-2xl sm:text-2xl lg:text-3xl font-medium text-white tracking-wide  text-center">
+                        <h2 className="text-2xl sm:text-2xl lg:text-3xl font-medium text-white tracking-wide text-center">
                             Reserve Your Table Today!
                         </h2>
                         <span className="h-[1px] w-10 sm:w-14 bg-white" />
@@ -621,23 +583,22 @@ export default async function Page({ params }: PageProps) {
                         <div className="absolute inset-x-8 -top-3 -bottom-3 bg-white/20 rounded-2xl md:inset-x-20 backdrop-blur-[2px] pointer-events-none z-0" />
                         <div className="relative bg-white rounded-2xl items-center text-black p-10 space-x-2">
                             <span>Call:</span>
-                            <a href="tel:+8809678785958" className="hover:underline">
-                                +880 9678 785958
+                            <a href="tel:(0421) 66906, 65663" className="hover:underline">
+                                (0421) 66906, 65663
                             </a>
                             <span className="text-gray-400">•</span>
-                            <a href="tel:+8801730793501" className="hover:underline">
-                                +880 1730 791907
+                            <a href="tel:68546" className="hover:underline">
+                                68546
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
 
-            {/* Call to Action */}
             <CallToAction
                 title="Ready To Get Assistance?"
                 description="Get all your questions answered, we are just one call away!"
-                phone="+880 9678 785959"
+                phone="(0421) 66906, 65663"
             />
         </>
     );

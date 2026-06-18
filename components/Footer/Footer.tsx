@@ -103,11 +103,11 @@ const Footer = () => {
             </h3>
             <ul className="space-y-3.5 text-sm md:text-base">
               {[
-                { label: "Surrounding Us", path: "/surroundings" },
-                { label: "Getting There", path: "/location" },
-                { label: "Photo Gallery", path: "/gallery" },
-                { label: "Contact", path: "/contact" },
-                { label: "Guest Policy", path: "/policy" },
+                // { label: "Surrounding Us", path: "/surroundings" },
+                { label: "Getting There", path: "/gettingthere" },
+                { label: "Photo Gallery", path: "/photogallery" },
+                { label: "Contact", path: "/contactus" },
+                { label: "Guest Policy", path: "/guestpolicy" },
               ].map((link, idx) => (
                 <li key={idx}>
                   <Link
@@ -167,7 +167,7 @@ const Footer = () => {
         </div>
 
         <div className="text-center text-text-muted/60 text-xs mt-16 pt-8 border-t border-border/40 font-light transition-colors duration-300">
-          © {new Date().getFullYear()} TRAC. All Rights Reserved.
+          © {new Date().getFullYear()} TARC. All Rights Reserved.
         </div>
       </div>
     </footer>

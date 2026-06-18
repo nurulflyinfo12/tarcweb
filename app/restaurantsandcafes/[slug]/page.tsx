@@ -463,7 +463,7 @@ export default async function Page({ params }: PageProps) {
             <CallToAction
                 title="Ready To Get Assistance?"
                 description="Get all your questions answered, we are just one call away!"
-                phone="+880 9678 785959"
+                phone="(0421) 66906, 65663"
             />
         </>
     );

@@ -96,7 +96,7 @@ const PhotoGallery = () => {
     };
 
     return (
-        <div className="bg-[#041a0b] text-white min-h-screen font-sans pb-16 relative">
+        <div className="text-white min-h-screen font-sans pb-16 relative">
             {/* Hero Section */}
             <PageHero
                 title="Photo Gallery"
@@ -230,7 +230,7 @@ const PhotoGallery = () => {
             <CallToAction
                 title="Have Any Queries For Us?"
                 description="Get all your questions answered, we are just one call away!"
-                phone="+880 9678 785959"
+                phone="(0421) 66906, 65663"
             ></CallToAction>
 
             {/* LIGHTBOX SLIDER MODAL */}

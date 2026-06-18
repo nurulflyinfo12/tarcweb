@@ -63,7 +63,7 @@ const ContactUs = () => {
                             <strong>Tel:</strong> +880 2997 738501-3
                           </p>
                           <p>
-                            <strong>For Reservation:</strong> +880 9678 785959 /
+                            <strong>For Reservation:</strong> (0421) 66906, 65663 /
                             +880 1730 793501-4
                           </p>
                           <p>
@@ -229,7 +229,7 @@ const ContactUs = () => {
       <CallToAction
         title="Ready to Book Your Stay?"
         description="Call us now to check availability and secure your desired rooms before they're all gone!"
-        phone="+880 9678 785959"
+        phone="(0421) 66906, 65663"
       />
     </>
   );

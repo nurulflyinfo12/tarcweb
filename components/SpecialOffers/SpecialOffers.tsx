@@ -111,7 +111,7 @@ const SpecialOffers = ({ offers = defaultOffers }: SpecialOffersProps) => {
       <CallToAction
         title="Ready To Book Your Stay"
         description="Call us now to check availability and secure your desired rooms before they're all gone! Your dream stay awaits - don't miss out."
-        phone="+880 9678 785959"
+        phone="(0421) 66906, 65663"
       />
     </>
   );
@@ -256,7 +256,7 @@ export default SpecialOffers;
 //             <CallToAction
 //                 title="Ready To Book Your Stay"
 //                 description="Call us now to check availability and secure your desired rooms before they're all gone! Your dream stay awaits - don't miss out."
-//                 phone="+880 9678 785959"
+//                 phone="(0421) 66906, 65663"
 //             />
 //         </>
 //     );
