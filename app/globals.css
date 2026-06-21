@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Forces Tailwind v4 to look at the .dark class on <html> instead of the OS system preferences */
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   /* Default: Dark Mode */
   --background: #0b2400;
@@ -12,8 +15,9 @@
   --border: #2d4f1e;
   --text-muted: rgba(245, 245, 220, 0.75);
 }
-.dark{
-  /* Default: Dark Mode */
+
+.dark {
+  /* Confirms explicit fallback behavior for the selector matches */
   --background: #0b2400;
   --foreground: #f5f5dc;
   --primary: #d4af37;
