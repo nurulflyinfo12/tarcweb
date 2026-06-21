@@ -25,17 +25,15 @@ const slides: Slide[] = [
     title: "Food & Dining",
     subtitle: "Taste The Finest Cuisine",
     buttonText: "EXPLORE RESTURENT",
-    path: "/restaurantsandcafes"
+    path: "/restaurantsandcafes",
   },
   {
     image: "/images/hallroom.jpg",
     title: "Meeting Rooms",
     subtitle: "Business Made Premium",
     buttonText: "BOOK NOW",
-    path: "/meetingsandevents"
+    path: "/meetingsandevents",
   },
-
-
 ];
 
 export default function BannerSlider() {
@@ -49,7 +47,8 @@ export default function BannerSlider() {
   }, []);
 
   const goToSlide = (index: number) => setCurrentIndex(index);
-  const goToPrev = () => setCurrentIndex((prev) => (prev - 1 + slides.length) % slides.length);
+  const goToPrev = () =>
+    setCurrentIndex((prev) => (prev - 1 + slides.length) % slides.length);
   const goToNext = () => setCurrentIndex((prev) => (prev + 1) % slides.length);
 
   return (
@@ -57,8 +56,11 @@ export default function BannerSlider() {
       {slides.map((slide, index) => (
         <div
           key={index}
-          className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${index === currentIndex ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
-            }`}
+          className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${
+            index === currentIndex
+              ? "opacity-100 pointer-events-auto"
+              : "opacity-0 pointer-events-none"
+          }`}
           style={{ backgroundImage: `url('${slide.image}')` }}
         >
           {/* Overlay - Better for both modes */}
@@ -74,9 +76,12 @@ export default function BannerSlider() {
               <h1 className="text-foreground text-6xl md:text-7xl lg:text-8xl font-serif mb-8">
                 {slide.subtitle}
               </h1>
+
               <Link href={slide.path}>
-                <button className="mt-6 bg-primary hover:bg-primary-dark transition px-12 py-4 text-black font-semibold text-lg rounded-sm cursor-pointer">
-                  {slide.buttonText}
+                <button className="inline-flex items-center justify-center px-12 py-4 bg-transparent border-1 border-white hover:bg-white hover:text-black text-white font-serif font-bold text-base uppercase tracking-widest transition-all duration-300 rounded-none transform hover:scale-105 cursor-pointer shadow-lg">
+                  <span className="inline-block pt-[1px]">
+                    {slide.buttonText}
+                  </span>
                 </button>
               </Link>
             </div>
@@ -105,10 +110,11 @@ export default function BannerSlider() {
           <button
             key={index}
             onClick={() => goToSlide(index)}
-            className={`w-3 h-3 rounded-full transition-all ${index === currentIndex
+            className={`w-3 h-3 rounded-full transition-all ${
+              index === currentIndex
                 ? "bg-primary scale-125"
                 : "bg-white/50 dark:bg-white/40 hover:bg-primary/70"
-              }`}
+            }`}
           />
         ))}
       </div>

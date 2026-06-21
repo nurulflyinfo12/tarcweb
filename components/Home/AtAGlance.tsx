@@ -88,7 +88,7 @@ const AtAGlance = () => {
   const currentRoom = roomsData[currentIndex];
 
   return (
-    <section className="bg-background py-16 overflow-hidden transition-colors duration-300">
+    <section className="bg-background py-30 overflow-hidden transition-colors duration-300">
       {/* HEADER */}
       <div className="max-w-7xl mx-auto px-4 text-center mb-10">
         <div className="flex items-center justify-center gap-4 mb-2">

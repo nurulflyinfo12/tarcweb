@@ -18,11 +18,7 @@ interface RoomPackageCardProps {
   isEven: boolean;
   currentSlide: number;
   onSlideChange: (newIndex: number) => void;
-  onImageClick?: (
-    images: string[],
-    name: string,
-    index: number
-  ) => void;
+  onImageClick?: (images: string[], name: string, index: number) => void;
   onBookNow?: () => void;
 }
 
@@ -54,7 +50,7 @@ const RoomPackageCard: React.FC<RoomPackageCardProps> = ({
     <div className="w-full py-8">
       <div className="relative w-full max-w-7xl mx-auto px-0 sm:px-4">
         {/* Background Glow */}
-        <div className="absolute inset-x-8 md:inset-x-15 -top-3 -bottom-3 bg-white/20 rounded-2xl backdrop-blur-[2px] pointer-events-none z-0" />
+        <div className="absolute inset-x-8 md:inset-x-15 -top-2 -bottom-2 bg-white/20 rounded-2xl backdrop-blur-[2px] pointer-events-none z-0" />
 
         {/* Main Card */}
         <div className="relative bg-white flex flex-col lg:flex-row rounded-2xl overflow-hidden shadow-2xl p-6 items-center justify-center">
@@ -87,7 +83,7 @@ const RoomPackageCard: React.FC<RoomPackageCardProps> = ({
             <div className="pt-6 md:pt-8 border-t border-primary-dark flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 mt-auto">
               <div>
                 <p className="text-sm text-foreground/60">Total payable</p>
-                
+
                 <div className="flex items-baseline gap-3">
                   <p className="text-2xl font-bold text-secondary">PRICE:</p>
                   {pkg.offer && (
@@ -103,7 +99,10 @@ const RoomPackageCard: React.FC<RoomPackageCardProps> = ({
                 </div>
               </div>
 
-              <button onClick={onBookNow} className="bg-secondary hover:bg-secondary/90 text-white font-semibold cursor-pointer px-10 md:px-6 xl:px-10 py-4 rounded-2xl transition flex items-center gap-2 text-base w-full sm:w-auto justify-center">
+              <button
+                onClick={onBookNow}
+                className="bg-secondary hover:bg-secondary/90 text-white font-semibold cursor-pointer px-10 md:px-6 xl:px-10 py-4 rounded-2xl transition flex items-center gap-2 text-base w-full sm:w-auto justify-center"
+              >
                 BOOK NOW →
               </button>
             </div>
@@ -147,12 +146,25 @@ const RoomPackageCard: React.FC<RoomPackageCardProps> = ({
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
-                    onSlideChange((currentSlide - 1 + imagesCount) % imagesCount);
+                    onSlideChange(
+                      (currentSlide - 1 + imagesCount) % imagesCount,
+                    );
                   }}
                   className="absolute left-4 md:left-6 top-1/2 -translate-y-1/2 z-20 h-11 w-11 md:h-12 md:w-12 rounded-full bg-white/20 backdrop-blur-md border border-white/40 text-white flex items-center justify-center hover:bg-white hover:text-black transition-all"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2.5}
+                      d="M15 19l-7-7 7-7"
+                    />
                   </svg>
                 </button>
 
@@ -164,8 +176,19 @@ const RoomPackageCard: React.FC<RoomPackageCardProps> = ({
                   }}
                   className="absolute right-4 md:right-6 top-1/2 -translate-y-1/2 z-20 h-11 w-11 md:h-12 md:w-12 rounded-full bg-white/20 backdrop-blur-md border border-white/40 text-white flex items-center justify-center hover:bg-white hover:text-black transition-all"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2.5}
+                      d="M9 5l7 7-7 7"
+                    />
                   </svg>
                 </button>
 
@@ -201,8 +224,6 @@ const RoomPackageCard: React.FC<RoomPackageCardProps> = ({
 };
 
 export default RoomPackageCard;
-
-
 
 // "use client";
 
@@ -257,7 +278,7 @@ export default RoomPackageCard;
 //     <div className="w-full py-8 md:py-12 lg:py-16">
 //       <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6">
 //         {/* Background Glow */}
-//         <div className="absolute inset-x-8 md:inset-x-8 -top-3 -bottom-3 bg-white/20 rounded-3xl backdrop-blur-[2px] pointer-events-none z-0" />
+//         <div className="absolute inset-x-8 md:inset-x-8 -top-2 -bottom-2 bg-white/20 rounded-3xl backdrop-blur-[2px] pointer-events-none z-0" />
 
 //         {/* Main Card */}
 //         <div className="relative bg-white flex flex-col lg:flex-row rounded-3xl overflow-hidden shadow-2xl p-4">

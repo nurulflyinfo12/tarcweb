@@ -38,11 +38,11 @@ const Footer = () => {
                 </p>
               </div>
 
-              <div className="flex items-start gap-3">
+              {/* <div className="flex items-start gap-3">
                 <FaPhoneAlt className="mt-1 text-primary shrink-0 transition-colors duration-300" />
                 <div className="space-y-1">
                   <p>
-                    +880 2 XXX XXXX{" "}
+                    01704199798{" "}
                     <span className="text-xs opacity-70">(Head Office)</span>
                   </p>
                   <p>
@@ -50,22 +50,17 @@ const Footer = () => {
                     <span className="text-xs opacity-70">(Field Office)</span>
                   </p>
                 </div>
-              </div>
+              </div> */}
 
               <div className="flex items-start gap-3">
                 <FaCalendarAlt className="mt-1 text-primary shrink-0 transition-colors duration-300" />
                 <div className="space-y-1">
                   <p className="font-semibold text-foreground transition-colors duration-300">
-                    For Program Inquiries:
+                    For Booking & Inquiries:
                   </p>
-                  <p>+880 1XXX XXX XXX</p>
+                  <p>+880 1704-199798</p>
 
-                  <p className="font-semibold text-foreground pt-2 transition-colors duration-300">
-                    For Projects & Partnerships:
-                  </p>
-                  <p>+880 1XXX XXX XXX</p>
-
-                  <p className="pt-2 text-xs font-mono select-all">
+                  <p className="pt-2 text-xs  select-all">
                     Email: info@rrf-bd.org
                   </p>
                 </div>
@@ -167,7 +162,8 @@ const Footer = () => {
         </div>
 
         <div className="text-center text-text-muted/60 text-xs mt-16 pt-8 border-t border-border/40 font-light transition-colors duration-300">
-          © {new Date().getFullYear()} TARC. All Rights Reserved.
+          © {new Date().getFullYear()} The Imperial Institute Of Hospitality &
+          Hotel Management. All Rights Reserved.
         </div>
       </div>
     </footer>

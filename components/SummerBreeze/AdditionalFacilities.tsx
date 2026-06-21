@@ -17,7 +17,7 @@ const AdditionalFacilities: React.FC<AdditionalFacilitiesProps> = ({
   return (
     <section className="">
       <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="absolute inset-x-8 -top-3 -bottom-3 bg-white/20 rounded-2xl md:inset-x-20 backdrop-blur-[2px] pointer-events-none z-0" />
+        <div className="absolute inset-x-8 -top-2 -bottom-2 bg-white/20 rounded-2xl md:inset-x-20 backdrop-blur-[2px] pointer-events-none z-0" />
         <div className="relative bg-white rounded-2xl p-8 lg:p-12 shadow-2xl">
           <div className="w-full flex justify-center mb-12">
             <div className="flex items-center gap-3">

@@ -36,10 +36,8 @@ const RoomsCardSlider = ({ room, onImageClick }: RoomCardProps) => {
   return (
     // Main container wrapping the full-width dark green context section
     <div className="w-full py-6">
-      
       <div className="relative w-full max-w-7xl mx-auto">
-        
-        <div className="absolute inset-x-10 -top-3 -bottom-3 bg-white/10 rounded-2xl md:inset-x-20 backdrop-blur-[2px] pointer-events-none z-0" />
+        <div className="absolute inset-x-10 -top-2 -bottom-2 bg-white/10 rounded-2xl md:inset-x-20 backdrop-blur-[2px] pointer-events-none z-0" />
 
         {/* Foreground Card Base */}
         <div
@@ -54,16 +52,20 @@ const RoomsCardSlider = ({ room, onImageClick }: RoomCardProps) => {
                 src={room.images[currentIndex]}
                 alt={room.name}
                 className="w-full h-full object-cover cursor-pointer transition-transform duration-[1.2s] ease-out group-hover:scale-105"
-                onClick={() => onImageClick(room.images, room.name, currentIndex)}
+                onClick={() =>
+                  onImageClick(room.images, room.name, currentIndex)
+                }
               />
-
               {/* Slider Directional Controls */}x
               {room.images.length > 1 && (
                 <>
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
-                      setCurrentIndex((prev) => (prev - 1 + room.images.length) % room.images.length);
+                      setCurrentIndex(
+                        (prev) =>
+                          (prev - 1 + room.images.length) % room.images.length,
+                      );
                     }}
                     className="absolute left-3 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-1.5 rounded-full backdrop-blur-sm transition z-10"
                   >
@@ -73,7 +75,9 @@ const RoomsCardSlider = ({ room, onImageClick }: RoomCardProps) => {
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
-                      setCurrentIndex((prev) => (prev + 1) % room.images.length);
+                      setCurrentIndex(
+                        (prev) => (prev + 1) % room.images.length,
+                      );
                     }}
                     className="absolute right-3 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-1.5 rounded-full backdrop-blur-sm transition z-10"
                   >
@@ -81,7 +85,6 @@ const RoomsCardSlider = ({ room, onImageClick }: RoomCardProps) => {
                   </button>
                 </>
               )}
-
               {/* Horizontal Navigation Bars */}
               {room.images.length > 1 && (
                 <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 z-10">
@@ -93,8 +96,8 @@ const RoomsCardSlider = ({ room, onImageClick }: RoomCardProps) => {
                         setCurrentIndex(idx);
                       }}
                       className={`h-[3px] rounded-full transition-all duration-300 ${
-                        idx === currentIndex 
-                          ? "w-6 bg-neutral-800" 
+                        idx === currentIndex
+                          ? "w-6 bg-neutral-800"
                           : "w-2 bg-neutral-400/60 hover:bg-neutral-500"
                       }`}
                       aria-label={`Go to slide ${idx + 1}`}
@@ -107,7 +110,6 @@ const RoomsCardSlider = ({ room, onImageClick }: RoomCardProps) => {
 
           {/* Right Block Descriptive Information Summary */}
           <div className="w-full flex flex-col items-center justify-center text-center px-2 py-4">
-            
             {/* Flanked Decorative Room Header */}
             <div className="flex items-center gap-3 mb-5">
               <span className="h-[1px] w-8 sm:w-14 bg-[#556B2F]" />
@@ -163,10 +165,8 @@ const RoomsCardSlider = ({ room, onImageClick }: RoomCardProps) => {
               </Link>
             </div>
           </div>
-
         </div>
       </div>
-
     </div>
   );
 };

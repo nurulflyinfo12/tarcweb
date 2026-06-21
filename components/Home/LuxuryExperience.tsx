@@ -91,10 +91,10 @@ const LuxuryExperience: React.FC<LuxuryExperienceProps> = ({
   ],
 }) => {
   return (
-    <section className="py-20 bg-background transition-colors duration-300">
+    <section className="py-30 bg-background transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <div className="relative group">
-          <div className="absolute inset-x-10 -top-3 -bottom-3 bg-white/20 rounded-2xl md:inset-x-20 backdrop-blur-[2px] pointer-events-none z-0" />
+          <div className="absolute inset-x-10 -top-2 -bottom-2 bg-white/20 rounded-2xl md:inset-x-20 backdrop-blur-[2px] pointer-events-none z-0" />
 
           <div className="relative z-10 bg-white dark:bg-white p-8 lg:p-16 rounded-[30px] shadow-2xl border border-border/40 overflow-hidden">
             <div className="grid lg:grid-cols-2 gap-16 items-center">

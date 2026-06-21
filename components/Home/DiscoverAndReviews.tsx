@@ -80,9 +80,9 @@ const DiscoverAndReviews = () => {
     setAwardIndex((prev) => (prev - 1 + awards.length) % awards.length);
   };
   return (
-    <section className=" py-16 max-w-7xl mx-auto px-6 lg:px-10 text-left">
+    <section className=" py-30 max-w-7xl mx-auto px-6 lg:px-10 text-left">
       <div className="relative group">
-        <div className="absolute inset-x-10 -top-3 -bottom-3 bg-white/20 rounded-2xl md:inset-x-20 backdrop-blur-[2px] pointer-events-none z-0" />
+        <div className="absolute inset-x-10 -top-2 -bottom-2 bg-white/20 rounded-2xl md:inset-x-20 backdrop-blur-[2px] pointer-events-none z-0" />
         <div className="relative">
           <div className=" bg-white rounded-2xl p-6 sm:p-10 shadow-2xl space-y-20">
             <div className="bg-[#f4f7f4] rounded-xl p-6 sm:p-10 flex flex-col lg:flex-row items-center gap-8 border border-emerald-900/5">
@@ -124,118 +124,135 @@ const DiscoverAndReviews = () => {
                 </div>
               </div>
             </div>
+            <h3 className="text-2xl font-serif font-bold text-center text-emerald-900 mb-6">
+              Guest Reviews
+            </h3>
 
-            <div className="space-y-8">
-              <h3 className="text-2xl font-serif font-bold text-center text-emerald-900">
-                Guest Reviews
-              </h3>
-
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 ">
-                <div className="lg:col-span-6 grid grid-cols-3 gap-2 auto-rows-[90px] sm:auto-rows-[110px]">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+              {/* Left Side - Gallery */}
+              <div className="lg:col-span-6">
+                <div className="grid grid-cols-3 gap-2 auto-rows-[90px] sm:auto-rows-[110px]">
                   <div className="col-span-1 row-span-1 rounded overflow-hidden">
                     <img
                       src={galleryImages[0]}
+                      alt=""
                       className="w-full h-full object-cover"
                     />
                   </div>
+
                   <div className="col-span-1 row-span-1 rounded overflow-hidden">
                     <img
                       src={galleryImages[1]}
+                      alt=""
                       className="w-full h-full object-cover"
                     />
                   </div>
+
                   <div className="col-span-1 row-span-2 rounded overflow-hidden">
                     <img
                       src={galleryImages[2]}
+                      alt=""
                       className="w-full h-full object-cover"
                     />
                   </div>
+
                   <div className="col-span-2 row-span-1 rounded overflow-hidden">
                     <img
                       src={galleryImages[3]}
+                      alt=""
                       className="w-full h-full object-cover"
                     />
                   </div>
+
                   <div className="col-span-1 row-span-2 rounded overflow-hidden">
                     <img
                       src={galleryImages[4]}
+                      alt=""
                       className="w-full h-full object-cover"
                     />
                   </div>
+
                   <div className="col-span-2 row-span-1 rounded overflow-hidden">
                     <img
                       src={galleryImages[5]}
+                      alt=""
                       className="w-full h-full object-cover"
                     />
                   </div>
+
                   <div className="col-span-2 row-span-1 rounded overflow-hidden">
                     <img
                       src={galleryImages[1]}
+                      alt=""
                       className="w-full h-full object-cover"
                     />
                   </div>
                 </div>
+              </div>
 
-                <div className="lg:col-span-6 bg-gray-50 border border-gray-100 p-6 sm:p-8 rounded-xl relative shadow-sm">
-                  <div className="absolute right-6 top-6">
-                    <FcGoogle size={24} />
-                  </div>
+              {/* Right Side - Review Card */}
+              <div className="lg:col-span-6 bg-gray-50 border border-gray-100 p-6 sm:p-8 rounded-xl relative shadow-sm h-fit">
+                <div className="absolute right-6 top-6">
+                  <FcGoogle size={24} />
+                </div>
 
-                  <div className="flex items-center gap-1 text-amber-400 mb-4">
-                    {[...Array(reviews[reviewIdx].rating)].map((_, i) => (
-                      <FaStar key={i} size={14} />
-                    ))}
-                  </div>
+                <div className="flex items-center gap-1 text-amber-400 mb-4">
+                  {[...Array(reviews[reviewIdx].rating)].map((_, i) => (
+                    <FaStar key={i} size={14} />
+                  ))}
+                </div>
 
-                  <p className="text-sm text-gray-700 italic min-h-[80px] leading-relaxed">
-                    "{reviews[reviewIdx].text}"
-                  </p>
+                <p className="text-sm text-gray-700 italic min-h-[80px] leading-relaxed">
+                  "{reviews[reviewIdx].text}"
+                </p>
 
-                  <div className="mt-6 flex items-center justify-between border-t border-gray-200/60 pt-4">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-stone-700 text-white rounded-full flex items-center justify-center font-bold text-sm">
-                        {reviews[reviewIdx].author[0]}
-                      </div>
-                      <div>
-                        <h5 className="text-xs font-bold text-gray-900">
-                          {reviews[reviewIdx].author}
-                        </h5>
-                        <p className="text-[10px] text-gray-400">
-                          {reviews[reviewIdx].date}
-                        </p>
-                      </div>
+                <div className="mt-6 flex items-center justify-between border-t border-gray-200/60 pt-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 bg-stone-700 text-white rounded-full flex items-center justify-center font-bold text-sm">
+                      {reviews[reviewIdx].author[0]}
                     </div>
 
-                    <div className="flex items-center gap-2">
-                      <button
-                        onClick={() =>
-                          setReviewIdx((prev) =>
-                            prev === 0 ? reviews.length - 1 : prev - 1,
-                          )
-                        }
-                        className="p-2 bg-white border border-gray-200 hover:bg-gray-100 text-gray-600 rounded-full transition-all"
-                      >
-                        <FaChevronLeft size={10} />
-                      </button>
-                      <button
-                        onClick={() =>
-                          setReviewIdx((prev) =>
-                            prev === reviews.length - 1 ? 0 : prev + 1,
-                          )
-                        }
-                        className="p-2 bg-white border border-gray-200 hover:bg-gray-100 text-gray-600 rounded-full transition-all"
-                      >
-                        <FaChevronRight size={10} />
-                      </button>
+                    <div>
+                      <h5 className="text-xs font-bold text-gray-900">
+                        {reviews[reviewIdx].author}
+                      </h5>
+
+                      <p className="text-[10px] text-gray-400">
+                        {reviews[reviewIdx].date}
+                      </p>
                     </div>
                   </div>
 
-                  <div className="mt-4 text-center lg:text-right">
-                    <button className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-600 hover:underline">
-                      <span>All Reviews</span>
-                      <FaLongArrowAltRight size={12} />
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={() =>
+                        setReviewIdx((prev) =>
+                          prev === 0 ? reviews.length - 1 : prev - 1,
+                        )
+                      }
+                      className="p-2 bg-white border border-gray-200 hover:bg-gray-100 text-gray-600 rounded-full transition-all"
+                    >
+                      <FaChevronLeft size={10} />
+                    </button>
+
+                    <button
+                      onClick={() =>
+                        setReviewIdx((prev) =>
+                          prev === reviews.length - 1 ? 0 : prev + 1,
+                        )
+                      }
+                      className="p-2 bg-white border border-gray-200 hover:bg-gray-100 text-gray-600 rounded-full transition-all"
+                    >
+                      <FaChevronRight size={10} />
                     </button>
                   </div>
+                </div>
+
+                <div className="mt-4 text-center lg:text-right">
+                  <button className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-600 hover:underline">
+                    <span>All Reviews</span>
+                    <FaLongArrowAltRight size={12} />
+                  </button>
                 </div>
               </div>
             </div>

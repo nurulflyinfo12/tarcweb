@@ -51,20 +51,23 @@ export default function Navbar() {
             {/* Right Side */}
             <div className="flex items-center gap-3 sm:gap-5">
               {/* Desktop Phone */}
-              <div className="hidden xl:flex items-center gap-6 text-md font-medium">
+              <div className="hidden xl:flex items-center gap-6 text-sm font-medium">
                 <a
-                  href="tel:(0421) 66906, 65663"
-                  className="flex items-center gap-2"
+                  href="tel:01704199798"
+                  className="inline-flex items-center gap-2 leading-none"
                 >
-                  <FiPhone size={14} />
-                  <span>(0421) 66906, 65663</span>
+                  <FiPhone size={14} className="flex-shrink-0 mb-0.6" />
+                  <span className="inline-block pt-[1px]">
+                    {/* Subtle alignment shift for typography baselines */}
+                  +880 1704-199798
+                  </span>
                 </a>
               </div>
 
               {/* Book Now Button - Styled & Aligned */}
               <Link
                 href="/booknow"
-                className="inline-flex items-center justify-center px-4 py-2 sm:px-5 sm:py-2.5 text-[11px] sm:text-xs font-serif font-bold uppercase tracking-widest border border-current transition-all duration-300 rounded-none transform hover:scale-105 hover:bg-secondary hover:text-white dark:hover:bg-white dark:hover:text-secondary shadow-sm"
+                className="inline-flex items-center justify-center px-4 py-2 sm:px-5 sm:py-2.5 text-[11px] sm:text-xs font-serif font-bold uppercase tracking-widest border border-current  rounded-none transform hover:scale-105 hover:bg-secondary hover:text-white dark:hover:bg-white dark:hover:text-secondary shadow-sm"
               >
                 Book Now
               </Link>
