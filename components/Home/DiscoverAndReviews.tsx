@@ -100,10 +100,10 @@ const DiscoverAndReviews = () => {
                   {diningData.description}
                 </p>
                 <Link href="/restaurantsandcafes ">
-                <button className="flex items-center gap-2 text-sm font-semibold text-amber-600 hover:text-amber-700 transition-colors pt-2 group cursor-pointer">
-                  <span>{diningData.buttonText}</span>
-                  <FaLongArrowAltRight className="transform group-hover:translate-x-1 transition-transform" />
-                </button>
+                  <button className="flex items-center gap-2 text-sm font-semibold text-amber-600 hover:text-amber-700 transition-colors pt-2 group cursor-pointer">
+                    <span>{diningData.buttonText}</span>
+                    <FaLongArrowAltRight className="transform group-hover:translate-x-1 transition-transform" />
+                  </button>
                 </Link>
               </div>
 
@@ -130,7 +130,7 @@ const DiscoverAndReviews = () => {
                 Guest Reviews
               </h3>
 
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 ">
                 <div className="lg:col-span-6 grid grid-cols-3 gap-2 auto-rows-[90px] sm:auto-rows-[110px]">
                   <div className="col-span-1 row-span-1 rounded overflow-hidden">
                     <img
@@ -234,7 +234,7 @@ const DiscoverAndReviews = () => {
               </div>
             </div>
 
-            <div className="space-y-8 border-t border-gray-100 pt-12 text-center">
+            {/* <div className="space-y-8 border-t border-gray-100 pt-12 text-center">
               <div>
                 <h3 className="mt-2 text-3xl font-serif font-bold text-emerald-900">
                   Awards & Honors
@@ -265,7 +265,7 @@ const DiscoverAndReviews = () => {
                   ))}
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
