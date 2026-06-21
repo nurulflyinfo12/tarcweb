@@ -10,7 +10,7 @@ interface ImageCardSliderProps {
   description: string;
   images: string[];
   reverse?: boolean;
-  
+
   sizeSQM?: number;
   sizeSQF?: number;
   maxGuests?: number;
@@ -52,9 +52,8 @@ const ImageCardSlider = ({
   return (
     <div className="w-full py-8 md:py-8">
       <div className="relative w-full max-w-7xl mx-auto">
-        
         {/* Background Accent */}
-        <div className="absolute inset-x-6 md:inset-x-10 -top-3 -bottom-3 bg-white/20 rounded-2xl md:inset-x-20 backdrop-blur-[2px] pointer-events-none z-0" />
+        <div className="absolute inset-x-6 md:inset-x-10 -top-2 -bottom-2 bg-white/20 rounded-2xl md:inset-x-20 backdrop-blur-[2px] pointer-events-none z-0" />
 
         <div
           className={`relative bg-white rounded-3xl p-6 sm:p-8 md:p-10 lg:p-12 flex flex-col lg:flex-row items-center gap-8 lg:gap-12 shadow-xl border border-neutral-100/80 z-10 ${
@@ -74,9 +73,11 @@ const ImageCardSlider = ({
               {images.length > 1 && (
                 <>
                   <button
-                    onClick={(e) => { 
-                      e.stopPropagation(); 
-                      setCurrentIndex((prev) => (prev - 1 + images.length) % images.length); 
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setCurrentIndex(
+                        (prev) => (prev - 1 + images.length) % images.length,
+                      );
                     }}
                     className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white p-2.5 rounded-full backdrop-blur-md transition z-20"
                   >
@@ -84,9 +85,9 @@ const ImageCardSlider = ({
                   </button>
 
                   <button
-                    onClick={(e) => { 
-                      e.stopPropagation(); 
-                      setCurrentIndex((prev) => (prev + 1) % images.length); 
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setCurrentIndex((prev) => (prev + 1) % images.length);
                     }}
                     className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white p-2.5 rounded-full backdrop-blur-md transition z-20"
                   >
@@ -98,13 +99,13 @@ const ImageCardSlider = ({
                     {images.map((_, idx) => (
                       <button
                         key={idx}
-                        onClick={(e) => { 
-                          e.stopPropagation(); 
-                          setCurrentIndex(idx); 
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setCurrentIndex(idx);
                         }}
                         className={`h-[3px] rounded-full transition-all duration-300 ${
-                          idx === currentIndex 
-                            ? "w-8 bg-neutral-800" 
+                          idx === currentIndex
+                            ? "w-8 bg-neutral-800"
                             : "w-2 bg-neutral-400/70 hover:bg-neutral-500"
                         }`}
                       />
@@ -135,20 +136,32 @@ const ImageCardSlider = ({
               <div className="flex items-center justify-center lg:justify-start gap-8 sm:gap-12 my-6">
                 {sizeSQM && (
                   <div className="flex flex-col items-center">
-                    <span className="text-3xl lg:text-4xl font-semibold text-neutral-700">{sizeSQM}</span>
-                    <span className="text-xs font-medium text-[#D4AF37] tracking-widest mt-1">SQM</span>
+                    <span className="text-3xl lg:text-5xl font-semibold text-neutral-700">
+                      {sizeSQM}
+                    </span>
+                    <span className="text-xs font-medium text-[#D4AF37] tracking-widest mt-1">
+                      SQM
+                    </span>
                   </div>
                 )}
                 {sizeSQF && (
                   <div className="flex flex-col items-center">
-                    <span className="text-3xl lg:text-4xl font-semibold text-neutral-700">{sizeSQF}</span>
-                    <span className="text-xs font-medium text-[#D4AF37] tracking-widest mt-1">SQF</span>
+                    <span className="text-3xl lg:text-5xl font-semibold text-neutral-700">
+                      {sizeSQF}
+                    </span>
+                    <span className="text-xs font-medium text-[#D4AF37] tracking-widest mt-1">
+                      SQF
+                    </span>
                   </div>
                 )}
                 {maxGuests && (
                   <div className="flex flex-col items-center">
-                    <span className="text-3xl lg:text-4xl font-semibold text-neutral-700">{maxGuests}</span>
-                    <span className="text-xs font-medium text-[#D4AF37] tracking-widest mt-1">GUESTS</span>
+                    <span className="text-3xl lg:text-5xl font-semibold text-neutral-700">
+                      {maxGuests}
+                    </span>
+                    <span className="text-xs font-medium text-[#D4AF37] tracking-widest mt-1">
+                      GUESTS
+                    </span>
                   </div>
                 )}
               </div>
@@ -159,22 +172,26 @@ const ImageCardSlider = ({
             </p>
 
             {showButton && (
-              <div className="mt-8">
+              <div className="mt-8 flex justify-end w-full">
                 {onButtonClick ? (
                   <button
                     onClick={onButtonClick}
                     className="inline-flex items-center text-sm font-bold text-[#D4AF37] hover:text-[#B3922E] transition-colors duration-300 group tracking-widest uppercase"
                   >
                     {buttonText || "FIND MORE"}
-                    <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+                    <span className="ml-2 group-hover:translate-x-1 transition-transform">
+                      →
+                    </span>
                   </button>
                 ) : (
                   <Link
                     href={buttonHref || "#"}
-                    className="inline-flex items-center text-sm font-bold text-[#D4AF37] hover:text-[#B3922E] transition-colors duration-300 group tracking-widest uppercase"
+                    className="inline-flex text-sm font-bold text-[#D4AF37] hover:text-[#B3922E] transition-colors duration-300 group tracking-widest uppercase"
                   >
                     {buttonText || "FIND MORE"}
-                    <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+                    <span className="ml-2 group-hover:translate-x-1 transition-transform">
+                      →
+                    </span>
                   </Link>
                 )}
               </div>

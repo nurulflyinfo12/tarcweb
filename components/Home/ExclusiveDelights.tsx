@@ -17,7 +17,7 @@ const ExclusiveDelights = () => {
   };
 
   return (
-    <section className=" text-white max-w-7xl mx-auto px-6 lg:px-10">
+    <section className="py-30 text-white max-w-7xl mx-auto px-6 lg:px-10">
       <div className=" text-center mb-10">
         <div className="flex items-center justify-center gap-3 mb-1">
           <span className="w-8 h-[1px] bg-primary-dark"></span>
@@ -33,7 +33,7 @@ const ExclusiveDelights = () => {
 
       <div className="relative group">
         {/* Glass Background Layer */}
-        <div className="absolute inset-x-10 -top-3 -bottom-3 bg-white/20 rounded-2xl md:inset-x-20 backdrop-blur-[2px] pointer-events-none z-0" />
+        <div className="absolute inset-x-10 -top-2 -bottom-2 bg-white/20 rounded-2xl md:inset-x-20 backdrop-blur-[2px] pointer-events-none z-0" />
 
         {/* Main Content */}
         <div className="relative">
@@ -64,10 +64,10 @@ const ExclusiveDelights = () => {
                   {offerData.tagline}
                 </p>
                 <Link href="/specialoffers/summer-breeze">
-                <button className="flex items-center gap-2 text-sm cursor-pointer font-semibold text-amber-600 hover:text-amber-700 transition-colors duration-300 w-fit group">
-                  <span>{offerData.buttonText}</span>
-                  <FaLongArrowAltRight className="transform group-hover:translate-x-1 transition-transform" />
-                </button>
+                  <button className="flex items-center gap-2 text-sm cursor-pointer font-semibold text-amber-600 hover:text-amber-700 transition-colors duration-300 w-fit group">
+                    <span>{offerData.buttonText}</span>
+                    <FaLongArrowAltRight className="transform group-hover:translate-x-1 transition-transform" />
+                  </button>
                 </Link>
               </div>
 

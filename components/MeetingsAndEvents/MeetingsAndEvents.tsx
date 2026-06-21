@@ -7,125 +7,125 @@ import ImageCardSlider from "../common/ImageCardSlider";
 import PageHero from "../common/pagehero";
 
 const Meetings = [
-    {
-        id: "1",
-        name: "Boardroom Meeting",
-        // type: "All Day Dine",
-        description: "Our sophisticated boardroom offers a perfect setting for focused discussions, strategic planning, and high-level business meetings...",
-        images: [
-            "/images/boardmeeting.jpeg",
-            "/images/hallroom.jpg",
-        ],
-        heroImage: "/images/boardmeeting.jpeg",
-        cuisine: ["International", "Fast Casual", "Beverages"],
-        atmosphere: "Casual & Vibrant",
-        serviceStyle: "Buffet & A la Carte",
-        serviceHours: {
-          breakfast: "6:30 a.m. to 11:00 a.m.",
-          lunch: "11:30 a.m. to 5:00 p.m.",
-          dinner: "6:00 p.m. to 10:30 p.m.",
-        },
-        reverse: false,
+  {
+    id: "1",
+    name: "Boardroom Meeting",
+    // type: "All Day Dine",
+    description:
+      "Our sophisticated boardroom offers a perfect setting for focused discussions, strategic planning, and high-level business meetings...",
+    images: ["/images/boardmeeting.jpeg", "/images/hallroom.jpg"],
+    heroImage: "/images/boardmeeting.jpeg",
+    cuisine: ["International", "Fast Casual", "Beverages"],
+    atmosphere: "Casual & Vibrant",
+    serviceStyle: "Buffet & A la Carte",
+    serviceHours: {
+      breakfast: "6:30 a.m. to 11:00 a.m.",
+      lunch: "11:30 a.m. to 5:00 p.m.",
+      dinner: "6:00 p.m. to 10:30 p.m.",
     },
-    {
-        id: "2",
-        name: "Conference Hall",
-        // type: "Hilltop Restaurant",
-        description: "Spacious circular conference hall designed for large meetings, seminars, trainings, and corporate events with modern facilities...",
-        images: [
-            "/images/conference.jpeg",
-            "/images/boardmeeting.jpeg",
-            "/images/hallroom.jpg",
-        ],
-        heroImage: "/images/conference.jpeg",
-        cuisine: ["International", "Fast Casual", "Beverages"],
-        atmosphere: "Casual & Vibrant",
-        serviceStyle: "Buffet & A la Carte",
-        serviceHours: {
-          breakfast: "6:30 a.m. to 11:00 a.m.",
-          lunch: "11:30 a.m. to 5:00 p.m.",
-          dinner: "6:00 p.m. to 10:30 p.m.",
-        },
-        location: "Ground Floor",
-        reverse: true,
+    reverse: false,
+  },
+  {
+    id: "2",
+    name: "Conference Hall",
+    // type: "Hilltop Restaurant",
+    description:
+      "Spacious circular conference hall designed for large meetings, seminars, trainings, and corporate events with modern facilities...",
+    images: [
+      "/images/conference.jpeg",
+      "/images/boardmeeting.jpeg",
+      "/images/hallroom.jpg",
+    ],
+    heroImage: "/images/conference.jpeg",
+    cuisine: ["International", "Fast Casual", "Beverages"],
+    atmosphere: "Casual & Vibrant",
+    serviceStyle: "Buffet & A la Carte",
+    serviceHours: {
+      breakfast: "6:30 a.m. to 11:00 a.m.",
+      lunch: "11:30 a.m. to 5:00 p.m.",
+      dinner: "6:00 p.m. to 10:30 p.m.",
     },
-    {
-        id: "3",
-        name: "Training Room",
-        // type: "Hilltop Restaurant",
-        description: "Spacious circular conference hall designed for large meetings, seminars, trainings, and corporate events with modern facilities...",
-        images: [
-            "/images/trainingroom.jpeg",
-            "/images/trainingroom.jpeg",
-        ],
-        heroImage: "/images/conference.jpeg",
-        cuisine: ["International", "Fast Casual", "Beverages"],
-        atmosphere: "Casual & Vibrant",
-        serviceStyle: "Buffet & A la Carte",
-        serviceHours: {
-          breakfast: "6:30 a.m. to 11:00 a.m.",
-          lunch: "11:30 a.m. to 5:00 p.m.",
-          dinner: "6:00 p.m. to 10:30 p.m.",
-        },
-        location: "Ground Floor",
-        reverse: true,
+    location: "Ground Floor",
+    reverse: true,
+  },
+  {
+    id: "3",
+    name: "Training Room",
+    // type: "Hilltop Restaurant",
+    description:
+      "Spacious circular conference hall designed for large meetings, seminars, trainings, and corporate events with modern facilities...",
+    images: ["/images/trainingroom.jpeg", "/images/trainingroom.jpeg"],
+    heroImage: "/images/conference.jpeg",
+    cuisine: ["International", "Fast Casual", "Beverages"],
+    atmosphere: "Casual & Vibrant",
+    serviceStyle: "Buffet & A la Carte",
+    serviceHours: {
+      breakfast: "6:30 a.m. to 11:00 a.m.",
+      lunch: "11:30 a.m. to 5:00 p.m.",
+      dinner: "6:00 p.m. to 10:30 p.m.",
     },
+    location: "Ground Floor",
+    reverse: true,
+  },
 ];
 
 const MeetingsAndEvents = () => {
-    const [selectedRoom, setSelectedRoom] = useState<{ name: string; images: string[] } | null>(null);
-    const [initialIndex, setInitialIndex] = useState(0);
+  const [selectedRoom, setSelectedRoom] = useState<{
+    name: string;
+    images: string[];
+  } | null>(null);
+  const [initialIndex, setInitialIndex] = useState(0);
 
-    const openModal = (images: string[], name: string, startIndex = 0) => {
-        setSelectedRoom({ name, images });
-        setInitialIndex(startIndex);
-    };
+  const openModal = (images: string[], name: string, startIndex = 0) => {
+    setSelectedRoom({ name, images });
+    setInitialIndex(startIndex);
+  };
 
-    const closeModal = () => {
-        setSelectedRoom(null);
-    };
+  const closeModal = () => {
+    setSelectedRoom(null);
+  };
 
-    return (
-        <>
-            {/* Hero Section */}
-            <PageHero
-              title="Meetings"
-              subtitle="Discover comfort and style in our meetings and events."
-              backgroundImage="/images/boardmeeting.jpeg"
+  return (
+    <>
+      {/* Hero Section */}
+      <PageHero
+        title="Meetings"
+        subtitle="Discover comfort and style in our meetings and events."
+        backgroundImage="/images/boardmeeting.jpeg"
+      />
+
+      {/* Rooms List */}
+      <section className="bg-background py-16">
+        <div className="max-w-7xl mx-auto px-6 lg:px-10 ">
+          {Meetings.map((meeting) => (
+            <ImageCardSlider
+              key={meeting.id}
+              {...meeting}
+              onImageClick={openModal}
+              buttonText="Find More"
+              buttonHref={`/meetingsandevents/${meeting.id}`}
             />
+          ))}
+        </div>
+      </section>
 
-            {/* Rooms List */}
-            <section className="bg-background py-16">
-                <div className="max-w-7xl mx-auto px-6 lg:px-10 ">
-                    {Meetings.map((meeting) => (
-                        <ImageCardSlider
-                            key={meeting.id}
-                            {...meeting}
-                            onImageClick={openModal}
-                            buttonText="Find More"
-                            buttonHref={`/meetingsandevents/${meeting.id}`}
-                        />
-                    ))}
-                </div>
-            </section>
+      <CallToAction
+        title="Have Any Queries For Us?"
+        description="Get all your questions answered, we are just one call away!"
+        phone="01704199798"
+      />
 
-            <CallToAction
-                title="Have Any Queries For Us?"
-                description="Get all your questions answered, we are just one call away!"
-                phone="(0421) 66906, 65663"
-            />
-
-            {/* Modal */}
-            {selectedRoom && (
-                <ImageGalleryModal
-                    title={selectedRoom.name}
-                    images={selectedRoom.images}
-                    initialIndex={initialIndex}
-                    onClose={closeModal}
-                />
-            )}
-        </>
-    );
+      {/* Modal */}
+      {selectedRoom && (
+        <ImageGalleryModal
+          title={selectedRoom.name}
+          images={selectedRoom.images}
+          initialIndex={initialIndex}
+          onClose={closeModal}
+        />
+      )}
+    </>
+  );
 };
 
 export default MeetingsAndEvents;
