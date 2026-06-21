@@ -68,8 +68,9 @@ export default function Navbar() {
                 alt="TRAC Resort"
                 width={160}
                 height={70}
-                className={`h-10 sm:h-12 md:h-16 w-auto object-contain transition-all duration-300 ${scrolled ? "" : ""
-                  }`}
+                className={`h-10 sm:h-12 md:h-16 w-auto object-contain transition-all duration-300 ${
+                  scrolled ? "" : ""
+                }`}
                 priority
               />
             </Link>

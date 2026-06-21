@@ -91,7 +91,7 @@ const LuxuryExperience: React.FC<LuxuryExperienceProps> = ({
   ],
 }) => {
   return (
-    <section className="py-30 bg-background transition-colors duration-300">
+    <section className="py-10 sm:py-14 md:py-20 lg:py-28 xl:py-30 bg-background transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <div className="relative group">
           <div className="absolute inset-x-10 -top-2 -bottom-2 bg-white/20 rounded-2xl md:inset-x-20 backdrop-blur-[2px] pointer-events-none z-0" />
