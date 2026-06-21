@@ -25,7 +25,7 @@ export default function CallToAction({
         }}
         className="max-w-4xl mx-auto px-6 text-center"
       >
-        <h2 className="text-4xl font-bold text-primary mb-4">
+        <h2 className="text-4xl font-bold text-primary-dark mb-4">
           {title}
         </h2>
 
