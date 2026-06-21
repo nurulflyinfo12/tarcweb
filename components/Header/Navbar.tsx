@@ -24,37 +24,36 @@ export default function Navbar() {
   return (
     <>
       {/* === Top Contact Bar (Visible on ALL screens) === */}
-      <div className="fixed top-0 left-0 w-full h-11 bg-[#0A2F1F] text-white z-50 lg:hidden pt-2">
-        <div className="max-w-7xl mx-auto px-3 sm:px-6 md:px-10">
-          <div className="flex items-center justify-between">
-            {/* Chat with us */}
+      <div className="fixed top-0 left-0 z-50 w-full bg-[#0A2F1F] text-white lg:hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10">
+          <div className="flex h-11 items-center justify-between ">
+            {/* WhatsApp */}
             <a
               href="https://wa.me/8801704199798"
-              // target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 hover:text-green-400 transition-colors"
+              className="inline-flex items-center gap-1 text-sm font-medium transition-colors hover:text-green-400"
             >
-              <FaWhatsapp size={18} />
-              <span className="font-medium">Chat with us</span>
+              <FaWhatsapp className="text-[18px] relative -top-[2px]" />
+              <span className="text-[12px]">Chat with us</span>
             </a>
 
-            {/* Phone Number */}
+            {/* Phone */}
             <a
               href="tel:+8809678785959"
-              className="flex items-center gap-2 hover:text-green-400 transition-colors"
+              className="flex items-center gap-1 text-sm font-medium transition-colors hover:text-green-400"
             >
-              <FiPhone size={17} />
-              <span>+880 9678 785959</span>
+              <FiPhone className="text-sm flex-shrink-0" />
+              <span className="whitespace-nowrap text-[12px]">+880 9678 785959</span>
             </a>
           </div>
         </div>
       </div>
 
-      {/* === Main Navbar (Shifted down only when top bar exists) === */}
+      {/* Main Navbar*/}
       <header
         className={`fixed top-11 lg:top-0 left-0 w-full z-40 transition-all duration-300 backdrop-blur-sm ${scrolled
-            ? "bg-white/85 dark:bg-white/90 backdrop-blur-md text-secondary dark:text-secondary shadow-[0px_4px_12px_rgba(0,0,0,0.08)] dark:shadow-[0px_4px_20px_rgba(0,0,0,0.4)]"
-            : "bg-white/85 dark:bg-white/50 backdrop-blur-md text-secondary dark:text-white shadow-[0px_4px_12px_rgba(0,0,0,0.08)] dark:shadow-[0px_4px_20px_rgba(0,0,0,0.4)]"
+          ? "bg-white/85 dark:bg-white/90 backdrop-blur-md text-secondary dark:text-secondary shadow-[0px_4px_12px_rgba(0,0,0,0.08)] dark:shadow-[0px_4px_20px_rgba(0,0,0,0.4)]"
+          : "bg-white/85 dark:bg-white/50 backdrop-blur-md text-secondary dark:text-white shadow-[0px_4px_12px_rgba(0,0,0,0.08)] dark:shadow-[0px_4px_20px_rgba(0,0,0,0.4)]"
           }`}
       >
         <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-10">
