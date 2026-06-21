@@ -44,7 +44,7 @@ export default function Navbar() {
               className="flex items-center gap-2 hover:text-green-400 transition-colors"
             >
               <FiPhone size={17} />
-              <span>+880 9678 785959</span>
+              <span>+880 1704-199798</span>
             </a>
           </div>
         </div>
@@ -52,10 +52,11 @@ export default function Navbar() {
 
       {/* === Main Navbar (Shifted down only when top bar exists) === */}
       <header
-        className={`fixed top-11 lg:top-0 left-0 w-full z-40 transition-all duration-300 backdrop-blur-sm ${scrolled
+        className={`fixed top-11 lg:top-0 left-0 w-full z-40 transition-all duration-300 backdrop-blur-sm ${
+          scrolled
             ? "bg-white/85 dark:bg-white/90 backdrop-blur-md text-secondary dark:text-secondary shadow-[0px_4px_12px_rgba(0,0,0,0.08)] dark:shadow-[0px_4px_20px_rgba(0,0,0,0.4)]"
             : "bg-white/85 dark:bg-white/50 backdrop-blur-md text-secondary dark:text-white shadow-[0px_4px_12px_rgba(0,0,0,0.08)] dark:shadow-[0px_4px_20px_rgba(0,0,0,0.4)]"
-          }`}
+        }`}
       >
         <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-10">
           <div className="flex items-center justify-between py-3 md:py-5">
@@ -69,8 +70,9 @@ export default function Navbar() {
                 alt="TRAC Resort"
                 width={160}
                 height={70}
-                className={`h-10 sm:h-12 md:h-16 w-auto object-contain transition-all duration-300 ${scrolled ? "" : ""
-                  }`}
+                className={`h-10 sm:h-12 md:h-16 w-auto object-contain transition-all duration-300 ${
+                  scrolled ? "" : ""
+                }`}
                 priority
               />
             </Link>

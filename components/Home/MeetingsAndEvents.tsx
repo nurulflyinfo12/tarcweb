@@ -18,7 +18,7 @@ const MeetingsAndEvents = () => {
   };
 
   return (
-    <section className="py-30 max-w-7xl mx-auto px-6 lg:px-10 py-16 text-center transition-colors duration-300">
+    <section className="py-10 sm:py-14 md:py-20 lg:py-28 xl:py-30 max-w-7xl mx-auto px-6 lg:px-10 py-16 text-center transition-colors duration-300">
       <div className=" mb-10">
         <div className="flex items-center justify-center gap-3 mb-2">
           <span className="w-8 h-[1px] bg-amber-500/60"></span>

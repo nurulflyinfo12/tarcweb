@@ -17,7 +17,7 @@ const ExclusiveDelights = () => {
   };
 
   return (
-    <section className="py-30 text-white max-w-7xl mx-auto px-6 lg:px-10">
+    <section className="py-10 sm:py-14 md:py-20 lg:py-28 xl:py-30 text-white max-w-7xl mx-auto px-6 lg:px-10">
       <div className=" text-center mb-10">
         <div className="flex items-center justify-center gap-3 mb-1">
           <span className="w-8 h-[1px] bg-primary-dark"></span>

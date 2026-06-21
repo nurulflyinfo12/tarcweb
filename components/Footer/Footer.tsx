@@ -19,16 +19,14 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           <div className="space-y-6">
-            <div>
-              <Image
-                src="/images/logo.png"
-                alt="Rural Reconstruction Foundation"
-                width={180}
-                height={80}
-                className="h-16 w-auto object-contain brightness-100 dark:brightness-110 select-none"
-                priority
-              />
-            </div>
+            <Image
+              src="/images/logo.png"
+              alt="The Imperial"
+              width={180}
+              height={80}
+              className="h-16 w-auto object-contain select-none"
+              priority
+            />
 
             <div className="space-y-4 text-sm text-text-muted font-light transition-colors duration-300">
               <div className="flex items-start gap-3">
@@ -60,9 +58,7 @@ const Footer = () => {
                   </p>
                   <p>+880 1704-199798</p>
 
-                  <p className="pt-2   select-all">
-                    Email: info@rrf-bd.org
-                  </p>
+                  <p className="pt-2   select-all">Email: info@rrf-bd.org</p>
                 </div>
               </div>
             </div>
