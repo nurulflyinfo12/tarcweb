@@ -6,14 +6,14 @@ const ExclusiveDelights = () => {
   const offerData = {
     subtitle: "Exclusive Delights",
     title: "Discover Our Special Offers",
-    offerTitle: "Summer Breeze",
+    offerTitle: "Special rooms offer",
     validity: "Validity till 31st July 2026",
     description:
       "This season indulge in something special. Exclusive Special Rate awaits at The Imperial Institute Of Hospitality & Hotel Management. Enjoy a vacation to remember with a delicious complimentary breakfast and so much more!",
     tagline:
       "Don't miss out on this special offer to relax and unwind in luxury.",
     buttonText: "Discover More",
-    bannerImage: "/images/summer.jpeg",
+    bannerImage: "/images/specialoffers/specialoffers.png",
   };
 
   return (
