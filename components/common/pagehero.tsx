@@ -15,7 +15,7 @@ export default function PageHero({
 }: PageHeroProps) {
   return (
     <section
-      className={`relative ${height} flex items-center justify-center overflow-hidden`}
+      className={`relative h-[65vh] md:${height} flex items-center justify-center overflow-hidden`}
     >
       {/* Background Image */}
       <div
