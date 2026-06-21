@@ -60,7 +60,7 @@ const Footer = () => {
                   </p>
                   <p>+880 1704-199798</p>
 
-                  <p className="pt-2 text-xs  select-all">
+                  <p className="pt-2   select-all">
                     Email: info@rrf-bd.org
                   </p>
                 </div>
