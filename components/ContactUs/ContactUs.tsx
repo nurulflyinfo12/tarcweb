@@ -38,7 +38,7 @@ const ContactUs = () => {
       {/* Main Contact Card */}
       <section className="py-12 md:py-16">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
-          <div className="absolute inset-x-8 sm:inset-x-12  -top-3 -bottom-3 bg-white/20 rounded-2xl md:inset-x-20 backdrop-blur-[2px] pointer-events-none z-0" />
+          <div className="absolute inset-x-8 sm:inset-x-12  -top-2 -bottom-2 bg-white/20 rounded-2xl md:inset-x-20 backdrop-blur-[2px] pointer-events-none z-0" />
           <div className="relative">
             <div className="bg-white rounded-2xl overflow-hidden shadow-2xl">
               <div className="flex flex-col lg:flex-row">
@@ -63,15 +63,15 @@ const ContactUs = () => {
                             <strong>Tel:</strong> +880 2997 738501-3
                           </p>
                           <p>
-                            <strong>For Reservation:</strong> (0421) 66906, 65663
+                            <strong>For Reservation:</strong> (0421) 66906,
+                            65663
                           </p>
                           {/* <p>
                             <strong>For Corporate or Group Event:</strong> +880
                             1730 793555
                           </p> */}
                           <p>
-                            <strong>Email:</strong>{" "}
-                            Email: info@rrf-bd.org
+                            <strong>Email:</strong> Email: info@rrf-bd.org
                           </p>
                         </div>
                       </div>
@@ -92,7 +92,7 @@ const ContactUs = () => {
                           R R F Bhaban, C & B Road, Karbala, Jessore.
                         </p>
                         <p className="mt-4 text-sm">
-                          <strong>Tel:</strong> (0421) 66906, 65663
+                          <strong>Tel:</strong> 01704199798
                         </p>
                       </div>
                     </div>
@@ -178,7 +178,7 @@ const ContactUs = () => {
       {/* Find Us Section */}
       <section className="pb-12 md:pb-16">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
-          <div className="absolute inset-x-8 sm:inset-x-12  -top-3 -bottom-3 bg-white/20 rounded-2xl md:inset-x-20 backdrop-blur-[2px] pointer-events-none z-0" />
+          <div className="absolute inset-x-8 sm:inset-x-12  -top-2 -bottom-2 bg-white/20 rounded-2xl md:inset-x-20 backdrop-blur-[2px] pointer-events-none z-0" />
           <div className="relative">
             <div className="bg-white rounded-2xl shadow-2xl p-6 sm:p-8 lg:p-10">
               <div className="flex items-center gap-3 mb-6 justify-center">
@@ -208,7 +208,7 @@ const ContactUs = () => {
       <CallToAction
         title="Ready to Book Your Stay?"
         description="Call us now to check availability and secure your desired rooms before they're all gone!"
-        phone="(0421) 66906, 65663"
+        phone="01704199798"
       />
     </>
   );

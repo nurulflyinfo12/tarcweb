@@ -102,7 +102,7 @@ const Relaxation = () => {
       <CallToAction
         title="Have Any Queries For Us?"
         description="Get all your questions answered, we are just one call away!"
-        phone="(0421) 66906, 65663"
+        phone="01704199798"
       />
 
       {/* Modal */}

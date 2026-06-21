@@ -197,7 +197,7 @@ const RestaurantSAndCafes = () => {
       <CallToAction
         title="Ready to Reserve Your Table?"
         description="Call us now to make a reservation at our restaurant."
-        phone="(0421) 66906, 65663"
+        phone="01704199798"
       />
 
       {/* Modal */}

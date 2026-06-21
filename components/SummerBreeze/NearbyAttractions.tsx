@@ -20,23 +20,22 @@ const NearbyAttractions: React.FC<NearbyAttractionsProps> = ({
     <section className="py-8">
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Background Glow */}
-        <div className="absolute inset-x-8 md:inset-x-20 -top-3 -bottom-3 bg-white/20 rounded-3xl backdrop-blur-[2px] pointer-events-none z-0" />
+        <div className="absolute inset-x-8 md:inset-x-20 -top-2 -bottom-2 bg-white/20 rounded-3xl backdrop-blur-[2px] pointer-events-none z-0" />
 
         <div className="relative bg-white rounded-3xl overflow-hidden shadow-2xl">
           <div className="p-6 md:p-10 lg:p-14">
             {/* Heading - Fully Responsive */}
             <div className="w-full flex justify-center mb-12">
-            <div className="flex items-center gap-3">
-              <span className="h-[1px] w-10 sm:w-14 bg-secondary" />
+              <div className="flex items-center gap-3">
+                <span className="h-[1px] w-10 sm:w-14 bg-secondary" />
 
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-secondary text-center">
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-secondary text-center">
                   NEARBY ATTRACTIONS
-              </h2>
+                </h2>
 
-              <span className="h-[1px] w-10 sm:w-14 bg-secondary" />
+                <span className="h-[1px] w-10 sm:w-14 bg-secondary" />
+              </div>
             </div>
-          </div>
-
 
             <div className="grid lg:grid-cols-2 gap-8 md:gap-10 lg:gap-12">
               {/* Attractions List */}
@@ -46,16 +45,20 @@ const NearbyAttractions: React.FC<NearbyAttractionsProps> = ({
                     <ul
                       className={`
                         space-y-4 text-black text-[15px] md:text-base
-                        ${colIndex !== attractions.length - 1 
-                          ? "sm:border-r sm:border-primary-dark pr-4 sm:pr-8" 
-                          : ""}
+                        ${
+                          colIndex !== attractions.length - 1
+                            ? "sm:border-r sm:border-primary-dark pr-4 sm:pr-8"
+                            : ""
+                        }
                       `}
                     >
                       {column.map((place, index) => (
                         <li key={index} className="leading-snug">
                           <span className="font-medium">{place.name}</span>
                           <br />
-                          <span className="text-sm text-gray-600">{place.distance}</span>
+                          <span className="text-sm text-gray-600">
+                            {place.distance}
+                          </span>
                         </li>
                       ))}
                     </ul>

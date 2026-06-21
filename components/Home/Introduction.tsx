@@ -25,7 +25,7 @@ const Introduction: React.FC<IntroductionProps> = ({
   return (
     // Dynamic Section wrapper: uses light-mode tokens (bg-background, text-foreground)
     // and shifts back to your solid rich forest-green (#0b2411) when dark mode is present.
-    <section className="py-20 bg-background dark:bg-[#0b2411] transition-colors duration-300 text-left">
+    <section className="py-30 bg-background dark:bg-[#0b2411] transition-colors duration-300 text-left">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* LEFT COLUMN: TEXT CONTENT */}
