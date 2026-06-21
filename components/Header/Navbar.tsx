@@ -24,7 +24,7 @@ export default function Navbar() {
   return (
     <>
       {/* === Top Contact Bar (Visible on ALL screens) === */}
-      <div className="fixed top-0 left-0 w-full h-11 bg-[#0A2F1F] text-white z-50 md:hidden pt-2">
+      <div className="fixed top-0 left-0 w-full h-11 bg-[#0A2F1F] text-white z-50 lg:hidden pt-2">
         <div className="max-w-7xl mx-auto px-3 sm:px-6 md:px-10">
           <div className="flex items-center justify-between">
             {/* Chat with us */}
@@ -52,7 +52,7 @@ export default function Navbar() {
 
       {/* === Main Navbar (Shifted down only when top bar exists) === */}
       <header
-        className={`fixed top-11 md:top-0 left-0 w-full z-40 transition-all duration-300 backdrop-blur-sm ${scrolled
+        className={`fixed top-11 lg:top-0 left-0 w-full z-40 transition-all duration-300 backdrop-blur-sm ${scrolled
             ? "bg-white/85 dark:bg-white/90 backdrop-blur-md text-secondary dark:text-secondary shadow-[0px_4px_12px_rgba(0,0,0,0.08)] dark:shadow-[0px_4px_20px_rgba(0,0,0,0.4)]"
             : "bg-white/85 dark:bg-white/50 backdrop-blur-md text-secondary dark:text-white shadow-[0px_4px_12px_rgba(0,0,0,0.08)] dark:shadow-[0px_4px_20px_rgba(0,0,0,0.4)]"
           }`}

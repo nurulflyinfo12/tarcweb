@@ -46,7 +46,7 @@ export default function RootLayout({
             href="https://wa.me/8801704199798"
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden md:flex group fixed bottom-24 right-6 z-50 items-center justify-center w-14 h-14 bg-[#25D366] text-white rounded-full shadow-[0_4px_14px_rgba(0,0,0,0.25)] transition-all duration-300 hover:scale-105 hover:bg-[#20ba56] cursor-pointer"
+            className="hidden lg:flex group fixed bottom-24 right-6 z-50 items-center justify-center w-14 h-14 bg-[#25D366] text-white rounded-full shadow-[0_4px_14px_rgba(0,0,0,0.25)] transition-all duration-300 hover:scale-105 hover:bg-[#20ba56] cursor-pointer"
             aria-label="Chat on WhatsApp"
           >
             {/* Slide-out Text Label */}
