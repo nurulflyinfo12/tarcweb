@@ -1,11 +1,11 @@
-import RestaurantSAndCafes from "@/components/RestaurantsAndCafes/RestaurantsAndCafes";
+import RestaurantSAndCafes from "../components/RestaurantsAndCafes/RestaurantsAndCafes";
 
 const page = () => {
-    return (
-        <>
-            <RestaurantSAndCafes />
-        </>
-    )
-}
+  return (
+    <>
+      <RestaurantSAndCafes />
+    </>
+  );
+};
 
 export default page;

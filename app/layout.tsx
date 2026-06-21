@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Biryani } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Header/Navbar";
-import Footer from "@/components/Footer/Footer";
+import Navbar from "../components/Header/Navbar";
+import Footer from "../components/Footer/Footer";
 import { ThemeProvider } from "next-themes";
-import SpecialOfferButton from "@/components/SpecialOfferButton";
+import SpecialOfferButton from "../components/SpecialOfferButton";
 
 const biryani = Biryani({
   subsets: ["latin"],

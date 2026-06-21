@@ -1,11 +1,11 @@
-import SpecialOffers from "@/components/SpecialOffers/SpecialOffers"
+import SpecialOffers from "../components/SpecialOffers/SpecialOffers";
 
-const page =()=>{
-    return(
-        <>
-         <SpecialOffers />
-        </>
-    )
-}
+const page = () => {
+  return (
+    <>
+      <SpecialOffers />
+    </>
+  );
+};
 
-export default page
+export default page;

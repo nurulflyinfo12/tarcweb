@@ -1,12 +1,11 @@
-import MeetingsAndEvents from "@/components/MeetingsAndEvents/MeetingsAndEvents"
+import MeetingsAndEvents from "../components/MeetingsAndEvents/MeetingsAndEvents";
 
-const page =()=>{
-
-    return(
-        <>
-            <MeetingsAndEvents />
-        </>
-    )
-}
+const page = () => {
+  return (
+    <>
+      <MeetingsAndEvents />
+    </>
+  );
+};
 
 export default page;
