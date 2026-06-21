@@ -14,9 +14,9 @@ const biryani = Biryani({
 });
 
 export const metadata: Metadata = {
-  title: "Tarc Resort - Luxury Getaway & Natural Escape",
+  title: "The Imperial Institute of Hospitality & Hotel Management",
   description:
-    "Discover tarc Resort - a serene retreat offering premium accommodations, breathtaking views, and unforgettable experiences. Book your stay today.",
+    "Book your stay today.",
 };
 
 export default function RootLayout({

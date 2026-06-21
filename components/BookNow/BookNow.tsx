@@ -1,11 +1,12 @@
 "use client";
 
 import React, { useState } from "react";
-import { FiCheck, FiArrowLeft, FiArrowRight } from "react-icons/fi";
+import { FiCheck, FiArrowLeft, FiArrowRight, FiMapPin, FiCalendar, FiUsers } from "react-icons/fi";
 import Image from "next/image";
 
 import { rooms } from "../RoomAndSuites/RoomsAndSuites";
 import { Meetings, Restaurants } from "@/data";
+import PageHero from "../common/pagehero";
 
 const EnhancedBookingStepper = () => {
     const [currentStep, setCurrentStep] = useState(1);
@@ -39,7 +40,7 @@ const EnhancedBookingStepper = () => {
 
     const currentData = getCurrentData();
 
-    const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         setSearchData({ ...searchData, [e.target.name]: e.target.value });
     };
 
@@ -63,150 +64,124 @@ const EnhancedBookingStepper = () => {
     return (
         <>
             {/*  SEARCH */}
-            {/* ====================== HERO SECTION WITH BACKGROUND IMAGE ====================== */}
-            <section className="relative h-[90vh] min-h-[700px] md:h-[95vh] flex items-center justify-center overflow-hidden font-sans">
 
-                {/* Background Image */}
-                <div
-                    className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-100 transition-transform duration-1000"
-                    style={{ backgroundImage: "url('/images/specialoffers/specialoffers.png')" }}
-                />
+            <PageHero title="Book" backgroundImage="/images/couple/couple1.jpg" />
 
-                {/* Sophisticated Dark Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/50 to-black/60" />
-
+            <section className="-mt-32 relative z-30">
                 {/* Search Bar Container */}
-                <div className="relative z-10 w-full max-w-5xl px-4 md:px-6">
-                    <div className="relative bg-white/95 backdrop-blur-md rounded-3xl shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] p-6 md:p-10 transition-all duration-300">
-
-                        {/* Top Tabs - Centered */}
-                        <div className="flex justify-center -mt-18 mb-8">
-                            <div className="inline-flex bg-slate-50 p-1.5 rounded-2xl border border-slate-100 shadow-inner relative">
-
-                                {/* Bottom Shadow Effect */}
-                                <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-[90%] h-3 bg-black/10 blur-md rounded-full"></div>
-
-                                {(["room", "restaurant", "meeting"] as const).map((type) => (
-                                    <button
-                                        key={type}
-                                        onClick={() => {
-                                            setSelectedType(type);
-                                            setSelectedItem(null);
-                                            setCurrentStep(1);
-                                        }}
-                                        className={`px-6 py-3 rounded-xl font-semibold tracking-wide text-xs md:text-sm transition-all duration-200 flex items-center gap-2.5 relative z-10 ${selectedType === type
-                                                ? "bg-[#051C08] text-white shadow-md shadow-[#051C08]/30"
-                                                : "text-slate-600 hover:text-slate-900 hover:bg-white"
-                                            }`}
-                                    >
-                                        {type === "room" && <span className="text-base">🛏️</span>}
-                                        {type === "restaurant" && <span className="text-base">🍽️</span>}
-                                        {type === "meeting" && <span className="text-base">🏛️</span>}
-                                        {type.charAt(0).toUpperCase() + type.slice(1) + "s"}
-                                    </button>
-                                ))}
-                            </div>
-                        </div>
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="bg-white/80 backdrop-blur-xl rounded-2xl shadow-[0_32px_64px_-16px_rgba(5,28,8,0.15)] border border-white/40 p-4 sm:p-6 lg:p-8">
 
                         {/* Main Search Panel */}
-                        <div className="bg-white border border-slate-100 rounded-2xl shadow-sm overflow-hidden">
+                        <div className="bg-white border border-slate-100 rounded-2xl shadow-sm overflow-hidden ring-1 ring-black/[0.02]">
                             <div className="grid grid-cols-1 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-slate-100">
 
                                 {/* Destination */}
-                                <div className="p-5 hover:bg-slate-50/50 transition-colors duration-200 cursor-pointer group">
-                                    <label className="block text-[10px] font-bold text-slate-400 mb-2 tracking-widest uppercase">
-                                        Where to go
-                                    </label>
-                                    <div className="font-bold text-base text-slate-800 group-hover:text-[#051C08] transition-colors">
-                                        Jessore
+                                <div className="p-6 hover:bg-slate-50/60 transition-colors duration-200 group flex gap-4 items-start">
+                                    <div className="p-3 bg-amber-50 rounded-xl text-amber-600 group-hover:bg-amber-100 transition-colors mt-0.5">
+                                        <FiMapPin className="w-5 h-5" />
                                     </div>
-                                    <div className="text-xs text-slate-400 font-medium mt-0.5">Bangladesh</div>
+                                    <div className="flex-1 min-w-0">
+                                        <label className="block text-[11px] font-bold text-slate-400 mb-1 tracking-widest uppercase">
+                                            Where to go
+                                        </label>
+                                        <select
+                                            name="location"
+                                            value={searchData.location}
+                                            onChange={handleSearchChange}
+                                            className="w-full font-bold text-base text-slate-800 bg-transparent focus:outline-none cursor-pointer appearance-none truncate pr-4"
+                                        >
+                                            <option value="Cox's Bazar">Cox's Bazar, BD</option>
+                                            <option value="Jessore">Jessore, BD</option>
+                                            <option value="Dhaka">Dhaka, BD</option>
+                                            <option value="Sylhet">Sylhet, BD</option>
+                                        </select>
+                                    </div>
                                 </div>
 
                                 {/* Check In */}
-                                <div className="p-5 relative hover:bg-slate-50/50 transition-colors duration-200">
-                                    <label className="block text-[10px] font-bold text-slate-400 mb-1 tracking-widest uppercase">
-                                        Check In
-                                    </label>
-                                    <input
-                                        type="date"
-                                        name="checkIn"
-                                        value={searchData.checkIn}
-                                        onChange={handleSearchChange}
-                                        className="w-full font-semibold text-sm text-slate-700 bg-transparent focus:outline-none cursor-pointer placeholder:text-slate-400"
-                                    />
+                                <div className="p-6 hover:bg-slate-50/60 transition-colors duration-200 flex gap-4 items-start">
+                                    <div className="p-3 bg-emerald-50 rounded-xl text-emerald-600 mt-0.5">
+                                        <FiCalendar className="w-5 h-5" />
+                                    </div>
+                                    <div className="flex-1">
+                                        <label className="block text-[11px] font-bold text-slate-400 mb-1 tracking-widest uppercase">
+                                            Check In
+                                        </label>
+                                        <input
+                                            type="date"
+                                            name="checkIn"
+                                            value={searchData.checkIn}
+                                            onChange={handleSearchChange}
+                                            className="w-full font-bold text-sm text-slate-700 bg-transparent focus:outline-none cursor-pointer placeholder:text-slate-400"
+                                        />
+                                    </div>
                                 </div>
 
                                 {/* Check Out */}
-                                <div className="p-5 relative hover:bg-slate-50/50 transition-colors duration-200">
-                                    <label className="block text-[10px] font-bold text-slate-400 mb-1 tracking-widest uppercase">
-                                        Check Out
-                                    </label>
-                                    <input
-                                        type="date"
-                                        name="checkOut"
-                                        value={searchData.checkOut}
-                                        onChange={handleSearchChange}
-                                        className="w-full font-semibold text-sm text-slate-700 bg-transparent focus:outline-none cursor-pointer placeholder:text-slate-400"
-                                    />
+                                <div className="p-6 hover:bg-slate-50/60 transition-colors duration-200 flex gap-4 items-start">
+                                    <div className="p-3 bg-emerald-50 rounded-xl text-emerald-600 mt-0.5">
+                                        <FiCalendar className="w-5 h-5" />
+                                    </div>
+                                    <div className="flex-1">
+                                        <label className="block text-[11px] font-bold text-slate-400 mb-1 tracking-widest uppercase">
+                                            Check Out
+                                        </label>
+                                        <input
+                                            type="date"
+                                            name="checkOut"
+                                            value={searchData.checkOut}
+                                            onChange={handleSearchChange}
+                                            className="w-full font-bold text-sm text-slate-700 bg-transparent focus:outline-none cursor-pointer placeholder:text-slate-400"
+                                        />
+                                    </div>
                                 </div>
 
                                 {/* Rooms & Guests */}
-                                <div className="p-5 hover:bg-slate-50/50 transition-colors duration-200">
-                                    <label className="block text-[10px] font-bold text-slate-400 mb-2 tracking-widest uppercase">
-                                        Rooms & Guests
-                                    </label>
-                                    <div className="flex gap-4 items-center">
-                                        <div className="flex items-center gap-1.5">
-                                            <span className="text-xs font-medium text-slate-400">Adults:</span>
-                                            <input
-                                                type="number"
-                                                name="adults"
-                                                value={searchData.adults}
-                                                onChange={handleSearchChange}
-                                                className="w-10 font-bold text-sm text-slate-800 bg-transparent focus:outline-none focus:border-b border-slate-300"
-                                                min="1"
-                                            />
-                                        </div>
-                                        <div className="flex items-center gap-1.5">
-                                            <span className="text-xs font-medium text-slate-400">Child:</span>
-                                            <input
-                                                type="number"
-                                                name="children"
-                                                value={searchData.children}
-                                                onChange={handleSearchChange}
-                                                className="w-10 font-bold text-sm text-slate-800 bg-transparent focus:outline-none focus:border-b border-slate-300"
-                                                min="0"
-                                            />
+                                <div className="p-6 hover:bg-slate-50/60 transition-colors duration-200 flex gap-4 items-start">
+                                    <div className="p-3 bg-blue-50 rounded-xl text-blue-600 mt-0.5">
+                                        <FiUsers className="w-5 h-5" />
+                                    </div>
+                                    <div className="flex-1">
+                                        <label className="block text-[11px] font-bold text-slate-400 mb-2 tracking-widest uppercase">
+                                            Rooms & Guests
+                                        </label>
+                                        <div className="flex gap-4 items-center mt-1">
+                                            <div className="flex items-center gap-1.5 bg-slate-50 px-2.5 py-1.5 rounded-lg border border-slate-100">
+                                                <span className="text-xs font-semibold text-slate-400">Adults:</span>
+                                                <input
+                                                    type="number"
+                                                    name="adults"
+                                                    value={searchData.adults}
+                                                    onChange={handleSearchChange}
+                                                    className="w-8 font-bold text-sm text-slate-800 bg-transparent focus:outline-none text-center"
+                                                    min="1"
+                                                />
+                                            </div>
+                                            <div className="flex items-center gap-1.5 bg-slate-50 px-2.5 py-1.5 rounded-lg border border-slate-100">
+                                                <span className="text-xs font-semibold text-slate-400">Child:</span>
+                                                <input
+                                                    type="number"
+                                                    name="children"
+                                                    value={searchData.children}
+                                                    onChange={handleSearchChange}
+                                                    className="w-8 font-bold text-sm text-slate-800 bg-transparent focus:outline-none text-center"
+                                                    min="0"
+                                                />
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        {/* Search For Options */}
-                        <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2.5">
-                            <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Search for:</span>
-                            {["Business", "Couples", "Families", "Friends"].map((option) => (
-                                <label key={option} className="flex items-center gap-2 cursor-pointer group select-none">
-                                    <input
-                                        type="checkbox"
-                                        className="w-4 h-4 rounded border-slate-300 text-[#051C08] focus:ring-[#051C08] accent-[#051C08]"
-                                    />
-                                    <span className="text-xs font-medium text-slate-600 group-hover:text-slate-900 transition-colors">
-                                        {option}
-                                    </span>
-                                </label>
-                            ))}
-                        </div>
-
                         {/* Centered Search Button */}
-                        <div className="flex justify-center mt-10">
+                        <div className="flex justify-center -mb-12 mt-8 relative z-10">
                             <button
                                 onClick={() => setCurrentStep(1)}
-                                className="px-10 py-4 bg-gradient-to-r from-amber-400 to-yellow-400 hover:from-amber-500 hover:to-yellow-500 active:from-amber-600 active:to-yellow-600 rounded-2xl text-base md:text-lg tracking-widest uppercase font-semibold transition-all duration-200 shadow-md hover:shadow-lg hover:shadow-amber-500/30 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-4"
+                                className="inline-flex items-center justify-center px-4 py-2 sm:px-5 sm:py-2.5 text-[11px] sm:text-xs font-serif font-bold tracking-widest rounded-sm transform bg-secondary hover:text-white dark:hover:bg-white dark:hover:text-secondary "
                             >
-                                Search Availability
+                                Search
                             </button>
                         </div>
 
@@ -215,7 +190,7 @@ const EnhancedBookingStepper = () => {
             </section>
 
             {/* ====================== STEPPER SECTION (Below Hero) ====================== */}
-            <div className="max-w-7xl mx-auto px-4 py-12 -mt-10 relative z-20">
+            <div className="max-w-7xl mx-auto px-4 py-24 relative z-20">
                 <div className="max-w-5xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden">
                     {/* Progress */}
                     <div className="bg-[#051C08] text-white py-6 px-8">
@@ -224,7 +199,7 @@ const EnhancedBookingStepper = () => {
                             {[1, 2, 3].map((step) => (
                                 <div key={step} className="flex flex-col items-center z-10">
                                     <div className={`w-10 h-10 rounded-full flex items-center justify-center border-2 transition-all ${currentStep === step ? "bg-white text-[#051C08]" :
-                                            currentStep > step ? "bg-green-500 border-green-500" : "border-white/50 text-white/50"
+                                        currentStep > step ? "bg-green-500 border-green-500" : "border-white/50 text-white/50"
                                         }`}>
                                         {currentStep > step ? <FiCheck /> : step}
                                     </div>

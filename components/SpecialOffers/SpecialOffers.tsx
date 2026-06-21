@@ -22,7 +22,7 @@ interface SpecialOffersProps {
 const defaultOffers: Offer[] = [
   {
     id: 1,
-    title: "Summer Breeze",
+    title: "Special rooms offer",
     validity: "Validity till 31st July 2026",
     description:
       "This season indulge in something special. Exclusive Special Rate awaits at The Imperial Institute Of Hospitality & Hotel Management. Enjoy a vacation to remember with a delicious complimentary breakfast and so much more!",

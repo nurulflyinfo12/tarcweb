@@ -1,9 +1,6 @@
 // "use client"
 
 // import EnhancedBookingStepper from "@/components/BookNow/BookNow";
-// import PageHero from "@/components/common/pagehero";
-// import { useState } from "react";
-// import { FaChevronDown } from "react-icons/fa6";
 
 // const booknow = () => {
 
@@ -86,6 +83,7 @@ const booknow = () => {
                     </div>
 
                     {/* ... Rest of the form is unchanged (kept exactly as you had) ... */}
+                    {/* Row 2 to Rules - All same as your original code */}
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-5">
                         <div className="flex flex-col">
