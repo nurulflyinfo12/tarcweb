@@ -275,7 +275,7 @@ const SummerBreeze = () => {
             <section id="booking-form" className="py-8">
                 <div className="text-center max-w-2xl mx-auto mb-10 space-y-3">
                     <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-wide text-[#E29A26]">
-                        Book This Now!
+                        Book Now!
                     </h1>
                     <p className="text-white text-xs sm:text-sm font-medium max-w-xl mx-auto leading-relaxed opacity-90">
                         Booking restaurant has never been this simple. Fill up the form below with all the necessary information and wait for your booking confirmation mail.

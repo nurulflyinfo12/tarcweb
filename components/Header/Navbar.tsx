@@ -49,9 +49,9 @@ export default function Navbar() {
             </Link>
 
             {/* Right Side */}
-            <div className="flex items-center justify-center gap-2 sm:gap-4">
+            <div className="flex items-center gap-3 sm:gap-5">
               {/* Desktop Phone */}
-              <div className="hidden xl:flex items-center gap-6 text-sm font-medium">
+              <div className="hidden xl:flex items-center gap-6 text-md font-medium">
                 <a
                   href="tel:(0421) 66906, 65663"
                   className="flex items-center gap-2"
@@ -61,10 +61,10 @@ export default function Navbar() {
                 </a>
               </div>
 
-              {/* Book Now Button - Added Here */}
+              {/* Book Now Button - Styled & Aligned */}
               <Link
                 href="/booknow"
-                className="flex items-center justify-center px-4 py-2 md:bg-primary hover:bg-primary/90 text-white font-medium rounded-sm transition-all duration-200 text-[10px] md:uppercase md:tracking-wider hover:shadow-lg"
+                className="inline-flex items-center justify-center px-4 py-2 sm:px-5 sm:py-2.5 text-[11px] sm:text-xs font-serif font-bold uppercase tracking-widest border border-current transition-all duration-300 rounded-none transform hover:scale-105 hover:bg-secondary hover:text-white dark:hover:bg-white dark:hover:text-secondary shadow-sm"
               >
                 Book Now
               </Link>
@@ -78,7 +78,7 @@ export default function Navbar() {
                 onClick={() => setIsOpen(true)}
                 className="flex items-center cursor-pointer gap-1 sm:gap-2"
               >
-                <span className="hidden sm:block text-sm font-serif font-bold uppercase">
+                <span className="hidden sm:block text-sm font-serif font-bold uppercase tracking-wider">
                   Menu
                 </span>
 

@@ -168,6 +168,12 @@ const DiscoverAndReviews = () => {
                       className="w-full h-full object-cover"
                     />
                   </div>
+                  <div className="col-span-2 row-span-1 rounded overflow-hidden">
+                    <img
+                      src={galleryImages[1]}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
                 </div>
 
                 <div className="lg:col-span-6 bg-gray-50 border border-gray-100 p-6 sm:p-8 rounded-xl relative shadow-sm">
