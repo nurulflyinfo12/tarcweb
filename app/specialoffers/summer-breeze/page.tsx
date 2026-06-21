@@ -211,8 +211,13 @@ const SummerBreeze = () => {
         alert("Booking request submitted successfully! (Demo)");
     };
 
-    const mapUrl =
-        "https://maps.google.com/maps?q=23.8603983,90.4315503&z=15&output=embed";
+    const scrollToBooking = () => {
+        document.getElementById('booking-form')?.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+    };
+
     return (
         <div className="">
             {/* hero section  */}
@@ -236,6 +241,7 @@ const SummerBreeze = () => {
                                 handleSlideChange(index, newIndex)
                             }
                             onImageClick={openModal}
+                            onBookNow={scrollToBooking}
                         />
                     ))}
                 </div>
@@ -256,6 +262,7 @@ const SummerBreeze = () => {
                 <ComplimentaryServices
                     services={services}
                     images={serviceImages}
+                    onBookNow={scrollToBooking}
                 />
             </section>
 
@@ -265,7 +272,15 @@ const SummerBreeze = () => {
             </section>
 
             {/* Booking Form */}
-            <section className="py-8">
+            <section id="booking-form" className="py-8">
+                <div className="text-center max-w-2xl mx-auto mb-10 space-y-3">
+                    <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-wide text-[#E29A26]">
+                        Book This Now!
+                    </h1>
+                    <p className="text-white text-xs sm:text-sm font-medium max-w-xl mx-auto leading-relaxed opacity-90">
+                        Booking restaurant has never been this simple. Fill up the form below with all the necessary information and wait for your booking confirmation mail.
+                    </p>
+                </div>
                 <div className="relative max-w-7xl mx-auto px-4 md:px-10">
                     <div className="absolute inset-x-8 sm:inset-x-8 md:inset-x-20 lg:inset-x-20 -top-3 -bottom-3 bg-white/20 rounded-2xl backdrop-blur-[2px] pointer-events-none z-0" />
                     <form onSubmit={handleSubmit} className="relative bg-white p-6 sm:p-10 md:p-12 rounded-xl shadow-2xl space-y-6">
@@ -385,7 +400,7 @@ const SummerBreeze = () => {
                             </div>
                             {/* The + Add More Room action box */}
                             <div className="flex justify-end">
-                                <button type="button" className="bg-[#122A16] text-white text-[11px] font-bold tracking-wider px-3 py-1.5 rounded shadow hover:bg-[#1A3D20] transition-colors uppercase">
+                                <button  type="button" className="bg-[#122A16] text-white text-[11px] font-bold tracking-wider px-3 py-1.5 rounded shadow hover:bg-[#1A3D20] transition-colors uppercase" >
                                     + Add More Room
                                 </button>
                             </div>
@@ -399,7 +414,7 @@ const SummerBreeze = () => {
 
                         {/* Center Submit Button container */}
                         <div className="flex justify-center pt-4">
-                            <button type="submit" className="bg-[#051C08] text-white font-bold text-xs uppercase tracking-widest px-8 py-3.5 rounded hover:bg-[#0C2D11] transition-all duration-200 shadow-md">
+                            <button type="submit"  className="bg-[#051C08] text-white font-bold text-xs cursor-pointer uppercase tracking-widest px-8 py-3.5 rounded hover:bg-[#0C2D11] transition-all duration-200 shadow-md">
                                 Submit
                             </button>
                         </div>

@@ -23,6 +23,7 @@ interface RoomPackageCardProps {
     name: string,
     index: number
   ) => void;
+  onBookNow?: () => void;
 }
 
 const RoomPackageCard: React.FC<RoomPackageCardProps> = ({
@@ -31,6 +32,7 @@ const RoomPackageCard: React.FC<RoomPackageCardProps> = ({
   currentSlide,
   onSlideChange,
   onImageClick,
+  onBookNow,
 }) => {
   const imagesCount = pkg.images.length;
 
@@ -101,7 +103,7 @@ const RoomPackageCard: React.FC<RoomPackageCardProps> = ({
                 </div>
               </div>
 
-              <button className="bg-secondary hover:bg-secondary/90 text-white font-semibold px-10 md:px-6 xl:px-10 py-4 rounded-2xl transition flex items-center gap-2 text-base w-full sm:w-auto justify-center">
+              <button onClick={onBookNow} className="bg-secondary hover:bg-secondary/90 text-white font-semibold cursor-pointer px-10 md:px-6 xl:px-10 py-4 rounded-2xl transition flex items-center gap-2 text-base w-full sm:w-auto justify-center">
                 BOOK NOW →
               </button>
             </div>

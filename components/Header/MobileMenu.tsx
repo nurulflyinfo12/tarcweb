@@ -41,7 +41,7 @@ interface MobileMenuProps {
 
 export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
   return (
-    <div
+    <div onClick={onClose}
       className={`fixed inset-0 bg-black/95 backdrop-blur-md z-[999] transition-all duration-500 ${
         isOpen ? "opacity-100 visible" : "opacity-0 invisible"
       }`}
@@ -75,11 +75,11 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
           />
         </div>
 
-        {/* Table Style Menu - Responsive */}
+        {/* Table Style Menu */}
         <div className="w-full max-w-5xl border border-primary/80 bg-black/40 backdrop-blur-none overflow-hidden rounded-2xl">
           {/* Scrollable Container */}
           <div className="max-h-[45vh] sm:max-h-[52vh] md:max-h-none overflow-y-auto scrollbar-thin scrollbar-thumb-primary/70 scrollbar-track-transparent">
-            <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-primary/30 divide-y divide-primary/30">
+            <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-primary/30 divide-y">
               {mainMenuItems.map((item, index) => (
                 <Link
                   key={index}
