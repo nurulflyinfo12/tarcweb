@@ -87,14 +87,14 @@ export default function BannerSlider() {
       {/* Navigation Arrows */}
       <button
         onClick={goToPrev}
-        className="absolute left-6 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-foreground p-4 rounded-full transition z-10 hover:text-primary"
+        className="absolute left-6 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-foreground p-4 rounded-full transition z-10 hover:text-primary cursor-pointer"
       >
         <FiChevronLeft size={28} />
       </button>
 
       <button
         onClick={goToNext}
-        className="absolute right-6 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-foreground p-4 rounded-full transition z-10 hover:text-primary"
+        className="absolute right-6 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-foreground p-4 rounded-full transition z-10 hover:text-primary cursor-pointer"
       >
         <FiChevronRight size={28} />
       </button>
