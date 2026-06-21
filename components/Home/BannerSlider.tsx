@@ -13,13 +13,6 @@ interface Slide {
 }
 
 const slides: Slide[] = [
-  // {
-  //   image: "/images/cooridoor.jpg",
-  //   title: "Facilities",
-  //   subtitle: "Everything You Need",
-  //   buttonText: "SEE FACILITIES",
-  //   path: "#"
-  // },
   {
     image: "/images/room4.jpg",
     title: "Luxury Rooms",
@@ -41,8 +34,8 @@ const slides: Slide[] = [
     buttonText: "BOOK NOW",
     path: "/meetingsandevents"
   },
- 
-  
+
+
 ];
 
 export default function BannerSlider() {
@@ -64,9 +57,8 @@ export default function BannerSlider() {
       {slides.map((slide, index) => (
         <div
           key={index}
-          className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${
-            index === currentIndex ? "opacity-100" : "opacity-0"
-          }`}
+          className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${index === currentIndex ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+            }`}
           style={{ backgroundImage: `url('${slide.image}')` }}
         >
           {/* Overlay - Better for both modes */}
@@ -83,9 +75,9 @@ export default function BannerSlider() {
                 {slide.subtitle}
               </h1>
               <Link href={slide.path}>
-              <button className="mt-6 bg-primary hover:bg-primary-dark transition px-12 py-4 text-black font-semibold text-lg rounded-sm cursor-pointer">
-                {slide.buttonText}
-              </button>
+                <button className="mt-6 bg-primary hover:bg-primary-dark transition px-12 py-4 text-black font-semibold text-lg rounded-sm cursor-pointer">
+                  {slide.buttonText}
+                </button>
               </Link>
             </div>
           </div>
@@ -113,11 +105,10 @@ export default function BannerSlider() {
           <button
             key={index}
             onClick={() => goToSlide(index)}
-            className={`w-3 h-3 rounded-full transition-all ${
-              index === currentIndex
+            className={`w-3 h-3 rounded-full transition-all ${index === currentIndex
                 ? "bg-primary scale-125"
                 : "bg-white/50 dark:bg-white/40 hover:bg-primary/70"
-            }`}
+              }`}
           />
         ))}
       </div>

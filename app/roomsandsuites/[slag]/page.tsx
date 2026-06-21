@@ -267,7 +267,7 @@ const RoomPage = ({ params: initialParams }: RoomPageProps) => {
                     <div className="pt-4">
                         <button
                             onClick={scrollToBookingForm}
-                            className="inline-flex items-center gap-3 bg-[#556B2F] hover:bg-[#3d4f22] text-white font-semibold tracking-widest text-sm px-8 py-4 rounded-xl shadow-lg shadow-[#556B2F]/20 transition-all duration-300 uppercase hover:scale-[1.02] active:scale-[0.98]"
+                            className="inline-flex items-center gap-3 bg-[#556B2F] hover:bg-[#3d4f22] text-white font-semibold tracking-widest text-sm px-8 py-4 rounded-xl shadow-lg shadow-[#556B2F]/20 transition-all duration-300 uppercase hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
                         >
                             <span>Book Now</span>
                             <FaLongArrowAltRight size={16} className="mt-0.5" />

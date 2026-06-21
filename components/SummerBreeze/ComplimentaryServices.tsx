@@ -16,11 +16,13 @@ interface ServiceImage {
 interface ComplimentaryServicesProps {
   services: Service[];
   images: ServiceImage[];
+  onBookNow?: () => void;
 }
 
 const ComplimentaryServices = ({
   services,
   images,
+  onBookNow
 }: ComplimentaryServicesProps) => {
   return (
     <section>
@@ -82,7 +84,7 @@ const ComplimentaryServices = ({
               </div>
 
               <div className="mt-10 text-center">
-                <button className="bg-secondary hover:bg-background text-foreground font-semibold px-12 py-4 rounded-xl">
+                <button onClick={onBookNow} className="bg-secondary hover:bg-background cursor-pointer text-foreground font-semibold px-12 py-4 rounded-xl">
                   BOOK NOW →
                 </button>
               </div>

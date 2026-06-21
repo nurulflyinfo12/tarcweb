@@ -49,7 +49,7 @@ export default function Navbar() {
             </Link>
 
             {/* Right Side */}
-            <div className="flex items-center gap-2 sm:gap-4">
+            <div className="flex items-center justify-center gap-2 sm:gap-4">
               {/* Desktop Phone */}
               <div className="hidden xl:flex items-center gap-6 text-sm font-medium">
                 <a
@@ -59,15 +59,15 @@ export default function Navbar() {
                   <FiPhone size={14} />
                   <span>(0421) 66906, 65663</span>
                 </a>
-
-                {/* <a
-                  href="tel:68546"
-                  className="flex items-center gap-2"
-                >
-                  <FiPhone size={14} />
-                  <span>68546</span>
-                </a> */}
               </div>
+
+              {/* Book Now Button - Added Here */}
+              <Link
+                href="/booknow"
+                className="flex items-center justify-center px-4 py-2 md:bg-primary hover:bg-primary/90 text-white font-medium rounded-sm transition-all duration-200 text-[10px] md:uppercase md:tracking-wider hover:shadow-lg"
+              >
+                Book Now
+              </Link>
 
               {/* <ThemeToggle scrolled={scrolled} /> */}
 
