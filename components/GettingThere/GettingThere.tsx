@@ -5,37 +5,54 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 
 const GettingThereData = [
+ {
+  id: "road",
+  mode: "By Road",
+  icon: "🚗",
+  description: [
+    "By Car / Luxury Van: Approximately 4:00 - 5:00 hrs driving time via the Padma Bridge route.",
+    "Drive through the iconic Padma Bridge, crossing over the river for the fastest and smoothest connection.",
+    "Scenic route passing through beautiful landscapes from Dhaka to The Imperial Institute of Hospitality & Hotel Management area.",
+    "Secure parking is available 24/7 for guest vehicles.",
+  ],
+  map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d117462.6288424956!2d89.15066925!3d23.16263595!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ff10207a90b4d9%3A0x63dae2023d53ef69!2sRRF%20Jessore!5e0!3m2!1sen!2sbd!4v1710000000000",
+  reverse: false,
+},
   {
-    id: "road",
-    mode: "By Road",
-    icon: "🚗",
+    id: "air",
+    mode: "By Air",
+    icon: "✈️",
     description: [
-      "By Car: 4:00 - 4:30 hrs driving time.",
-      "From Kuril Flyover Turnpike to Kanchan bridge area - 114 km.",
+      "Daily domestic flights operating from Dhaka Hazrat Shahjalal International Airport (DAC) to Jessore Airport (JSR).",
+      "Short flight duration of approximately 35 to 40 minutes via Biman Bangladesh, US-Bangla, or Air Astra.",
+      "Private premium shuttle transfers can be arranged directly from Jessore Airport to the institute location.",
     ],
-    map: "https://maps.app.goo.gl/CGuPtKZTW9ezNdJw9",
-    reverse: false,
-  },
-  {
-    id: "train",
-    mode: "Train",
-    icon: "🚂",
-    description: [
-      "From Dhaka Kamalapur or kamalapur Railway Station to jashore Railway Station, then a short 107 km drive by resort car or van.",
-      "Parabat Express departs from Dhaka kamalapur Railway Station at 6:20 AM (except Tuesday).",
-      "Kalni Express departs from Dhaka kamalapur Railway Station at 3:00 PM (except Friday).",
-    ],
+    map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3679.5244584218654!2d89.1578330761271!3d23.18754591018898!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ff10629eaad49b%3A0xeae06df6697009!2sJessore%20Airport!5e0!3m2!1sen!2sbd!4v1710000000001",
     reverse: true,
   },
+ {
+  id: "train",
+  mode: "Train",
+  icon: "🚂",
+  description: [
+    "From Dhaka Kamalapur Railway Station to Jessore Railway Station.",
+    "Available trains include the Sundarban Express and Benapole Express operating on this route.",
+    "Enjoy a scenic, comfortable ride through the local landscapes.",
+    "A short air-conditioned van or private car drive will pick you up at Jessore station for transfer to the institute.",
+  ],
+  map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d117462.6288424956!2d89.15066925!3d23.16263595!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ff10207a90b4d9%3A0x63dae2023d53ef69!2sRRF%20Jessore!5e0!3m2!1sen!2sbd!4v1710000000000",
+},
   {
     id: "helicopter",
     mode: "Helicopter",
     icon: "🚁",
     description: [
-      "From Dhaka to Resort Heli Pad approximately 40 minutes flight.",
-      "The GPS Coordinates are 24°18'6.32\"N 91°45'51.88\"E ALT 4.1m.",
+      "From Dhaka to Jessore Airport approximately 40 minutes flight time.",
+      "The GPS Coordinates are 23°10'16.8\"N 89°09'28.2\"E ALT 20m.",
+      "Management must be informed and booking coordinate arrangements must be cleared prior to arrival.",
     ],
-    reverse: false,
+    map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3679.5244584218654!2d89.1578330761271!3d23.18754591018898!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ff10629eaad49b%3A0xeae06df6697009!2sJessore%20Airport!5e0!3m2!1sen!2sbd!4v1710000000001",
+    reverse: true,
   },
 ];
 
@@ -69,18 +86,19 @@ export default function GettingThere() {
               Available Modes of Travel
             </p>
             <p className="text-gray-400 max-w-2xl mx-auto mt-2 text-sm">
-              Your journey is the first step to your luxury getaway. Explore and
-              choose the most suitable mode of travel.
+              Your journey is the first step to your destination. Explore and
+              choose the most suitable mode of travel from Dhaka to The Imperial
+              Institute of Hospitality & Hotel Management.
             </p>
           </div>
 
-          {/* Dynamic Tabs from GettingThereData */}
+          {/* Dynamic Tabs */}
           <div className="flex flex-wrap justify-center gap-3 mb-12">
             {GettingThereData.map((item) => (
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className={`px-8 py-2 border transition-all duration-300 text-sm font-medium rounded-2xl ${
+                className={`px-8 py-2 border transition-all duration-300 text-sm font-medium rounded-2xl cursor-pointer ${
                   activeTab === item.id
                     ? "bg-primary text-black"
                     : "border-white/30 text-white hover:bg-white/10"
@@ -91,20 +109,22 @@ export default function GettingThere() {
             ))}
           </div>
 
+          {/* Content Cards */}
           <div className="space-y-15">
             {GettingThereData.map((item, index) => (
-              <div className="relative ">
+              <div key={item.id} className="relative">
+                {/* Original Translucent Border / Blur Accent */}
                 <div className="absolute inset-x-8 md:inset-x-15 -top-2 -bottom-2 bg-white/20 rounded-2xl backdrop-blur-[2px] pointer-events-none z-0" />
+
                 <motion.div
                   id={item.id}
-                  key={index}
                   initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
                   className="bg-white rounded-2xl overflow-hidden shadow-2xl grid md:grid-cols-2 scroll-mt-24 relative p-4"
                 >
-                  {/* Content */}
+                  {/* Content Layout */}
                   <div
                     className={`p-8 md:p-12 ${item.reverse ? "md:order-2" : ""}`}
                   >
@@ -125,28 +145,20 @@ export default function GettingThere() {
                     </ul>
                   </div>
 
-                  {/* Map / Image */}
+                  {/* Map / Frame Layout */}
                   <div
-                    className={`relative rounded-2xl ${item.reverse ? "md:order-1" : ""}`}
+                    className={`relative rounded-2xl overflow-hidden ${item.reverse ? "md:order-1" : ""}`}
                   >
-                    {item.mode === "Helicopter" ? (
-                      <img
-                        src="/images/helicopter.jpg"
-                        alt="Helicopter"
-                        className="w-full h-full object-cover min-h-[380px] md:min-h-[360px]"
-                      />
-                    ) : (
-                      <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10478.229564444935!2d89.19960057836589!3d23.164956528855356!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ff1094a2327a8d%3A0xe15cd28ef02f9570!2sRural%20Reconstruction%20Foundation!5e1!3m2!1sen!2sbd!4v1781689838796!5m2!1sen!2sbd"
-                        width="100%"
-                        height="460"
-                        style={{ border: 0 }}
-                        allowFullScreen
-                        loading="lazy"
-                        referrerPolicy="no-referrer-when-downgrade"
-                        className="w-full h-full min-h-[340px] md:min-h-[360px] rounded-2xl"
-                      />
-                    )}
+                    <iframe
+                      src={item.map}
+                      width="100%"
+                      height="460"
+                      style={{ border: 0 }}
+                      allowFullScreen
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      className="w-full h-full min-h-[340px] md:min-h-[360px] rounded-2xl"
+                    />
                   </div>
                 </motion.div>
               </div>
