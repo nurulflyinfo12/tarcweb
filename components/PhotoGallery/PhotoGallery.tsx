@@ -101,7 +101,7 @@ const PhotoGallery = () => {
       {/* Hero Section */}
       <PageHero
         title="Photo Gallery"
-        backgroundImage="https://images.unsplash.com/photo-1566073771259-6a8506099945"
+        backgroundImage="/images/cooridoor.jpg"
       />
 
       {/* Header Section */}

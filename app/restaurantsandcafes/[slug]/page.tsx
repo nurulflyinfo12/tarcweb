@@ -231,7 +231,7 @@ export default function Page() {
 
           <div className="relative bg-white rounded-2xl grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center p-5 sm:p-6 md:p-8 lg:p-10 overflow-hidden">
             <motion.div
-              initial={{ opacity: 0, x: 500 }}
+              initial={{ opacity: 0, x: 300 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, ease: "easeOut" }}
@@ -288,7 +288,7 @@ export default function Page() {
 
           <div className="relative bg-white rounded-2xl grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center p-5 sm:p-6 md:p-8 lg:p-10 overflow-hidden">
             <motion.div
-              initial={{ opacity: 0, x: 500 }}
+              initial={{ opacity: 0, x: 300 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, ease: "easeOut" }}
@@ -398,7 +398,7 @@ export default function Page() {
       >
         <div className="text-center max-w-2xl mx-auto mb-10 space-y-3">
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-wide text-[#E29A26]">
-            Book This Now
+            Book Now
           </h1>
           <p className="text-white text-xs sm:text-sm font-medium max-w-xl mx-auto leading-relaxed opacity-90">
             Booking restaurant has never been this simple. Fill up the form
@@ -444,8 +444,7 @@ export default function Page() {
               </div>
             </div>
 
-            {/* ... Rest of the form is unchanged (kept exactly as you had) ... */}
-            {/* Row 2 to Rules - All same as your original code */}
+            {/* Row 2  */}
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-5">
               <div className="flex flex-col">
@@ -704,7 +703,7 @@ export default function Page() {
               </button>
             </div>
 
-            <div className="pt-6 border-t border-neutral-100 space-y-2">
+            {/* <div className="pt-6 border-t border-neutral-100 space-y-2">
               {[
                 "Room up to 10 years image is dynamic condition.",
                 "Child age below 5 years will get complimentary food.",
@@ -720,7 +719,7 @@ export default function Page() {
                   <p>{rule}</p>
                 </div>
               ))}
-            </div>
+            </div> */}
           </form>
         </div>
       </div>
@@ -1227,7 +1226,7 @@ export default function Page() {
 //             <div id="bookForm" className="w-full py-8 px-4 sm:px-6 md:px-10 min-h-screen font-sans">
 //                 <div className="text-center max-w-2xl mx-auto mb-10 space-y-3">
 //                     <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-wide text-[#E29A26]">
-//                         Book This Now
+//                         Book Now
 //                     </h1>
 //                     <p className="text-white text-xs sm:text-sm font-medium max-w-xl mx-auto leading-relaxed opacity-90">
 //                         Booking restaurant has never been this simple. Fill up the form below with all the necessary information and wait for your booking confirmation mail.

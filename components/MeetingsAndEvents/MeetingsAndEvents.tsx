@@ -6,11 +6,11 @@ import ImageGalleryModal from "../common/ImageGalleryModal";
 import ImageCardSlider from "../common/ImageCardSlider";
 import PageHero from "../common/pagehero";
 
-const Meetings = [
+export const Meetings = [
   {
     id: "1",
     name: "Boardroom Meeting",
-    // type: "All Day Dine",
+    type: "Meeting",
     description:
       "Our sophisticated boardroom offers a perfect setting for focused discussions, strategic planning, and high-level business meetings...",
     images: ["/images/boardmeeting.jpeg", "/images/hallroom.jpg"],
@@ -23,6 +23,20 @@ const Meetings = [
       lunch: "11:30 a.m. to 5:00 p.m.",
       dinner: "6:00 p.m. to 10:30 p.m.",
     },
+    eventtypes: [
+      {
+        title: "Annual General Meeting",
+        image: "/images/conference.jpeg",
+      },
+      {
+        title: "Boardroom Sessions",
+        image: "/images/boardmeeting.jpeg",
+      },
+      {
+        title: "Corporate Meetings",
+        image: "/images/hallroom.jpg",
+      },
+    ],
     reverse: false,
   },
   {
@@ -45,6 +59,20 @@ const Meetings = [
       lunch: "11:30 a.m. to 5:00 p.m.",
       dinner: "6:00 p.m. to 10:30 p.m.",
     },
+    eventtypes: [
+      {
+        title: "Annual General Meeting",
+        image: "/images/conference.jpeg",
+      },
+      {
+        title: "Boardroom Sessions",
+        image: "/images/boardmeeting.jpeg",
+      },
+      {
+        title: "Corporate Meetings",
+        image: "/images/hallroom.jpg",
+      },
+    ],
     location: "Ground Floor",
     reverse: true,
   },
@@ -64,6 +92,20 @@ const Meetings = [
       lunch: "11:30 a.m. to 5:00 p.m.",
       dinner: "6:00 p.m. to 10:30 p.m.",
     },
+    eventtypes: [
+      {
+        title: "Annual General Meeting",
+        image: "/images/conference.jpeg",
+      },
+      {
+        title: "Boardroom Sessions",
+        image: "/images/boardmeeting.jpeg",
+      },
+      {
+        title: "Corporate Meetings",
+        image: "/images/hallroom.jpg",
+      },
+    ],
     location: "Ground Floor",
     reverse: true,
   },

@@ -45,21 +45,15 @@ export const rooms = [
     ],
     complimentaryServices: [
       { name: "Breakfast", icon: <FaUtensils size={14} /> },
-      { name: "Library", icon: <FaBook size={14} /> },
       { name: "Gym", icon: <FaDumbbell size={14} /> },
       { name: "Wi-Fi", icon: <FaWifi size={14} /> },
-      { name: "Children Play Zone", icon: <FaChild size={14} /> },
-      { name: "Tea & Coffee", icon: <FaCoffee size={14} /> },
       { name: "Mineral Water (2 bottles)", icon: <FaWater size={14} /> },
     ],
 
     amenities: [
       "One 7 x 7 king size bed",
-      "Heavenly duvet & pillows with duck down",
       "LED TV",
-      "Mini bar",
       "Central air condition system",
-      "Safety deposit box",
       "24 hours room service",
     ],
     reverse: false,
@@ -83,8 +77,6 @@ export const rooms = [
     ],
     complimentaryServices: [
       { name: "Breakfast", icon: <FaUtensils size={14} /> },
-      { name: "Outdoor Jacuzzi", icon: <FaHotTub size={15} /> },
-      { name: "Library", icon: <FaBook size={14} /> },
       { name: "Gym", icon: <FaDumbbell size={14} /> },
       { name: "Wi-Fi", icon: <FaWifi size={14} /> },
     ],
@@ -112,22 +104,15 @@ export const rooms = [
     images: ["/images/viproom.jpeg", "/images/vip1.jpeg", "/images/vip2.jpeg"],
     complimentaryServices: [
       { name: "Breakfast", icon: <FaUtensils size={14} /> },
-      { name: "Outdoor Jacuzzi", icon: <FaHotTub size={15} /> },
-      { name: "Library", icon: <FaBook size={14} /> },
       { name: "Gym", icon: <FaDumbbell size={14} /> },
       { name: "Wi-Fi", icon: <FaWifi size={14} /> },
-      { name: "Children Play Zone", icon: <FaChild size={14} /> },
-      { name: "Tea & Coffee", icon: <FaCoffee size={14} /> },
       { name: "Mineral Water (2 bottles)", icon: <FaWater size={14} /> },
     ],
 
     amenities: [
       "One 7 x 7 king size bed",
-      "Heavenly duvet & pillows with duck down",
       "LED TV",
-      "Mini bar",
       "Central air condition system",
-      "Safety deposit box",
       "24 hours room service",
     ],
     reverse: false,
