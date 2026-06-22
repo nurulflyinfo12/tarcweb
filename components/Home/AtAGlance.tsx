@@ -14,53 +14,33 @@ const AtAGlance = () => {
   const roomsData = [
     {
       id: 1,
-      title: "Royal Suite Superior",
+      title: "Super Deluxe Twin",
       guests: 4,
       beds: 3,
       size: 1160,
       description:
-        "Elevate your senses in our Royal Suites with elegant interiors and serene luxury surrounded by nature.",
-      image: "/images/room1.jpg",
+        "Experience comfort and convenience in our Super Deluxe Twin Room, featuring two cozy twin beds and elegant modern interiors. Perfect for friends, colleagues, or family travelers seeking a relaxing and spacious stay.",
+      image: "/images/tiwnroom.jpg",
     },
     {
       id: 2,
-      title: "Executive Deluxe Room",
+      title: "Super Deluxe Couple",
       guests: 2,
       beds: 1,
       size: 650,
       description:
-        "A perfect blend of comfort and modern design ideal for business and leisure travelers.",
-      image: "/images/room2.jpg",
+        "Our King Deluxe room has a spacious layout, with an abundance of natural light coming in and a spectacular view. The lavish and cozy King size bed is ideal for a couple.",
+      image: "/images/superdeluxecouple.jpeg",
     },
     {
       id: 3,
-      title: "Presidential Suite",
+      title: "Vip Room Regular",
       guests: 6,
       beds: 4,
       size: 2200,
       description:
-        "Experience unmatched luxury with panoramic views, premium services, and exclusive comfort.",
-      image: "/images/room3.jpg",
-    },
-    {
-      id: 4,
-      title: "Honeymoon Cottage",
-      guests: 2,
-      beds: 1,
-      size: 780,
-      description:
-        "A romantic private cottage surrounded by greenery, perfect for couples seeking peace and privacy.",
-      image: "/images/room4.jpg",
-    },
-    {
-      id: 5,
-      title: "Family Luxury Suite",
-      guests: 5,
-      beds: 3,
-      size: 1400,
-      description:
-        "Spacious family suite with multiple beds, living area, and modern amenities for a comfortable stay.",
-      image: "/images/room5.jpg",
+        "Enjoy a comfortable and relaxing stay in our VIP Room Regular, thoughtfully designed with modern amenities and stylish interiors. Ideal for guests seeking extra comfort, privacy, and a premium hospitality experience..",
+      image: "/images/viproom.jpeg",
     },
   ];
 

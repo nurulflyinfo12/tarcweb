@@ -2,25 +2,26 @@
 
 import React, { useState } from "react";
 import { FiCheck, FiArrowLeft, FiArrowRight, FiMapPin, FiCalendar, FiUsers } from "react-icons/fi";
-import Image from "next/image";
-
-import { rooms } from "../RoomAndSuites/RoomsAndSuites";
-import { Meetings, Restaurants } from "@/data";
 import PageHero from "../common/pagehero";
+import BookingSearch from "./BookingSearch";
+import Image from "next/image";
 
 const EnhancedBookingStepper = () => {
     const [currentStep, setCurrentStep] = useState(1);
     const [selectedType, setSelectedType] = useState<"room" | "restaurant" | "meeting">("room");
+    const [selectedItem, setSelectedItem] = useState<any>(null);
+
+    console.log("current", currentStep)
 
     const [searchData, setSearchData] = useState({
         location: "Cox's Bazar",
         checkIn: "",
         checkOut: "",
-        adults: "2",
+        guests: "1",
+        adults: "0",
         children: "0",
     });
 
-    const [selectedItem, setSelectedItem] = useState<any>(null);
     const [formData, setFormData] = useState({
         firstName: "",
         lastName: "",
@@ -30,18 +31,35 @@ const EnhancedBookingStepper = () => {
     });
 
     const getCurrentData = () => {
-        switch (selectedType) {
-            case "room": return rooms;
-            case "restaurant": return Restaurants;
-            case "meeting": return Meetings;
-            default: return rooms;
-        }
+        // switch (selectedType) {
+        //     case "room": return rooms;
+        //     case "restaurant": return Restaurants;
+        //     case "meeting": return Meetings;
+        //     default: return rooms;
+        // }
     };
 
     const currentData = getCurrentData();
 
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-        setSearchData({ ...searchData, [e.target.name]: e.target.value });
+        let value = e.target.value;
+
+        // Clear leading zero when user starts typing
+        if ((e.target.name === "guests" || e.target.name === "adults" || e.target.name === "children") && value === "0") {
+            value = "";
+        }
+
+        setSearchData({ ...searchData, [e.target.name]: value });
+    };
+
+    const handleSearchSubmit = () => {
+        console.log("✅ Search Submitted with following data:", searchData);
+        
+        // You can add more logic here later (API call, filter rooms, etc.)
+        alert("Search Submitted Successfully!\n\nCheck console for data.");
+
+        // Move to next step (you can change this behavior)
+        setCurrentStep(2);
     };
 
     const handleItemSelect = (item: any) => {
@@ -63,131 +81,14 @@ const EnhancedBookingStepper = () => {
 
     return (
         <>
-            {/*  SEARCH */}
+            <PageHero title="Book Now" backgroundImage="/images/couple/couple1.jpg" />
 
-            <PageHero title="Book" backgroundImage="/images/couple/couple1.jpg" />
-
-            <section className="-mt-32 relative z-30">
-                {/* Search Bar Container */}
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="bg-white/80 backdrop-blur-xl rounded-2xl shadow-[0_32px_64px_-16px_rgba(5,28,8,0.15)] border border-white/40 p-4 sm:p-6 lg:p-8">
-
-                        {/* Main Search Panel */}
-                        <div className="bg-white border border-slate-100 rounded-2xl shadow-sm overflow-hidden ring-1 ring-black/[0.02]">
-                            <div className="grid grid-cols-1 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-slate-100">
-
-                                {/* Destination */}
-                                <div className="p-6 hover:bg-slate-50/60 transition-colors duration-200 group flex gap-4 items-start">
-                                    <div className="p-3 bg-amber-50 rounded-xl text-amber-600 group-hover:bg-amber-100 transition-colors mt-0.5">
-                                        <FiMapPin className="w-5 h-5" />
-                                    </div>
-                                    <div className="flex-1 min-w-0">
-                                        <label className="block text-[11px] font-bold text-slate-400 mb-1 tracking-widest uppercase">
-                                            Where to go
-                                        </label>
-                                        <select
-                                            name="location"
-                                            value={searchData.location}
-                                            onChange={handleSearchChange}
-                                            className="w-full font-bold text-base text-slate-800 bg-transparent focus:outline-none cursor-pointer appearance-none truncate pr-4"
-                                        >
-                                            <option value="Cox's Bazar">Cox's Bazar, BD</option>
-                                            <option value="Jessore">Jessore, BD</option>
-                                            <option value="Dhaka">Dhaka, BD</option>
-                                            <option value="Sylhet">Sylhet, BD</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                {/* Check In */}
-                                <div className="p-6 hover:bg-slate-50/60 transition-colors duration-200 flex gap-4 items-start">
-                                    <div className="p-3 bg-emerald-50 rounded-xl text-emerald-600 mt-0.5">
-                                        <FiCalendar className="w-5 h-5" />
-                                    </div>
-                                    <div className="flex-1">
-                                        <label className="block text-[11px] font-bold text-slate-400 mb-1 tracking-widest uppercase">
-                                            Check In
-                                        </label>
-                                        <input
-                                            type="date"
-                                            name="checkIn"
-                                            value={searchData.checkIn}
-                                            onChange={handleSearchChange}
-                                            className="w-full font-bold text-sm text-slate-700 bg-transparent focus:outline-none cursor-pointer placeholder:text-slate-400"
-                                        />
-                                    </div>
-                                </div>
-
-                                {/* Check Out */}
-                                <div className="p-6 hover:bg-slate-50/60 transition-colors duration-200 flex gap-4 items-start">
-                                    <div className="p-3 bg-emerald-50 rounded-xl text-emerald-600 mt-0.5">
-                                        <FiCalendar className="w-5 h-5" />
-                                    </div>
-                                    <div className="flex-1">
-                                        <label className="block text-[11px] font-bold text-slate-400 mb-1 tracking-widest uppercase">
-                                            Check Out
-                                        </label>
-                                        <input
-                                            type="date"
-                                            name="checkOut"
-                                            value={searchData.checkOut}
-                                            onChange={handleSearchChange}
-                                            className="w-full font-bold text-sm text-slate-700 bg-transparent focus:outline-none cursor-pointer placeholder:text-slate-400"
-                                        />
-                                    </div>
-                                </div>
-
-                                {/* Rooms & Guests */}
-                                <div className="p-6 hover:bg-slate-50/60 transition-colors duration-200 flex gap-4 items-start">
-                                    <div className="p-3 bg-blue-50 rounded-xl text-blue-600 mt-0.5">
-                                        <FiUsers className="w-5 h-5" />
-                                    </div>
-                                    <div className="flex-1">
-                                        <label className="block text-[11px] font-bold text-slate-400 mb-2 tracking-widest uppercase">
-                                            Rooms & Guests
-                                        </label>
-                                        <div className="flex gap-4 items-center mt-1">
-                                            <div className="flex items-center gap-1.5 bg-slate-50 px-2.5 py-1.5 rounded-lg border border-slate-100">
-                                                <span className="text-xs font-semibold text-slate-400">Adults:</span>
-                                                <input
-                                                    type="number"
-                                                    name="adults"
-                                                    value={searchData.adults}
-                                                    onChange={handleSearchChange}
-                                                    className="w-8 font-bold text-sm text-slate-800 bg-transparent focus:outline-none text-center"
-                                                    min="1"
-                                                />
-                                            </div>
-                                            <div className="flex items-center gap-1.5 bg-slate-50 px-2.5 py-1.5 rounded-lg border border-slate-100">
-                                                <span className="text-xs font-semibold text-slate-400">Child:</span>
-                                                <input
-                                                    type="number"
-                                                    name="children"
-                                                    value={searchData.children}
-                                                    onChange={handleSearchChange}
-                                                    className="w-8 font-bold text-sm text-slate-800 bg-transparent focus:outline-none text-center"
-                                                    min="0"
-                                                />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Centered Search Button */}
-                        <div className="flex justify-center -mb-12 mt-8 relative z-10">
-                            <button
-                                onClick={() => setCurrentStep(1)}
-                                className="inline-flex items-center justify-center px-4 py-2 sm:px-5 sm:py-2.5 text-[11px] sm:text-xs font-serif font-bold tracking-widest rounded-sm transform bg-secondary hover:text-white dark:hover:bg-white dark:hover:text-secondary "
-                            >
-                                Search
-                            </button>
-                        </div>
-
-                    </div>
-                </div>
-            </section>
+            {/* search section*/}
+            <BookingSearch
+                searchData={searchData}
+                handleSearchChange={handleSearchChange}
+                onSearchClick={handleSearchSubmit}
+            />
 
             {/* ====================== STEPPER SECTION (Below Hero) ====================== */}
             <div className="max-w-7xl mx-auto px-4 py-24 relative z-20">
@@ -220,10 +121,10 @@ const EnhancedBookingStepper = () => {
                         {currentStep === 1 && (
                             <div>
                                 <h3 className="text-2xl font-semibold text-center mb-8">
-                                    Available {selectedType === "room" ? "Rooms" : selectedType === "restaurant" ? "Restaurants" : "Meeting Venues"}
+                                    Available 
                                 </h3>
                                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                    {currentData.map((item: any) => (
+                                    {/* {currentData.map((item: any) => (
                                         <div
                                             key={item.id}
                                             onClick={() => handleItemSelect(item)}
@@ -248,7 +149,7 @@ const EnhancedBookingStepper = () => {
                                                 </button>
                                             </div>
                                         </div>
-                                    ))}
+                                    ))} */}
                                 </div>
                             </div>
                         )}
