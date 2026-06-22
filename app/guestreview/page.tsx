@@ -148,7 +148,7 @@ export default function ReviewsPage() {
               </p>
               <span className="w-8 h-[1px] bg-primary-dark"></span>
             </div>
-            <h2 className="tracking-wide text-neutral-600 max-w-5xl mx-auto leading-relaxed">
+            <h2 className="tracking-wide text-white-600 max-w-5xl mx-auto leading-relaxed">
               {genericDescription}
             </h2>
           </div>
@@ -202,7 +202,7 @@ export default function ReviewsPage() {
               </p>
               <span className="w-8 h-[1px] bg-primary-dark"></span>
             </div>
-            <h2 className="tracking-wide text-neutral-600 max-w-5xl mx-auto leading-relaxed">
+            <h2 className="tracking-wide text-white-600 max-w-5xl mx-auto leading-relaxed">
               {genericDescription}
             </h2>
           </div>
@@ -267,7 +267,7 @@ export default function ReviewsPage() {
               </p>
               <span className="w-8 h-[1px] bg-primary-dark"></span>
             </div>
-            <h2 className="tracking-wide text-neutral-600 max-w-5xl mx-auto leading-relaxed">
+            <h2 className="tracking-wide text-white-600 max-w-5xl mx-auto leading-relaxed">
               {genericDescription}
             </h2>
           </div>
@@ -351,7 +351,7 @@ export default function ReviewsPage() {
               </p>
               <span className="w-8 h-[1px] bg-primary-dark"></span>
             </div>
-            <h2 className="tracking-wide text-neutral-600 max-w-5xl mx-auto leading-relaxed">
+            <h2 className="tracking-wide text-white-600 max-w-5xl mx-auto leading-relaxed">
               {genericDescription}
             </h2>
           </div>
