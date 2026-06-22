@@ -158,8 +158,7 @@ const Footer = () => {
         </div>
 
         <div className="text-center text-text-muted/60 text-xs mt-16 pt-8 border-t border-border/40 font-light transition-colors duration-300">
-          © {new Date().getFullYear()} The Imperial Institute of Hospitality &
-          Hotel Management. All Rights Reserved.
+          © {new Date().getFullYear()} All Rights Reserved. Develop by <Link href="https://flyinfosoftbd.com/" target="-blank" className="font-bold text-white hover:text-primary">Flyinfosoft Technology Limited</Link>
         </div>
       </div>
     </footer>
