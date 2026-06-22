@@ -24,7 +24,7 @@ const GettingThereData = [
     icon: "✈️",
     description: [
       "Daily domestic flights operating from Dhaka Hazrat Shahjalal International Airport (DAC) to Jessore Airport (JSR).",
-      "Short flight duration of approximately 35 to 40 minutes via Biman Bangladesh, US-Bangla, or Air Astra.",
+      "Short flight duration of approximately 35 to 40 minutes via Biman Bangladesh, US-Bangla.",
       "Private premium shuttle transfers can be arranged directly from Jessore Airport to the institute location.",
     ],
     map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3679.5244584218654!2d89.1578330761271!3d23.18754591018898!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ff10629eaad49b%3A0xeae06df6697009!2sJessore%20Airport!5e0!3m2!1sen!2sbd!4v1710000000001",
@@ -36,7 +36,7 @@ const GettingThereData = [
   icon: "🚂",
   description: [
     "From Dhaka Kamalapur Railway Station to Jessore Railway Station.",
-    "Available trains include the Sundarban Express and Benapole Express operating on this route.",
+    "Available trains include the Sundarban Express,Ruposhi Bangla Express, Chitra Express and Benapole Express operating on this route.",
     "Enjoy a scenic, comfortable ride through the local landscapes.",
     "A short air-conditioned van or private car drive will pick you up at Jessore station for transfer to the institute.",
   ],
