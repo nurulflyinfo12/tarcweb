@@ -56,7 +56,7 @@ export default function PageHero({
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background via-background/50 to-transparent pointer-events-none" />
 
       <div className="relative z-10 text-center px-6 max-w-5xl mx-auto flex flex-col items-center select-none">
-        <div className="relative mb-6">
+        <div className="relative">
           <motion.span
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 0.03, y: 0 }}
@@ -87,9 +87,9 @@ export default function PageHero({
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
               transition={{ duration: 1, delay: 0.6, ease: "easeInOut" }}
-              className="w-12 h-[1px] bg-gradient-to-r from-transparent via-white/30 to-transparent mx-auto mb-5"
+              className="w-12 h-[1px] bg-gradient-to-r from-transparent via-white/30 to-transparent mx-auto"
             />
-            <p className="text-lg md:text-xl font-light tracking-wide text-white/80 leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.3)]">
+            <p className="text-lg md:text-xl font-light tracking-wide text-white/90 leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.3)]">
               {subtitle}
             </p>
           </motion.div>
