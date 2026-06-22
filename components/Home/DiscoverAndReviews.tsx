@@ -249,10 +249,13 @@ const DiscoverAndReviews = () => {
                 </div>
 
                 <div className="mt-4 text-center lg:text-right">
-                  <button className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-600 hover:underline">
+                  <Link
+                    href="/guestreview"
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-600 hover:underline"
+                  >
                     <span>All Reviews</span>
                     <FaLongArrowAltRight size={12} />
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>
