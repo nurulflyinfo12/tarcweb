@@ -4,80 +4,81 @@
 
 import CallToAction from "@/components/common/calltoaction";
 import PageHero from "@/components/common/pagehero";
+import { Meetings } from "@/components/MeetingsAndEvents/MeetingsAndEvents";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 
-const Meetings = [
-  {
-    id: "1",
-    name: "Boardroom Meeting",
-    type: "Meeting",
-    description:
-      "Our sophisticated boardroom offers a perfect setting for focused discussions, strategic planning, and high-level business meetings...",
-    images: ["/images/boardmeeting.jpeg", "/images/hallroom.jpg"],
-    eventtypes: [
-      {
-        title: "Annual General Meeting",
-        image: "/images/conference.jpeg",
-      },
-      {
-        title: "Boardroom Sessions",
-        image: "/images/boardmeeting.jpeg",
-      },
-      {
-        title: "Corporate Meetings",
-        image: "/images/hallroom.jpg",
-      },
-    ],
-    heroImage: "/images/boardmeeting.jpeg",
-    cuisine: ["International", "Fast Casual", "Beverages"],
-    atmosphere: "Casual & Vibrant",
-    serviceStyle: "Buffet & A la Carte",
-    serviceHours: {
-      breakfast: "6:30 a.m. to 11:00 a.m.",
-      lunch: "11:30 a.m. to 5:00 p.m.",
-      dinner: "6:00 p.m. to 10:30 p.m.",
-    },
-    reverse: false,
-  },
-  {
-    id: "2",
-    name: "Conference Hall",
-    // type: "Hilltop Restaurant",
-    description:
-      "Spacious circular conference hall designed for large meetings, seminars, trainings, and corporate events with modern facilities...",
-    images: [
-      "/images/conference.jpeg",
-      "/images/boardmeeting.jpeg",
-      "/images/hallroom.jpg",
-    ],
-    eventtypes: [
-      {
-        title: "Annual General Meeting",
-        image: "/images/conference.jpeg",
-      },
-      {
-        title: "Boardroom Sessions",
-        image: "/images/boardmeeting.jpeg",
-      },
-      {
-        title: "Corporate Meetings",
-        image: "/images/hallroom.jpg",
-      },
-    ],
-    heroImage: "/images/conference.jpeg",
-    cuisine: ["International", "Fast Casual", "Beverages"],
-    atmosphere: "Casual & Vibrant",
-    serviceStyle: "Buffet & A la Carte",
-    serviceHours: {
-      breakfast: "6:30 a.m. to 11:00 a.m.",
-      lunch: "11:30 a.m. to 5:00 p.m.",
-      dinner: "6:00 p.m. to 10:30 p.m.",
-    },
-    location: "Ground Floor",
-    reverse: true,
-  },
-];
+// const Meetings = [
+//   {
+//     id: "1",
+//     name: "Boardroom Meeting",
+//     type: "Meeting",
+//     description:
+//       "Our sophisticated boardroom offers a perfect setting for focused discussions, strategic planning, and high-level business meetings...",
+//     images: ["/images/boardmeeting.jpeg", "/images/hallroom.jpg"],
+//     eventtypes: [
+//       {
+//         title: "Annual General Meeting",
+//         image: "/images/conference.jpeg",
+//       },
+//       {
+//         title: "Boardroom Sessions",
+//         image: "/images/boardmeeting.jpeg",
+//       },
+//       {
+//         title: "Corporate Meetings",
+//         image: "/images/hallroom.jpg",
+//       },
+//     ],
+//     heroImage: "/images/boardmeeting.jpeg",
+//     cuisine: ["International", "Fast Casual", "Beverages"],
+//     atmosphere: "Casual & Vibrant",
+//     serviceStyle: "Buffet & A la Carte",
+//     serviceHours: {
+//       breakfast: "6:30 a.m. to 11:00 a.m.",
+//       lunch: "11:30 a.m. to 5:00 p.m.",
+//       dinner: "6:00 p.m. to 10:30 p.m.",
+//     },
+//     reverse: false,
+//   },
+//   {
+//     id: "2",
+//     name: "Conference Hall",
+//     // type: "Hilltop Restaurant",
+//     description:
+//       "Spacious circular conference hall designed for large meetings, seminars, trainings, and corporate events with modern facilities...",
+//     images: [
+//       "/images/conference.jpeg",
+//       "/images/boardmeeting.jpeg",
+//       "/images/hallroom.jpg",
+//     ],
+//     eventtypes: [
+//       {
+//         title: "Annual General Meeting",
+//         image: "/images/conference.jpeg",
+//       },
+//       {
+//         title: "Boardroom Sessions",
+//         image: "/images/boardmeeting.jpeg",
+//       },
+//       {
+//         title: "Corporate Meetings",
+//         image: "/images/hallroom.jpg",
+//       },
+//     ],
+//     heroImage: "/images/conference.jpeg",
+//     cuisine: ["International", "Fast Casual", "Beverages"],
+//     atmosphere: "Casual & Vibrant",
+//     serviceStyle: "Buffet & A la Carte",
+//     serviceHours: {
+//       breakfast: "6:30 a.m. to 11:00 a.m.",
+//       lunch: "11:30 a.m. to 5:00 p.m.",
+//       dinner: "6:00 p.m. to 10:30 p.m.",
+//     },
+//     location: "Ground Floor",
+//     reverse: true,
+//   },
+// ];
 
 type PageProps = {
   params: Promise<{
@@ -170,7 +171,7 @@ const EventInquiryForm = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-10">
           <h2 className="text-3xl font-medium text-white tracking-wide">
-            Book This Venue Now!
+            Book Now
           </h2>
           <p className="text-gray-300 mt-2">
             Fill out the form below and our team will get back to you shortly.
@@ -558,7 +559,7 @@ export default async function Page({ params }: PageProps) {
 
           <div className="relative bg-white rounded-2xl grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center p-5 sm:p-6 md:p-8 lg:p-10 overflow-hidden">
             <motion.div
-              initial={{ opacity: 0, x: 500 }}
+              initial={{ opacity: 0, x: 300 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, ease: "easeOut" }}
@@ -617,7 +618,7 @@ export default async function Page({ params }: PageProps) {
 
           <div className="relative bg-white rounded-2xl grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center p-5 sm:p-6 md:p-8 lg:p-10 overflow-hidden">
             <motion.div
-              initial={{ opacity: 0, x: 500 }}
+              initial={{ opacity: 0, x: 300 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, ease: "easeOut" }}

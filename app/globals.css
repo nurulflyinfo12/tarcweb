@@ -116,3 +116,34 @@ body {
 .awards-marquee:hover {
   animation-play-state: paused;
 }
+
+/* bookNow style start */
+
+/* custom_styles.css */
+
+/* Hide arrows in type="number" inputs */
+.hide-number-arrows::-webkit-inner-spin-button, 
+.hide-number-arrows::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+.hide-number-arrows {
+  -moz-appearance: textfield; /* For Firefox */
+}
+
+/* Hide native date picker icon */
+.hide-date-icon::-webkit-calendar-picker-indicator {
+    background: transparent;
+    bottom: 0;
+    color: transparent;
+    cursor: pointer;
+    height: auto;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: auto;
+}
+
+/* booknow style end  */

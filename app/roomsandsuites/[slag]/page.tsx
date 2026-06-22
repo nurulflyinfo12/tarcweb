@@ -373,7 +373,7 @@ const RoomPage = ({ params: initialParams }: RoomPageProps) => {
 
       <AtAGlance />
 
-      {/* Booking Form - Added id="bookForm" */}
+      {/* Booking Form */}
       <div
         id="bookForm"
         className="w-full py-8 px-4 sm:px-6 md:px-10 min-h-screen font-sans"
@@ -394,9 +394,6 @@ const RoomPage = ({ params: initialParams }: RoomPageProps) => {
             onSubmit={handleSubmit}
             className="bg-white p-6 sm:p-10 md:p-12 rounded-xl shadow-2xl space-y-6"
           >
-            {/* ... rest of your form remains unchanged ... */}
-            {/* Row 1 to Rules section - unchanged as per your request */}
-            {/* (All form fields kept exactly the same) */}
 
             {/* Row 1: Names */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-5">
@@ -689,7 +686,7 @@ const RoomPage = ({ params: initialParams }: RoomPageProps) => {
             </div>
 
             {/* Rules */}
-            <div className="pt-6 border-t border-neutral-100 space-y-2">
+            {/* <div className="pt-6 border-t border-neutral-100 space-y-2">
               {[
                 "Room up to 10 years image is dynamic condition.",
                 "Child age below 5 years will get complimentary food.",
@@ -705,7 +702,7 @@ const RoomPage = ({ params: initialParams }: RoomPageProps) => {
                   <p>{rule}</p>
                 </div>
               ))}
-            </div>
+            </div> */}
           </form>
         </div>
       </div>
