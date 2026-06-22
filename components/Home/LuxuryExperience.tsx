@@ -4,15 +4,14 @@ import Link from "next/link";
 import React from "react";
 import {
   FaUtensils,
-  FaSpa,
-  FaSwimmingPool,
   FaDumbbell,
   FaChild,
-  FaFilm,
+  FaWalking,
+  FaTree,
 } from "react-icons/fa";
 
 interface AmenityItem {
-  iconKey: "cuisine" | "spa" | "pool" | "gym" | "children" | "movie" | string;
+  iconKey: "cuisine" | "gym" | "walking" | "children" | "nature" | string;
   title: string;
   desc: string;
 }
@@ -33,13 +32,12 @@ interface LuxuryExperienceProps {
 
 const iconMap: Record<string, React.ReactNode> = {
   cuisine: <FaUtensils />,
-  spa: <FaSpa />,
-  pool: <FaSwimmingPool />,
-  gym: <FaDumbbell />,
-  children: <FaChild />,
-  movie: <FaFilm />,
-};
 
+  children: <FaChild />,
+
+  walking: <FaWalking />,
+  nature: <FaTree />,
+};
 const LuxuryExperience: React.FC<LuxuryExperienceProps> = ({
   sectionSubtitle = "Enjoy The Unique Experience",
   sectionTitleMain = "We Invite You to",
@@ -64,29 +62,20 @@ const LuxuryExperience: React.FC<LuxuryExperienceProps> = ({
       desc: "Enjoy a delightful dining experience, at our multicuisine restaurants and cafes.",
     },
     {
-      iconKey: "spa",
-      title: "Spa",
-      desc: "Relaxation and well-being go hand in hand with the image of a pleasurable holiday.",
-    },
-    {
-      iconKey: "pool",
-      title: "Swimming Pool",
-      desc: "The amoeba shaped, temperature controlled swimming pool promises a rejuvenating retreat.",
-    },
-    {
       iconKey: "gym",
       title: "Gym",
       desc: "Pursue your fitness regimen at our well equipped gym center.",
     },
     {
-      iconKey: "children",
-      title: "Children Play Zone",
-      desc: "Equipped with various types of children activity games which will keep your children busy & joyful.",
+      iconKey: "walking",
+      title: "Walking Space",
+      desc: "Unwind or enjoy your morning jogs across our beautifully designed, spacious walking tracks.",
     },
+
     {
-      iconKey: "movie",
-      title: "Movie Theatre",
-      desc: "The 44 seated HD Movie Theater allows you to enjoy a private movie experience.",
+      iconKey: "nature",
+      title: "Outside Beauty",
+      desc: "Immerse yourself in our beautifully landscaped gardens, lush green open views, and serene natural surroundings.",
     },
   ],
 }) => {
