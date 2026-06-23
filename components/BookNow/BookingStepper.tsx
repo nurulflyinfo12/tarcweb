@@ -8,7 +8,6 @@ import {
   FiLoader,
   FiX,
   FiInfo,
-  FiEye,
 } from "react-icons/fi";
 import {
   MdOutlineAirlineSeatIndividualSuite,
@@ -19,18 +18,30 @@ import PageHero from "../common/pagehero";
 import BookingSearch from "./BookingSearch";
 import Image from "next/image";
 import { useSearchRooms } from "@/app/redux/hook/useSearchRooms";
+import { BookingRequestPayload, useRooms } from "@/app/redux/hook/useRooms";
 
 const BookingStepper = () => {
   const [currentStep, setCurrentStep] = useState(1);
-  // Track multi-room selections as an array based on unique RoomId
   const [selectedItems, setSelectedItems] = useState<any[]>([]);
 
-  // Modal states for single room API details lookup
+  // Toast Notification State
+  const [toast, setToast] = useState<{
+    message: string;
+    visible: boolean;
+    type?: "success" | "error" | "info";
+  }>({
+    message: "",
+    visible: false,
+    type: "info",
+  });
+
+  // Modal states
   const [activeModalId, setActiveModalId] = useState<number | null>(null);
   const [modalData, setModalData] = useState<any>(null);
   const [modalLoading, setModalLoading] = useState(false);
 
   const { results, loading, error, searchRooms } = useSearchRooms();
+  const { createConfirmRoom } = useRooms();
 
   const [searchData, setSearchData] = useState({
     location: "",
@@ -39,7 +50,7 @@ const BookingStepper = () => {
     guests: "1",
     adults: "1",
     children: "0",
-    rooms: 1, // Determines how many allocations are required
+    rooms: 1,
     childrenAges: [] as number[],
   });
 
@@ -52,8 +63,17 @@ const BookingStepper = () => {
   });
 
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Fetch Room details dynamically when a modal opens using the dynamic activeModalId
+  // Show Toast Function
+  const showToast = (message: string, type: "success" | "error" | "info" = "info") => {
+    setToast({ message, visible: true, type });
+    setTimeout(() => {
+      setToast({ message: "", visible: false, type: "info" });
+    }, 4000);
+  };
+
+  // Fetch Room details
   useEffect(() => {
     if (!activeModalId) return;
 
@@ -107,21 +127,22 @@ const BookingStepper = () => {
       childAges: searchData.childrenAges,
     });
 
-    setSelectedItems([]); // Clear selection when performing a new search
+    setSelectedItems([]);
     setCurrentStep(1);
   };
 
-  // Toggles room selections accurately checking for room.RoomId
   const handleItemToggle = (room: any) => {
     const exists = selectedItems.find((item) => item.RoomId === room.RoomId);
+
     if (exists) {
       setSelectedItems((prev) =>
         prev.filter((item) => item.RoomId !== room.RoomId),
       );
     } else {
       if (selectedItems.length >= searchData.rooms) {
-        alert(
+        showToast(
           `You have already selected the required ${searchData.rooms} room(s) based on your search fields.`,
+          "info"
         );
         return;
       }
@@ -162,21 +183,54 @@ const BookingStepper = () => {
   const prevStep = () => setCurrentStep((prev) => prev - 1);
 
   const handleSubmit = async () => {
-    const finalPayload = {
-      roomsSelected: selectedItems,
-      guestDetails: formData,
-      bookingDates: {
-        checkIn: searchData.checkIn,
-        checkOut: searchData.checkOut,
-        roomsCount: searchData.rooms,
-        adults: Number(searchData.adults),
-        children: Number(searchData.children),
-        childrenAges: searchData.childrenAges,
+    if (isSubmitting) return;
+
+    setIsSubmitting(true);
+
+    const finalPayload: BookingRequestPayload = {
+      BookingRequest: {
+        BookingRequestId: 0,
+        CheckInDate: new Date(searchData.checkIn).toISOString(),
+        CheckOutDate: new Date(searchData.checkOut).toISOString(),
+        NumberOfRooms: searchData.rooms,
+        NumberOfAdults: Number(searchData.adults),
+        NumberOfChildren: Number(searchData.children),
+        SpecialRequests: formData.message || "",
+        Status: "Pending",
+        CompanyId: "RRF-GUEST",
+        CreatedAt: new Date().toISOString(),
+        UpdatedAt: new Date().toISOString(),
       },
+      BookingRequestGuest: {
+        GuestId: 0,
+        BookingRequestId: 0,
+        FullName: `${formData.firstName} ${formData.lastName}`,
+        Email: formData.email,
+        Phone: formData.phone,
+        Age: 0,
+        IsPrimary: true,
+        Nationality: "",
+        PassportOrID: "",
+      },
+      BookingRequestRooms: selectedItems.map((room) => ({
+        RoomRequestId: 0,
+        BookingRequestId: 0,
+        RoomType: room.RoomName || room.roomName || `Room ${room.RoomNumber || ""}`,
+        NumberOfGuests: room.MaxOccupancy || 2,
+        ExtraBedNeeded: false,
+        SmokingPreference: false,
+      })),
     };
 
-    console.log("🚀 Confirming Final Booking Payload:", finalPayload);
-    alert("Booking Confirmed Successfully! Check development console logs.");
+    try {
+      await createConfirmRoom(finalPayload);
+      showToast("🎉 Booking request submitted successfully!", "success");
+    } catch (err) {
+      console.error("Booking error:", err);
+      showToast("❌ Booking failed. Please try again later.", "error");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const totalPriceSum = selectedItems.reduce(
@@ -198,10 +252,10 @@ const BookingStepper = () => {
         onGuestChange={handleGuestChange}
       />
 
-      <div className="max-w-7xl mx-auto px-4 py-24 relative z-20">
-        <div className="max-w-5xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden">
-          {/* Progress Bar Header Layout */}
-          <div className="bg-[#051C08] text-white py-6 px-8">
+      <div className="max-w-7xl mx-auto px-10 py-24 relative z-20">
+        <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+          {/* Progress Bar */}
+          <div className="bg-[#444444] text-white py-6 px-8">
             <h2 className="text-2xl font-bold mb-6">Complete Your Booking</h2>
             <div className="flex justify-between relative">
               {[1, 2, 3].map((step) => (
@@ -292,7 +346,6 @@ const BookingStepper = () => {
                           }`}
                         >
                           <div>
-                            {/* Image Frame with Offset Border Styling */}
                             <div className="relative h-64 w-full bg-slate-50 overflow-hidden rounded-none group p-2">
                               <div className="relative w-full h-full overflow-hidden rounded-none">
                                 <Image
@@ -311,7 +364,6 @@ const BookingStepper = () => {
                                 />
                               </div>
 
-                              {/* Floating Minimalist Price Tag */}
                               <div className="absolute bottom-4 left-4 bg-slate-900 text-white font-mono text-sm px-3 py-1.5 rounded-none tracking-tight">
                                 BDT{" "}
                                 {(room.PricePerNight || 3500).toLocaleString()}{" "}
@@ -320,7 +372,6 @@ const BookingStepper = () => {
                                 </span>
                               </div>
 
-                              {/* Crisp Top Selection Overlay Banner */}
                               {isSelected && (
                                 <div className="absolute top-0 right-0 bg-emerald-700 text-white text-[10px] font-bold px-4 py-1.5 uppercase tracking-widest rounded-none">
                                   Selected (Slot #{matchIndex + 1})
@@ -328,7 +379,6 @@ const BookingStepper = () => {
                               )}
                             </div>
 
-                            {/* Content Area */}
                             <div className="p-6 px-2">
                               <div className="flex justify-between items-start gap-4 mb-3">
                                 <h4 className="font-serif text-2xl font-normal text-slate-900 tracking-wide truncate">
@@ -351,7 +401,6 @@ const BookingStepper = () => {
                                   "Beautiful spacious room fully structured and prepared with premier options."}
                               </p>
 
-                              {/* Minimalist Grid Specs instead of bulk tags */}
                               <div className="grid grid-cols-2 gap-4 border-t border-slate-100 pt-4 text-[11px] text-slate-600 uppercase tracking-wider font-medium">
                                 <div className="flex items-center gap-2">
                                   <MdOutlineAirlineSeatIndividualSuite className="text-sm text-slate-400" />
@@ -373,7 +422,6 @@ const BookingStepper = () => {
                             </div>
                           </div>
 
-                          {/* Clean Action Interface */}
                           <div className="p-6 px-2 pt-2 pb-6">
                             <button
                               type="button"
@@ -397,14 +445,13 @@ const BookingStepper = () => {
               </div>
             )}
 
-            {/* STEP 2: Checkout Form & Selection Review Layout */}
+            {/* STEP 2 */}
             {currentStep === 2 && selectedItems.length > 0 && (
               <div className="grid lg:grid-cols-5 gap-10">
                 <div className="lg:col-span-2 space-y-4">
                   <h3 className="text-xl font-semibold text-slate-800">
                     Your Selection List
                   </h3>
-
                   <div className="bg-slate-50 rounded-2xl p-5 border border-slate-100 space-y-4 max-h-[480px] overflow-y-auto">
                     {selectedItems.map((room, idx) => (
                       <div
@@ -536,7 +583,7 @@ const BookingStepper = () => {
               </div>
             )}
 
-            {/* STEP 3: Preview Total Layout Before Booking Post */}
+            {/* STEP 3 */}
             {currentStep === 3 && selectedItems.length > 0 && (
               <div className="max-w-2xl mx-auto">
                 <h3 className="text-2xl font-semibold text-center mb-6 text-slate-800">
@@ -602,7 +649,7 @@ const BookingStepper = () => {
             )}
           </div>
 
-          {/* Navigation Actions Footer */}
+          {/* Navigation Footer */}
           <div className="border-t p-8 flex justify-between bg-slate-50/80 items-center">
             <button
               type="button"
@@ -628,16 +675,43 @@ const BookingStepper = () => {
               <button
                 type="button"
                 onClick={handleSubmit}
-                className="bg-emerald-600 hover:bg-emerald-700 text-white px-10 py-3.5 rounded-xl font-bold text-sm tracking-wide shadow-md transition-colors"
+                disabled={isSubmitting}
+                className="bg-emerald-600 hover:bg-emerald-700 text-white px-10 py-3.5 rounded-xl font-bold text-sm tracking-wide shadow-md transition-colors disabled:opacity-70 flex items-center gap-2"
               >
-                Confirm Booking
+                {isSubmitting ? (
+                  <>Processing <FiLoader className="animate-spin" /></>
+                ) : (
+                  "Confirm Booking"
+                )}
               </button>
             )}
           </div>
         </div>
       </div>
 
-      {/* DETAILED ROOM MODAL */}
+      {/* Toast Notification - Top Right */}
+      {toast.visible && (
+        <div
+          className={`fixed top-6 right-6 px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-3 z-[100] min-w-[320px] text-white ${
+            toast.type === "success"
+              ? "bg-emerald-600"
+              : toast.type === "error"
+              ? "bg-red-600"
+              : "bg-emerald-700"
+          }`}
+        >
+          <FiInfo className="text-xl shrink-0" />
+          <p className="font-medium pr-8">{toast.message}</p>
+          <button
+            onClick={() => setToast({ message: "", visible: false, type: "info" })}
+            className="ml-auto text-white/70 hover:text-white transition-colors"
+          >
+            <FiX className="text-xl" />
+          </button>
+        </div>
+      )}
+
+      {/* Room Detail Modal */}
       {activeModalId && (
         <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
           <div className="bg-white rounded-3xl w-full max-w-xl shadow-2xl relative overflow-hidden transition-all duration-300 transform scale-100">
@@ -728,8 +802,7 @@ const BookingStepper = () => {
                       />
                     ) : (
                       <div className="p-4 bg-slate-50 border border-dashed rounded-xl text-xs text-slate-400 text-center italic">
-                        No amenities listed for this room
-                        unit.
+                        No amenities listed for this room unit.
                       </div>
                     )}
                   </div>
