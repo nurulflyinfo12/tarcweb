@@ -1,17 +1,16 @@
-"use client"
 
-import EnhancedBookingStepper from "@/components/BookNow/BookNow";
+import BookingStepper from "@/components/BookNow/BookingStepper";
 
-const booknow = () => {
+const page = () => {
 
     return (
         <>
-        <EnhancedBookingStepper />        
+        <BookingStepper />        
         </>
     )
 }
 
-export default booknow;
+export default page;
 
 
 

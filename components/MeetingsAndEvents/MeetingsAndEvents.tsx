@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import CallToAction from "../common/calltoaction";
 import ImageGalleryModal from "../common/ImageGalleryModal";
 import ImageCardSlider from "../common/ImageCardSlider";
 import PageHero from "../common/pagehero";
+import { useRooms } from "@/app/redux/hook/useRooms";
 
 export const Meetings = [
   {
@@ -117,11 +118,18 @@ const MeetingsAndEvents = () => {
     images: string[];
   } | null>(null);
   const [initialIndex, setInitialIndex] = useState(0);
+  const {fetchRooms, rooms} = useRooms();
 
   const openModal = (images: string[], name: string, startIndex = 0) => {
     setSelectedRoom({ name, images });
     setInitialIndex(startIndex);
   };
+
+  useEffect(()=>{
+    if(!rooms || rooms.length > 0) fetchRooms();
+  },[])
+
+  console.log("roomsa all api", rooms)
 
   const closeModal = () => {
     setSelectedRoom(null);

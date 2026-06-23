@@ -39,12 +39,12 @@ export default function Navbar() {
 
             {/* Phone */}
             <a
-              href="tel:+8809678785959"
+              href="tel:+8801704199798"
               className="flex items-center gap-1 text-sm font-medium transition-colors hover:text-green-400"
             >
               <FiPhone className="text-sm flex-shrink-0" />
               <span className="whitespace-nowrap text-[12px]">
-                +880 9678 785959
+                +880 1704-199798
               </span>
             </a>
           </div>
@@ -92,6 +92,8 @@ export default function Navbar() {
                   </span>
                 </a>
               </div>
+
+              {/* <ThemeToggle scrolled={scrolled} /> */}
 
               {/* Book Now Button */}
               <Link
