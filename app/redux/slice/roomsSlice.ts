@@ -13,12 +13,14 @@ export interface Room {
 
 interface RoomsState {
   rooms: Room[];
+  roomsSearch: Room[];
   loading: boolean;
   error: string | null;
 }
 
 const initialState: RoomsState = {
   rooms: [],
+  roomsSearch: [],
   loading: false,
   error: null,
 };
@@ -35,6 +37,10 @@ const roomsSlice = createSlice({
       state.loading = false;
       state.rooms = action.payload;
     },
+    setRoomsByDateSuccess: (state, action: PayloadAction<Room[]>) => {
+      state.loading = false;
+      state.roomsSearch = action.payload;
+    },
     setRoomsFailure: (state, action: PayloadAction<string>) => {
       state.loading = false;
       state.error = action.payload;
@@ -46,11 +52,12 @@ const roomsSlice = createSlice({
   },
 });
 
-export const { 
-  setRoomsStart, 
-  setRoomsSuccess, 
-  setRoomsFailure, 
-  clearRooms 
+export const {
+  setRoomsStart,
+  setRoomsSuccess,
+  setRoomsFailure,
+  setRoomsByDateSuccess,
+  clearRooms
 } = roomsSlice.actions;
 
 export default roomsSlice.reducer;
