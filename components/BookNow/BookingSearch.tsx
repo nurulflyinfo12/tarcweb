@@ -175,10 +175,6 @@ const BookingSearch: React.FC<BookingSearchProps> = ({
         <section className="-mt-26 relative z-30">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="bg-white/70 backdrop-blur-md rounded-3xl shadow-[0_32px_50px_-20px_rgba(0,0,0,0.08)] border border-white/60 p-3 sm:p-5">
-                    {/* 
-                      FIX: Changed overflow-hidden to overflow-visible 
-                      so the absolute dropdown inside is not clipped.
-                    */}
                     <div className="bg-white border border-slate-100 rounded-2xl shadow-sm overflow-visible ring-1 ring-black/[0.01]">
                         <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-slate-100">
 
@@ -220,7 +216,7 @@ const BookingSearch: React.FC<BookingSearchProps> = ({
 
                             {/* Guests Dropdown */}
                             <div className="relative" ref={guestSectionRef}>
-                                <div className="relative flex gap-4 items-center group z-[999] p-4 sm:p-5 hover:bg-slate-50/50 transition-all duration-200">
+                                <div className="relative flex gap-4 items-center group z-[999] p-4 sm:p-5 transition-all duration-200">
                                     <div className="p-3 bg-blue-50 rounded-xl text-blue-600 flex-shrink-0">
                                         <FiUsers className="w-5 h-5" />
                                     </div>
