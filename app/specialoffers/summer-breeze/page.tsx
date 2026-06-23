@@ -222,8 +222,8 @@ const SummerBreeze = () => {
     <div className="">
       {/* hero section  */}
       <PageHero
-        title="Summer Breeze"
-        subtitle="Refresh Your Soul This Summer"
+        title="Special rooms offer"
+        subtitle="Special Room Offers - The Perfect Way to Refresh Your Soul"
         backgroundImage="/images/cooridoor.jpg"
       />
 
@@ -579,7 +579,7 @@ const SummerBreeze = () => {
             </div>
 
             {/* ================= RULES / NOTICES SECTION ================= */}
-            <div className="pt-6 border-t border-neutral-100 space-y-2">
+            {/* <div className="pt-6 border-t border-neutral-100 space-y-2">
               {[
                 "Room up to 10 years image is dynamic condition.",
                 "Child age below 5 years will get complimentary food.",
@@ -595,7 +595,7 @@ const SummerBreeze = () => {
                   <p>{rule}</p>
                 </div>
               ))}
-            </div>
+            </div> */}
           </form>
         </div>
       </section>
