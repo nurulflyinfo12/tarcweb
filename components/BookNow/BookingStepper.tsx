@@ -1,25 +1,24 @@
 "use client";
 
 import React, { useState } from "react";
-import { FiCheck, FiArrowLeft, FiArrowRight, FiMapPin, FiCalendar, FiUsers } from "react-icons/fi";
+import { FiCheck, FiArrowLeft, FiArrowRight } from "react-icons/fi";
 import PageHero from "../common/pagehero";
 import BookingSearch from "./BookingSearch";
 import Image from "next/image";
 
-const EnhancedBookingStepper = () => {
+const BookingStepper = () => {
     const [currentStep, setCurrentStep] = useState(1);
-    const [selectedType, setSelectedType] = useState<"room" | "restaurant" | "meeting">("room");
     const [selectedItem, setSelectedItem] = useState<any>(null);
-
-    console.log("current", currentStep)
 
     const [searchData, setSearchData] = useState({
         location: "",
         checkIn: "",
         checkOut: "",
         guests: "1",
-        adults: "0",
+        adults: "1",
         children: "0",
+        rooms: 1,
+        childrenAges: [] as number[],
     });
 
     const [formData, setFormData] = useState({
@@ -30,35 +29,25 @@ const EnhancedBookingStepper = () => {
         message: "",
     });
 
-    const getCurrentData = () => {
-        // switch (selectedType) {
-        //     case "room": return rooms;
-        //     case "restaurant": return Restaurants;
-        //     case "meeting": return Meetings;
-        //     default: return rooms;
-        // }
+    const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+        const { name, value } = e.target;
+        setSearchData(prev => ({ ...prev, [name]: value }));
     };
 
-    const currentData = getCurrentData();
-
-    const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-        let value = e.target.value;
-
-        // Clear leading zero when user starts typing
-        if ((e.target.name === "guests" || e.target.name === "adults" || e.target.name === "children") && value === "0") {
-            value = "";
-        }
-
-        setSearchData({ ...searchData, [e.target.name]: value });
+    const handleGuestChange = (guestsData: { rooms: number; adults: number; children: number; childrenAges: number[] }) => {
+        setSearchData(prev => ({
+            ...prev,
+            rooms: guestsData.rooms,
+            adults: guestsData.adults.toString(),
+            children: guestsData.children.toString(),
+            childrenAges: guestsData.childrenAges,
+            guests: (guestsData.adults + guestsData.children).toString(),
+        }));
     };
 
     const handleSearchSubmit = () => {
         console.log("✅ Search Submitted with following data:", searchData);
-        
-        // You can add more logic here later (API call, filter rooms, etc.)
         alert("Search Submitted Successfully!\n\nCheck console for data.");
-
-        // Move to next step (you can change this behavior)
         setCurrentStep(2);
     };
 
@@ -83,14 +72,15 @@ const EnhancedBookingStepper = () => {
         <>
             <PageHero title="Book Now" backgroundImage="/images/viproom/viproom.jpg" />
 
-            {/* search section*/}
+            {/* Search Section */}
             <BookingSearch
                 searchData={searchData}
                 handleSearchChange={handleSearchChange}
                 onSearchClick={handleSearchSubmit}
+                onGuestChange={handleGuestChange}
             />
 
-            {/*STEPPER SECTION (Below Hero) */}
+            {/* STEPPER SECTION */}
             <div className="max-w-7xl mx-auto px-4 py-24 relative z-20">
                 <div className="max-w-5xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden">
                     {/* Progress */}
@@ -117,44 +107,13 @@ const EnhancedBookingStepper = () => {
 
                     {/* Step Content */}
                     <div className="p-8 md:p-12 min-h-[600px]">
-                        {/* STEP 1 */}
                         {currentStep === 1 && (
                             <div>
-                                <h3 className="text-2xl font-semibold text-center mb-8">
-                                    Available 
-                                </h3>
-                                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                    {/* {currentData.map((item: any) => (
-                                        <div
-                                            key={item.id}
-                                            onClick={() => handleItemSelect(item)}
-                                            className="border rounded-2xl overflow-hidden hover:shadow-xl transition cursor-pointer group"
-                                        >
-                                            <div className="relative h-52">
-                                                <Image
-                                                    src={item.coverImage || item.heroImage || item.images?.[0]}
-                                                    alt={item.name}
-                                                    fill
-                                                    className="object-cover group-hover:scale-105 transition"
-                                                />
-                                            </div>
-                                            <div className="p-5">
-                                                <h4 className="font-semibold text-lg mb-1">{item.name}</h4>
-                                                <p className="text-sm text-gray-600 line-clamp-2 mb-4">{item.description}</p>
-                                                {item.price && (
-                                                    <p className="text-xl font-bold text-green-600">৳{item.offer || item.price}</p>
-                                                )}
-                                                <button className="mt-4 w-full bg-[#051C08] text-white py-3 rounded-xl hover:bg-black">
-                                                    Select
-                                                </button>
-                                            </div>
-                                        </div>
-                                    ))} */}
-                                </div>
+                                <h3 className="text-2xl font-semibold text-center mb-8">Available Properties</h3>
+                                {/* Add your property listing here later */}
                             </div>
                         )}
 
-                        {/* STEP 2 & STEP 3 remain the same as before */}
                         {currentStep === 2 && selectedItem && (
                             <div className="grid lg:grid-cols-5 gap-10">
                                 <div className="lg:col-span-2">
@@ -185,13 +144,17 @@ const EnhancedBookingStepper = () => {
                                 <div className="bg-gray-50 p-8 rounded-3xl space-y-6">
                                     <div className="grid grid-cols-2 gap-y-4 text-sm">
                                         <p className="font-medium text-gray-600">Type:</p>
-                                        <p className="font-semibold capitalize">{selectedType}</p>
-                                        <p className="font-medium text-gray-600">Item:</p>
                                         <p className="font-semibold">{selectedItem.name}</p>
                                         <p className="font-medium text-gray-600">Check-In:</p>
-                                        <p className="font-semibold">{searchData.checkIn || "—"}</p>
+                                        <p className="font-semibold">{searchData.checkIn}</p>
                                         <p className="font-medium text-gray-600">Check-Out:</p>
-                                        <p className="font-semibold">{searchData.checkOut || "—"}</p>
+                                        <p className="font-semibold">{searchData.checkOut}</p>
+                                        <p className="font-medium text-gray-600">Rooms:</p>
+                                        <p className="font-semibold">{searchData.rooms}</p>
+                                        <p className="font-medium text-gray-600">Adults:</p>
+                                        <p className="font-semibold">{searchData.adults}</p>
+                                        <p className="font-medium text-gray-600">Children:</p>
+                                        <p className="font-semibold">{searchData.children}</p>
                                         <p className="font-medium text-gray-600">Name:</p>
                                         <p className="font-semibold">{formData.firstName} {formData.lastName}</p>
                                         <p className="font-medium text-gray-600">Contact:</p>
@@ -224,4 +187,4 @@ const EnhancedBookingStepper = () => {
     );
 };
 
-export default EnhancedBookingStepper;
+export default BookingStepper;

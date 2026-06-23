@@ -44,7 +44,7 @@ export default function Navbar() {
             >
               <FiPhone className="text-sm flex-shrink-0" />
               <span className="whitespace-nowrap text-[12px]">
-                +8801704199798
+                +880 1704-199798
               </span>
             </a>
           </div>
