@@ -7,6 +7,7 @@ import SpecialOfferButton from "@/components/SpecialOfferButton";
 import { FaWhatsapp } from "react-icons/fa";
 
 import Providers from "./providers";
+import AppInitializer from "./AppInitializer";
 
 const biryani = Biryani({
   subsets: ["latin"],

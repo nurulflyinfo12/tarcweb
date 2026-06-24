@@ -6,6 +6,7 @@ import ImageGalleryModal from "../common/ImageGalleryModal";
 import ImageCardSlider from "../common/ImageCardSlider";
 import PageHero from "../common/pagehero";
 import { useRooms } from "@/app/redux/hook/useRooms";
+import { useApplication } from "@/app/redux/hook/useApplicationDetails";
 
 export const Meetings = [
   {
@@ -118,7 +119,7 @@ const MeetingsAndEvents = () => {
     images: string[];
   } | null>(null);
   const [initialIndex, setInitialIndex] = useState(0);
-  const {fetchRooms, rooms} = useRooms();
+  const {fetchApplication, application} = useApplication();
 
   const openModal = (images: string[], name: string, startIndex = 0) => {
     setSelectedRoom({ name, images });
@@ -126,10 +127,10 @@ const MeetingsAndEvents = () => {
   };
 
   useEffect(()=>{
-    if(!rooms || rooms.length > 0) fetchRooms();
+    if(!application) fetchApplication();
   },[])
 
-  console.log("roomsa all api", rooms)
+  console.log("appplication all api", application)
 
   const closeModal = () => {
     setSelectedRoom(null);
