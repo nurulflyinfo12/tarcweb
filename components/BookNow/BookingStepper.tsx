@@ -1,44 +1,24 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import {
-  FiCheck,
-  FiArrowLeft,
-  FiArrowRight,
-  FiLoader,
-  FiX,
-  FiInfo,
-} from "react-icons/fi";
-import {
-  MdOutlineAirlineSeatIndividualSuite,
-  MdAcUnit,
-  MdMeetingRoom,
-} from "react-icons/md";
+import { FiCheck, FiArrowLeft, FiArrowRight, FiLoader, FiAlertCircle } from "react-icons/fi";
 import PageHero from "../common/pagehero";
 import BookingSearch from "./BookingSearch";
-import Image from "next/image";
 import { useSearchRooms } from "@/app/redux/hook/useSearchRooms";
 import { BookingRequestPayload, useRooms } from "@/app/redux/hook/useRooms";
+import Step1RoomSelection from "./Step1RoomSelection";
+import Step2GuestDetails from "./Step2GuestDetails";
+import Step3BookingSummary from "./Step3BookingSummary";
 
 const BookingStepper = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedItems, setSelectedItems] = useState<any[]>([]);
 
-  // Toast Notification State
   const [toast, setToast] = useState<{
     message: string;
     visible: boolean;
     type?: "success" | "error" | "info";
-  }>({
-    message: "",
-    visible: false,
-    type: "info",
-  });
-
-  // Modal states
-  const [activeModalId, setActiveModalId] = useState<number | null>(null);
-  const [modalData, setModalData] = useState<any>(null);
-  const [modalLoading, setModalLoading] = useState(false);
+  }>({ message: "", visible: false, type: "info" });
 
   const { results, loading, error, searchRooms } = useSearchRooms();
   const { createConfirmRoom } = useRooms();
@@ -65,39 +45,12 @@ const BookingStepper = () => {
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Show Toast Function
   const showToast = (message: string, type: "success" | "error" | "info" = "info") => {
     setToast({ message, visible: true, type });
-    setTimeout(() => {
-      setToast({ message: "", visible: false, type: "info" });
-    }, 4000);
+    setTimeout(() => setToast({ message: "", visible: false }), 2000);
   };
 
-  // Fetch Room details
-  useEffect(() => {
-    if (!activeModalId) return;
-
-    const fetchRoomDetails = async () => {
-      setModalLoading(true);
-      try {
-        const res = await fetch(
-          `https://api.rrfguesthouse.com/Dev/dev_api/public/get-room?roomId=${activeModalId}`,
-        );
-        const data = await res.json();
-        setModalData(data);
-      } catch (err) {
-        console.error("Failed fetching room specs:", err);
-      } finally {
-        setModalLoading(false);
-      }
-    };
-
-    fetchRoomDetails();
-  }, [activeModalId]);
-
-  const handleSearchChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
-  ) => {
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setSearchData((prev) => ({ ...prev, [name]: value }));
   };
@@ -126,7 +79,6 @@ const BookingStepper = () => {
       childCount: Number(searchData.children),
       childAges: searchData.childrenAges,
     });
-
     setSelectedItems([]);
     setCurrentStep(1);
   };
@@ -135,29 +87,20 @@ const BookingStepper = () => {
     const exists = selectedItems.find((item) => item.RoomId === room.RoomId);
 
     if (exists) {
-      setSelectedItems((prev) =>
-        prev.filter((item) => item.RoomId !== room.RoomId),
-      );
+      setSelectedItems((prev) => prev.filter((item) => item.RoomId !== room.RoomId));
     } else {
       if (selectedItems.length >= searchData.rooms) {
-        showToast(
-          `You have already selected the required ${searchData.rooms} room(s) based on your search fields.`,
-          "info"
-        );
+        showToast(`You can only select ${searchData.rooms} room(s).`, "info");
         return;
       }
       setSelectedItems((prev) => [...prev, room]);
     }
   };
 
-  const handleFormChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
+  const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    if (formErrors[name]) {
-      setFormErrors((prev) => ({ ...prev, [name]: "" }));
-    }
+    if (formErrors[name]) setFormErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
   const validateForm = () => {
@@ -182,9 +125,32 @@ const BookingStepper = () => {
 
   const prevStep = () => setCurrentStep((prev) => prev - 1);
 
+  {/* Click Navigation Step Guard Controller */}
+  const handleStepClick = (targetStep: number) => {
+    if (targetStep === currentStep) return;
+    
+    // Going backwards is always allowed
+    if (targetStep < currentStep) {
+      setCurrentStep(targetStep);
+      return;
+    }
+
+    // Checking forward boundaries sequentially
+    if (currentStep === 1 || targetStep > 2) {
+      if (selectedItems.length !== searchData.rooms) {
+        showToast(`Please select exactly ${searchData.rooms} room(s) to continue.`, "info");
+        return;
+      }
+    }
+    if (targetStep === 3) {
+      if (!validateForm()) return;
+    }
+
+    setCurrentStep(targetStep);
+  };
+
   const handleSubmit = async () => {
     if (isSubmitting) return;
-
     setIsSubmitting(true);
 
     const finalPayload: BookingRequestPayload = {
@@ -224,10 +190,10 @@ const BookingStepper = () => {
 
     try {
       await createConfirmRoom(finalPayload);
-      showToast("🎉 Booking request submitted successfully!", "success");
+      showToast("Booking request submitted successfully!", "success");
     } catch (err) {
       console.error("Booking error:", err);
-      showToast("❌ Booking failed. Please try again later.", "error");
+      showToast("Booking failed. Please try again later.", "error");
     } finally {
       setIsSubmitting(false);
     }
@@ -235,15 +201,12 @@ const BookingStepper = () => {
 
   const totalPriceSum = selectedItems.reduce(
     (acc, item) => acc + (item.PricePerNight || 3500),
-    0,
+    0
   );
 
   return (
     <>
-      <PageHero
-        title="Book Now"
-        backgroundImage="/images/viproom/viproom.jpg"
-      />
+      <PageHero title="Book Now" backgroundImage="/images/viproom/viproom.jpg" />
 
       <BookingSearch
         searchData={searchData}
@@ -252,434 +215,124 @@ const BookingStepper = () => {
         onGuestChange={handleGuestChange}
       />
 
-      <div className="max-w-7xl mx-auto px-10 py-24 relative z-20">
-        <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
-          {/* Progress Bar */}
-          <div className="bg-[#444444] text-white py-6 px-8">
-            <h2 className="text-2xl font-bold mb-6">Complete Your Booking</h2>
-            <div className="flex justify-between relative">
-              {[1, 2, 3].map((step) => (
-                <div key={step} className="flex flex-col items-center z-10">
-                  <div
-                    className={`w-10 h-10 rounded-full flex items-center justify-center border-2 transition-all ${
-                      currentStep === step
-                        ? "bg-white text-[#051C08] border-white font-bold"
-                        : currentStep > step
-                          ? "bg-emerald-500 border-emerald-500 text-white"
-                          : "border-white/50 text-white/50"
-                    }`}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-16 relative z-20 font-biryani">
+        <div className="bg-card text-foreground rounded-3xl shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] border border-border overflow-hidden">
+          
+          {/* Progress Bar Header */}
+          <div className="bg-background text-foreground pt-10 pb-8 px-8 lg:px-12 border-b border-border">
+            <div className="max-w-3xl mx-auto text-center mb-8">
+              <h2 className="text-3xl font-extrabold tracking-tight text-primary">
+                Complete Your Booking
+              </h2>
+              <p className="text-sm text-text-muted mt-1">Please follow the steps below to reserve your luxury stay</p>
+            </div>
+            
+            <div className="max-w-4xl mx-auto relative px-4">
+              <div className="flex justify-between items-center relative">
+                {[1, 2, 3].map((step) => (
+                  <button 
+                    key={step} 
+                    type="button"
+                    onClick={() => handleStepClick(step)}
+                    className="flex flex-col items-center z-10 group relative focus:outline-none cursor-pointer"
                   >
-                    {currentStep > step ? <FiCheck /> : step}
-                  </div>
-                  <p className="text-xs mt-2 font-medium tracking-wide">
-                    {step === 1 && "Select Rooms"}
-                    {step === 2 && "Guest Details"}
-                    {step === 3 && "Confirm & Pay"}
-                  </p>
+                    <div
+                      className={`w-12 h-12 rounded-full flex items-center justify-center border-2 font-semibold text-sm transition-all duration-300 shadow-md ${
+                        currentStep === step
+                          ? "bg-primary text-background border-primary scale-110 ring-4 ring-primary/20"
+                          : currentStep > step
+                          ? "bg-secondary border-secondary text-foreground group-hover:opacity-80"
+                          : "bg-card border-border text-text-muted backdrop-blur-sm group-hover:border-primary/40"
+                      }`}
+                    >
+                      {currentStep > step ? <FiCheck className="text-lg stroke-[3]" /> : step}
+                    </div>
+                    <p className={`text-xs mt-3 font-semibold tracking-wide uppercase transition-colors duration-200 ${
+                      currentStep === step ? "text-primary" : "text-text-muted group-hover:text-foreground"
+                    }`}>
+                      {step === 1 && "Select Rooms"}
+                      {step === 2 && "Guest Details"}
+                      {step === 3 && "Confirm & Pay"}
+                    </p>
+                  </button>
+                ))}
+                
+                {/* Horizontal Progress Lines */}
+                <div className="absolute top-6 left-6 right-6 h-[2px] bg-border -z-10 flex">
+                  <div 
+                    className="bg-secondary h-full transition-all duration-500 ease-out" 
+                    style={{ width: currentStep === 1 ? "0%" : currentStep === 2 ? "50%" : "100%" }}
+                  />
                 </div>
-              ))}
-              <div className="absolute top-5 left-0 right-0 h-[2px] bg-white/20 -z-10" />
+              </div>
             </div>
           </div>
 
-          {/* Step Selection Banner */}
-          {currentStep === 1 && (
-            <div className="bg-emerald-50/80 px-8 py-3.5 border-b border-emerald-100 flex items-center justify-between text-sm text-emerald-800">
-              <div className="flex items-center gap-2">
-                <FiInfo className="text-emerald-700 text-base shrink-0" />
-                <span>
-                  Required: Select exactly{" "}
-                  <strong>{searchData.rooms} room(s)</strong> to advance.
-                </span>
-              </div>
-              <span className="bg-emerald-700 text-white font-semibold text-xs px-2.5 py-1 rounded-full">
-                {selectedItems.length} / {searchData.rooms} Selected
-              </span>
+          {/* Step Content */}
+          <div className="p-6 md:p-14 min-h-[520px] bg-background/40">
+            <div className="max-w-6xl mx-auto">
+              {currentStep === 1 && (
+                <Step1RoomSelection
+                  results={results}
+                  loading={loading}
+                  error={error}
+                  selectedItems={selectedItems}
+                  requiredRooms={searchData.rooms}
+                  onItemToggle={handleItemToggle}
+                  showToast={showToast}
+                />
+              )}
+
+              {currentStep === 2 && (
+                <Step2GuestDetails
+                  selectedItems={selectedItems}
+                  formData={formData}
+                  formErrors={formErrors}
+                  totalPriceSum={totalPriceSum}
+                  onFormChange={handleFormChange}
+                />
+              )}
+
+              {currentStep === 3 && (
+                <Step3BookingSummary
+                  selectedItems={selectedItems}
+                  searchData={searchData}
+                  formData={formData}
+                  totalPriceSum={totalPriceSum}
+                />
+              )}
             </div>
-          )}
-
-          {/* Step Content Shell */}
-          <div className="p-8 md:p-12 min-h-[500px]">
-            {/* STEP 1: Property Feed Selection Grid */}
-            {currentStep === 1 && (
-              <div>
-                <h3 className="text-2xl font-semibold text-center mb-8 text-slate-800">
-                  Available Accommodations
-                </h3>
-
-                {loading && (
-                  <div className="flex flex-col items-center justify-center py-20 text-slate-500 gap-3">
-                    <FiLoader className="w-8 h-8 animate-spin text-emerald-700" />
-                    <p>Searching for open matching rooms...</p>
-                  </div>
-                )}
-
-                {error && (
-                  <p className="text-center text-red-500 bg-red-50 py-4 rounded-xl border border-red-100">
-                    {error}
-                  </p>
-                )}
-
-                {!loading && results.length === 0 && !error && (
-                  <div className="text-center py-16 border border-dashed border-slate-200 rounded-3xl">
-                    <p className="text-slate-400 font-medium">
-                      Please enter preferred dates to view properties.
-                    </p>
-                  </div>
-                )}
-
-                {!loading && results.length > 0 && (
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                    {results.map((room: any) => {
-                      const matchIndex = selectedItems.findIndex(
-                        (item) => item.RoomId === room.RoomId,
-                      );
-                      const isSelected = matchIndex !== -1;
-
-                      return (
-                        <div
-                          key={room.RoomId || room.id}
-                          className={`bg-white transition-all duration-300 flex flex-col justify-between border-b-2 rounded-none ${
-                            isSelected
-                              ? "border-emerald-700 shadow-xl"
-                              : "border-slate-200 hover:border-slate-800"
-                          }`}
-                        >
-                          <div>
-                            <div className="relative h-64 w-full bg-slate-50 overflow-hidden rounded-none group p-2">
-                              <div className="relative w-full h-full overflow-hidden rounded-none">
-                                <Image
-                                  src={
-                                    room.RoomImage ||
-                                    room.coverImage ||
-                                    "/images/viproom/viproom.jpg"
-                                  }
-                                  alt={
-                                    room.RoomName ||
-                                    room.roomName ||
-                                    "Hotel Room Card"
-                                  }
-                                  fill
-                                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105 rounded-none"
-                                />
-                              </div>
-
-                              <div className="absolute bottom-4 left-4 bg-slate-900 text-white font-mono text-sm px-3 py-1.5 rounded-none tracking-tight">
-                                BDT{" "}
-                                {(room.PricePerNight || 3500).toLocaleString()}{" "}
-                                <span className="text-[10px] text-slate-400 font-light uppercase">
-                                  / night
-                                </span>
-                              </div>
-
-                              {isSelected && (
-                                <div className="absolute top-0 right-0 bg-emerald-700 text-white text-[10px] font-bold px-4 py-1.5 uppercase tracking-widest rounded-none">
-                                  Selected (Slot #{matchIndex + 1})
-                                </div>
-                              )}
-                            </div>
-
-                            <div className="p-6 px-2">
-                              <div className="flex justify-between items-start gap-4 mb-3">
-                                <h4 className="font-serif text-2xl font-normal text-slate-900 tracking-wide truncate">
-                                  {room.RoomName ||
-                                    room.roomName ||
-                                    `Room ${room.RoomNumber || "Unit"}`}
-                                </h4>
-
-                                <button
-                                  type="button"
-                                  onClick={() => setActiveModalId(room.RoomId)}
-                                  className="text-slate-400 hover:text-slate-900 text-xs font-semibold uppercase tracking-widest flex items-center gap-1 transition-colors rounded-none shrink-0 border-b border-transparent hover:border-slate-900 pb-0.5"
-                                >
-                                  View Details
-                                </button>
-                              </div>
-
-                              <p className="text-xs text-slate-500 leading-relaxed font-light line-clamp-2 mb-6">
-                                {room.description ||
-                                  "Beautiful spacious room fully structured and prepared with premier options."}
-                              </p>
-
-                              <div className="grid grid-cols-2 gap-4 border-t border-slate-100 pt-4 text-[11px] text-slate-600 uppercase tracking-wider font-medium">
-                                <div className="flex items-center gap-2">
-                                  <MdOutlineAirlineSeatIndividualSuite className="text-sm text-slate-400" />
-                                  <span>
-                                    Limit: {room.MaxOccupancy || 2} Guests
-                                  </span>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                  <MdAcUnit
-                                    className={`text-sm ${room.IsAC ? "text-blue-500" : "text-slate-300"}`}
-                                  />
-                                  <span>
-                                    {room.IsAC
-                                      ? "Air Conditioning"
-                                      : "Standard Air"}
-                                  </span>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div className="p-6 px-2 pt-2 pb-6">
-                            <button
-                              type="button"
-                              onClick={() => handleItemToggle(room)}
-                              className={`w-full py-4 font-semibold text-xs uppercase tracking-widest transition-all rounded-none border ${
-                                isSelected
-                                  ? "bg-emerald-800 text-white border-emerald-800 hover:bg-emerald-900"
-                                  : "bg-transparent text-slate-900 border-slate-900 hover:bg-slate-900 hover:text-white"
-                              }`}
-                            >
-                              {isSelected
-                                ? "Remove Selection"
-                                : "Book This Accommodation"}
-                            </button>
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                )}
-              </div>
-            )}
-
-            {/* STEP 2 */}
-            {currentStep === 2 && selectedItems.length > 0 && (
-              <div className="grid lg:grid-cols-5 gap-10">
-                <div className="lg:col-span-2 space-y-4">
-                  <h3 className="text-xl font-semibold text-slate-800">
-                    Your Selection List
-                  </h3>
-                  <div className="bg-slate-50 rounded-2xl p-5 border border-slate-100 space-y-4 max-h-[480px] overflow-y-auto">
-                    {selectedItems.map((room, idx) => (
-                      <div
-                        key={room.RoomId || idx}
-                        className="flex gap-3 bg-white p-3 rounded-xl border border-slate-200/60 shadow-sm"
-                      >
-                        <div className="relative w-20 h-20 rounded-lg overflow-hidden bg-slate-100 shrink-0">
-                          <Image
-                            src={
-                              room.RoomImage ||
-                              room.coverImage ||
-                              "/images/viproom/viproom.jpg"
-                            }
-                            alt="Selected item preview"
-                            fill
-                            className="object-cover"
-                          />
-                        </div>
-                        <div className="min-w-0 flex-1 flex flex-col justify-between">
-                          <div>
-                            <p className="font-bold text-sm text-slate-800 truncate">
-                              {room.RoomName ||
-                                room.roomName ||
-                                `Room ${room.RoomNumber || "Allocated Unit"}`}
-                            </p>
-                            <p className="text-xs text-slate-500">
-                              Max Occupancy: {room.MaxOccupancy || 2} persons
-                            </p>
-                          </div>
-                          <div className="flex justify-between items-center text-xs">
-                            <span className="text-emerald-700 font-semibold">
-                              BDT{" "}
-                              {(room.PricePerNight || 3500).toLocaleString()}
-                            </span>
-                            <span className="text-slate-400 bg-slate-100 px-2 py-0.5 rounded font-mono">
-                              Slot #{idx + 1}
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-
-                    <div className="pt-3 border-t border-dashed border-slate-200 flex justify-between items-center text-sm font-bold text-slate-800">
-                      <span>Combined Total Price:</span>
-                      <span className="text-emerald-700 text-base">
-                        BDT {totalPriceSum.toLocaleString()} / night
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="lg:col-span-3 space-y-6">
-                  <h3 className="text-xl font-semibold text-slate-800">
-                    Guest Information
-                  </h3>
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div>
-                      <input
-                        type="text"
-                        name="firstName"
-                        value={formData.firstName}
-                        placeholder="First Name *"
-                        onChange={handleFormChange}
-                        className={`w-full p-4 border rounded-2xl focus:outline-none focus:border-[#051C08] text-sm text-slate-800 ${formErrors.firstName ? "border-red-500" : "border-slate-200"}`}
-                      />
-                      {formErrors.firstName && (
-                        <p className="text-red-500 text-xs mt-1 ml-1">
-                          {formErrors.firstName}
-                        </p>
-                      )}
-                    </div>
-                    <div>
-                      <input
-                        type="text"
-                        name="lastName"
-                        value={formData.lastName}
-                        placeholder="Last Name *"
-                        onChange={handleFormChange}
-                        className={`w-full p-4 border rounded-2xl focus:outline-none focus:border-[#051C08] text-sm text-slate-800 ${formErrors.lastName ? "border-red-500" : "border-slate-200"}`}
-                      />
-                      {formErrors.lastName && (
-                        <p className="text-red-500 text-xs mt-1 ml-1">
-                          {formErrors.lastName}
-                        </p>
-                      )}
-                    </div>
-                    <div>
-                      <input
-                        type="tel"
-                        name="phone"
-                        value={formData.phone}
-                        placeholder="Phone Number *"
-                        onChange={handleFormChange}
-                        className={`w-full p-4 border rounded-2xl focus:outline-none focus:border-[#051C08] text-sm text-slate-800 ${formErrors.phone ? "border-red-500" : "border-slate-200"}`}
-                      />
-                      {formErrors.phone && (
-                        <p className="text-red-500 text-xs mt-1 ml-1">
-                          {formErrors.phone}
-                        </p>
-                      )}
-                    </div>
-                    <div>
-                      <input
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        placeholder="Email Address *"
-                        onChange={handleFormChange}
-                        className={`w-full p-4 border rounded-2xl focus:outline-none focus:border-[#051C08] text-sm text-slate-800 ${formErrors.email ? "border-red-500" : "border-slate-200"}`}
-                      />
-                      {formErrors.email && (
-                        <p className="text-red-500 text-xs mt-1 ml-1">
-                          {formErrors.email}
-                        </p>
-                      )}
-                    </div>
-                  </div>
-                  <div>
-                    <textarea
-                      name="message"
-                      value={formData.message}
-                      placeholder="Special Requests or arrival notes (optional)..."
-                      onChange={handleFormChange}
-                      rows={4}
-                      className="w-full p-4 border border-slate-200 rounded-2xl focus:outline-none focus:border-[#051C08] text-sm text-slate-800"
-                    />
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* STEP 3 */}
-            {currentStep === 3 && selectedItems.length > 0 && (
-              <div className="max-w-2xl mx-auto">
-                <h3 className="text-2xl font-semibold text-center mb-6 text-slate-800">
-                  Booking Summary Preview
-                </h3>
-                <div className="bg-slate-50 p-8 rounded-3xl border border-slate-100 space-y-6 text-slate-700">
-                  <div className="grid grid-cols-2 gap-y-4 text-sm divide-y divide-slate-100">
-                    <div className="pt-3 font-medium text-slate-500">
-                      Rooms Secured:
-                    </div>
-                    <div className="pt-3 font-bold text-slate-800">
-                      {selectedItems.length} Unit(s) selected
-                    </div>
-
-                    <div className="pt-3 font-medium text-slate-500">
-                      Combined Total Rate:
-                    </div>
-                    <div className="pt-3 font-bold text-emerald-700">
-                      BDT {totalPriceSum.toLocaleString()} / night
-                    </div>
-
-                    <div className="pt-3 font-medium text-slate-500">
-                      Check-In Date:
-                    </div>
-                    <div className="pt-3 font-semibold text-slate-800">
-                      {searchData.checkIn || "Not Configured"}
-                    </div>
-
-                    <div className="pt-3 font-medium text-slate-500">
-                      Check-Out Date:
-                    </div>
-                    <div className="pt-3 font-semibold text-slate-800">
-                      {searchData.checkOut || "Not Configured"}
-                    </div>
-
-                    <div className="pt-3 font-medium text-slate-500">
-                      Primary Guest:
-                    </div>
-                    <div className="pt-3 font-semibold text-slate-800">
-                      {formData.firstName} {formData.lastName}
-                    </div>
-
-                    <div className="pt-3 font-medium text-slate-500">
-                      Contact Channels:
-                    </div>
-                    <div className="pt-3 font-semibold text-slate-800 truncate">
-                      {formData.email} <br /> {formData.phone}
-                    </div>
-
-                    {formData.message.trim() && (
-                      <>
-                        <div className="pt-3 font-medium text-slate-500">
-                          Special Request:
-                        </div>
-                        <div className="pt-3 italic text-slate-600 text-xs">
-                          {formData.message}
-                        </div>
-                      </>
-                    )}
-                  </div>
-                </div>
-              </div>
-            )}
           </div>
 
           {/* Navigation Footer */}
-          <div className="border-t p-8 flex justify-between bg-slate-50/80 items-center">
+          <div className="border-t border-border p-6 md:p-8 flex justify-between bg-card items-center">
             <button
               type="button"
               onClick={prevStep}
               disabled={currentStep === 1}
-              className="flex items-center gap-2 px-6 py-3.5 rounded-xl border border-slate-200 font-semibold text-sm text-slate-600 bg-white disabled:opacity-40 disabled:cursor-not-allowed hover:bg-slate-50 transition-colors"
+              className="flex items-center gap-2 px-6 py-2 md:py-3.5 rounded-xl border border-border font-bold text-sm text-foreground bg-background transition-all duration-200 hover:bg-background/80 disabled:opacity-30 disabled:pointer-events-none cursor-pointer"
             >
-              <FiArrowLeft /> Previous
+              <FiArrowLeft className="text-base" /> Previous
             </button>
 
             {currentStep < 3 ? (
               <button
                 type="button"
                 onClick={nextStep}
-                disabled={
-                  currentStep === 1 && selectedItems.length !== searchData.rooms
-                }
-                className="flex items-center gap-2 bg-[#051C08] text-white px-8 py-3.5 rounded-xl font-semibold text-sm hover:bg-black transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-sm"
+                disabled={currentStep === 1 && selectedItems.length !== searchData.rooms}
+                className="flex items-center gap-2 bg-primary text-background px-6 py-2 md:px-8 md:py-3.5 rounded-xl font-bold text-sm transition-all duration-200 hover:bg-primary-dark active:scale-[0.98] disabled:opacity-30 disabled:pointer-events-none shadow-sm cursor-pointer"
               >
-                Next <FiArrowRight />
+                Next Step <FiArrowRight className="text-base" />
               </button>
             ) : (
               <button
                 type="button"
                 onClick={handleSubmit}
                 disabled={isSubmitting}
-                className="bg-emerald-600 hover:bg-emerald-700 text-white px-10 py-3.5 rounded-xl font-bold text-sm tracking-wide shadow-md transition-colors disabled:opacity-70 flex items-center gap-2"
+                className="bg-secondary text-foreground px-6 py-2 md:px-10 md:py-3.5 rounded-xl font-bold text-sm tracking-wide shadow-md transition-all duration-200 active:scale-[0.98] disabled:opacity-70 flex items-center gap-2 hover:bg-secondary/90 cursor-pointer"
               >
                 {isSubmitting ? (
-                  <>Processing <FiLoader className="animate-spin" /></>
+                  <>Processing <FiLoader className="animate-spin text-base" /></>
                 ) : (
                   "Confirm Booking"
                 )}
@@ -689,131 +342,24 @@ const BookingStepper = () => {
         </div>
       </div>
 
-      {/* Toast Notification - Top Right */}
+      {/* Theme Aware Notification Toast */}
       {toast.visible && (
-        <div
-          className={`fixed top-6 right-6 px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-3 z-[100] min-w-[320px] text-white ${
-            toast.type === "success"
-              ? "bg-emerald-600"
-              : toast.type === "error"
-              ? "bg-red-600"
-              : "bg-emerald-700"
-          }`}
-        >
-          <FiInfo className="text-xl shrink-0" />
-          <p className="font-medium pr-8">{toast.message}</p>
-          <button
-            onClick={() => setToast({ message: "", visible: false, type: "info" })}
-            className="ml-auto text-white/70 hover:text-white transition-colors"
+        <div className={`fixed top-6 right-6 px-6 py-4 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.3)] flex items-center gap-3.5 z-[100] min-w-[340px] text-foreground border transition-all duration-300 backdrop-blur-md ${
+          toast.type === "success" 
+            ? "bg-secondary/95 border-secondary" 
+            : toast.type === "error" 
+            ? "bg-red-900/95 border-red-700" 
+            : "bg-card/95 border-border"
+        }`}>
+          {toast.type === "error" && <FiAlertCircle className="text-xl shrink-0 text-accent" />}
+          {toast.type === "success" && <FiCheck className="text-xl shrink-0 bg-foreground/20 p-0.5 rounded-full" />}
+          <p className="font-semibold text-sm pr-6 leading-relaxed">{toast.message}</p>
+          <button 
+            onClick={() => setToast({ message: "", visible: false })} 
+            className="ml-auto text-text-muted hover:text-foreground bg-foreground/10 hover:bg-foreground/20 transition-colors rounded-full w-6 h-6 flex items-center justify-center text-xs"
           >
-            <FiX className="text-xl" />
+            ✕
           </button>
-        </div>
-      )}
-
-      {/* Room Detail Modal */}
-      {activeModalId && (
-        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
-          <div className="bg-white rounded-3xl w-full max-w-xl shadow-2xl relative overflow-hidden transition-all duration-300 transform scale-100">
-            <div className="p-6 border-b flex justify-between items-center bg-slate-50">
-              <div>
-                <h3 className="text-lg font-bold text-slate-800">
-                  Room Specifications Lookup
-                </h3>
-                <p className="text-xs text-slate-500">
-                  Room reference sequence: #{activeModalId}
-                </p>
-              </div>
-              <button
-                type="button"
-                onClick={() => {
-                  setActiveModalId(null);
-                  setModalData(null);
-                }}
-                className="p-2 text-slate-400 hover:text-slate-700 bg-white rounded-full border shadow-sm transition-colors"
-              >
-                <FiX className="text-lg" />
-              </button>
-            </div>
-
-            <div className="p-6 min-h-[220px]">
-              {modalLoading ? (
-                <div className="flex flex-col items-center justify-center py-12 gap-3 text-slate-500">
-                  <FiLoader className="w-8 h-8 animate-spin text-[#051C08]" />
-                  <p className="text-sm">
-                    Fetching real-time unit data metrics...
-                  </p>
-                </div>
-              ) : modalData ? (
-                <div className="space-y-6">
-                  <div className="grid grid-cols-3 gap-3 text-center">
-                    <div className="bg-slate-50 border rounded-xl p-3">
-                      <p className="text-xs text-slate-400 font-medium uppercase tracking-wider mb-1">
-                        Room No.
-                      </p>
-                      <div className="flex items-center justify-center gap-1 font-bold text-slate-800 text-base">
-                        <MdMeetingRoom className="text-emerald-700" />
-                        <span>{modalData.RoomNumber || "N/A"}</span>
-                      </div>
-                    </div>
-                    <div className="bg-slate-50 border rounded-xl p-3">
-                      <p className="text-xs text-slate-400 font-medium uppercase tracking-wider mb-1">
-                        Max Capacity
-                      </p>
-                      <div className="flex items-center justify-center gap-1 font-bold text-slate-800 text-base">
-                        <MdOutlineAirlineSeatIndividualSuite className="text-emerald-700" />
-                        <span>{modalData.MaxOccupancy || 2} Pax</span>
-                      </div>
-                    </div>
-                    <div className="bg-slate-50 border rounded-xl p-3">
-                      <p className="text-xs text-slate-400 font-medium uppercase tracking-wider mb-1">
-                        AC Option
-                      </p>
-                      <div className="flex items-center justify-center gap-1 font-bold text-slate-800 text-base">
-                        <MdAcUnit className="text-blue-500" />
-                        <span>{modalData.IsAC ? "Yes" : "No"}</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="bg-emerald-50/50 p-4 rounded-xl border border-emerald-100 flex justify-between items-center">
-                    <span className="text-sm font-medium text-emerald-900">
-                      Standard Pricing Rate:
-                    </span>
-                    <span className="text-xl font-black text-emerald-800">
-                      BDT {(modalData.PricePerNight || 3500).toLocaleString()}{" "}
-                      <span className="text-xs font-normal text-slate-500">
-                        / night
-                      </span>
-                    </span>
-                  </div>
-
-                  <div>
-                    <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">
-                      Detailed Amenities List
-                    </h4>
-                    {modalData.Amenities &&
-                    modalData.Amenities !== "<p>N/A</p>" ? (
-                      <div
-                        className="p-4 bg-slate-50 border rounded-xl text-sm text-slate-700 prose prose-sm max-w-none"
-                        dangerouslySetInnerHTML={{
-                          __html: modalData.Amenities,
-                        }}
-                      />
-                    ) : (
-                      <div className="p-4 bg-slate-50 border border-dashed rounded-xl text-xs text-slate-400 text-center italic">
-                        No amenities listed for this room unit.
-                      </div>
-                    )}
-                  </div>
-                </div>
-              ) : (
-                <p className="text-center py-6 text-sm text-red-500">
-                  Failed to render unit details info summary payload.
-                </p>
-              )}
-            </div>
-          </div>
         </div>
       )}
     </>

@@ -216,7 +216,7 @@ const BookingSearch: React.FC<BookingSearchProps> = ({
 
                             {/* Guests Dropdown */}
                             <div className="relative" ref={guestSectionRef}>
-                                <div className="relative flex gap-4 items-center group z-[999] p-4 sm:p-5 transition-all duration-200">
+                                <div className="relative flex gap-4 items-center group z-[999] p-4 sm:p-5 transition-all duration-200 cursor-pointer">
                                     <div className="p-3 bg-blue-50 rounded-xl text-blue-600 flex-shrink-0">
                                         <FiUsers className="w-5 h-5" />
                                     </div>
@@ -324,6 +324,19 @@ const BookingSearch: React.FC<BookingSearchProps> = ({
                                                     </div>
                                                 </div>
                                             )}
+                                            <div className="" >
+                                                <button
+                                                    onClick={() => {
+                                                        updateParentGuests();
+                                                        if (validateDates()) onSearchClick(); 
+                                                        setShowGuestDropdown(prev => !prev)
+
+                                                    }}
+                                                    className="inline-flex items-center justify-center px-8 py-3.5 text-xs font-sans font-bold tracking-widest uppercase rounded-xl transform transition-all duration-200 active:scale-95 shadow-md hover:shadow-lg bg-secondary text-white hover:bg-secondary/90 dark:bg-white dark:text-secondary dark:hover:bg-slate-100 cursor-pointer w-full sm:w-auto"
+                                                >
+                                                    Search Properties
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 )}

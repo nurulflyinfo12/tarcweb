@@ -7,10 +7,12 @@ import MobileMenu from "./MobileMenu";
 import ThemeToggle from "../ThemeToggle/ThemeToggle";
 import Image from "next/image";
 import Link from "next/link";
+import { useAppSelector } from "@/app/redux/hook/useApplicationDetails";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { application } = useAppSelector((state) => state.application);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,12 +23,19 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const logoSrc =
+  typeof application?.Logo === "string" &&
+  application.Logo.trim().length > 0
+    ? application.Logo
+    : null;
+
+
   return (
     <>
       {/* === Top Contact Bar (Visible on ALL screens) === */}
       <div className="fixed top-0 left-0 z-50 w-full bg-[#0A2F1F] text-white lg:hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10">
-          <div className="flex h-11 items-center justify-between ">
+          <div className="flex h-11 items-center justify-between">
             {/* WhatsApp */}
             <a
               href="https://wa.me/8801704199798"
@@ -51,13 +60,12 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Main Navbar*/}
+      {/* Main Navbar */}
       <header
-        className={`fixed top-11 lg:top-0 left-0 w-full z-40 transition-all duration-300 backdrop-blur-sm ${
-          scrolled
+        className={`fixed top-11 lg:top-0 left-0 w-full z-40 transition-all duration-300 backdrop-blur-sm ${scrolled
             ? "bg-white/85 dark:bg-white/90 backdrop-blur-md text-secondary dark:text-secondary shadow-[0px_4px_12px_rgba(0,0,0,0.08)] dark:shadow-[0px_4px_20px_rgba(0,0,0,0.4)]"
             : "bg-white/85 dark:bg-white/50 backdrop-blur-md text-secondary dark:text-white shadow-[0px_4px_12px_rgba(0,0,0,0.08)] dark:shadow-[0px_4px_20px_rgba(0,0,0,0.4)]"
-        }`}
+          }`}
       >
         <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-10">
           <div className="flex items-center justify-between py-3 md:py-5">
@@ -66,16 +74,17 @@ export default function Navbar() {
               href="/"
               className="flex-shrink-0 max-w-[140px] sm:max-w-none"
             >
-              <Image
-                src="/images/logo.png"
-                alt="TRAC Resort"
-                width={160}
-                height={70}
-                className={`h-10 sm:h-12 md:h-16 w-auto object-contain transition-all duration-300 ${
-                  scrolled ? "" : ""
-                }`}
-                priority
-              />
+              {logoSrc && (
+                <Image
+                  src={logoSrc}
+                  alt={application?.ApplicationName || "Resort"}
+                  width={160}
+                  height={70}
+                  className="h-10 sm:h-12 md:h-16 w-auto object-contain"
+                  priority
+                  unoptimized={logoSrc.startsWith("data:")}
+                />
+              )}
             </Link>
 
             {/* Right Side */}
