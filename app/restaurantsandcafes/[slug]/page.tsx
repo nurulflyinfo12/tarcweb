@@ -1,16 +1,13 @@
 "use client";
 
-// import { Restaurants } from "@/components/RestaurantsAndCafes/RestaurantsAndCafes";
-
 import CallToAction from "@/components/common/calltoaction";
 import PageHero from "@/components/common/pagehero";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import { useState } from "react";
 import { FaChevronDown } from "react-icons/fa6";
 import { useParams } from "next/navigation";
 import { Restaurants } from "@/components/RestaurantsAndCafes/RestaurantsAndCafes";
-
-
 
 export default function Page() {
   const params = useParams();
@@ -60,14 +57,10 @@ export default function Page() {
     alert("Booking request submitted successfully! (Demo)");
   };
 
-  // Smooth Scroll to Form
   const scrollToForm = () => {
     const form = document.getElementById("bookForm");
     if (form) {
-      form.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
+      form.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   };
 
@@ -76,13 +69,9 @@ export default function Page() {
     const [currentSlide, setCurrentSlide] = useState(0);
     const total = restaurant.images.length;
 
-    const nextSlide = () => {
-      setCurrentSlide((prev) => (prev + 1) % total);
-    };
-
-    const prevSlide = () => {
+    const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % total);
+    const prevSlide = () =>
       setCurrentSlide((prev) => (prev - 1 + total) % total);
-    };
 
     const ChevronLeftIcon = ({ className = "w-6 h-6" }) => (
       <svg
@@ -125,11 +114,16 @@ export default function Page() {
             <h3 className="text-3xl text-white text-center mb-12 font-serif">
               Photo Gallery
             </h3>
-            <img
-              src={restaurant.images[0]}
-              alt={restaurant.name}
-              className="rounded-xl shadow-2xl w-full h-[400px] sm:h-[500px] md:h-[600px] object-cover"
-            />
+            <div className="relative w-full h-[400px] sm:h-[500px] md:h-[600px] rounded-xl shadow-2xl overflow-hidden">
+              <Image
+                src={restaurant.images[0]}
+                alt={restaurant.name}
+                fill
+                sizes="100vw"
+                className="object-cover"
+                loading="lazy"
+              />
+            </div>
           </div>
         </div>
       );
@@ -138,7 +132,8 @@ export default function Page() {
     return (
       <div className="py-8">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
-          <div className="absolute inset-x-8 sm:inset-x-8 md:inset-x-20 -top-2 -bottom-2 bg-white/20 rounded-2xl backdrop-blur-[2px] pointer-events-none z-0" />
+          {/* backdrop-blur removed – increased opacity for similar look */}
+          <div className="absolute inset-x-8 sm:inset-x-8 md:inset-x-20 -top-2 -bottom-2 bg-white/30 rounded-2xl pointer-events-none z-0" />
 
           <div className="relative bg-white rounded-2xl p-6 sm:p-8">
             <div className="flex items-center justify-center gap-3 mb-8">
@@ -160,19 +155,27 @@ export default function Page() {
                     exit={{ opacity: 0, x: -50 }}
                     transition={{ duration: 0.5 }}
                   >
-                    <div className="w-full md:w-1/2 h-full">
-                      <img
+                    {/* Left image – always visible */}
+                    <div className="relative w-full md:w-1/2 h-full">
+                      <Image
                         src={restaurant.images[currentSlide]}
                         alt={`${restaurant.name} - ${currentSlide + 1}`}
-                        className="w-full h-full object-cover rounded-lg shadow-md"
+                        fill
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        className="object-cover rounded-lg shadow-md"
+                        loading="lazy"
                       />
                     </div>
 
-                    <div className="hidden md:block w-1/2 h-full">
-                      <img
+                    {/* Right image – hidden on mobile */}
+                    <div className="hidden md:block relative w-1/2 h-full">
+                      <Image
                         src={restaurant.images[(currentSlide + 1) % total]}
                         alt={`${restaurant.name} - ${((currentSlide + 1) % total) + 1}`}
-                        className="w-full h-full object-cover rounded-lg shadow-md"
+                        fill
+                        sizes="50vw"
+                        className="object-cover rounded-lg shadow-md"
+                        loading="lazy"
                       />
                     </div>
                   </motion.div>
@@ -227,7 +230,8 @@ export default function Page() {
       {/* main card */}
       <div className="py-8 sm:py-10 lg:py-14">
         <div className="relative max-w-7xl mx-auto w-full px-4 sm:px-6 md:px-8 lg:px-10">
-          <div className="absolute inset-x-8 sm:inset-x-8 md:inset-x-20 lg:inset-x-20 -top-2 -bottom-2 bg-white/20 rounded-2xl backdrop-blur-[2px] pointer-events-none z-0" />
+          {/* backdrop-blur removed */}
+          <div className="absolute inset-x-8 sm:inset-x-8 md:inset-x-20 lg:inset-x-20 -top-2 -bottom-2 bg-white/30 rounded-2xl pointer-events-none z-0" />
 
           <div className="relative bg-white rounded-2xl grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center p-5 sm:p-6 md:p-8 lg:p-10 overflow-hidden">
             <motion.div
@@ -237,6 +241,7 @@ export default function Page() {
               transition={{ duration: 0.8, ease: "easeOut" }}
               className="text-center lg:text-center order-2 lg:order-1"
             >
+              {/* ... title, type, description unchanged ... */}
               <div className="flex items-center justify-center lg:justify-center gap-2 sm:gap-3 flex-wrap">
                 <span className="h-[1px] w-8 sm:w-12 bg-[#556B2F]" />
                 <h2 className="text-2xl sm:text-3xl md:text-3xl lg:text-3xl font-medium text-secondary tracking-wide text-center lg:text-left">
@@ -255,7 +260,6 @@ export default function Page() {
                 {restaurant.description}
               </p>
 
-              {/* Updated Book Now Button */}
               <button
                 onClick={scrollToForm}
                 className="mt-8 w-full sm:w-auto bg-secondary hover:bg-background text-white px-8 py-3 rounded-xl font-medium transition-all duration-300 cursor-pointer"
@@ -271,11 +275,17 @@ export default function Page() {
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
               className="order-1 lg:order-2"
             >
-              <img
-                src={restaurant.images[2]}
-                alt={restaurant.name}
-                className="w-full h-[220px] sm:h-[320px] md:h-[420px] lg:h-[500px] object-cover rounded-xl shadow-2xl"
-              />
+              {/* ✅ Optimized: next/image with priority (above the fold) */}
+              <div className="relative w-full h-[220px] sm:h-[320px] md:h-[420px] lg:h-[500px] rounded-xl shadow-2xl overflow-hidden">
+                <Image
+                  src={restaurant.images[2]}
+                  alt={restaurant.name}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover"
+                  priority
+                />
+              </div>
             </motion.div>
           </div>
         </div>
@@ -284,7 +294,8 @@ export default function Page() {
       {/* At a Glance Section */}
       <div className="py-8 sm:py-10 lg:py-14">
         <div className="relative max-w-7xl mx-auto w-full px-4 sm:px-6 md:px-8 lg:px-10">
-          <div className="absolute inset-x-8 md:inset-x-20 lg:inset-x-20 -top-2 -bottom-2 bg-white/20 rounded-2xl backdrop-blur-[2px] pointer-events-none z-0" />
+          {/* backdrop-blur removed */}
+          <div className="absolute inset-x-8 md:inset-x-20 lg:inset-x-20 -top-2 -bottom-2 bg-white/30 rounded-2xl pointer-events-none z-0" />
 
           <div className="relative bg-white rounded-2xl grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center p-5 sm:p-6 md:p-8 lg:p-10 overflow-hidden">
             <motion.div
@@ -302,11 +313,16 @@ export default function Page() {
                 <span className="h-[1px] w-8 sm:w-12 bg-[#556B2F]" />
               </div>
 
-              <img
-                src={restaurant.images[1] || restaurant.heroImage}
-                alt={restaurant.name}
-                className="w-full h-[250px] sm:h-[350px] md:h-[450px] lg:h-[500px] object-cover rounded-xl shadow-2xl"
-              />
+              <div className="relative w-full h-[250px] sm:h-[350px] md:h-[450px] lg:h-[500px] rounded-xl shadow-2xl overflow-hidden">
+                <Image
+                  src={restaurant.images[1] || restaurant.heroImage}
+                  alt={restaurant.name}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover"
+                  loading="lazy"
+                />
+              </div>
             </motion.div>
 
             <motion.div
@@ -378,20 +394,19 @@ export default function Page() {
             <span className="h-[1px] w-10 sm:w-14 bg-white" />
           </div>
           <div className="max-w-7xl mx-auto relative px-4 md:px-10">
-            <div className="absolute inset-x-8 -top-2 -bottom-2 bg-white/20 rounded-2xl md:inset-x-20 backdrop-blur-[2px] pointer-events-none z-0" />
+            {/* backdrop-blur removed */}
+            <div className="absolute inset-x-8 -top-2 -bottom-2 bg-white/30 rounded-2xl md:inset-x-20 pointer-events-none z-0" />
             <div className="relative bg-white rounded-2xl items-center text-black p-10 space-x-2">
               <span>Call:</span>
               <a href="tel:01704199798" className="hover:underline">
                 01704199798
               </a>
-              {/* <span className="text-gray-400">•</span>
-                            <a href="tel:68546" className="hover:underline">68546</a> */}
             </div>
           </div>
         </div>
       </div>
 
-      {/* Booking Form */}
+      {/* Booking Form – unchanged */}
       <div
         id="bookForm"
         className="w-full py-8 px-4 sm:px-6 md:px-10 min-h-screen font-sans"
@@ -412,7 +427,7 @@ export default function Page() {
             onSubmit={handleSubmit}
             className="bg-white p-6 sm:p-10 md:p-12 rounded-xl shadow-2xl space-y-6"
           >
-            {/* All form fields remain exactly the same as you provided */}
+             {/* All form fields remain exactly the same as you provided */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-5">
               <div className="flex flex-col">
                 <label className="text-[13px] font-bold text-neutral-800 mb-1.5 tracking-wide">
@@ -732,6 +747,7 @@ export default function Page() {
     </>
   );
 }
+           
 
 // "use client";
 

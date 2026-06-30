@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import Link from "next/link";
 
@@ -10,16 +11,13 @@ interface ImageCardSliderProps {
   description: string;
   images: string[];
   reverse?: boolean;
-
   sizeSQM?: number;
   sizeSQF?: number;
   maxGuests?: number;
   type?: string;
-
   buttonText?: string;
   buttonHref?: string;
   onButtonClick?: () => void;
-
   onImageClick: (images: string[], name: string, index: number) => void;
 }
 
@@ -52,8 +50,8 @@ const ImageCardSlider = ({
   return (
     <div className="w-full py-8 md:py-8">
       <div className="relative w-full max-w-7xl mx-auto">
-        {/* Background Accent */}
-        <div className="absolute inset-x-6 md:inset-x-10 -top-2 -bottom-2 bg-white/20 rounded-2xl md:inset-x-20 backdrop-blur-[2px] pointer-events-none z-0" />
+        {/* Background Accent – removed backdrop-blur, increased opacity to match visual */}
+        <div className="absolute inset-x-6 md:inset-x-10 -top-2 -bottom-2 bg-white/30 rounded-2xl md:inset-x-20 pointer-events-none z-0" />
 
         <div
           className={`relative bg-white rounded-3xl p-6 sm:p-8 md:p-10 lg:p-12 flex flex-col lg:flex-row items-center gap-8 lg:gap-12 shadow-xl border border-neutral-100/80 z-10 ${
@@ -62,12 +60,17 @@ const ImageCardSlider = ({
         >
           {/* Image Slider */}
           <div className="w-full lg:w-[46%] shrink-0">
-            <div className="relative aspect-[16/11] sm:aspect-[16/10] lg:aspect-[4/3] rounded-2xl overflow-hidden group shadow-md bg-neutral-50">
-              <img
+            <div
+              className="relative aspect-[16/11] sm:aspect-[16/10] lg:aspect-[4/3] rounded-2xl overflow-hidden group shadow-md bg-neutral-50 cursor-pointer"
+              onClick={() => onImageClick(images, name, currentIndex)}
+            >
+              <Image
                 src={images[currentIndex]}
                 alt={name}
-                className="w-full h-full object-cover cursor-pointer transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                onClick={() => onImageClick(images, name, currentIndex)}
+                fill
+                sizes="(max-width: 1024px) 100vw, 46vw"
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                priority={currentIndex === 0} // only first slide loads eagerly
               />
 
               {images.length > 1 && (
@@ -76,10 +79,11 @@ const ImageCardSlider = ({
                     onClick={(e) => {
                       e.stopPropagation();
                       setCurrentIndex(
-                        (prev) => (prev - 1 + images.length) % images.length,
+                        (prev) => (prev - 1 + images.length) % images.length
                       );
                     }}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white p-2.5 rounded-full backdrop-blur-md transition z-20"
+                    // backdrop-blur removed – replaced with solid bg
+                    className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white p-2.5 rounded-full transition z-20"
                   >
                     <FiChevronLeft size={20} />
                   </button>
@@ -89,7 +93,7 @@ const ImageCardSlider = ({
                       e.stopPropagation();
                       setCurrentIndex((prev) => (prev + 1) % images.length);
                     }}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white p-2.5 rounded-full backdrop-blur-md transition z-20"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white p-2.5 rounded-full transition z-20"
                   >
                     <FiChevronRight size={20} />
                   </button>
@@ -116,7 +120,7 @@ const ImageCardSlider = ({
             </div>
           </div>
 
-          {/* Content Section */}
+          {/* Content Section – unchanged */}
           <div className="w-full flex flex-col items-center justify-center text-center lg:text-left px-2 py-6 lg:py-4">
             <div className="flex items-center gap-3 mb-4 justify-center lg:justify-start">
               <span className="h-[1px] w-10 sm:w-14 bg-[#556B2F]" />

@@ -1,31 +1,19 @@
 "use client";
 
 import React, { useState, useEffect, useCallback } from "react";
+import Image from "next/image";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { useParams } from "next/navigation";
 import PageHero from "@/components/common/pagehero";
 import { rooms } from "@/components/RoomAndSuites/RoomsAndSuites";
 import {
-  FaAppleAlt,
-  FaCoffee,
-  FaHotTub,
-  FaLongArrowAltRight,
-  FaSwimmingPool,
-} from "react-icons/fa";
-import {
-  FaBook,
-  FaCheck,
+  // FaLongArrowAltRight,
   FaChevronDown,
-  FaChevronLeft,
-  FaChevronRight,
-  FaChild,
-  FaDumbbell,
-  FaUtensils,
-  FaWater,
-  FaWifi,
+  FaCheck,
 } from "react-icons/fa6";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import AtAGlance from "@/components/Home/AtAGlance";
+import { FaLongArrowAltRight } from "react-icons/fa";
 
 interface RoomPageProps {
   params: {
@@ -35,8 +23,6 @@ interface RoomPageProps {
 
 const RoomPage = ({ params: initialParams }: RoomPageProps) => {
   const params = useParams();
-
-  const [isPaused, setIsPaused] = useState(false);
 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -72,7 +58,6 @@ const RoomPage = ({ params: initialParams }: RoomPageProps) => {
   };
 
   const currentSlug = params?.slag || initialParams?.slag;
-
   const room = rooms.find((r) => r.id === Number(currentSlug));
 
   const stats = [
@@ -82,37 +67,35 @@ const RoomPage = ({ params: initialParams }: RoomPageProps) => {
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
+  const galleryImages = room?.images?.slice(0, 3) || [];
 
   useEffect(() => {
-    if (!room?.images || room.images.length <= 1) return;
+    if (galleryImages.length <= 1) return;
     const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev === 2 ? 0 : prev + 1));
+      setCurrentIndex((prev) => (prev + 1) % galleryImages.length);
     }, 5000);
     return () => clearInterval(interval);
-  }, [room]);
+  }, [galleryImages.length]);
 
   const nextSlide = useCallback(() => {
-    setCurrentIndex((prev) => (prev + 1) % rooms.length);
-  }, [rooms.length]);
+    setCurrentIndex((prev) => (prev + 1) % galleryImages.length);
+  }, [galleryImages.length]);
 
   const prevSlide = useCallback(() => {
-    setCurrentIndex((prev) => (prev - 1 + rooms.length) % rooms.length);
-  }, [rooms.length]);
+    setCurrentIndex((prev) =>
+      prev === 0 ? galleryImages.length - 1 : prev - 1,
+    );
+  }, [galleryImages.length]);
 
-  // Smooth scroll to booking form
   const scrollToBookingForm = () => {
     const bookingForm = document.getElementById("bookForm");
     if (bookingForm) {
-      bookingForm.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
+      bookingForm.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   };
 
   return (
     <>
-      {/* Hero Header Area */}
       <PageHero
         title={`${room?.name || "Room Details"}`}
         backgroundImage={`${room?.images?.[0] || ""}`}
@@ -121,7 +104,8 @@ const RoomPage = ({ params: initialParams }: RoomPageProps) => {
       {/* Images & Description Layer */}
       <div className="w-full py-12 md:py-8 my-8">
         <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-10">
-          <div className="absolute inset-x-8 -top-2 -bottom-2 bg-white/20 rounded-2xl md:inset-x-20 backdrop-blur-[2px] pointer-events-none z-0" />
+          {/* Glass background layer – backdrop-blur replaced with higher opacity */}
+          <div className="absolute inset-x-8 -top-2 -bottom-2 bg-white/30 rounded-2xl md:inset-x-20 pointer-events-none z-0" />
 
           <div className="relative bg-white rounded-2xl p-6 sm:p-8 md:p-10 lg:px-12 flex flex-col lg:flex-row items-center gap-8 lg:gap-12 shadow-xl border border-neutral-100/80 z-10">
             {/* Text Content Block */}
@@ -137,7 +121,6 @@ const RoomPage = ({ params: initialParams }: RoomPageProps) => {
                 <p className="text-neutral-600 text-base sm:text-lg leading-relaxed max-w-md mx-auto lg:mx-0 text-center lg:text-left">
                   {room?.description}
                 </p>
-                {/* Book Now Button - Now scrolls to form */}
                 <button
                   onClick={scrollToBookingForm}
                   className="mt-8 w-full sm:w-auto bg-secondary hover:bg-background text-white px-8 py-3 rounded-xl font-medium transition-all duration-300 cursor-pointer"
@@ -147,23 +130,29 @@ const RoomPage = ({ params: initialParams }: RoomPageProps) => {
               </div>
             </div>
 
-            {/* Overlapping Image Collage Right */}
+            {/* Overlapping Image Collage – images now using next/image */}
             <div className="w-full flex flex-col items-center justify-center text-center lg:text-left px-2 py-2 lg:py-2">
               <div className="w-full relative min-h-[360px] sm:min-h-[420px]">
                 <div className="absolute top-0 right-0 w-[70%] h-[200px] sm:h-[240px] rounded-xl overflow-hidden shadow-xl z-0">
-                  <img
-                    src={`${room?.images?.[2] || ""}`}
+                  <Image
+                    src={room?.images?.[2] || ""}
                     alt={`${room?.name || "Room"} main view`}
-                    className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                    fill
+                    sizes="(max-width: 768px) 70vw, 35vw"
+                    className="object-cover transition-transform duration-700 hover:scale-105"
+                    loading="lazy"
                   />
                 </div>
 
                 <div className="absolute bottom-0 left-0 w-[60%] h-[200px] sm:h-[220px] z-10">
                   <div className="w-full h-full border-[8px] border-white dark:border-[#0b2411] rounded-tr-[100px] rounded-bl-[40px] overflow-hidden shadow-2xl transition-colors duration-300">
-                    <img
-                      src={`${room?.images?.[1] || ""}`}
+                    <Image
+                      src={room?.images?.[1] || ""}
                       alt={`${room?.name || "Room"} detail snapshot`}
-                      className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                      fill
+                      sizes="(max-width: 768px) 60vw, 30vw"
+                      className="object-cover transition-transform duration-700 hover:scale-105"
+                      loading="lazy"
                     />
                   </div>
                 </div>
@@ -189,8 +178,8 @@ const RoomPage = ({ params: initialParams }: RoomPageProps) => {
               <div
                 key={idx}
                 className={`flex flex-col items-center justify-around text-center px-4 text-white min-h-[130px] md:min-h-[160px]
-                                    ${idx === 1 ? "sm:border-x sm:border-white/20 sm:px-12" : ""}
-                                `}
+                  ${idx === 1 ? "sm:border-x sm:border-white/20 sm:px-12" : ""}
+                `}
               >
                 <span className="text-4xl md:text-7xl font-bold tracking-tight text-white leading-none">
                   {stat.value}
@@ -204,46 +193,44 @@ const RoomPage = ({ params: initialParams }: RoomPageProps) => {
         </div>
       </section>
 
-      {/* Rack Rate Section */}
+      {/* Rack Rate Section – slide gallery images optimized */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center w-full max-w-7xl mx-auto px-4 py-16 md:px-10">
         {/* Left Column Slide Gallery */}
         <div className="relative group w-full h-[300px] sm:h-[400px] lg:h-[450px] rounded-2xl overflow-hidden shadow-xl bg-neutral-100">
-          <div className="w-full h-full relative">
-            {room?.images?.slice(0, 3).map((imgUrl, index) => (
-              <div
-                key={index}
-                className={`absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out ${
-                  index === currentIndex ? "opacity-100 z-10" : "opacity-0 z-0"
-                }`}
-              >
-                <img
-                  src={imgUrl}
-                  alt={`Room slide view ${index + 1}`}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            ))}
-          </div>
+          {galleryImages.map((imgUrl, index) => (
+            <div
+              key={index}
+              className={`absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out ${
+                index === currentIndex ? "opacity-100 z-10" : "opacity-0 z-0"
+              }`}
+            >
+              <Image
+                src={imgUrl}
+                alt={`Room slide view ${index + 1}`}
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
+                loading="lazy"
+              />
+            </div>
+          ))}
 
+          {/* Navigation arrows – backdrop-blur removed */}
           <button
-            onClick={() =>
-              setCurrentIndex((prev) => (prev === 0 ? 2 : prev - 1))
-            }
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-black/30 hover:bg-black/60 text-white p-2 rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            onClick={prevSlide}
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-black/40 hover:bg-black/60 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
           >
             <FiChevronLeft size={24} />
           </button>
           <button
-            onClick={() =>
-              setCurrentIndex((prev) => (prev === 2 ? 0 : prev + 1))
-            }
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-black/30 hover:bg-black/60 text-white p-2 rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            onClick={nextSlide}
+            className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-black/40 hover:bg-black/60 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
           >
             <FiChevronRight size={24} />
           </button>
 
           <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex gap-2">
-            {[0, 1, 2].map((index) => (
+            {galleryImages.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}
@@ -257,7 +244,7 @@ const RoomPage = ({ params: initialParams }: RoomPageProps) => {
           </div>
         </div>
 
-        {/* Right Column */}
+        {/* Right Column – unchanged */}
         <div className="flex flex-col items-center lg:items-center text-center lg:text-left space-y-6">
           <div className="flex items-center gap-4 w-full justify-center">
             <span className="h-px w-8 bg-[#F8A529]" />
@@ -299,21 +286,22 @@ const RoomPage = ({ params: initialParams }: RoomPageProps) => {
         </div>
       </div>
 
-      {/* Details info sections */}
+      {/* Details info sections – backdrop-blur removed from inner cards */}
       <div className="w-full py-6 md:py-8 my-8 bg-[#0B2214] rounded-2xl">
         <div className="relative w-full max-w-7xl mx-auto px-2 sm:px-10">
-          <div className="absolute inset-x-8 -top-2 -bottom-2 bg-white/20 rounded-2xl md:inset-x-20 backdrop-blur-[2px] pointer-events-none z-0" />
+          {/* Outer glass background layer – blur removed */}
+          <div className="absolute inset-x-8 -top-2 -bottom-2 bg-white/30 rounded-2xl md:inset-x-20 pointer-events-none z-0" />
 
           <div
             className="relative rounded-2xl p-6 sm:p-8 md:p-10 lg:p-12 flex flex-col lg:flex-row items-stretch gap-8 lg:gap-10 shadow-xl overflow-hidden bg-cover bg-center"
             style={{
-              backgroundImage: `url('https://images.unsplash.com/photo-1618773928121-c32242e63f39?q=80&w=1470&auto=format&fit=crop')`,
+              backgroundImage: `url('${room?.images?.[1]}')`,
             }}
           >
             <div className="absolute inset-0 bg-black/10 pointer-events-none" />
 
-            {/* Amenities */}
-            <div className="relative w-full lg:w-[45%] shrink-0 bg-white/80 backdrop-blur-md rounded-2xl p-6 sm:p-8 border border-white/40 shadow-lg z-10">
+            {/* Amenities – solid background, no blur */}
+            <div className="relative w-full lg:w-[45%] shrink-0 bg-white/80 rounded-2xl p-6 sm:p-8 border border-white/40 shadow-lg z-10">
               <div className="flex flex-col space-y-4 w-full">
                 <div className="flex items-center gap-4 w-full">
                   <h2 className="text-2xl sm:text-3xl font-semibold tracking-wide text-[#3E5326] capitalize">
@@ -329,7 +317,7 @@ const RoomPage = ({ params: initialParams }: RoomPageProps) => {
                       className="flex items-start gap-3 text-neutral-800"
                     >
                       <span className="flex items-center justify-center text-[#3E5326] mt-1 shrink-0">
-                        <FaCheck size={12} className="stroke-[2]" />
+                        <FaCheck size={12} />
                       </span>
                       <span className="text-[15px] font-medium leading-normal">
                         {amenity}
@@ -340,8 +328,8 @@ const RoomPage = ({ params: initialParams }: RoomPageProps) => {
               </div>
             </div>
 
-            {/* Complimentary Services */}
-            <div className="relative w-full lg:w-[55%] bg-white/80 backdrop-blur-md rounded-2xl p-6 sm:p-8 border border-white/40 shadow-lg z-10">
+            {/* Complimentary Services – solid background, no blur */}
+            <div className="relative w-full lg:w-[55%] bg-white/80 rounded-2xl p-6 sm:p-8 border border-white/40 shadow-lg z-10">
               <div className="flex flex-col space-y-6 w-full">
                 <div className="flex items-center gap-4 w-full">
                   <h2 className="text-2xl sm:text-3xl font-semibold tracking-wide text-[#3E5326] capitalize">
@@ -373,7 +361,7 @@ const RoomPage = ({ params: initialParams }: RoomPageProps) => {
 
       <AtAGlance />
 
-      {/* Booking Form */}
+      {/* Booking Form – unchanged (no images) */}
       <div
         id="bookForm"
         className="w-full py-8 px-4 sm:px-6 md:px-10 min-h-screen font-sans"
@@ -394,7 +382,6 @@ const RoomPage = ({ params: initialParams }: RoomPageProps) => {
             onSubmit={handleSubmit}
             className="bg-white p-6 sm:p-10 md:p-12 rounded-xl shadow-2xl space-y-6"
           >
-
             {/* Row 1: Names */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-5">
               <div className="flex flex-col">
@@ -685,24 +672,7 @@ const RoomPage = ({ params: initialParams }: RoomPageProps) => {
               </button>
             </div>
 
-            {/* Rules */}
-            {/* <div className="pt-6 border-t border-neutral-100 space-y-2">
-              {[
-                "Room up to 10 years image is dynamic condition.",
-                "Child age below 5 years will get complimentary food.",
-                "Child age 5 to below 10 years will be charged 50% food of total.",
-                "Extra bed is dynamic depending on standard chargeable.",
-                "Extra Person Age 10 years & above will be charged full price for room & food 2500 BDT per person for accommodation.",
-              ].map((rule, idx) => (
-                <div
-                  key={idx}
-                  className="flex items-start gap-2.5 text-[11px] font-medium text-neutral-500 leading-normal"
-                >
-                  <span className="text-[#E29A26] mt-0.5 shrink-0">👉</span>
-                  <p>{rule}</p>
-                </div>
-              ))}
-            </div> */}
+            {/* Optional rules (commented out) */}
           </form>
         </div>
       </div>

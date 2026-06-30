@@ -3,8 +3,8 @@ const sharp = require("sharp");
 const fs = require("fs");
 const path = require("path");
 
-const inputDir = "./public/images/viproom";
-const outputDir = "./public/images/viproom";
+const inputDir = "./public/images";
+const outputDir = "./public/images";
 
 if (!fs.existsSync(outputDir)) {
   fs.mkdirSync(outputDir, { recursive: true });

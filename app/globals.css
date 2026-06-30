@@ -83,7 +83,7 @@ body {
 }
 
 /* Animations */
-@keyframes slideInRight {
+/* @keyframes slideInRight {
   from {
     opacity: 0;
     transform: translateX(80px);
@@ -92,14 +92,14 @@ body {
     opacity: 1;
     transform: translateX(0);
   }
-}
+} */
 
-.animate-slide-in-right {
+/* .animate-slide-in-right {
   animation: slideInRight 1.2s ease-out forwards;
-}
+} */
 
 /* Awards marquee */
-@keyframes awardsMarquee {
+/* @keyframes awardsMarquee {
   0% {
     transform: translateX(0);
   }
@@ -115,25 +115,25 @@ body {
 
 .awards-marquee:hover {
   animation-play-state: paused;
-}
+} */
 
 /* bookNow style start */
 
 /* custom_styles.css */
 
 /* Hide arrows in type="number" inputs */
-.hide-number-arrows::-webkit-inner-spin-button, 
+/* .hide-number-arrows::-webkit-inner-spin-button, 
 .hide-number-arrows::-webkit-outer-spin-button { 
   -webkit-appearance: none; 
   margin: 0; 
-}
+} */
 
-.hide-number-arrows {
-  -moz-appearance: textfield; /* For Firefox */
-}
+/* .hide-number-arrows {
+  -moz-appearance: textfield; 
+} */
 
 /* Hide native date picker icon */
-.hide-date-icon::-webkit-calendar-picker-indicator {
+/* .hide-date-icon::-webkit-calendar-picker-indicator {
     background: transparent;
     bottom: 0;
     color: transparent;
@@ -144,6 +144,6 @@ body {
     right: 0;
     top: 0;
     width: auto;
-}
+} */
 
 /* booknow style end  */

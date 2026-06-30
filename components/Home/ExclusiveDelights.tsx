@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import React from "react";
 import { FaLongArrowAltRight } from "react-icons/fa";
 
@@ -18,7 +19,7 @@ const ExclusiveDelights = () => {
 
   return (
     <section className="py-10 sm:py-14 md:py-20 lg:py-28 xl:py-30 text-white max-w-7xl mx-auto px-6 lg:px-10">
-      <div className=" text-center mb-10">
+      <div className="text-center mb-10">
         <div className="flex items-center justify-center gap-3 mb-1">
           <span className="w-8 h-[1px] bg-primary-dark"></span>
           <p className="text-primary-dark text-xs font-semibold tracking-widest uppercase">
@@ -71,11 +72,15 @@ const ExclusiveDelights = () => {
                 </Link>
               </div>
 
+              {/*  <img> replaced with next/image */}
               <div className="w-full md:w-1/2 relative min-h-[250px] sm:min-h-[350px] md:min-h-full">
-                <img
+                <Image
                   src={offerData.bannerImage}
                   alt={offerData.offerTitle}
-                  className="w-full h-full object-cover"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-fill"
+                  priority
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
               </div>
