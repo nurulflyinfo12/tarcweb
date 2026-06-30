@@ -17,7 +17,7 @@ const packages = [
     price: "6500",
     offer: "5500",
     size: "382 sqft",
-    images: ["/images/viproom.jpeg", "/images/vip1.jpeg", "/images/vip2.jpeg"],
+    images: ["/images/viproom.webp", "/images/vip1.webp", "/images/vip2.webp"],
     inclusions: [
       "01 King Size Bed (7' x 7') along with a living room.",
       "Check-in: 02:00 pm. Check-out: 12:00 pm.",
@@ -32,10 +32,10 @@ const packages = [
     offer: "2500",
     size: "382 sqft",
     images: [
-      "/images/superdeluxetwin.jpeg",
-      "/images/superdelux1.jpeg",
-      "/images/superdelux2.jpeg",
-      "/images/superdelux3.jpeg",
+      "/images/superdeluxetwin.webp",
+      "/images/superdeluxe1.webp",
+      "/images/superdeluxe2.webp",
+      "/images/superdeluxe3.webp",
     ],
     inclusions: [
       "01 King Size Bed (7' x 7') along with a living room.",
@@ -50,7 +50,7 @@ const packages = [
     price: "3500",
     offer: "3000",
     size: "382 sqft",
-    images: ["/images/superdeluxecouple.jpeg", "/images/superdelux3.jpeg"],
+    images: ["/images/superdeluxecouple.webp", "/images/superdeluxe3.webp"],
     inclusions: [
       "01 King Size Bed (7' x 7') along with a living room.",
       "Check-in: 02:00 pm. Check-out: 12:00 pm.",
@@ -92,23 +92,23 @@ const nearbyAttractions = [
 const additionalFacilities = [
   {
     title: "RESTAURANTS",
-    image: "/images/resturantone.jpg",
+    image: "/images/resturantone.webp",
   },
   {
     title: "GYM",
-    image: "/images/gym.jpg",
+    image: "/images/gym.webp",
   },
   {
     title: "Boar Meeting",
-    image: "/images/boardmeeting.jpeg",
+    image: "/images/boardmeeting.webp",
   },
   {
     title: "Training",
-    image: "/images/trainingroom.jpeg",
+    image: "/images/trainingroom.webp",
   },
   {
     title: "Board Meeting",
-    image: "/images/boardmeeting.jpeg",
+    image: "/images/boardmeeting.webp",
   },
 ];
 
@@ -122,27 +122,27 @@ const services = [
 
 const serviceImages = [
   {
-    src: "/images/resturantone.jpg",
+    src: "/images/resturantone.webp",
     alt: "Restaurant",
     className: "rounded-2xl w-full h-52 object-fill",
   },
   {
-    src: "/images/resturanttwo.jpg",
+    src: "/images/resturanttwo.webp",
     alt: "Breakfast",
     className: "rounded-2xl w-full h-52 object-fill",
   },
   {
-    src: "/images/trainingroom.jpeg",
+    src: "/images/trainingroom.webp",
     alt: "Training",
     className: "rounded-2xl w-full h-52 object-cover",
   },
   {
-    src: "/images/gym.jpg",
+    src: "/images/gym.webp",
     alt: "Gym",
     className: "rounded-2xl w-full h-52 object-fill",
   },
   {
-    src: "/images/conference.jpeg",
+    src: "/images/conference.webp",
     alt: "conference",
     className: "rounded-2xl w-full h-40 object-fill",
   },
@@ -224,7 +224,7 @@ const SummerBreeze = () => {
       <PageHero
         title="Special rooms offer"
         subtitle="Special Room Offers - The Perfect Way to Refresh Your Soul"
-        backgroundImage="/images/cooridoor.jpg"
+        backgroundImage="/images/cooridoor.webp"
       />
 
       {/* Room Packages */}

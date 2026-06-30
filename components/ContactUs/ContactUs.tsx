@@ -32,7 +32,7 @@ const ContactUs = () => {
       <PageHero
         title="Contact Us"
         subtitle="We would love to respond to your queries and help you succeeded. Feel free to get in touch with us"
-        backgroundImage="/images/cooridoor.jpg"
+        backgroundImage="/images/cooridoor.webp"
       />
 
       {/* Main Contact Card */}

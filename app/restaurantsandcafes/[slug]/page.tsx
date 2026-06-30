@@ -751,13 +751,13 @@ export default function Page() {
 //         description:
 //             "Experience a culinary journey featuring a diverse selection of local and international flavors. Prepared by our expert chefs using the freshest ingredients, our menu offers something delightful for every palate in a warm and welcoming ambiance",
 //         images: [
-//             "/images/resturantone1.jpg",
-//             "/images/resturanttwo.jpg",
-//             "/images/room1.jpg",
+//             "/images/resturantone1.webp",
+//             "/images/resturanttwo.webp",
+//             "/images/room1.webp",
 //         ],
 //         reverse: false,
 
-//         heroImage: "/images/resturantone1.jpg",
+//         heroImage: "/images/resturantone1.webp",
 //         cuisine: [
 //             "Continental",
 //             "Mexican",
@@ -783,13 +783,13 @@ export default function Page() {
 //         description:
 //             "Indulge in an exceptional dining experience where elegant design meets culinary artistry. From curated gourmet dishes to impeccable service, we offer the perfect setting for memorable family gatherings, romantic dinners, and special occasions..",
 //         images: [
-//             "/images/resturantone1.jpg",
-//             "/images/resturanttwo.jpg",
-//             "/images/room1.jpg",
+//             "/images/resturantone1.webp",
+//             "/images/resturanttwo.webp",
+//             "/images/room1.webp",
 //         ],
 //         reverse: true,
 
-//         heroImage: "/images/resturantone1.jpg",
+//         heroImage: "/images/resturantone1.webp",
 //         cuisine: ["European", "Asian", "Fusion"],
 //         atmosphere: "Elegant & Sophisticated",
 //         serviceStyle: "A la Carte",
@@ -807,13 +807,13 @@ export default function Page() {
 //         description:
 //             "Whether you are starting your morning with a freshly brewed coffee, stopping by for a hearty lunch, or enjoying a relaxed dinner with loved ones, our vibrant space welcomes you all day to sit back, relax, and savor exceptional food.",
 //         images: [
-//             "/images/resturantone1.jpg",
-//             "/images/resturanttwo.jpg",
-//             "/images/room1.jpg",
+//             "/images/resturantone1.webp",
+//             "/images/resturanttwo.webp",
+//             "/images/room1.webp",
 //         ],
 //         reverse: false,
 
-//         heroImage: "/images/resturantone1.jpg",
+//         heroImage: "/images/resturantone1.webp",
 //         cuisine: ["International", "Fast Casual", "Beverages"],
 //         atmosphere: "Casual & Vibrant",
 //         serviceStyle: "Buffet & A la Carte",

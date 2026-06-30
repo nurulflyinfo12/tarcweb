@@ -6,15 +6,15 @@
 //     description:
 //       "Experience a culinary journey featuring a diverse selection of local and international flavors. Prepared by our expert chefs using the freshest ingredients, our menu offers something delightful for every palate in a warm and welcoming ambiance",
 //     images: [
-//       "/images/resturantone1.jpg",
-//       "/images/resturanttwo.jpg",
-//       "/images/resturent/resturent1.jpg",
-//       "/images/resturent/resturent2.jpg",
-//       "/images/resturent/resturent3.jpg",
+//       "/images/resturantone1.webp",
+//       "/images/resturanttwo.webp",
+//       "/images/resturent/resturent1.webp",
+//       "/images/resturent/resturent2.webp",
+//       "/images/resturent/resturent3.webp",
 //     ],
 //     reverse: false,
 
-//     heroImage: "/images/fowara-dine-hero.jpg",
+//     heroImage: "/images/fowara-dine-hero.webp",
 //     cuisine: [
 //       "Continental",
 //       "Mexican",
@@ -40,10 +40,10 @@
 //     description:
 //       "Indulge in an exceptional dining experience where elegant design meets culinary artistry. From curated gourmet dishes to impeccable service, we offer the perfect setting for memorable family gatherings, romantic dinners, and special occasions..",
 //     images: [
-//       "/images/resturantone1.jpg",
-//       "/images/resturanttwo.jpg",
-//       "/images/resturent/resturent4.jpg",
-//       "/images/resturent/resturent5.jpg",
+//       "/images/resturantone1.webp",
+//       "/images/resturanttwo.webp",
+//       "/images/resturent/resturent4.webp",
+//       "/images/resturent/resturent5.webp",
 //     ],
 //     reverse: true,
 
@@ -65,13 +65,13 @@
 //     description:
 //       "Whether you are starting your morning with a freshly brewed coffee, stopping by for a hearty lunch, or enjoying a relaxed dinner with loved ones, our vibrant space welcomes you all day to sit back, relax, and savor exceptional food.",
 //     images: [
-//       "/images/resturent/resturent6.jpg",
-//       "/images/resturanttwo.jpg",
-//       "/images/resturent/resturent3.jpg",
+//       "/images/resturent/resturent6.webp",
+//       "/images/resturanttwo.webp",
+//       "/images/resturent/resturent3.webp",
 //     ],
 //     reverse: false,
 
-//     heroImage: "/images/hub-eatery-hero.jpg",
+//     heroImage: "/images/hub-eatery-hero.webp",
 //     cuisine: ["International", "Fast Casual", "Beverages"],
 //     atmosphere: "Casual & Vibrant",
 //     serviceStyle: "Buffet & A la Carte",
@@ -91,10 +91,10 @@
 //         // type: "All Day Dine",
 //         description: "Our sophisticated boardroom offers a perfect setting for focused discussions, strategic planning, and high-level business meetings...",
 //         images: [
-//             "/images/boardmeeting.jpeg",
-//             "/images/hallroom.jpg",
+//             "/images/boardmeeting.webp",
+//             "/images/hallroom.webp",
 //         ],
-//         heroImage: "/images/boardmeeting.jpeg",
+//         heroImage: "/images/boardmeeting.webp",
 //         cuisine: ["International", "Fast Casual", "Beverages"],
 //         atmosphere: "Casual & Vibrant",
 //         serviceStyle: "Buffet & A la Carte",
@@ -111,11 +111,11 @@
 //         // type: "Hilltop Restaurant",
 //         description: "Spacious circular conference hall designed for large meetings, seminars, trainings, and corporate events with modern facilities...",
 //         images: [
-//             "/images/conference.jpeg",
-//             "/images/boardmeeting.jpeg",
-//             "/images/hallroom.jpg",
+//             "/images/conference.webp",
+//             "/images/boardmeeting.webp",
+//             "/images/hallroom.webp",
 //         ],
-//         heroImage: "/images/conference.jpeg",
+//         heroImage: "/images/conference.webp",
 //         cuisine: ["International", "Fast Casual", "Beverages"],
 //         atmosphere: "Casual & Vibrant",
 //         serviceStyle: "Buffet & A la Carte",
@@ -133,10 +133,10 @@
 //         // type: "Hilltop Restaurant",
 //         description: "Spacious circular conference hall designed for large meetings, seminars, trainings, and corporate events with modern facilities...",
 //         images: [
-//             "/images/trainingroom.jpeg",
-//             "/images/trainingroom.jpeg",
+//             "/images/trainingroom.webp",
+//             "/images/trainingroom.webp",
 //         ],
-//         heroImage: "/images/conference.jpeg",
+//         heroImage: "/images/conference.webp",
 //         cuisine: ["International", "Fast Casual", "Beverages"],
 //         atmosphere: "Casual & Vibrant",
 //         serviceStyle: "Buffet & A la Carte",

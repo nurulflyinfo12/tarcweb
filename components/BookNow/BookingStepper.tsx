@@ -206,7 +206,7 @@ const BookingStepper = () => {
 
   return (
     <>
-      <PageHero title="Book Now" backgroundImage="/images/viproom/viproom.jpg" />
+      <PageHero title="Book Now" backgroundImage="/images/viproom/viproom.webp" />
 
       <BookingSearch
         searchData={searchData}

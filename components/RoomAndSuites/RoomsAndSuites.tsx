@@ -36,12 +36,12 @@ export const rooms = [
     offer: "2500",
     description:
       "Experience comfort and convenience in our Super Deluxe Twin Room, featuring two cozy twin beds and elegant modern interiors. Perfect for friends, colleagues, or family travelers seeking a relaxing and spacious stay.",
-    coverImage: "/images/superdeluxetwin.jpeg",
+    coverImage: "/images/superdeluxetwin.webp",
     images: [
-      "/images/tiwnroom.jpg",
-      "/images/superdeluxetwin.jpeg",
-      "/images/superdeluxe1.jpeg",
-      "/images/superdeluxetwin.jpeg",
+      "/images/tiwnroom.webp",
+      "/images/superdeluxetwin.webp",
+      "/images/superdeluxe1.webp",
+      "/images/superdeluxetwin.webp",
     ],
     complimentaryServices: [
       { name: "Breakfast", icon: <FaUtensils size={14} /> },
@@ -68,12 +68,12 @@ export const rooms = [
     offer: "3000",
     description:
       "Our King Deluxe room has a spacious layout, with an abundance of natural light coming in and a spectacular view. The lavish and cozy King size bed is ideal for a couple.",
-    coverImage: "/images/superdeluxecouple.jpeg",
+    coverImage: "/images/superdeluxecouple.webp",
     images: [
-      "/images/superdeluxecouple.jpeg",
-      "/images/superdeluxe2.jpeg",
-      "/images/couple/couple.jpg",
-      "/images/couple/couple1.jpg",
+      "/images/superdeluxecouple.webp",
+      "/images/superdeluxe2.webp",
+      "/images/couple/couple.webp",
+      "/images/couple/couple1.webp",
     ],
     complimentaryServices: [
       { name: "Breakfast", icon: <FaUtensils size={14} /> },
@@ -100,8 +100,8 @@ export const rooms = [
     offer: "5500",
     description:
       "Enjoy a comfortable and relaxing stay in our VIP Room Regular, thoughtfully designed with modern amenities and stylish interiors. Ideal for guests seeking extra comfort, privacy, and a premium hospitality experience.",
-    coverImage: "/images/vip1.jpeg",
-    images: ["/images/viproom.jpeg", "/images/vip1.jpeg", "/images/vip2.jpeg"],
+    coverImage: "/images/vip1.webp",
+    images: ["/images/viproom.webp", "/images/vip1.webp", "/images/vip2.webp"],
     complimentaryServices: [
       { name: "Breakfast", icon: <FaUtensils size={14} /> },
       { name: "Gym", icon: <FaDumbbell size={14} /> },
@@ -192,7 +192,7 @@ const RoomsAndSuites = () => {
       <PageHero
         title="Rooms &amp; Suites"
         subtitle="Discover comfort and style in our rooms and suites."
-        backgroundImage="/images/cooridoor.jpg"
+        backgroundImage="/images/cooridoor.webp"
       />
 
       {/* Rooms List */}

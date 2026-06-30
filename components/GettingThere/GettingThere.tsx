@@ -77,7 +77,7 @@ export default function GettingThere() {
   return (
     <>
       {/* Page Hero */}
-      <PageHero title="Getting There" backgroundImage="/images/cooridoor.jpg" />
+      <PageHero title="Getting There" backgroundImage="/images/cooridoor.webp" />
 
       <div className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">

@@ -51,8 +51,8 @@ const LuxuryExperience: React.FC<LuxuryExperienceProps> = ({
   ],
   ctaLink = "/roomsandsuites",
   ctaText = "Discover More",
-  heroImageMain = "/images/room1.jpg",
-  heroImageOverlay = "/images/room5.jpg",
+  heroImageMain = "/images/room1.webp",
+  heroImageOverlay = "/images/room5.webp",
   amenitiesSubtitle = "Amenities",
   amenitiesTitle = "Facilities & Services",
   amenitiesData = [

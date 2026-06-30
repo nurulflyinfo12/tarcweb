@@ -55,7 +55,7 @@ export default page;
 //         <>
 //         <PageHero 
 //          title="Book Now"
-//          backgroundImage="/images/specialoffers/specialoffers.png"
+//          backgroundImage="/images/specialoffers/specialoffers.webp"
 //         />
 //         <div id="bookForm" className="w-full py-8 px-4 sm:px-6 md:px-10 min-h-screen font-sans">
 //             <div className="text-center max-w-2xl mx-auto mb-10 space-y-3">

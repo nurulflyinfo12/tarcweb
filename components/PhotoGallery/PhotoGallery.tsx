@@ -17,11 +17,11 @@ const diningGalleries = [
     id: 7688,
     title: "Restaurant",
     photoCount: 3,
-    coverImage: "/images/resturantone.jpg",
+    coverImage: "/images/resturantone.webp",
     images: [
-      "/images/resturantone.jpg",
-      "/images/resturanttwo.jpg",
-      "/images/resturantone1.jpg",
+      "/images/resturantone.webp",
+      "/images/resturanttwo.webp",
+      "/images/resturantone1.webp",
     ],
   },
 ];
@@ -30,30 +30,30 @@ const MeetingGalleries = [
     id: 1,
     title: "Meeting",
     photoCount: 3,
-    coverImage: "/images/boardmeeting.jpeg",
+    coverImage: "/images/boardmeeting.webp",
     images: [
-      "/images/boardmeeting.jpeg",
-      "/images/conference.jpeg",
-      "/images/hallroom.jpg",
+      "/images/boardmeeting.webp",
+      "/images/conference.webp",
+      "/images/hallroom.webp",
     ],
   },
   {
     id: 2,
     title: "Restaurant",
     photoCount: 3,
-    coverImage: "/images/resturantone.jpg",
+    coverImage: "/images/resturantone.webp",
     images: [
-      "/images/resturantone.jpg",
-      "/images/resturanttwo.jpg",
-      "/images/resturantone1.jpg",
+      "/images/resturantone.webp",
+      "/images/resturanttwo.webp",
+      "/images/resturantone1.webp",
     ],
   },
   {
     id: 3,
     title: "Gym",
     photoCount: 1,
-    coverImage: "/images/gym.jpg",
-    images: ["/images/gym.jpg"],
+    coverImage: "/images/gym.webp",
+    images: ["/images/gym.webp"],
   },
 ];
 
@@ -101,7 +101,7 @@ const PhotoGallery = () => {
       {/* Hero Section */}
       <PageHero
         title="Photo Gallery"
-        backgroundImage="/images/cooridoor.jpg"
+        backgroundImage="/images/cooridoor.webp"
       />
 
       {/* Header Section */}

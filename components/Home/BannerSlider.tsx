@@ -15,21 +15,21 @@ interface Slide {
 
 const slides: Slide[] = [
   {
-    image: "/images/room4.jpg",
+    image: "/images/room4.webp",
     title: "Luxury Rooms",
     subtitle: "Comfort Meets Elegance",
     buttonText: "VIEW ROOMS",
     path: "/roomsandsuites",
   },
   {
-    image: "/images/resturantone.jpg",
+    image: "/images/resturantone.webp",
     title: "Food & Dining",
     subtitle: "Taste The Finest Cuisine",
     buttonText: "EXPLORE RESTURENT",
     path: "/restaurantsandcafes",
   },
   {
-    image: "/images/hallroom.jpg",
+    image: "/images/hallroom.webp",
     title: "Meeting Rooms",
     subtitle: "Business Made Premium",
     buttonText: "BOOK NOW",

@@ -11,7 +11,7 @@ const GuestPolicy = () => {
       <PageHero
         title="Guest Policy"
         //   subtitle="Discover comfort and style in our Restaurants."
-        backgroundImage="/images/cooridoor.jpg"
+        backgroundImage="/images/cooridoor.webp"
       />
 
       {/* Main Content */}

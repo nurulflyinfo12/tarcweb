@@ -51,7 +51,7 @@ const Step3BookingSummary: React.FC<Step3Props> = ({
                 <div className="flex gap-3">
                   <div className="relative w-14 h-14 rounded-lg overflow-hidden bg-background border border-border/40 shrink-0">
                     <img
-                      src={room.RoomImage || room.coverImage || "/images/viproom/viproom.jpg"}
+                      src={room.RoomImage || room.coverImage || "/images/viproom/viproom.webp"}
                       alt="Room Preview"
                       className="object-cover w-full h-full"
                     />

@@ -46,7 +46,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
         isOpen ? "opacity-100 visible" : "opacity-0 invisible"
       }`}
       style={{
-        backgroundImage: `url('/images/cooridoor.jpg')`,
+        backgroundImage: `url('/images/cooridoor.webp')`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}

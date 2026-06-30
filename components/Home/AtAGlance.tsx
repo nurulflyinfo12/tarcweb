@@ -20,7 +20,7 @@ const AtAGlance = () => {
       size: 1160,
       description:
         "Experience comfort and convenience in our Super Deluxe Twin Room, featuring two cozy twin beds and elegant modern interiors. Perfect for friends, colleagues, or family travelers seeking a relaxing and spacious stay.",
-      image: "/images/tiwnroom.jpg",
+      image: "/images/tiwnroom.webp",
     },
     {
       id: 2,
@@ -30,7 +30,7 @@ const AtAGlance = () => {
       size: 650,
       description:
         "Our King Deluxe room has a spacious layout, with an abundance of natural light coming in and a spectacular view. The lavish and cozy King size bed is ideal for a couple.",
-      image: "/images/superdeluxecouple.jpeg",
+      image: "/images/superdeluxecouple.webp",
     },
     {
       id: 3,
@@ -40,7 +40,7 @@ const AtAGlance = () => {
       size: 2200,
       description:
         "Enjoy a comfortable and relaxing stay in our VIP Room Regular, thoughtfully designed with modern amenities and stylish interiors. Ideal for guests seeking extra comfort, privacy, and a premium hospitality experience..",
-      image: "/images/viproom.jpeg",
+      image: "/images/viproom.webp",
     },
   ];
 

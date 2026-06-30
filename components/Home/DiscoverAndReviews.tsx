@@ -16,8 +16,8 @@ const DiscoverAndReviews = () => {
     description:
       "Enjoy an exquisite dining experience, at our multicuisine restaurants and cafes. With the most up to date, hygienic kitchen, maintained and operated by a highly skilled team, we ensure a delightful and lavish dining experience.",
     buttonText: "Discover More",
-    imgLeft: "/images/resturanttwo.jpg", // outdoor dining
-    imgRight: "/images/resturantone.jpg", // indoor dining
+    imgLeft: "/images/resturanttwo.webp", // outdoor dining
+    imgRight: "/images/resturantone.webp", // indoor dining
   };
 
   const reviews = [
@@ -38,13 +38,13 @@ const DiscoverAndReviews = () => {
   ];
 
   const galleryImages = [
-    "/images/resturanttwo.jpg", // buffet
-    "/images/resturantone.jpg", // pool
-    "/images/room1.jpg", // cinema
-    "/images/room2.jpg", // sports/kids
-    "/images/room3.jpg", // kids zone
-    "/images/room4.jpg", // gym
-    "/images/room5.jpg", // library
+    "/images/resturanttwo.webp", // buffet
+    "/images/resturantone.webp", // pool
+    "/images/room1.webp", // cinema
+    "/images/room2.webp", // sports/kids
+    "/images/room3.webp", // kids zone
+    "/images/room4.webp", // gym
+    "/images/room5.webp", // library
   ];
 
   const awards = [

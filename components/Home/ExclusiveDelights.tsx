@@ -13,7 +13,7 @@ const ExclusiveDelights = () => {
     tagline:
       "Don't miss out on this special offer to relax and unwind in luxury.",
     buttonText: "Discover More",
-    bannerImage: "/images/specialoffers/specialoffers.png",
+    bannerImage: "/images/specialoffers/specialoffers.webp",
   };
 
   return (

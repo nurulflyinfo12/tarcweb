@@ -14,7 +14,7 @@ const MeetingsAndEvents = () => {
       "Plan your next business event with us – be it an annual conference, product launch, or board meeting. Elevate your occasion with our expertise and make it a GRAND success. Contact us today to book your event.",
     buttonText: "Discover More",
 
-    imageSrc: "/images/hallroom.jpg",
+    imageSrc: "/images/hallroom.webp",
   };
 
   return (

@@ -15,8 +15,8 @@ export const Meetings = [
     type: "Meeting",
     description:
       "Our sophisticated boardroom offers a perfect setting for focused discussions, strategic planning, and high-level business meetings...",
-    images: ["/images/boardmeeting.jpeg", "/images/hallroom.jpg"],
-    heroImage: "/images/boardmeeting.jpeg",
+    images: ["/images/boardmeeting.webp", "/images/hallroom.webp"],
+    heroImage: "/images/boardmeeting.webp",
     cuisine: ["International", "Fast Casual", "Beverages"],
     atmosphere: "Casual & Vibrant",
     serviceStyle: "Buffet & A la Carte",
@@ -28,15 +28,15 @@ export const Meetings = [
     eventtypes: [
       {
         title: "Annual General Meeting",
-        image: "/images/conference.jpeg",
+        image: "/images/conference.webp",
       },
       {
         title: "Boardroom Sessions",
-        image: "/images/boardmeeting.jpeg",
+        image: "/images/boardmeeting.webp",
       },
       {
         title: "Corporate Meetings",
-        image: "/images/hallroom.jpg",
+        image: "/images/hallroom.webp",
       },
     ],
     reverse: false,
@@ -48,11 +48,11 @@ export const Meetings = [
     description:
       "Spacious circular conference hall designed for large meetings, seminars, trainings, and corporate events with modern facilities...",
     images: [
-      "/images/conference.jpeg",
-      "/images/boardmeeting.jpeg",
-      "/images/hallroom.jpg",
+      "/images/conference.webp",
+      "/images/boardmeeting.webp",
+      "/images/hallroom.webp",
     ],
-    heroImage: "/images/conference.jpeg",
+    heroImage: "/images/conference.webp",
     cuisine: ["International", "Fast Casual", "Beverages"],
     atmosphere: "Casual & Vibrant",
     serviceStyle: "Buffet & A la Carte",
@@ -64,15 +64,15 @@ export const Meetings = [
     eventtypes: [
       {
         title: "Annual General Meeting",
-        image: "/images/conference.jpeg",
+        image: "/images/conference.webp",
       },
       {
         title: "Boardroom Sessions",
-        image: "/images/boardmeeting.jpeg",
+        image: "/images/boardmeeting.webp",
       },
       {
         title: "Corporate Meetings",
-        image: "/images/hallroom.jpg",
+        image: "/images/hallroom.webp",
       },
     ],
     location: "Ground Floor",
@@ -84,8 +84,8 @@ export const Meetings = [
     // type: "Hilltop Restaurant",
     description:
       "Spacious circular conference hall designed for large meetings, seminars, trainings, and corporate events with modern facilities...",
-    images: ["/images/trainingroom.jpeg", "/images/trainingroom.jpeg"],
-    heroImage: "/images/conference.jpeg",
+    images: ["/images/trainingroom.webp", "/images/trainingroom.webp"],
+    heroImage: "/images/conference.webp",
     cuisine: ["International", "Fast Casual", "Beverages"],
     atmosphere: "Casual & Vibrant",
     serviceStyle: "Buffet & A la Carte",
@@ -97,15 +97,15 @@ export const Meetings = [
     eventtypes: [
       {
         title: "Annual General Meeting",
-        image: "/images/conference.jpeg",
+        image: "/images/conference.webp",
       },
       {
         title: "Boardroom Sessions",
-        image: "/images/boardmeeting.jpeg",
+        image: "/images/boardmeeting.webp",
       },
       {
         title: "Corporate Meetings",
-        image: "/images/hallroom.jpg",
+        image: "/images/hallroom.webp",
       },
     ],
     location: "Ground Floor",
@@ -142,7 +142,7 @@ const MeetingsAndEvents = () => {
       <PageHero
         title="Meetings"
         subtitle="Discover comfort and style in our meetings and events."
-        backgroundImage="/images/boardmeeting.jpeg"
+        backgroundImage="/images/boardmeeting.webp"
       />
 
       {/* Rooms List */}

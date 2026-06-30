@@ -1,17 +1,6 @@
 "use client";
 
 import React, { useState, useRef } from "react";
-import {
-  FiX,
-  FiChevronLeft,
-  FiChevronRight,
-  FiShare2,
-  FiMaximize,
-  FiDownload,
-} from "react-icons/fi";
-import RestaurantsCardSlider from "./RestaurantsCardSlider";
-import ImageModal from "./ImageModal";
-import { motion } from "framer-motion";
 import CallToAction from "../common/calltoaction";
 import ImageGalleryModal from "../common/ImageGalleryModal";
 import ImageCardSlider from "../common/ImageCardSlider";
@@ -25,15 +14,15 @@ export const Restaurants = [
     description:
       "Experience a culinary journey featuring a diverse selection of local and international flavors. Prepared by our expert chefs using the freshest ingredients, our menu offers something delightful for every palate in a warm and welcoming ambiance",
     images: [
-      "/images/resturantone1.jpg",
-      "/images/resturanttwo.jpg",
-      "/images/resturent/resturent1.jpg",
-      "/images/resturent/resturent2.jpg",
-      "/images/resturent/resturent3.jpg",
+      "/images/resturantone1.webp",
+      "/images/resturanttwo.webp",
+      "/images/resturent/resturent1.webp",
+      "/images/resturent/resturent2.webp",
+      "/images/resturent/resturent3.webp",
     ],
     reverse: false,
 
-    heroImage: "/images/fowara-dine-hero.jpg",
+    heroImage: "/images/fowara-dine-hero.webp",
     cuisine: [
       "Continental",
       "Mexican",
@@ -59,10 +48,10 @@ export const Restaurants = [
     description:
       "Indulge in an exceptional dining experience where elegant design meets culinary artistry. From curated gourmet dishes to impeccable service, we offer the perfect setting for memorable family gatherings, romantic dinners, and special occasions..",
     images: [
-      "/images/resturantone1.jpg",
-      "/images/resturanttwo.jpg",
-      "/images/resturent/resturent4.jpg",
-      "/images/resturent/resturent5.jpg",
+      "/images/resturantone1.webp",
+      "/images/resturanttwo.webp",
+      "/images/resturent/resturent4.webp",
+      "/images/resturent/resturent5.webp",
     ],
     reverse: true,
 
@@ -84,13 +73,13 @@ export const Restaurants = [
     description:
       "Whether you are starting your morning with a freshly brewed coffee, stopping by for a hearty lunch, or enjoying a relaxed dinner with loved ones, our vibrant space welcomes you all day to sit back, relax, and savor exceptional food.",
     images: [
-      "/images/resturent/resturent6.jpg",
-      "/images/resturanttwo.jpg",
-      "/images/resturent/resturent3.jpg",
+      "/images/resturent/resturent6.webp",
+      "/images/resturanttwo.webp",
+      "/images/resturent/resturent3.webp",
     ],
     reverse: false,
 
-    heroImage: "/images/hub-eatery-hero.jpg",
+    heroImage: "/images/hub-eatery-hero.webp",
     cuisine: ["International", "Fast Casual", "Beverages"],
     atmosphere: "Casual & Vibrant",
     serviceStyle: "Buffet & A la Carte",
@@ -106,7 +95,6 @@ export const Restaurants = [
 const RestaurantSAndCafes = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [selectedRoomName, setSelectedRoomName] = useState("");
-  const [currentModalIndex, setCurrentModalIndex] = useState(0);
   const [toast, setToast] = useState<string | null>(null);
   const imageContainerRef = useRef<HTMLDivElement>(null);
 
@@ -176,7 +164,7 @@ const RestaurantSAndCafes = () => {
       <PageHero
         title="Restaurants"
         subtitle="Discover comfort and style in our Restaurants."
-        backgroundImage="/images/resturantone.jpg"
+        backgroundImage="/images/resturantone.webp"
       />
 
       {/* Rooms List */}

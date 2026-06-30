@@ -101,7 +101,7 @@ const Step1RoomSelection: React.FC<Step1Props> = ({
                 <div>
                   <div className="relative h-68 w-full overflow-hidden bg-background">
                     <Image
-                      src={room.RoomImage || room.coverImage || "/images/viproom/viproom.jpg"}
+                      src={room.RoomImage || room.coverImage || "/images/viproom/viproom.webp"}
                       alt={room.RoomName || "Hotel Room"}
                       fill
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -196,7 +196,7 @@ const Step1RoomSelection: React.FC<Step1Props> = ({
             {/* Modal Hero Banner */}
             <div className="relative h-64 w-full bg-background shrink-0">
               <Image
-                src={activeModalRoom.RoomImage || activeModalRoom.coverImage || "/images/viproom/viproom.jpg"}
+                src={activeModalRoom.RoomImage || activeModalRoom.coverImage || "/images/viproom/viproom.webp"}
                 alt={activeModalRoom.RoomName || "Accommodation Detail"}
                 fill
                 className="object-cover"

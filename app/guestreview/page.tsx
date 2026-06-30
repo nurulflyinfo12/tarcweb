@@ -82,7 +82,7 @@ export default function ReviewsPage() {
 
   return (
     <div className="w-full bg-background min-h-screen">
-      <PageHero title="Guest Reviews" backgroundImage="/images/cooridoor.jpg" />
+      <PageHero title="Guest Reviews" backgroundImage="/images/cooridoor.webp" />
 
       <div className="py-10 sm:py-14 md:py-20 lg:py-28 xl:py-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 space-y-20 lg:space-y-28">
         

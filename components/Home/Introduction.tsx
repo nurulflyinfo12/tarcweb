@@ -19,8 +19,8 @@ const Introduction: React.FC<IntroductionProps> = ({
   description = "The Imperial Institute Of Hospitality & Hotel Management is a premier hospitality education and training institute in Bangladesh, dedicated to developing world-class professionals for the hotel and tourism industry. It offers modern, industry-focused training programs with state-of-the-art facilities, experienced faculty, and practical learning environments. The institute prepares students for successful careers in five-star hotels, resorts, airlines, and global hospitality sectors, ensuring excellence in service, management, and professionalism.",
   buttonText = "Discover More",
   buttonLink = "/roomsandsuites",
-  imageTopRight = "/images/cooridoor.jpg",
-  imageBottomLeft = "/images/hallroom.jpg",
+  imageTopRight = "/images/cooridoor.webp",
+  imageBottomLeft = "/images/hallroom.webp",
 }) => {
   return (
     // Dynamic Section wrapper: uses light-mode tokens (bg-background, text-foreground)

@@ -45,7 +45,7 @@ const Step2GuestDetails: React.FC<Step2Props> = ({
                     src={
                       room.RoomImage ||
                       room.coverImage ||
-                      "/images/viproom/viproom.jpg"
+                      "/images/viproom/viproom.webp"
                     }
                     alt="room"
                     className="object-cover w-full h-full transition-transform duration-500 hover:scale-105"
