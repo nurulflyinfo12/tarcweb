@@ -1,6 +1,5 @@
-"use client";
-
 import Link from "next/link";
+import Image from "next/image";
 import React from "react";
 import {
   FaUtensils,
@@ -32,21 +31,18 @@ interface LuxuryExperienceProps {
 
 const iconMap: Record<string, React.ReactNode> = {
   cuisine: <FaUtensils />,
-
   children: <FaChild />,
-
   walking: <FaWalking />,
   nature: <FaTree />,
 };
+
 const LuxuryExperience: React.FC<LuxuryExperienceProps> = ({
   sectionSubtitle = "Enjoy The Unique Experience",
   sectionTitleMain = "We Invite You to",
   sectionTitleItalic = "Indulge in a Luxurious Escape",
   paragraphs = [
     "Whether you're aspiring to build a career in the global hospitality industry or seeking world-class professional training, The Imperial Institute Of Hospitality & Hotel Management offers the perfect foundation. Explore our programs designed to develop practical skills, industry knowledge, and professional excellence.",
-
     "Embark on a virtual journey through our institute and discover a modern learning environment equipped with advanced facilities, hands-on training labs, and experienced instructors. We are dedicated to shaping future leaders in hotels, resorts, airlines, and tourism sectors.",
-
     "Join The Imperial Institute Of Hospitality & Hotel Management and step into a world where education meets opportunity. Build your future with confidence, professionalism, and excellence in the ever-growing hospitality industry.",
   ],
   ctaLink = "/roomsandsuites",
@@ -71,7 +67,6 @@ const LuxuryExperience: React.FC<LuxuryExperienceProps> = ({
       title: "Walking Space",
       desc: "Unwind or enjoy your morning jogs across our beautifully designed, spacious walking tracks.",
     },
-
     {
       iconKey: "nature",
       title: "Outside Beauty",
@@ -83,30 +78,41 @@ const LuxuryExperience: React.FC<LuxuryExperienceProps> = ({
     <section className="py-10 sm:py-14 md:py-20 lg:py-28 xl:py-30 bg-background transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <div className="relative group">
+          {/* backdrop-blur preserved (but heavy) – kept for identical design */}
           <div className="absolute inset-x-10 -top-2 -bottom-2 bg-white/20 rounded-2xl md:inset-x-20 backdrop-blur-[2px] pointer-events-none z-0" />
 
           <div className="relative z-10 bg-white dark:bg-white p-8 lg:p-16 rounded-[30px] shadow-2xl border border-border/40 overflow-hidden">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
+              {/* ---------- LEFT COLUMN: IMAGES ---------- */}
               <div className="relative">
-                <div className="relative z-0">
-                  <img
+                {/* Main hero image – loaded eagerly if above the fold */}
+                <div className="relative z-0 w-full h-[450px] rounded-xl overflow-hidden shadow-lg">
+                  <Image
                     src={heroImageMain}
                     alt="Resort Exterior View"
-                    className="w-full h-[450px] object-cover rounded-xl shadow-lg"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="object-cover"
+                    priority 
                   />
                 </div>
 
-                <div className="absolute -bottom-10 -right-4 lg:-right-10 z-10 w-[65%] h-[280px]">
-                  <div className="w-full h-full border-[10px] border-white rounded-tl-[120px] rounded-br-[40px] overflow-hidden shadow-2xl">
-                    <img
+                {/* Overlay image – lazy loaded */}
+                <div className="absolute -bottom-10 -right-4 lg:-right-10 z-10 border-8 border-white rounded-tl-[120px] rounded-br-[40px] w-[65%] h-[280px]">
+                  <div className="w-full h-full border-8 border-white rounded-tl-[120px] rounded-br-[40px] overflow-hidden shadow-2xl">
+                    <Image
                       src={heroImageOverlay}
                       alt="Luxury Lobby Interior View"
-                      className="w-full h-full object-cover"
+                      fill
+                      sizes="(max-width: 1024px) 65vw, 33vw"
+                      className="object-cover rounded-tl-[110px] rounded-br-[40px]"
+                      loading="lazy"
                     />
                   </div>
                 </div>
               </div>
 
+              {/*RIGHT COLUMN: TEXT CONTENT  */}
               <div className="mt-12 lg:mt-0 space-y-6">
                 <div className="flex items-center gap-3">
                   <p className="text-sm text-primary font-bold tracking-widest uppercase">
@@ -142,6 +148,7 @@ const LuxuryExperience: React.FC<LuxuryExperienceProps> = ({
               </div>
             </div>
 
+            {/* AMENITIES SECTION */}
             <div className="mt-24 border-t border-border/40 pt-16">
               <div className="grid lg:grid-cols-4 gap-12">
                 <div className="space-y-2">

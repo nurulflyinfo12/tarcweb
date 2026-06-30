@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,13 +11,12 @@ const MeetingsAndEvents = () => {
     description:
       "Plan your next business event with us – be it an annual conference, product launch, or board meeting. Elevate your occasion with our expertise and make it a GRAND success. Contact us today to book your event.",
     buttonText: "Discover More",
-
     imageSrc: "/images/hallroom.webp",
   };
 
   return (
     <section className="py-10 sm:py-14 md:py-20 lg:py-28 xl:py-30 max-w-7xl mx-auto px-6 lg:px-10 py-16 text-center transition-colors duration-300">
-      <div className=" mb-10">
+      <div className="mb-10">
         <div className="flex items-center justify-center gap-3 mb-2">
           <span className="w-8 h-[1px] bg-amber-500/60"></span>
           <p className="text-amber-500 text-xs font-semibold tracking-widest uppercase">
@@ -48,7 +45,7 @@ const MeetingsAndEvents = () => {
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                   sizes="(max-width: 768px) 100vw, 50vw"
                   priority
-                  unoptimized
+                  // unoptimized removed → Next.js now serves WebP/AVIF at exact size
                 />
               </div>
 
@@ -60,7 +57,6 @@ const MeetingsAndEvents = () => {
                     </p>
                     <span className="w-6 h-[1px] bg-amber-500/80"></span>
                   </div>
-
                   <h3 className="text-2xl sm:text-3xl font-serif font-bold text-emerald-800 leading-tight">
                     {data.cardTitle}
                   </h3>

@@ -1,84 +1,11 @@
 "use client";
 
-// import { Restaurants } from "@/components/RestaurantsAndCafes/RestaurantsAndCafes";
-
 import CallToAction from "@/components/common/calltoaction";
 import PageHero from "@/components/common/pagehero";
 import { Meetings } from "@/components/MeetingsAndEvents/MeetingsAndEvents";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import { useState } from "react";
-
-// const Meetings = [
-//   {
-//     id: "1",
-//     name: "Boardroom Meeting",
-//     type: "Meeting",
-//     description:
-//       "Our sophisticated boardroom offers a perfect setting for focused discussions, strategic planning, and high-level business meetings...",
-//     images: ["/images/boardmeeting.webp", "/images/hallroom.webp"],
-//     eventtypes: [
-//       {
-//         title: "Annual General Meeting",
-//         image: "/images/conference.webp",
-//       },
-//       {
-//         title: "Boardroom Sessions",
-//         image: "/images/boardmeeting.webp",
-//       },
-//       {
-//         title: "Corporate Meetings",
-//         image: "/images/hallroom.webp",
-//       },
-//     ],
-//     heroImage: "/images/boardmeeting.webp",
-//     cuisine: ["International", "Fast Casual", "Beverages"],
-//     atmosphere: "Casual & Vibrant",
-//     serviceStyle: "Buffet & A la Carte",
-//     serviceHours: {
-//       breakfast: "6:30 a.m. to 11:00 a.m.",
-//       lunch: "11:30 a.m. to 5:00 p.m.",
-//       dinner: "6:00 p.m. to 10:30 p.m.",
-//     },
-//     reverse: false,
-//   },
-//   {
-//     id: "2",
-//     name: "Conference Hall",
-//     // type: "Hilltop Restaurant",
-//     description:
-//       "Spacious circular conference hall designed for large meetings, seminars, trainings, and corporate events with modern facilities...",
-//     images: [
-//       "/images/conference.webp",
-//       "/images/boardmeeting.webp",
-//       "/images/hallroom.webp",
-//     ],
-//     eventtypes: [
-//       {
-//         title: "Annual General Meeting",
-//         image: "/images/conference.webp",
-//       },
-//       {
-//         title: "Boardroom Sessions",
-//         image: "/images/boardmeeting.webp",
-//       },
-//       {
-//         title: "Corporate Meetings",
-//         image: "/images/hallroom.webp",
-//       },
-//     ],
-//     heroImage: "/images/conference.webp",
-//     cuisine: ["International", "Fast Casual", "Beverages"],
-//     atmosphere: "Casual & Vibrant",
-//     serviceStyle: "Buffet & A la Carte",
-//     serviceHours: {
-//       breakfast: "6:30 a.m. to 11:00 a.m.",
-//       lunch: "11:30 a.m. to 5:00 p.m.",
-//       dinner: "6:00 p.m. to 10:30 p.m.",
-//     },
-//     location: "Ground Floor",
-//     reverse: true,
-//   },
-// ];
 
 type PageProps = {
   params: Promise<{
@@ -91,10 +18,12 @@ type EventTypeItem = {
   image: string;
 };
 
+// ---------- EventTypesSection (images optimized) ----------
 const EventTypesSection = ({ eventtypes }: { eventtypes: EventTypeItem[] }) => (
   <div className="py-8">
     <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
-      <div className="absolute inset-x-8 sm:inset-x-8 md:inset-x-20 -top-2 -bottom-2 bg-white/20 rounded-2xl backdrop-blur-[2px] pointer-events-none z-0" />
+      {/* backdrop-blur removed – increased opacity for similar look */}
+      <div className="absolute inset-x-8 sm:inset-x-8 md:inset-x-20 -top-2 -bottom-2 bg-white/30 rounded-2xl pointer-events-none z-0" />
       <div className="relative bg-white rounded-2xl p-5">
         <div className="text-center mb-10">
           <div className="flex items-center justify-center gap-3 mb-4">
@@ -116,11 +45,14 @@ const EventTypesSection = ({ eventtypes }: { eventtypes: EventTypeItem[] }) => (
               transition={{ delay: index * 0.1 }}
               className="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300"
             >
-              <div className="aspect-[16/11] overflow-hidden">
-                <img
+              <div className="relative aspect-[16/11] overflow-hidden">
+                <Image
                   src={event.image}
                   alt={event.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
                 />
               </div>
               <div className="p-6 text-center">
@@ -136,7 +68,7 @@ const EventTypesSection = ({ eventtypes }: { eventtypes: EventTypeItem[] }) => (
   </div>
 );
 
-// Event Inquiry Form Component
+// ---------- EventInquiryForm (blur background optimized) ----------
 const EventInquiryForm = () => {
   const [formData, setFormData] = useState({
     eventDate: "",
@@ -179,13 +111,14 @@ const EventInquiryForm = () => {
         </div>
 
         <div className="relative px-4">
-          <div className="absolute inset-x-8 -top-2 -bottom-2 bg-white/20 rounded-2xl backdrop-blur-[2px] md:inset-x-15 pointer-events-none z-0" />
+          {/* backdrop-blur removed */}
+          <div className="absolute inset-x-8 -top-2 -bottom-2 bg-white/30 rounded-2xl md:inset-x-15 pointer-events-none z-0" />
           <form
             onSubmit={handleSubmit}
             className="relative bg-white rounded-2xl p-8 md:p-12 shadow-xl"
           >
+            {/* ... all form fields unchanged ... */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Event Date */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Event Date
@@ -199,7 +132,6 @@ const EventInquiryForm = () => {
                   className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-[#5D7553] focus:border-transparent text-black/50"
                 />
               </div>
-
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Organization Name
@@ -214,7 +146,6 @@ const EventInquiryForm = () => {
                   placeholder="Enter Organization Name"
                 />
               </div>
-
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Organization Address
@@ -228,7 +159,6 @@ const EventInquiryForm = () => {
                   placeholder="Enter Organization Address"
                 />
               </div>
-
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Key Contact Person
@@ -243,7 +173,6 @@ const EventInquiryForm = () => {
                   placeholder="Enter Name"
                 />
               </div>
-
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Contact No
@@ -258,7 +187,6 @@ const EventInquiryForm = () => {
                   placeholder="Enter Your Contact Number"
                 />
               </div>
-
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Email Address
@@ -273,7 +201,6 @@ const EventInquiryForm = () => {
                   placeholder="Enter Email Address"
                 />
               </div>
-
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Number of Participants
@@ -288,7 +215,6 @@ const EventInquiryForm = () => {
                   placeholder="Enter Number of participants"
                 />
               </div>
-
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Event Type
@@ -309,7 +235,6 @@ const EventInquiryForm = () => {
                   <option value="Other">Other</option>
                 </select>
               </div>
-
               <div className="md:col-span-2">
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Special Requests
@@ -323,7 +248,6 @@ const EventInquiryForm = () => {
                   placeholder="Write special request"
                 />
               </div>
-
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Where You Learned About Us
@@ -342,7 +266,6 @@ const EventInquiryForm = () => {
                   <option value="Other">Other</option>
                 </select>
               </div>
-
               <div className="md:col-span-2">
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Message
@@ -399,7 +322,7 @@ export default async function Page({ params }: PageProps) {
     }
   };
 
-  // Two-image slider component (responsive)
+  // ---------- SliderComponent (images optimized) ----------
   const SliderComponent = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
     const total = restaurant.images.length;
@@ -453,11 +376,16 @@ export default async function Page({ params }: PageProps) {
             <h3 className="text-3xl text-white text-center mb-12 font-serif">
               Photo Gallery
             </h3>
-            <img
-              src={restaurant.images[0]}
-              alt={restaurant.name}
-              className="rounded-xl shadow-2xl w-full h-[400px] sm:h-[500px] md:h-[600px] object-cover"
-            />
+            <div className="relative rounded-xl shadow-2xl w-full h-[400px] sm:h-[500px] md:h-[600px] overflow-hidden">
+              <Image
+                src={restaurant.images[0]}
+                alt={restaurant.name}
+                fill
+                sizes="100vw"
+                className="object-cover"
+                loading="lazy"
+              />
+            </div>
           </div>
         </div>
       );
@@ -466,7 +394,8 @@ export default async function Page({ params }: PageProps) {
     return (
       <div className="py-8">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
-          <div className="absolute inset-x-8 sm:inset-x-8 md:inset-x-20 -top-2 -bottom-2 bg-white/20 rounded-2xl backdrop-blur-[2px] pointer-events-none z-0" />
+          {/* backdrop-blur removed */}
+          <div className="absolute inset-x-8 sm:inset-x-8 md:inset-x-20 -top-2 -bottom-2 bg-white/30 rounded-2xl pointer-events-none z-0" />
 
           <div className="relative bg-white rounded-2xl p-6 sm:p-8">
             <div className="flex items-center justify-center gap-3 mb-8">
@@ -488,19 +417,25 @@ export default async function Page({ params }: PageProps) {
                     exit={{ opacity: 0, x: -50 }}
                     transition={{ duration: 0.5 }}
                   >
-                    <div className="w-full md:w-1/2 h-full">
-                      <img
+                    <div className="relative w-full md:w-1/2 h-full">
+                      <Image
                         src={restaurant.images[currentSlide]}
                         alt={`${restaurant.name} - ${currentSlide + 1}`}
-                        className="w-full h-full object-cover rounded-lg shadow-md"
+                        fill
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        className="object-cover rounded-lg shadow-md"
+                        loading="lazy"
                       />
                     </div>
 
-                    <div className="hidden md:block w-1/2 h-full">
-                      <img
+                    <div className="hidden md:block relative w-1/2 h-full">
+                      <Image
                         src={restaurant.images[(currentSlide + 1) % total]}
                         alt={`${restaurant.name} - ${((currentSlide + 1) % total) + 1}`}
-                        className="w-full h-full object-cover rounded-lg shadow-md"
+                        fill
+                        sizes="50vw"
+                        className="object-cover rounded-lg shadow-md"
+                        loading="lazy"
                       />
                     </div>
                   </motion.div>
@@ -555,7 +490,8 @@ export default async function Page({ params }: PageProps) {
       {/* main card */}
       <div className="py-8">
         <div className="relative max-w-7xl mx-auto w-full px-4 sm:px-6 md:px-8 lg:px-10">
-          <div className="absolute inset-x-8 sm:inset-x-8 md:inset-x-20 lg:inset-x-20 -top-2 -bottom-2 bg-white/20 rounded-2xl backdrop-blur-[2px] pointer-events-none z-0" />
+          {/* backdrop-blur removed */}
+          <div className="absolute inset-x-8 sm:inset-x-8 md:inset-x-20 lg:inset-x-20 -top-2 -bottom-2 bg-white/30 rounded-2xl pointer-events-none z-0" />
 
           <div className="relative bg-white rounded-2xl grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center p-5 sm:p-6 md:p-8 lg:p-10 overflow-hidden">
             <motion.div
@@ -567,11 +503,9 @@ export default async function Page({ params }: PageProps) {
             >
               <div className="flex items-center justify-center lg:justify-center gap-2 sm:gap-3 flex-wrap">
                 <span className="h-[1px] w-8 sm:w-12 bg-[#556B2F]" />
-
                 <h2 className="text-2xl sm:text-3xl md:text-3xl lg:text-3xl font-medium text-secondary tracking-wide text-center lg:text-left">
                   {restaurant.name}
                 </h2>
-
                 <span className="h-[1px] w-8 sm:w-12 bg-[#556B2F]" />
               </div>
 
@@ -585,7 +519,6 @@ export default async function Page({ params }: PageProps) {
                 {restaurant.description}
               </p>
 
-              {/* Updated Book Now Button */}
               <button
                 onClick={scrollToForm}
                 className="mt-8 w-full sm:w-auto bg-secondary hover:bg-background text-white px-8 py-3 rounded-xl font-medium transition-all duration-300 cursor-pointer"
@@ -601,11 +534,17 @@ export default async function Page({ params }: PageProps) {
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
               className="order-1 lg:order-2"
             >
-              <img
-                src={restaurant.images[1]}
-                alt={restaurant.name}
-                className="w-full h-[220px] sm:h-[320px] md:h-[420px] lg:h-[500px] object-cover rounded-xl shadow-2xl"
-              />
+              {/* Hero image – above the fold, priority */}
+              <div className="relative w-full h-[220px] sm:h-[320px] md:h-[420px] lg:h-[500px] rounded-xl shadow-2xl overflow-hidden">
+                <Image
+                  src={restaurant.images[1]}
+                  alt={restaurant.name}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover"
+                  priority
+                />
+              </div>
             </motion.div>
           </div>
         </div>
@@ -614,7 +553,8 @@ export default async function Page({ params }: PageProps) {
       {/* At a Glance Section */}
       <div className="py-8">
         <div className="relative max-w-7xl mx-auto w-full px-4 sm:px-6 md:px-8 lg:px-10">
-          <div className="absolute inset-x-8 md:inset-x-20 lg:inset-x-20 -top-2 -bottom-2 bg-white/20 rounded-2xl backdrop-blur-[2px] pointer-events-none z-0" />
+          {/* backdrop-blur removed */}
+          <div className="absolute inset-x-8 md:inset-x-20 lg:inset-x-20 -top-2 -bottom-2 bg-white/30 rounded-2xl pointer-events-none z-0" />
 
           <div className="relative bg-white rounded-2xl grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center p-5 sm:p-6 md:p-8 lg:p-10 overflow-hidden">
             <motion.div
@@ -632,11 +572,16 @@ export default async function Page({ params }: PageProps) {
                 <span className="h-[1px] w-8 sm:w-12 bg-[#556B2F]" />
               </div>
 
-              <img
-                src={restaurant.images[1] || restaurant.heroImage}
-                alt={restaurant.name}
-                className="w-full h-[250px] sm:h-[350px] md:h-[450px] lg:h-[500px] object-cover rounded-xl shadow-2xl"
-              />
+              <div className="relative w-full h-[250px] sm:h-[350px] md:h-[450px] lg:h-[500px] rounded-xl shadow-2xl overflow-hidden">
+                <Image
+                  src={restaurant.images[1] || restaurant.heroImage}
+                  alt={restaurant.name}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover"
+                  loading="lazy"
+                />
+              </div>
             </motion.div>
 
             <motion.div
@@ -713,16 +658,13 @@ export default async function Page({ params }: PageProps) {
             <span className="h-[1px] w-10 sm:w-14 bg-white" />
           </div>
           <div className="max-w-7xl mx-auto relative px-4 md:px-10">
-            <div className="absolute inset-x-8 -top-2 -bottom-2 bg-white/20 rounded-2xl md:inset-x-20 backdrop-blur-[2px] pointer-events-none z-0" />
+            {/* backdrop-blur removed */}
+            <div className="absolute inset-x-8 -top-2 -bottom-2 bg-white/30 rounded-2xl md:inset-x-20 pointer-events-none z-0" />
             <div className="relative bg-white rounded-2xl items-center text-black p-10 space-x-2">
               <span>Call:</span>
               <a href="tel:01704199798" className="hover:underline">
                 01704199798
               </a>
-              {/* <span className="text-gray-400">•</span>
-                            <a href="tel:68546" className="hover:underline">
-                                68546
-                            </a> */}
             </div>
           </div>
         </div>

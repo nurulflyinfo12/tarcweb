@@ -1,6 +1,5 @@
-"use client";
-
 import Link from "next/link";
+import Image from "next/image";
 import React from "react";
 
 interface IntroductionProps {
@@ -23,8 +22,6 @@ const Introduction: React.FC<IntroductionProps> = ({
   imageBottomLeft = "/images/hallroom.webp",
 }) => {
   return (
-    // Dynamic Section wrapper: uses light-mode tokens (bg-background, text-foreground)
-    // and shifts back to your solid rich forest-green (#0b2411) when dark mode is present.
     <section className="py-10 sm:py-14 md:py-20 lg:py-28 xl:py-30 bg-background dark:bg-[#0b2411] transition-colors duration-300 text-left">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
@@ -60,23 +57,28 @@ const Introduction: React.FC<IntroductionProps> = ({
 
           {/* RIGHT COLUMN: DUAL ASYMMETRIC OVERLAPPING IMAGES */}
           <div className="w-full lg:col-span-6 relative min-h-[460px] sm:min-h-[520px]">
-            {/* 1. Top Right Main Admin Image */}
+            {/* 1. Top Right Image */}
             <div className="absolute top-0 right-0 w-[80%] h-[300px] sm:h-[340px] rounded-xl overflow-hidden shadow-xl z-0">
-              <img
+              <Image
                 src={imageTopRight}
                 alt={`${title} main view`}
-                className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                fill
+                sizes="(max-width: 1024px) 80vw, 40vw"
+                className="object-cover transition-transform duration-700 hover:scale-105"
+                loading="lazy"
               />
             </div>
 
-            {/* 2. Bottom Left Custom Framed Admin Image */}
-            <div className="absolute bottom-0 left-0 w-[70%] h-[240px] sm:h-[280px] z-10">
-              {/* Dynamic image mask frame border color matches light mode layout card frame or dark mode green background */}
-              <div className="w-full h-full border-[8px] border-background dark:border-[#0b2411] rounded-tr-[100px] rounded-bl-[40px] overflow-hidden shadow-2xl transition-colors duration-300">
-                <img
+            {/* 2. Bottom Left Image with custom frame */}
+            <div className="absolute bottom-0 left-0 w-[70%] border-8 dark:border-[#0b2411] rounded-tr-[100px] rounded-bl-[40px]  h-[240px] sm:h-[280px] z-10">
+              <div className="w-full h-full overflow-hidden shadow-2xl transition-colors duration-300">
+                <Image
                   src={imageBottomLeft}
                   alt={`${title} detailed view`}
-                  className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                  fill
+                  sizes="(max-width: 1024px) 70vw, 35vw"
+                  className="object-cover transition-transform duration-700 hover:scale-105 rounded-tr-[100px] rounded-bl-[40px] "
+                  loading="lazy"
                 />
               </div>
             </div>

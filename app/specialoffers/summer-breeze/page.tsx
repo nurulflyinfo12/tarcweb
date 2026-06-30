@@ -10,7 +10,7 @@ import React, { useState } from "react";
 import { FaChevronDown } from "react-icons/fa6";
 import { FiCheck } from "react-icons/fi";
 
-// Data
+// Data – unchanged
 const packages = [
   {
     name: "Vip room regular",
@@ -90,26 +90,11 @@ const nearbyAttractions = [
 ];
 
 const additionalFacilities = [
-  {
-    title: "RESTAURANTS",
-    image: "/images/resturantone.webp",
-  },
-  {
-    title: "GYM",
-    image: "/images/gym.webp",
-  },
-  {
-    title: "Boar Meeting",
-    image: "/images/boardmeeting.webp",
-  },
-  {
-    title: "Training",
-    image: "/images/trainingroom.webp",
-  },
-  {
-    title: "Board Meeting",
-    image: "/images/boardmeeting.webp",
-  },
+  { title: "RESTAURANTS", image: "/images/resturantone.webp" },
+  { title: "GYM", image: "/images/gym.webp" },
+  { title: "Boar Meeting", image: "/images/boardmeeting.webp" },
+  { title: "Training", image: "/images/trainingroom.webp" },
+  { title: "Board Meeting", image: "/images/boardmeeting.webp" },
 ];
 
 const services = [
@@ -173,7 +158,6 @@ const SummerBreeze = () => {
     packages.map(() => 0),
   );
 
-  // New modal state
   const [selectedRoom, setSelectedRoom] = useState<{
     name: string;
     images: string[];
@@ -188,7 +172,6 @@ const SummerBreeze = () => {
     });
   };
 
-  // Modal handlers
   const openModal = (images: string[], name: string, startIndex: number) => {
     setSelectedRoom({ name, images });
     setInitialIndex(startIndex);
@@ -220,7 +203,7 @@ const SummerBreeze = () => {
 
   return (
     <div className="">
-      {/* hero section  */}
+      {/* hero section */}
       <PageHero
         title="Special rooms offer"
         subtitle="Special Room Offers - The Perfect Way to Refresh Your Soul"
@@ -244,7 +227,6 @@ const SummerBreeze = () => {
           ))}
         </div>
 
-        {/* Image Gallery Modal */}
         {selectedRoom && (
           <ImageGalleryModal
             title={selectedRoom.name}
@@ -255,7 +237,7 @@ const SummerBreeze = () => {
         )}
       </section>
 
-      {/* COMPLIMENTARY SERVICES*/}
+      {/* COMPLIMENTARY SERVICES */}
       <section className="pb-8">
         <ComplimentaryServices
           services={services}
@@ -269,7 +251,7 @@ const SummerBreeze = () => {
         <AdditionalFacilities facilities={additionalFacilities} />
       </section>
 
-      {/* Booking Form */}
+      {/* Booking Form – only backdrop-blur replaced with solid bg */}
       <section id="booking-form" className="py-8">
         <div className="text-center max-w-2xl mx-auto mb-10 space-y-3">
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-wide text-[#E29A26]">
@@ -282,7 +264,9 @@ const SummerBreeze = () => {
           </p>
         </div>
         <div className="relative max-w-7xl mx-auto px-4 md:px-10">
-          <div className="absolute inset-x-8 sm:inset-x-8 md:inset-x-20 lg:inset-x-20 -top-2 -bottom-2 bg-white/20 rounded-2xl backdrop-blur-[2px] pointer-events-none z-0" />
+          {/* Glass background – no more backdrop-blur, uses higher opacity to mimic the frosted look */}
+          <div className="absolute inset-x-8 sm:inset-x-8 md:inset-x-20 lg:inset-x-20 -top-2 -bottom-2 bg-white/30 rounded-2xl pointer-events-none z-0" />
+
           <form
             onSubmit={handleSubmit}
             className="relative bg-white p-6 sm:p-10 md:p-12 rounded-xl shadow-2xl space-y-6"
@@ -468,7 +452,7 @@ const SummerBreeze = () => {
                     className="w-full border border-neutral-300 p-3 text-sm rounded-md bg-white appearance-none pr-10 text-neutral-600 focus:outline-none focus:border-neutral-500"
                   >
                     <option value="">Where you learned about us?</option>
-                    <option value="Social Media">Social Media</option>f
+                    <option value="Social Media">Social Media</option>
                     <option value="Google">Google Search</option>
                     <option value="Friend">From a Friend</option>
                   </select>
@@ -519,7 +503,7 @@ const SummerBreeze = () => {
               </div>
             </div>
 
-            {/* Row 8: Rate Type & Add Button row */}
+            {/* Row 8: Rate Type & Add More Room */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-5 items-end">
               <div className="flex flex-col relative">
                 <label className="text-[13px] font-bold text-neutral-800 mb-1.5 tracking-wide">
@@ -542,7 +526,6 @@ const SummerBreeze = () => {
                   />
                 </div>
               </div>
-              {/* The + Add More Room action box */}
               <div className="flex justify-end">
                 <button
                   type="button"
@@ -553,7 +536,7 @@ const SummerBreeze = () => {
               </div>
             </div>
 
-            {/* Message Text Panel */}
+            {/* Message */}
             <div className="flex flex-col pt-2">
               <label className="text-[13px] font-bold text-neutral-800 mb-1.5 tracking-wide">
                 Messages:
@@ -568,7 +551,7 @@ const SummerBreeze = () => {
               />
             </div>
 
-            {/* Center Submit Button container */}
+            {/* Submit */}
             <div className="flex justify-center pt-4">
               <button
                 type="submit"
@@ -577,25 +560,6 @@ const SummerBreeze = () => {
                 Submit
               </button>
             </div>
-
-            {/* ================= RULES / NOTICES SECTION ================= */}
-            {/* <div className="pt-6 border-t border-neutral-100 space-y-2">
-              {[
-                "Room up to 10 years image is dynamic condition.",
-                "Child age below 5 years will get complimentary food.",
-                "Child age 5 to below 10 years will be charged 50% food of total.",
-                "Extra bed is dynamic depending on standard chargeable.",
-                "Extra Person Age 10 years & above will be charged full price for room & food 2500 BDT per person for accommodation.",
-              ].map((rule, idx) => (
-                <div
-                  key={idx}
-                  className="flex items-start gap-2.5 text-[11px] font-medium text-neutral-500 leading-normal"
-                >
-                  <span className="text-[#E29A26] mt-0.5 shrink-0">👉</span>
-                  <p>{rule}</p>
-                </div>
-              ))}
-            </div> */}
           </form>
         </div>
       </section>
