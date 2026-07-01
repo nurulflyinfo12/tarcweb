@@ -13,6 +13,7 @@ import {
   FiGift,
   FiPhone,
 } from "react-icons/fi";
+import { useAppSelector } from "@/app/redux/hook/useApplicationDetails";
 
 const mainMenuItems = [
   { name: "Home", icon: FiHome, path: "/" },
@@ -40,6 +41,14 @@ interface MobileMenuProps {
 }
 
 export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
+  const { application } = useAppSelector((state) => state.application);
+
+  const logoSrc =
+  typeof application?.Logo === "string" &&
+  application.Logo.trim().length > 0
+    ? application.Logo
+    : null;
+
   return (
     <div onClick={onClose}
       className={`fixed inset-0 bg-black/95 backdrop-blur-md z-[999] transition-all duration-500 ${
@@ -65,14 +74,16 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
       <div className="relative h-full flex flex-col items-center justify-center px-4 py-6 md:py-12 overflow-auto">
         {/* Logo */}
         <div className="mb-8 md:mb-10 bg-white/80 rounded-2xl p-4">
+        {logoSrc &&
           <Image
-            src="/images/logo.png"
+            src={logoSrc}
             alt="tarc Logo"
             width={150}
             height={65}
             className="md:w-[300px] mx-auto"
             priority
           />
+        }
         </div>
 
         {/* Table Style Menu */}
