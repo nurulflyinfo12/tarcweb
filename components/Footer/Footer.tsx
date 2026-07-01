@@ -17,37 +17,36 @@ import Link from "next/link";
 import { useAppSelector } from "@/app/redux/hook/useApplicationDetails";
 
 const Footer = () => {
-  
+
   const { application } = useAppSelector((state) => state.application);
 
   const logoSrc =
-  typeof application?.Logo === "string" &&
-  application.Logo.trim().length > 0
-    ? application.Logo
-    : null;
+    typeof application?.Logo === "string" &&
+      application.Logo.trim().length > 0
+      ? application.Logo
+      : null;
 
   return (
     <footer className=" text-foreground py-16  transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           <div className="space-y-6">
+            <Link href="/">
+              <div className=" bg-white/80 rounded-xl p-2">
+                {logoSrc &&
+                  <Image
+                    src={logoSrc}
+                    alt="tarc Logo"
+                    width={150}
+                    height={65}
+                    className="md:w-[300px] mx-auto"
+                    priority
+                  />
+                }
 
-            <Link
-              href="/"
-              className=""
-            >
-              {logoSrc && (
-                <Image
-                  src={logoSrc}
-                  alt={application?.ApplicationName || "Resort"}
-                  width={180}
-                  height={80}
-                  className="h-16 w-auto object-contain select-none"
-                  priority
-                  unoptimized={logoSrc.startsWith("data:")}
-                />
-              )}
+              </div>
             </Link>
+
 
             <div className="space-y-4 mt-6 text-sm text-text-muted font-light transition-colors duration-300">
               <div className="flex items-start gap-3">
