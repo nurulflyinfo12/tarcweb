@@ -81,7 +81,7 @@ const SpecialOffers = ({ offers = defaultOffers }: SpecialOffersProps) => {
                     )}
 
                     <a
-                      href="/specialoffers/summer-breeze"
+                      href="/specialoffers/special"
                       className="inline-flex items-center text-[#D4AF37] hover:text-amber-600 font-medium group"
                     >
                       → Discover More
@@ -90,7 +90,7 @@ const SpecialOffers = ({ offers = defaultOffers }: SpecialOffersProps) => {
 
                   {/* Right Side - Image */}
                   <Link
-                    href="/specialoffers/summer-breeze"
+                    href="/specialoffers/special"
                     className="lg:w-1/2 relative min-h-[420px] bg-neutral-100 rounded-r-3xl overflow-hidden"
                   >
                     <Image
