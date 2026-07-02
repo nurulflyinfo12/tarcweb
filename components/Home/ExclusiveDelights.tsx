@@ -64,7 +64,7 @@ const ExclusiveDelights = () => {
                 <p className="text-sm text-gray-600 leading-relaxed mb-8">
                   {offerData.tagline}
                 </p>
-                <Link href="/specialoffers/summer-breeze">
+                <Link href="/specialoffers/special">
                   <button className="flex items-center gap-2 text-sm cursor-pointer font-semibold text-amber-600 hover:text-amber-700 transition-colors duration-300 w-fit group">
                     <span>{offerData.buttonText}</span>
                     <FaLongArrowAltRight className="transform group-hover:translate-x-1 transition-transform" />
