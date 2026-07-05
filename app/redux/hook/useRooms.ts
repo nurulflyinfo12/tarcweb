@@ -7,6 +7,7 @@ import {
   setRoomsSuccess,
   setRoomsFailure,
 } from '../slice/roomsSlice';
+import api from '@/services/apiClient';
 
 // Type for the booking payload
 export interface BookingRequestPayload {
@@ -51,50 +52,45 @@ export const useRooms = () => {
   const dispatch = useAppDispatch();
   const { rooms, loading, error } = useAppSelector((state) => state.rooms);
 
-  // Booking confirmation – Removed alert(), now throws error on failure
-  const createConfirmRoom = async (finalPayload: BookingRequestPayload): Promise<void> => {
+  // Booking confirmation 
+  const createConfirmRoom = async (
+    finalPayload: BookingRequestPayload
+  ) => {
     try {
-      const response = await fetch(
-        'https://api.rrfguesthouse.com/Dev/dev_api/public/create-booking-request',
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(finalPayload),
-        }
+      const response = await api.post(
+        "/create-booking-request",
+        finalPayload
       );
 
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        throw new Error(errorData.message || `Server error: ${response.status}`);
-      }
+      // console.log(response.data);
 
-      const data = await response.json();
-      console.log('Booking response:', data);
-      
-      // Success - No alert here (handled in component)
-      return data; // Optional: you can return data if needed
+      return response.data;
     } catch (err: any) {
-      console.error('Booking error:', err);
-      // No alert() - error will be caught in BookingStepper
-      throw err;
+      console.error(err);
+
+      throw new Error(
+        err.response?.data?.message ||
+        err.message ||
+        "Something went wrong"
+      );
     }
   };
-
+  
   const fetchRooms = useCallback(async () => {
-    try {
-      dispatch(setRoomsStart());
-      const response = await fetch(
-        'https://api.rrfguesthouse.com/Dev/dev_api/public/get-all-rooms'
-      );
-      if (!response.ok) {
-        throw new Error(`Failed to fetch rooms: ${response.status}`);
-      }
-      const data = await response.json();
-      dispatch(setRoomsSuccess(data));
-    } catch (err: any) {
-      dispatch(setRoomsFailure(err.message || 'Something went wrong'));
-    }
-  }, [dispatch]);
+  try {
+    dispatch(setRoomsStart());
+
+    const response = await api.get("/get-all-rooms");
+
+    dispatch(setRoomsSuccess(response.data));
+  } catch (err: any) {
+    dispatch(
+      setRoomsFailure(
+        err.response?.data?.message || err.message || "Something went wrong"
+      )
+    );
+  }
+}, [dispatch]);
 
   return {
     rooms,

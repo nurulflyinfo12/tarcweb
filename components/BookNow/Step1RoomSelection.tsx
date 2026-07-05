@@ -169,7 +169,7 @@ const Step1RoomSelection: React.FC<Step1Props> = ({
                         : "bg-background text-foreground border-border hover:bg-card hover:border-primary hover:text-primary shadow-sm"
                     } cursor-pointer`}
                   >
-                    {isSelected ? "✦ Remove Selection" : "Book This Accommodation"}
+                    {isSelected ? "Remove Selection" : "Book This Accommodation"}
                   </button>
                 </div>
               </div>
