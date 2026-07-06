@@ -25,6 +25,19 @@ const Step2GuestDetails: React.FC<Step2Props> = ({
   totalPriceSum,
   onFormChange,
 }) => {
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    // Remove any non-digit characters
+    const onlyNumbers = value.replace(/\D/g, "");
+    // Create synthetic event with cleaned value
+    const syntheticEvent = {
+      ...e,
+      target: { ...e.target, name, value: onlyNumbers }
+    } as React.ChangeEvent<HTMLInputElement>;
+    
+    onFormChange(syntheticEvent);
+  };
   return (
     <div className="grid lg:grid-cols-5 gap-10 font-biryani">
       {/* Left Column - Selected Rooms Summary List */}
@@ -131,7 +144,7 @@ const Step2GuestDetails: React.FC<Step2Props> = ({
             />
             {formErrors.firstName && (
               <p className="text-accent text-[11px] font-semibold mt-1.5 ml-1 flex items-center gap-1">
-                ✦ {formErrors.firstName}
+                {formErrors.firstName}
               </p>
             )}
           </div>
@@ -153,7 +166,7 @@ const Step2GuestDetails: React.FC<Step2Props> = ({
             />
             {formErrors.lastName && (
               <p className="text-accent text-[11px] font-semibold mt-1.5 ml-1 flex items-center gap-1">
-                ✦ {formErrors.lastName}
+                {formErrors.lastName}
               </p>
             )}
           </div>
@@ -168,14 +181,16 @@ const Step2GuestDetails: React.FC<Step2Props> = ({
               name="phone"
               value={formData.phone}
               placeholder="Phone Number *"
-              onChange={onFormChange}
+              onChange={handlePhoneChange} 
+              maxLength={15}
+              // onChange={onFormChange}
               className={`w-full pl-11 pr-4 py-4 border rounded-xl bg-card text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 text-sm transition-all ${
                 formErrors.phone ? "border-accent focus:border-accent" : "border-border focus:border-primary"
               }`}
             />
             {formErrors.phone && (
               <p className="text-accent text-[11px] font-semibold mt-1.5 ml-1 flex items-center gap-1">
-                ✦ {formErrors.phone}
+                {formErrors.phone}
               </p>
             )}
           </div>
@@ -197,7 +212,7 @@ const Step2GuestDetails: React.FC<Step2Props> = ({
             />
             {formErrors.email && (
               <p className="text-accent text-[11px] font-semibold mt-1.5 ml-1 flex items-center gap-1">
-                ✦ {formErrors.email}
+                {formErrors.email}
               </p>
             )}
           </div>

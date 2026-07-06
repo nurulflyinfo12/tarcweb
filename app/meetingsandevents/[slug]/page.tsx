@@ -6,6 +6,8 @@ import { Meetings } from "@/components/MeetingsAndEvents/MeetingsAndEvents";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
+import { FaCheck } from "react-icons/fa6";
+import { IoCloseSharp } from "react-icons/io5";
 
 type PageProps = {
   params: Promise<{
@@ -83,6 +85,18 @@ const EventInquiryForm = () => {
     source: "",
     message: "",
   });
+  const [toast, setToast] = useState<{ message: string; visible: boolean }>({
+    message: "",
+    visible: false,
+  });
+
+  const showToast = (message: string) => {
+    setToast({ message, visible: true });
+    // Auto hide after 4 seconds
+    setTimeout(() => {
+      setToast((prev) => ({ ...prev, visible: false }));
+    }, 4000);
+  };
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -95,204 +109,236 @@ const EventInquiryForm = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Form Submitted:", formData);
-    alert("Thank you! Your event inquiry has been submitted successfully.");
+    // alert("Thank you! Your event inquiry has been submitted successfully.");
+    showToast("Booking request submitted successfully!");
   };
 
   return (
-    <div id="eventInquiryForm" className="py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="text-center mb-10">
-          <h2 className="text-3xl font-medium text-white tracking-wide">
-            Book Now
-          </h2>
-          <p className="text-gray-300 mt-2">
-            Fill out the form below and our team will get back to you shortly.
-          </p>
-        </div>
+    <>
+      <div id="eventInquiryForm" className="py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl font-medium text-white tracking-wide">
+              Book Now
+            </h2>
+            <p className="text-gray-300 mt-2">
+              Fill out the form below and our team will get back to you shortly.
+            </p>
+          </div>
 
-        <div className="relative px-4">
-          {/* backdrop-blur removed */}
-          <div className="absolute inset-x-8 -top-2 -bottom-2 bg-white/30 rounded-2xl md:inset-x-15 pointer-events-none z-0" />
-          <form
-            onSubmit={handleSubmit}
-            className="relative bg-white rounded-2xl p-8 md:p-12 shadow-xl"
-          >
-            {/* ... all form fields unchanged ... */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Event Date
-                </label>
-                <input
-                  type="date"
-                  name="eventDate"
-                  value={formData.eventDate}
-                  onChange={handleChange}
-                  required
-                  className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-[#5D7553] focus:border-transparent text-black/50"
-                />
+          <div className="relative px-4">
+            {/* backdrop-blur removed */}
+            <div className="absolute inset-x-8 -top-2 -bottom-2 bg-white/30 rounded-2xl md:inset-x-15 pointer-events-none z-0" />
+            <form
+              onSubmit={handleSubmit}
+              className="relative bg-white rounded-2xl p-8 md:p-12 shadow-xl"
+            >
+              {/* ... all form fields unchanged ... */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Event Date
+                  </label>
+                  <input
+                    type="date"
+                    name="eventDate"
+                    value={formData.eventDate}
+                    onChange={handleChange}
+                    required
+                    className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-[#5D7553] focus:border-transparent text-black/50"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Organization Name
+                  </label>
+                  <input
+                    type="text"
+                    name="orgName"
+                    value={formData.orgName}
+                    onChange={handleChange}
+                    required
+                    className="w-full border border-gray-300 rounded-lg px-4 py-3 text-black/50"
+                    placeholder="Enter Organization Name"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Organization Address
+                  </label>
+                  <input
+                    type="text"
+                    name="orgAddress"
+                    value={formData.orgAddress}
+                    onChange={handleChange}
+                    className="w-full border border-gray-300 rounded-lg px-4 py-3 text-black/50"
+                    placeholder="Enter Organization Address"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Key Contact Person
+                  </label>
+                  <input
+                    type="text"
+                    name="contactPerson"
+                    value={formData.contactPerson}
+                    onChange={handleChange}
+                    required
+                    className="w-full border border-gray-300 rounded-lg px-4 py-3 text-black/50"
+                    placeholder="Enter Name"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Contact No
+                  </label>
+                  <input
+                    type="tel"
+                    name="contactNo"
+                    value={formData.contactNo}
+                    onChange={handleChange}
+                    required
+                    className="w-full border border-gray-300 rounded-lg px-4 py-3 text-black/50"
+                    placeholder="Enter Your Contact Number"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Email Address
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    className="w-full border border-gray-300 rounded-lg px-4 py-3 text-black/50"
+                    placeholder="Enter Email Address"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Number of Participants
+                  </label>
+                  <input
+                    type="number"
+                    name="participants"
+                    value={formData.participants}
+                    onChange={handleChange}
+                    required
+                    className="w-full border border-gray-300 rounded-lg px-4 py-3 text-black/50"
+                    placeholder="Enter Number of participants"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Event Type
+                  </label>
+                  <select
+                    name="eventType"
+                    value={formData.eventType}
+                    onChange={handleChange}
+                    required
+                    className="w-full border border-gray-300 rounded-lg px-4 py-3 text-black/50"
+                  >
+                    <option value="">— Please choose an option —</option>
+                    <option value="Corporate Meeting">Corporate Meeting</option>
+                    <option value="Conference">Conference</option>
+                    <option value="Training">Training</option>
+                    <option value="Workshop">Workshop</option>
+                    <option value="Seminar">Seminar</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+                <div className="md:col-span-2">
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Special Requests
+                  </label>
+                  <input
+                    type="text"
+                    name="specialRequests"
+                    value={formData.specialRequests}
+                    onChange={handleChange}
+                    className="w-full border border-gray-300 rounded-lg px-4 py-3 text-black/50"
+                    placeholder="Write special request"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Where You Learned About Us
+                  </label>
+                  <select
+                    name="source"
+                    value={formData.source}
+                    onChange={handleChange}
+                    className="w-full border border-gray-300 rounded-lg px-4 py-3 text-black/50"
+                  >
+                    <option value="">Where you learned about us?</option>
+                    <option value="Website">Website</option>
+                    <option value="Google">Google</option>
+                    <option value="Referral">Referral</option>
+                    <option value="Social Media">Social Media</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+                <div className="md:col-span-2">
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Message
+                  </label>
+                  <textarea
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    rows={5}
+                    className="w-full border border-gray-300 rounded-lg px-4 py-3 text-black/50"
+                    placeholder="Enter Your Message"
+                  ></textarea>
+                </div>
               </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Organization Name
-                </label>
-                <input
-                  type="text"
-                  name="orgName"
-                  value={formData.orgName}
-                  onChange={handleChange}
-                  required
-                  className="w-full border border-gray-300 rounded-lg px-4 py-3 text-black/50"
-                  placeholder="Enter Organization Name"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Organization Address
-                </label>
-                <input
-                  type="text"
-                  name="orgAddress"
-                  value={formData.orgAddress}
-                  onChange={handleChange}
-                  className="w-full border border-gray-300 rounded-lg px-4 py-3 text-black/50"
-                  placeholder="Enter Organization Address"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Key Contact Person
-                </label>
-                <input
-                  type="text"
-                  name="contactPerson"
-                  value={formData.contactPerson}
-                  onChange={handleChange}
-                  required
-                  className="w-full border border-gray-300 rounded-lg px-4 py-3 text-black/50"
-                  placeholder="Enter Name"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Contact No
-                </label>
-                <input
-                  type="tel"
-                  name="contactNo"
-                  value={formData.contactNo}
-                  onChange={handleChange}
-                  required
-                  className="w-full border border-gray-300 rounded-lg px-4 py-3 text-black/50"
-                  placeholder="Enter Your Contact Number"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Email Address
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="w-full border border-gray-300 rounded-lg px-4 py-3 text-black/50"
-                  placeholder="Enter Email Address"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Number of Participants
-                </label>
-                <input
-                  type="number"
-                  name="participants"
-                  value={formData.participants}
-                  onChange={handleChange}
-                  required
-                  className="w-full border border-gray-300 rounded-lg px-4 py-3 text-black/50"
-                  placeholder="Enter Number of participants"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Event Type
-                </label>
-                <select
-                  name="eventType"
-                  value={formData.eventType}
-                  onChange={handleChange}
-                  required
-                  className="w-full border border-gray-300 rounded-lg px-4 py-3 text-black/50"
-                >
-                  <option value="">— Please choose an option —</option>
-                  <option value="Corporate Meeting">Corporate Meeting</option>
-                  <option value="Conference">Conference</option>
-                  <option value="Training">Training</option>
-                  <option value="Workshop">Workshop</option>
-                  <option value="Seminar">Seminar</option>
-                  <option value="Other">Other</option>
-                </select>
-              </div>
-              <div className="md:col-span-2">
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Special Requests
-                </label>
-                <input
-                  type="text"
-                  name="specialRequests"
-                  value={formData.specialRequests}
-                  onChange={handleChange}
-                  className="w-full border border-gray-300 rounded-lg px-4 py-3 text-black/50"
-                  placeholder="Write special request"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Where You Learned About Us
-                </label>
-                <select
-                  name="source"
-                  value={formData.source}
-                  onChange={handleChange}
-                  className="w-full border border-gray-300 rounded-lg px-4 py-3 text-black/50"
-                >
-                  <option value="">Where you learned about us?</option>
-                  <option value="Website">Website</option>
-                  <option value="Google">Google</option>
-                  <option value="Referral">Referral</option>
-                  <option value="Social Media">Social Media</option>
-                  <option value="Other">Other</option>
-                </select>
-              </div>
-              <div className="md:col-span-2">
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Message
-                </label>
-                <textarea
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  rows={5}
-                  className="w-full border border-gray-300 rounded-lg px-4 py-3 text-black/50"
-                  placeholder="Enter Your Message"
-                ></textarea>
-              </div>
-            </div>
 
-            <div className="mt-10 flex justify-center">
-              <button
-                type="submit"
-                className="bg-secondary hover:bg-background text-white font-medium px-8 py-2 rounded-xl transition-all duration-300 text-lg"
-              >
-                SUBMIT
-              </button>
-            </div>
-          </form>
+              <div className="mt-10 flex justify-center">
+                <button
+                  type="submit"
+                  className="bg-secondary hover:bg-background text-white font-medium px-8 py-2 rounded-xl transition-all duration-300 text-lg"
+                >
+                  SUBMIT
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
+
+
+
+      {/* toast open meassages */}
+
+      <AnimatePresence>
+        {toast.visible && (
+          <motion.div
+            initial={{ opacity: 0, x: 100, y: -20 }}
+            animate={{ opacity: 1, x: 0, y: 0 }}
+            exit={{ opacity: 0, x: 100, y: -20 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            className="fixed top-6 right-6 z-[100] flex items-center gap-3 bg-[#051C08] text-white px-6 py-4 rounded-2xl shadow-2xl border border-[#556B2F]/30"
+          >
+            <div className="w-8 h-8 rounded-full bg-[#556B2F]/20 flex items-center justify-center">
+              <FaCheck className="text-[#F8A529]" />
+            </div>
+            <div>
+              <p className="font-medium pr-8">{toast.message}</p>
+            </div>
+            <button
+              onClick={() => setToast((prev) => ({ ...prev, visible: false }))}
+              className="absolute top-2 right-2 text-white/60 hover:text-white transition-colors"
+            >
+              <IoCloseSharp />
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
 
@@ -463,11 +509,10 @@ export default async function Page({ params }: PageProps) {
                   <button
                     key={idx}
                     onClick={() => setCurrentSlide(idx)}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                      idx === currentSlide
+                    className={`w-3 h-3 rounded-full transition-all duration-300 ${idx === currentSlide
                         ? "bg-[#556B2F] scale-125"
                         : "bg-[#556B2F]/50 hover:bg-[#556B2F]/80"
-                    }`}
+                      }`}
                     aria-label={`Go to slide ${idx + 1}`}
                   />
                 ))}

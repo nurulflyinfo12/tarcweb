@@ -58,7 +58,7 @@ export const useRooms = () => {
   ) => {
     try {
       const response = await api.post(
-        "/create-booking-request",
+        "/public/create-booking-request",
         finalPayload
       );
 
@@ -80,7 +80,7 @@ export const useRooms = () => {
   try {
     dispatch(setRoomsStart());
 
-    const response = await api.get("/get-all-rooms");
+    const response = await api.get("/public/get-all-rooms");
 
     dispatch(setRoomsSuccess(response.data));
   } catch (err: any) {

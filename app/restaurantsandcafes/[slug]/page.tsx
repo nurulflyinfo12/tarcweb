@@ -5,9 +5,10 @@ import PageHero from "@/components/common/pagehero";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
-import { FaChevronDown } from "react-icons/fa6";
+import { FaCheck, FaChevronDown } from "react-icons/fa6";
 import { useParams } from "next/navigation";
 import { Restaurants } from "@/components/RestaurantsAndCafes/RestaurantsAndCafes";
+import { IoCloseSharp } from "react-icons/io5";
 
 export default function Page() {
   const params = useParams();
@@ -33,6 +34,19 @@ export default function Page() {
     rateType: "",
   });
 
+  const [toast, setToast] = useState<{ message: string; visible: boolean }>({
+    message: "",
+    visible: false,
+  });
+
+  const showToast = (message: string) => {
+    setToast({ message, visible: true });
+    // Auto hide after 4 seconds
+    setTimeout(() => {
+      setToast((prev) => ({ ...prev, visible: false }));
+    }, 4000);
+  };
+
   const restaurant = Restaurants.find((r) => r.id === restaurantId);
 
   if (!restaurant) {
@@ -54,7 +68,8 @@ export default function Page() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert("Booking request submitted successfully! (Demo)");
+    // alert("Booking request submitted successfully! (Demo)");
+    showToast("Booking request submitted successfully!");
   };
 
   const scrollToForm = () => {
@@ -203,11 +218,10 @@ export default function Page() {
                   <button
                     key={idx}
                     onClick={() => setCurrentSlide(idx)}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                      idx === currentSlide
+                    className={`w-3 h-3 rounded-full transition-all duration-300 ${idx === currentSlide
                         ? "bg-[#556B2F] scale-125"
                         : "bg-[#556B2F]/50 hover:bg-[#556B2F]/80"
-                    }`}
+                      }`}
                     aria-label={`Go to slide ${idx + 1}`}
                   />
                 ))}
@@ -406,7 +420,7 @@ export default function Page() {
         </div>
       </div>
 
-      {/* Booking Form – unchanged */}
+      {/* Booking Form  */}
       <div
         id="bookForm"
         className="w-full py-8 px-4 sm:px-6 md:px-10 min-h-screen font-sans"
@@ -427,7 +441,7 @@ export default function Page() {
             onSubmit={handleSubmit}
             className="bg-white p-6 sm:p-10 md:p-12 rounded-xl shadow-2xl space-y-6"
           >
-             {/* All form fields remain exactly the same as you provided */}
+            {/* All form fields remain exactly the same as you provided */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-5">
               <div className="flex flex-col">
                 <label className="text-[13px] font-bold text-neutral-800 mb-1.5 tracking-wide">
@@ -744,10 +758,37 @@ export default function Page() {
         description="Get all your questions answered, we are just one call away!"
         phone="01704199798"
       />
+
+      {/* toast open meassages */}
+
+      <AnimatePresence>
+        {toast.visible && (
+          <motion.div
+            initial={{ opacity: 0, x: 100, y: -20 }}
+            animate={{ opacity: 1, x: 0, y: 0 }}
+            exit={{ opacity: 0, x: 100, y: -20 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            className="fixed top-6 right-6 z-[100] flex items-center gap-3 bg-[#051C08] text-white px-6 py-4 rounded-2xl shadow-2xl border border-[#556B2F]/30"
+          >
+            <div className="w-8 h-8 rounded-full bg-[#556B2F]/20 flex items-center justify-center">
+              <FaCheck className="text-[#F8A529]" />
+            </div>
+            <div>
+              <p className="font-medium pr-8">{toast.message}</p>
+            </div>
+            <button
+              onClick={() => setToast((prev) => ({ ...prev, visible: false }))}
+              className="absolute top-2 right-2 text-white/60 hover:text-white transition-colors"
+            >
+              <IoCloseSharp />
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }
-           
+
 
 // "use client";
 

@@ -19,7 +19,7 @@ export const useSearchRooms = () => {
     setError(null);
 
     try {
-      const response = await api.get("/rooms-search", {
+      const response = await api.get("/public/rooms-search", {
         params: {
           checkIn: params.checkIn,
           checkOut: params.checkOut,
