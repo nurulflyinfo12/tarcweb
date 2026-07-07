@@ -83,7 +83,7 @@ const LuxuryExperience: React.FC<LuxuryExperienceProps> = ({
 
           <div className="relative z-10 bg-white dark:bg-white p-8 lg:p-16 rounded-[30px] shadow-2xl border border-border/40 overflow-hidden">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
-              {/* ---------- LEFT COLUMN: IMAGES ---------- */}
+              {/* LEFT COLUMN: IMAGES*/}
               <div className="relative">
                 {/* Main hero image – loaded eagerly if above the fold */}
                 <div className="relative z-0 w-full h-[450px] rounded-xl overflow-hidden shadow-lg">
@@ -97,7 +97,7 @@ const LuxuryExperience: React.FC<LuxuryExperienceProps> = ({
                   />
                 </div>
 
-                {/* Overlay image – lazy loaded */}
+                {/* Overlay image  */}
                 <div className="absolute -bottom-10 -right-4 lg:-right-10 z-10 border-8 border-white rounded-tl-[120px] rounded-br-[40px] w-[65%] h-[280px]">
                   <div className="w-full h-full border-8 border-white rounded-tl-[120px] rounded-br-[40px] overflow-hidden shadow-2xl">
                     <Image

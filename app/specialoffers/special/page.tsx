@@ -97,12 +97,20 @@ const additionalFacilities = [
   { title: "Board Meeting", image: "/images/boardmeeting.webp" },
 ];
 
+import {      
+  FaMugHot,     
+  FaDumbbell,       
+  FaWifi,           
+  FaBottleWater       
+} from 'react-icons/fa6';   
+import { FaCoffee } from "react-icons/fa";
+
 const services = [
-  { icon: "🍽️", label: "Breakfast" },
-  { icon: "☕", label: "Tea & Coffee" },
-  { icon: "🏋️", label: "Gym" },
-  { icon: "📶", label: "Wi-Fi" },
-  { icon: "💧", label: "Mineral Water" },
+  { icon: FaCoffee, label: "Breakfast" },
+  { icon: FaMugHot, label: "Tea & Coffee" },
+  { icon: FaDumbbell, label: "Gym" },
+  { icon: FaWifi, label: "Wi-Fi" },
+  { icon: FaBottleWater, label: "Mineral Water" },
 ];
 
 const serviceImages = [

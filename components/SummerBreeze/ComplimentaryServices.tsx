@@ -1,9 +1,11 @@
 "use client";
 
 import React from "react";
+import { IconType } from "react-icons";
+import { FaArrowRight } from "react-icons/fa6";
 
 interface Service {
-  icon: string;
+  icon: IconType;
   label: string;
 }
 
@@ -73,7 +75,9 @@ const ComplimentaryServices = ({
                     key={index}
                     className="border border-primary-dark hover:border-primary rounded-2xl p-6 text-center text-primary-dark hover:bg-primary/5 transition-all"
                   >
-                    <div className="text-4xl mb-4">{service.icon}</div>
+                    {/* <div className="text-4xl mb-4">{service.icon}</div> */}
+                    <service.icon
+                      className="text-4xl mb-4 mx-auto" />
 
                     <p>{service.label}</p>
                   </div>
@@ -83,9 +87,10 @@ const ComplimentaryServices = ({
               <div className="mt-10 text-center">
                 <button
                   onClick={onBookNow}
-                  className="bg-secondary hover:bg-background cursor-pointer text-foreground font-semibold px-12 py-4 rounded-xl"
+                  className="group bg-secondary hover:bg-secondary/90 text-white font-semibold cursor-pointer px-10 md:px-6 xl:px-10 py-4 rounded-2xl transition flex items-center gap-2 text-base w-full sm:w-auto justify-center"
                 >
-                  BOOK NOW →
+                  BOOK NOW
+                  <FaArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
                 </button>
               </div>
             </div>

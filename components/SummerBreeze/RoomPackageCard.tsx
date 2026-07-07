@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect } from "react";
+import { FaArrowRight } from "react-icons/fa6";
 import { FiCheck } from "react-icons/fi";
 
 export interface RoomPackage {
@@ -56,9 +57,8 @@ const RoomPackageCard: React.FC<RoomPackageCardProps> = ({
         <div className="relative bg-white flex flex-col lg:flex-row rounded-2xl overflow-hidden shadow-2xl p-6 items-center justify-center">
           {/* Content Section */}
           <div
-            className={`w-full lg:w-1/2 py-6 md:p-8 flex flex-col ${
-              isEven ? "lg:order-1" : "lg:order-2"
-            }`}
+            className={`w-full lg:w-1/2 py-6 md:p-8 flex flex-col ${isEven ? "lg:order-1" : "lg:order-2"
+              }`}
           >
             <div className="flex-1">
               <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-secondary mb-3">
@@ -88,12 +88,12 @@ const RoomPackageCard: React.FC<RoomPackageCardProps> = ({
                   <p className="text-2xl font-bold text-secondary">PRICE:</p>
                   {pkg.offer && (
                     <p className="text-2xl md:text-2xl font-bold text-primary">
-                      {pkg.offer}
+                      {pkg.offer} tk
                     </p>
                   )}
                   {pkg.price !== pkg.offer && (
                     <p className="text-lg md:text-xl text-gray-400 line-through">
-                      {pkg.price}
+                      {pkg.price} tk
                     </p>
                   )}
                 </div>
@@ -101,18 +101,18 @@ const RoomPackageCard: React.FC<RoomPackageCardProps> = ({
 
               <button
                 onClick={onBookNow}
-                className="bg-secondary hover:bg-secondary/90 text-white font-semibold cursor-pointer px-10 md:px-6 xl:px-10 py-4 rounded-2xl transition flex items-center gap-2 text-base w-full sm:w-auto justify-center"
+                className="group bg-secondary hover:bg-secondary/90 text-white font-semibold cursor-pointer px-10 md:px-6 xl:px-10 py-4 rounded-2xl transition flex items-center gap-2 text-base w-full sm:w-auto justify-center"
               >
-                BOOK NOW →
+                BOOK NOW
+                <FaArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
               </button>
             </div>
           </div>
 
           {/* Image Slider - Fixed for lg */}
           <div
-            className={`w-full lg:w-1/2 relative group cursor-pointer overflow-hidden rounded-3xl  lg:rounded-2xl h-[340px] lg:h-[700px] ${
-              isEven ? "lg:order-2" : "lg:order-1"
-            }`}
+            className={`w-full lg:w-1/2 relative group cursor-pointer overflow-hidden rounded-3xl  lg:rounded-2xl h-[340px] lg:h-[700px] ${isEven ? "lg:order-2" : "lg:order-1"
+              }`}
             onClick={handleImageClick}
             role="button"
             tabIndex={0}
@@ -126,11 +126,10 @@ const RoomPackageCard: React.FC<RoomPackageCardProps> = ({
                     key={imgIndex}
                     src={img}
                     alt={`${pkg.name} ${imgIndex + 1}`}
-                    className={`absolute inset-0 w-full h-full object-cover object-center transition-all duration-1000 ease-out ${
-                      imgIndex === currentSlide
+                    className={`absolute inset-0 w-full h-full object-cover object-center transition-all duration-1000 ease-out ${imgIndex === currentSlide
                         ? "opacity-100 scale-100"
                         : "opacity-0 scale-110"
-                    }`}
+                      }`}
                   />
                 ))}
               </div>
@@ -201,11 +200,10 @@ const RoomPackageCard: React.FC<RoomPackageCardProps> = ({
                         e.stopPropagation();
                         onSlideChange(dotIndex);
                       }}
-                      className={`rounded-full transition-all duration-300 ${
-                        dotIndex === currentSlide
+                      className={`rounded-full transition-all duration-300 ${dotIndex === currentSlide
                           ? "w-9 h-2.5 bg-white shadow-lg"
                           : "w-2.5 h-2.5 bg-white/70 hover:bg-white"
-                      }`}
+                        }`}
                     />
                   ))}
                 </div>

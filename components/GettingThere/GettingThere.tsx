@@ -4,24 +4,31 @@ import PageHero from "@/components/common/pagehero";
 import { motion } from "framer-motion";
 import { useState } from "react";
 
+import { 
+  FaCar, 
+  FaPlane, 
+  FaTrain, 
+  FaHelicopter 
+} from "react-icons/fa6";
+
 const GettingThereData = [
- {
-  id: "road",
-  mode: "By Road",
-  icon: "🚗",
-  description: [
-    "By Car / Luxury Van: Approximately 4:00 - 5:00 hrs driving time via the Padma Bridge route.",
-    "Drive through the iconic Padma Bridge, crossing over the river for the fastest and smoothest connection.",
-    "Scenic route passing through beautiful landscapes from Dhaka to The Imperial Institute of Hospitality & Hotel Management area.",
-    "Secure parking is available 24/7 for guest vehicles.",
-  ],
-  map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d117462.6288424956!2d89.15066925!3d23.16263595!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ff10207a90b4d9%3A0x63dae2023d53ef69!2sRRF%20Jessore!5e0!3m2!1sen!2sbd!4v1710000000000",
-  reverse: false,
-},
+  {
+    id: "road",
+    mode: "By Road",
+    icon: FaCar,             
+    description: [
+      "By Car / Luxury Van: Approximately 4:00 - 5:00 hrs driving time via the Padma Bridge route.",
+      "Drive through the iconic Padma Bridge, crossing over the river for the fastest and smoothest connection.",
+      "Scenic route passing through beautiful landscapes from Dhaka to The Imperial Institute of Hospitality & Hotel Management area.",
+      "Secure parking is available 24/7 for guest vehicles.",
+    ],
+    map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d117462.6288424956!2d89.15066925!3d23.16263595!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ff10207a90b4d9%3A0x63dae2023d53ef69!2sRRF%20Jessore!5e0!3m2!1sen!2sbd!4v1710000000000",
+    reverse: false,
+  },
   {
     id: "air",
     mode: "By Air",
-    icon: "✈️",
+    icon: FaPlane,                
     description: [
       "Daily domestic flights operating from Dhaka Hazrat Shahjalal International Airport (DAC) to Jessore Airport (JSR).",
       "Short flight duration of approximately 35 to 40 minutes via Biman Bangladesh, US-Bangla.",
@@ -30,22 +37,22 @@ const GettingThereData = [
     map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3679.5244584218654!2d89.1578330761271!3d23.18754591018898!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ff10629eaad49b%3A0xeae06df6697009!2sJessore%20Airport!5e0!3m2!1sen!2sbd!4v1710000000001",
     reverse: true,
   },
- {
-  id: "train",
-  mode: "Train",
-  icon: "🚂",
-  description: [
-    "From Dhaka Kamalapur Railway Station to Jessore Railway Station.",
-    "Available trains include the Sundarban Express,Ruposhi Bangla Express, Chitra Express and Benapole Express operating on this route.",
-    "Enjoy a scenic, comfortable ride through the local landscapes.",
-    "A short air-conditioned van or private car drive will pick you up at Jessore station for transfer to the institute.",
-  ],
-  map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d117462.6288424956!2d89.15066925!3d23.16263595!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ff10207a90b4d9%3A0x63dae2023d53ef69!2sRRF%20Jessore!5e0!3m2!1sen!2sbd!4v1710000000000",
-},
+  {
+    id: "train",
+    mode: "Train",
+    icon: FaTrain,                 
+    description: [
+      "From Dhaka Kamalapur Railway Station to Jessore Railway Station.",
+      "Available trains include the Sundarban Express, Ruposhi Bangla Express, Chitra Express and Benapole Express operating on this route.",
+      "Enjoy a scenic, comfortable ride through the local landscapes.",
+      "A short air-conditioned van or private car drive will pick you up at Jessore station for transfer to the institute.",
+    ],
+    map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d117462.6288424956!2d89.15066925!3d23.16263595!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ff10207a90b4d9%3A0x63dae2023d53ef69!2sRRF%20Jessore!5e0!3m2!1sen!2sbd!4v1710000000000",
+  },
   {
     id: "helicopter",
     mode: "Helicopter",
-    icon: "🚁",
+    icon: FaHelicopter,              
     description: [
       "From Dhaka to Jessore Airport approximately 40 minutes flight time.",
       "The GPS Coordinates are 23°10'16.8\"N 89°09'28.2\"E ALT 20m.",
@@ -129,7 +136,8 @@ export default function GettingThere() {
                     className={`p-8 md:p-12 ${item.reverse ? "md:order-2" : ""}`}
                   >
                     <div className="flex items-center gap-4 mb-6">
-                      <span className="text-4xl">{item.icon}</span>
+                      {/* <span className="text-4xl">{item.icon}</span> */}
+                      <item.icon className="text-4xl text-primary"/>
                       <h3 className="text-2xl font-semibold text-[#1a3c34]">
                         {item.mode}
                       </h3>
