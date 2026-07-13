@@ -41,12 +41,12 @@ const Step1RoomSelection: React.FC<Step1Props> = ({
 
   return (
     <div className="font-biryani">
-      <h3 className="text-2xl font-extrabold text-center mb-10 text-primary tracking-wide uppercase">
+      <h3 className="text-2xl md:text-3xl font-extrabold text-center mb-8 md:mb-10 text-primary tracking-wide uppercase">
         Available Accommodations
       </h3>
 
       {/* Progress Banner */}
-      <div className="bg-card px-6 py-4 mb-8 border border-border flex flex-col sm:flex-row gap-4 items-center justify-between text-sm text-foreground mt-12 rounded-2xl shadow-inner">
+      <div className="bg-card px-4 sm:px-6 py-4 mb-8 border border-border flex flex-col sm:flex-row gap-4 items-center justify-between text-sm text-foreground mt-8 md:mt-12 rounded-2xl shadow-inner">
         <div className="flex items-center gap-3">
           <div className="p-2 bg-background rounded-xl border border-border">
             <FiInfo className="text-primary text-base" />
@@ -61,7 +61,7 @@ const Step1RoomSelection: React.FC<Step1Props> = ({
         </div>
       </div>
 
-      {/* Loading, Error, Empty States (unchanged) */}
+      {/* Loading, Error, Empty States */}
       {loading && (
         <div className="flex flex-col items-center justify-center py-24 text-text-muted gap-4 bg-card/40 rounded-3xl border border-border/55">
           <FiLoader className="w-10 h-10 animate-spin text-primary" />
@@ -80,23 +80,32 @@ const Step1RoomSelection: React.FC<Step1Props> = ({
       )}
 
       {!loading && results.length > 0 && (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 md:gap-8 lg:gap-10">
           {results.map((room: any) => {
             const isSelected = selectedItems.some((item) => item.RoomId === room.RoomId);
             const matchIndex = selectedItems.findIndex((item) => item.RoomId === room.RoomId);
 
             return (
-              <div key={room.RoomId || room.id} className={`bg-card transition-all duration-300 flex flex-col justify-between border rounded-2xl overflow-hidden group shadow-lg ${isSelected ? "border-primary ring-2 ring-primary/20 shadow-[0_15px_40px_-10px_rgba(212,175,55,0.15)]" : "border-border hover:border-accent/60"}`}>
-
-                {/* Image + Body (unchanged - kept same) */}
+              <div 
+                key={room.RoomId || room.id} 
+                className={`bg-card transition-all duration-300 flex flex-col justify-between border rounded-2xl overflow-hidden group shadow-lg ${isSelected ? "border-primary ring-2 ring-primary/20 shadow-[0_15px_40px_-10px_rgba(212,175,55,0.15)]" : "border-border hover:border-accent/60"}`}
+              >
+                {/* Image + Body */}
                 <div>
-                  <div className="relative h-68 w-full overflow-hidden bg-background">
-                    <Image src={room.RoomImage || room.coverImage || "/images/viproom/viproom.webp"} alt={room.RoomName || "Hotel Room"} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <div className="relative h-64 sm:h-72 md:h-80 w-full overflow-hidden bg-background">
+                    <Image 
+                      src={room.RoomImage || room.coverImage || "/images/viproom/viproom.webp"} 
+                      alt={room.RoomName || "Hotel Room"} 
+                      fill 
+                      className="object-cover transition-transform duration-700 group-hover:scale-105" 
+                    />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
+                    
                     <div className="absolute bottom-4 left-4 bg-background/95 backdrop-blur-md text-foreground font-semibold text-sm px-4 py-2 rounded-xl border border-border/80 tracking-wide">
                       <span className="text-primary font-bold">BDT {(room.PricePerNight || 3500).toLocaleString()}</span>{" "}
                       <span className="text-[10px] text-text-muted font-normal lowercase">/ night</span>
                     </div>
+
                     {isSelected && (
                       <div className="absolute top-4 right-4 bg-secondary text-foreground text-[10px] font-bold px-3.5 py-1.5 rounded-lg shadow-md uppercase tracking-widest border border-border/40 animate-pulse">
                         Selected (Slot #{matchIndex + 1})
@@ -104,17 +113,21 @@ const Step1RoomSelection: React.FC<Step1Props> = ({
                     )}
                   </div>
 
-                  <div className="p-6 md:p-8">
-                    <div className="flex justify-between items-start gap-4 mb-2">
-                      <h4 className="text-xl font-bold text-foreground tracking-wide truncate group-hover:text-primary transition-colors">
+                  <div className="p-5 md:p-6 lg:p-8">
+                    <div className="flex justify-between items-start gap-4 mb-3">
+                      <h4 className="text-lg md:text-xl font-bold text-foreground tracking-wide truncate group-hover:text-primary transition-colors">
                         {room.RoomName || room.roomName || `Room ${room.RoomNumber}`}
                       </h4>
-                      <button type="button" onClick={() => setActiveModalRoom(room)} className="cursor-pointer flex items-center gap-1.5 text-xs font-bold text-primary hover:text-primary-dark transition-colors shrink-0 bg-background border border-border px-3 py-1.5 rounded-lg">
-                        <FiEye className="text-sm" /> View Details
+                      <button 
+                        type="button" 
+                        onClick={() => setActiveModalRoom(room)} 
+                        className="cursor-pointer flex items-center gap-1.5 text-xs font-bold text-primary hover:text-primary-dark transition-colors shrink-0 bg-background border border-border px-3 py-1.5 rounded-lg whitespace-nowrap"
+                      >
+                        <FiEye className="text-sm" /> View
                       </button>
                     </div>
 
-                    <p className="text-xs text-text-muted leading-relaxed line-clamp-2 mb-6 h-8">
+                    <p className="text-xs text-text-muted leading-relaxed line-clamp-2 mb-6 min-h-[44px]">
                       {room.description || "Indulge in absolute luxury and spacious design constructed explicitly for deep relaxation."}
                     </p>
 
@@ -131,11 +144,10 @@ const Step1RoomSelection: React.FC<Step1Props> = ({
                   </div>
                 </div>
 
-                {/* button */}
-                <div className="p-6 md:p-8 pt-0">
+                {/* Footer Buttons - Responsive */}
+                <div className="p-5 md:p-6 lg:p-8 pt-0 mt-auto">
                   {isSelected ? (
-                    <div className="grid grid-cols-2 gap-4">
-                      {/* Remove Selection - Left */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                       <button
                         type="button"
                         onClick={() => onItemToggle(room)}
@@ -144,7 +156,6 @@ const Step1RoomSelection: React.FC<Step1Props> = ({
                         Remove Selection
                       </button>
 
-                      {/* Next Step - Right */}
                       <button
                         type="button"
                         onClick={onProceed}
@@ -160,11 +171,10 @@ const Step1RoomSelection: React.FC<Step1Props> = ({
                       </button>
                     </div>
                   ) : (
-                    /* Normal State - Single Button */
                     <button
                       type="button"
                       onClick={() => onItemToggle(room)}
-                      className="w-full py-4 font-bold text-xs uppercase tracking-widest transition-all duration-200 active:scale-[0.99] rounded-xl border bg-background text-foreground border-border hover:bg-card hover:border-primary hover:text-primary shadow-sm cursor-pointer"
+                      className="w-full py-4 font-bold text-xs md:text-sm uppercase tracking-widest transition-all duration-200 active:scale-[0.99] rounded-xl border bg-background text-foreground border-border hover:bg-card hover:border-primary hover:text-primary shadow-sm"
                     >
                       Book This Accommodation
                     </button>
@@ -176,7 +186,7 @@ const Step1RoomSelection: React.FC<Step1Props> = ({
         </div>
       )}
 
-            {/* Luxury Pop-up Details Modal */}
+      {/* Luxury Pop-up Details Modal */}
       {activeModalRoom && (
         <div
           id="modal-backdrop"
@@ -187,10 +197,9 @@ const Step1RoomSelection: React.FC<Step1Props> = ({
           }}
           className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-background/80 backdrop-blur-md animate-fade-in"
         >
-          <div className="bg-card text-foreground rounded-3xl border border-border shadow-[0_25px_70px_rgba(0,0,0,0.5)] w-full max-w-2xl overflow-hidden relative max-h-[90vh] flex flex-col">
-
-            {/* Modal Hero Banner */}
-            <div className="relative h-64 w-full bg-background shrink-0">
+          <div className="bg-card text-foreground rounded-3xl border border-border shadow-[0_25px_70px_rgba(0,0,0,0.5)] w-full max-w-2xl max-h-[92vh] flex flex-col overflow-hidden">
+            {/* Modal Hero */}
+            <div className="relative h-56 sm:h-64 w-full bg-background shrink-0">
               <Image
                 src={activeModalRoom.RoomImage || activeModalRoom.coverImage || "/images/viproom/viproom.webp"}
                 alt={activeModalRoom.RoomName || "Accommodation Detail"}
@@ -202,7 +211,7 @@ const Step1RoomSelection: React.FC<Step1Props> = ({
               <button
                 type="button"
                 onClick={() => setActiveModalRoom(null)}
-                className="absolute top-4 right-4 bg-background/80 text-foreground border border-border hover:text-primary transition-colors rounded-full w-9 h-9 flex items-center cursor-pointer justify-center backdrop-blur-sm shadow-md"
+                className="absolute top-4 right-4 bg-background/80 text-foreground border border-border hover:text-primary transition-colors rounded-full w-9 h-9 flex items-center justify-center backdrop-blur-sm shadow-md"
               >
                 <FiX className="text-lg" />
               </button>
@@ -211,14 +220,15 @@ const Step1RoomSelection: React.FC<Step1Props> = ({
                 <span className="bg-primary/90 text-background text-[10px] uppercase font-extrabold px-3 py-1 rounded-md tracking-wider border border-primary/20">
                   Premium Suite #{activeModalRoom.RoomNumber || "N/A"}
                 </span>
-                <h4 className="text-2xl font-bold mt-1.5 drop-shadow-md">
+                <h4 className="text-xl sm:text-2xl font-bold mt-1.5 drop-shadow-md">
                   {activeModalRoom.RoomName || `Room Spec ${activeModalRoom.RoomNumber}`}
                 </h4>
               </div>
             </div>
 
             {/* Modal Body */}
-            <div className="p-6 md:p-8 overflow-y-auto space-y-6 flex-1">
+            <div className="p-5 md:p-8 overflow-y-auto space-y-6 flex-1">
+              {/* ... your existing modal content (unchanged) ... */}
               <div>
                 <h5 className="text-xs uppercase text-primary font-bold tracking-widest mb-2">Description Overview</h5>
                 <p className="text-sm text-text-muted leading-relaxed font-light">
@@ -255,11 +265,10 @@ const Step1RoomSelection: React.FC<Step1Props> = ({
               </div>
             </div>
 
-            {/* ==================== MODAL FOOTER WITH NEXT STEP ==================== */}
-            <div className="p-6 border-t border-border bg-background/50 flex items-center justify-between gap-4 shrink-0">
+            {/* Modal Footer Buttons */}
+            <div className="p-5 md:p-6 border-t border-border bg-background/50 flex items-center justify-between gap-4 shrink-0">
               {selectedItems.some(item => item.RoomId === activeModalRoom.RoomId) ? (
-                <div className="grid grid-cols-2 gap-4 w-full">
-                  {/* Remove Selection */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full">
                   <button
                     type="button"
                     onClick={() => {
@@ -271,7 +280,6 @@ const Step1RoomSelection: React.FC<Step1Props> = ({
                     Remove Selection
                   </button>
 
-                  {/* Next Step */}
                   <button
                     type="button"
                     onClick={() => {
@@ -290,7 +298,6 @@ const Step1RoomSelection: React.FC<Step1Props> = ({
                   </button>
                 </div>
               ) : (
-                /* Not Selected - Single Button */
                 <button
                   type="button"
                   onClick={() => {
@@ -303,7 +310,6 @@ const Step1RoomSelection: React.FC<Step1Props> = ({
                 </button>
               )}
             </div>
-
           </div>
         </div>
       )}

@@ -4,15 +4,17 @@ import React from "react";
 import { FiCalendar, FiUser, FiSliders, FiCreditCard, FiBookmark, FiInfo } from "react-icons/fi";
 import { MdOutlineAirlineSeatIndividualSuite, MdAcUnit } from "react-icons/md";
 
+interface SearchData {
+  checkIn: string;
+  checkOut: string;
+  rooms: number;
+  adults: string;
+  children: string;
+}
+
 interface Step3Props {
   selectedItems: any[];
-  searchData: {
-    checkIn: string;
-    checkOut: string;
-    rooms: number;
-    adults: string;
-    children: string;
-  };
+  searchData: SearchData;
   formData: {
     firstName: string;
     lastName: string;
@@ -21,6 +23,7 @@ interface Step3Props {
     message: string;
   };
   totalPriceSum: number;
+  numberOfNights: number;   
 }
 
 const Step3BookingSummary: React.FC<Step3Props> = ({
@@ -28,6 +31,7 @@ const Step3BookingSummary: React.FC<Step3Props> = ({
   searchData,
   formData,
   totalPriceSum,
+  numberOfNights,
 }) => {
   return (
     <div className="max-w-5xl mx-auto font-biryani space-y-8">
@@ -36,7 +40,7 @@ const Step3BookingSummary: React.FC<Step3Props> = ({
       </h3>
 
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-start">
-        {/* Left Layout Panel - Dynamic Selected Accommodation Inventory */}
+        {/* Left - Selected Rooms */}
         <div className="lg:col-span-2 space-y-4">
           <h4 className="text-sm font-bold text-primary uppercase tracking-wider flex items-center gap-2">
             <FiBookmark className="text-base" /> Selected Accommodations
@@ -71,7 +75,6 @@ const Step3BookingSummary: React.FC<Step3Props> = ({
                   </div>
                 </div>
 
-                {/* Technical Micro Amenities Ribbon */}
                 <div className="grid grid-cols-2 gap-2 pt-2 border-t border-border/30 text-[9px] text-text-muted uppercase font-bold tracking-widest">
                   <div className="flex items-center gap-1">
                     <MdOutlineAirlineSeatIndividualSuite className="text-primary text-xs" />
@@ -87,14 +90,14 @@ const Step3BookingSummary: React.FC<Step3Props> = ({
           </div>
         </div>
 
-        {/* Right Layout Panel - Verification Manifest Info Grid */}
+        {/* Right - Summary Details */}
         <div className="lg:col-span-3 bg-card border border-border p-6 md:p-8 rounded-3xl shadow-sm space-y-6">
           <h4 className="text-sm font-bold text-primary uppercase tracking-wider flex items-center gap-2 border-b border-border/60 pb-3">
             <FiSliders className="text-base" /> Reservation Manifest
           </h4>
 
           <div className="space-y-4 text-sm text-foreground">
-            {/* Rooms Secured Info Strip */}
+            {/* Rooms Secured */}
             <div className="flex justify-between items-center py-1.5 border-b border-border/30">
               <span className="text-text-muted text-xs font-semibold uppercase tracking-wider flex items-center gap-2">
                 <FiBookmark className="text-primary" /> Rooms Secured:
@@ -104,17 +107,22 @@ const Step3BookingSummary: React.FC<Step3Props> = ({
               </span>
             </div>
 
-            {/* Combined Total Rate Info Strip */}
+            {/* Updated Total Rate */}
             <div className="flex justify-between items-center py-1.5 border-b border-border/30">
               <span className="text-text-muted text-xs font-semibold uppercase tracking-wider flex items-center gap-2">
-                <FiCreditCard className="text-primary" /> Combined Total Rate:
+                <FiCreditCard className="text-primary" /> Total Amount:
               </span>
-              <span className="font-black text-primary text-base tracking-tight">
-                BDT {totalPriceSum.toLocaleString()} <span className="text-xs font-medium text-text-muted">/ night</span>
-              </span>
+              <div className="text-right">
+                <span className="font-black text-primary text-xl tracking-tight block">
+                  BDT {totalPriceSum.toLocaleString()}
+                </span>
+                <span className="text-[11px] text-text-muted">
+                  for {numberOfNights} night{numberOfNights > 1 ? "s" : ""} × {selectedItems.length} room{selectedItems.length > 1 ? "s" : ""}
+                </span>
+              </div>
             </div>
 
-            {/* Stay Dates Composite blocks */}
+            {/* Stay Dates */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 py-2 border-b border-border/30">
               <div className="flex flex-col gap-1">
                 <span className="text-text-muted text-[10px] uppercase tracking-wider font-semibold flex items-center gap-1.5">
@@ -134,7 +142,7 @@ const Step3BookingSummary: React.FC<Step3Props> = ({
               </div>
             </div>
 
-            {/* Primary Guest Info Strip */}
+            {/* Primary Guest */}
             <div className="flex justify-between items-start py-1.5 border-b border-border/30">
               <span className="text-text-muted text-xs font-semibold uppercase tracking-wider flex items-center gap-2 pt-0.5">
                 <FiUser className="text-primary" /> Primary Guest:
@@ -144,7 +152,7 @@ const Step3BookingSummary: React.FC<Step3Props> = ({
               </span>
             </div>
 
-            {/* Contact Channels Info Strip */}
+            {/* Contact Info */}
             <div className="flex justify-between items-start py-1.5 border-b border-border/30">
               <span className="text-text-muted text-xs font-semibold uppercase tracking-wider flex items-center gap-2 pt-0.5">
                 <FiInfo className="text-primary" /> Contact Channels:
@@ -155,7 +163,7 @@ const Step3BookingSummary: React.FC<Step3Props> = ({
               </span>
             </div>
 
-            {/* Special Requests Section Block (only if text is present) */}
+            {/* Special Requests */}
             {formData.message.trim() && (
               <div className="bg-background/60 border border-border/80 p-4 rounded-xl space-y-1.5 mt-2">
                 <span className="text-[10px] text-primary uppercase font-extrabold tracking-widest block">
@@ -170,7 +178,6 @@ const Step3BookingSummary: React.FC<Step3Props> = ({
         </div>
       </div>
 
-      {/* Disclaimers Notification Banner */}
       <div className="text-center text-[11px] text-text-muted max-w-md mx-auto leading-relaxed border-t border-border/40 pt-4">
         Please review all specified validation details and confirmation parameters meticulously before committing final verification.
       </div>

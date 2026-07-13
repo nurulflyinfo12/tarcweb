@@ -4,8 +4,19 @@ import React from "react";
 import { FiUser, FiMail, FiPhone, FiMessageSquare, FiBookmark } from "react-icons/fi";
 import { MdOutlineAirlineSeatIndividualSuite, MdAcUnit } from "react-icons/md";
 
+interface SearchDate {
+  checkIn: string;
+  checkOut: string;
+  rooms: number;
+  adults: string;
+  children: string;
+  childrenAges: number[];
+  // Add other fields if needed
+}
+
 interface Step2Props {
-  selectedItems: any[];
+  selectedItems: any[]; // Keeping as any[] since room structure is dynamic
+  searchDate: SearchDate;
   formData: {
     firstName: string;
     lastName: string;
@@ -15,22 +26,24 @@ interface Step2Props {
   };
   formErrors: Record<string, string>;
   totalPriceSum: number;
+  numberOfNights: number;
   onFormChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
 }
 
 const Step2GuestDetails: React.FC<Step2Props> = ({
   selectedItems,
+  searchDate,
   formData,
   formErrors,
   totalPriceSum,
+  numberOfNights,
   onFormChange,
 }) => {
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    // Remove any non-digit characters
     const onlyNumbers = value.replace(/\D/g, "");
-    // Create synthetic event with cleaned value
+    
     const syntheticEvent = {
       ...e,
       target: { ...e.target, name, value: onlyNumbers }
@@ -38,6 +51,7 @@ const Step2GuestDetails: React.FC<Step2Props> = ({
     
     onFormChange(syntheticEvent);
   };
+
   return (
     <div className="grid lg:grid-cols-5 gap-10 font-biryani">
       {/* Left Column - Selected Rooms Summary List */}
@@ -56,9 +70,7 @@ const Step2GuestDetails: React.FC<Step2Props> = ({
                 <div className="relative w-20 h-20 rounded-xl overflow-hidden bg-background border border-border/50 shrink-0">
                   <img
                     src={
-                      room.RoomImage ||
-                      room.coverImage ||
-                      "/images/viproom/viproom.webp"
+                      room.RoomImage || room.coverImage || "/images/viproom/viproom.webp"
                     }
                     alt="room"
                     className="object-cover w-full h-full transition-transform duration-500 hover:scale-105"
@@ -68,9 +80,7 @@ const Step2GuestDetails: React.FC<Step2Props> = ({
                   <div>
                     <div className="flex items-start justify-between gap-1">
                       <p className="font-bold text-sm text-foreground truncate tracking-wide">
-                        {room.RoomName ||
-                          room.roomName ||
-                          `Room ${room.RoomNumber || "Allocated Unit"}`}
+                        {room.RoomName || room.roomName || `Room ${room.RoomNumber || "Allocated Unit"}`}
                       </p>
                       <span className="text-text-muted bg-background px-2 py-0.5 rounded-md border border-border/60 font-mono text-[9px] shrink-0">
                         Slot #{idx + 1}
@@ -89,7 +99,6 @@ const Step2GuestDetails: React.FC<Step2Props> = ({
                 </div>
               </div>
 
-              {/* Dynamic Added Specifications Summary Bar */}
               <div className="grid grid-cols-2 gap-2 pt-2.5 border-t border-border/40 text-[10px] text-text-muted uppercase font-semibold tracking-wider">
                 <div className="flex items-center gap-1.5 bg-background/60 px-2 py-1.5 rounded-lg border border-border/40">
                   <MdOutlineAirlineSeatIndividualSuite className="text-xs text-primary" />
@@ -103,31 +112,33 @@ const Step2GuestDetails: React.FC<Step2Props> = ({
             </div>
           ))}
 
-          {/* Luxury Property Policy/Inclusion Indicators */}
           <div className="bg-background/30 border border-border/50 rounded-xl p-3 text-[11px] text-text-muted space-y-1.5 font-medium">
             <p className="flex justify-between"><span>• Check-In Protocol:</span> <span className="text-foreground font-semibold">14:00 PM</span></p>
             <p className="flex justify-between"><span>• Wi-Fi & Amenities:</span> <span className="text-accent font-semibold">Complimentary</span></p>
           </div>
 
-          {/* Pricing Aggregator Block */}
+          {/* Updated Total Price Section */}
           <div className="pt-4 border-t border-dashed border-border/80 flex flex-col gap-1 text-sm font-bold text-foreground">
-            <span className="text-text-muted text-xs font-semibold uppercase tracking-wider">Combined Total Rate:</span>
-            <span className="text-primary text-xl font-black tracking-tight">
-              BDT {totalPriceSum.toLocaleString()}{" "}
-              <span className="text-xs font-normal text-text-muted font-biryani lowercase">/ night</span>
+            <span className="text-text-muted text-xs font-semibold uppercase tracking-wider">
+              Combined Total Rate ({numberOfNights} night{numberOfNights > 1 ? "s" : ""})
+            </span>
+            <span className="text-primary text-2xl font-black tracking-tight">
+              BDT {totalPriceSum.toLocaleString()}
+            </span>
+            <span className="text-[11px] text-text-muted font-normal">
+              {numberOfNights} night{numberOfNights > 1 ? "s" : ""} × {selectedItems.length} room{selectedItems.length > 1 ? "s" : ""}
             </span>
           </div>
         </div>
       </div>
 
-      {/* Right Column - Premium Guest Information Form */}
+      {/* Right Column - Guest Information Form */}
       <div className="lg:col-span-3 space-y-4">
         <h3 className="text-xl font-bold text-primary tracking-wide uppercase flex items-center gap-2">
           <FiUser className="text-base shrink-0" /> Guest Information
         </h3>
 
         <div className="grid md:grid-cols-2 gap-5">
-          {/* First Name Input Setup */}
           <div className="relative group">
             <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none text-text-muted group-focus-within:text-primary transition-colors">
               <FiUser className="text-base" />
@@ -149,7 +160,6 @@ const Step2GuestDetails: React.FC<Step2Props> = ({
             )}
           </div>
 
-          {/* Last Name Input Setup */}
           <div className="relative group">
             <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none text-text-muted group-focus-within:text-primary transition-colors">
               <FiUser className="text-base" />
@@ -171,7 +181,6 @@ const Step2GuestDetails: React.FC<Step2Props> = ({
             )}
           </div>
 
-          {/* Phone Number Input Setup */}
           <div className="relative group">
             <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none text-text-muted group-focus-within:text-primary transition-colors">
               <FiPhone className="text-base" />
@@ -181,9 +190,8 @@ const Step2GuestDetails: React.FC<Step2Props> = ({
               name="phone"
               value={formData.phone}
               placeholder="Phone Number *"
-              onChange={handlePhoneChange} 
+              onChange={handlePhoneChange}
               maxLength={15}
-              // onChange={onFormChange}
               className={`w-full pl-11 pr-4 py-4 border rounded-xl bg-card text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 text-sm transition-all ${
                 formErrors.phone ? "border-accent focus:border-accent" : "border-border focus:border-primary"
               }`}
@@ -195,7 +203,6 @@ const Step2GuestDetails: React.FC<Step2Props> = ({
             )}
           </div>
 
-          {/* Email Address Input Setup */}
           <div className="relative group">
             <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none text-text-muted group-focus-within:text-primary transition-colors">
               <FiMail className="text-base" />
@@ -218,7 +225,6 @@ const Step2GuestDetails: React.FC<Step2Props> = ({
           </div>
         </div>
 
-        {/* Special Requests Layout Input Section */}
         <div className="relative group pt-1">
           <div className="absolute top-4 left-4 flex pointer-events-none text-text-muted group-focus-within:text-primary transition-colors">
             <FiMessageSquare className="text-base" />

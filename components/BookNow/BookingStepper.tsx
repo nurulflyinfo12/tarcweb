@@ -20,7 +20,6 @@ const BookingStepper = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedItems, setSelectedItems] = useState<any[]>([]);
 
-  // Ref to scroll the step content into view after a search
   const stepContentRef = useRef<HTMLDivElement>(null);
 
   const [toast, setToast] = useState<{
@@ -53,6 +52,8 @@ const BookingStepper = () => {
 
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isBookingSuccess, setIsBookingSuccess] = useState(false);
+  const [bookingReference, setBookingReference] = useState<string>("");
 
   const showToast = (
     message: string,
@@ -85,6 +86,22 @@ const BookingStepper = () => {
     }));
   };
 
+  const calculateNights = () => {
+    if (!searchData.checkIn || !searchData.checkOut) return 1;
+    const checkIn = new Date(searchData.checkIn);
+    const checkOut = new Date(searchData.checkOut);
+    const diffTime = Math.abs(checkOut.getTime() - checkIn.getTime());
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    return Math.max(1, diffDays);
+  };
+
+  const numberOfNights = calculateNights();
+
+  const totalPriceSum = selectedItems.reduce((acc, item) => {
+    const nightlyPrice = item.PricePerNight || 3500;
+    return acc + nightlyPrice * numberOfNights;
+  }, 0);
+
   const handleSearchSubmit = () => {
     searchRooms({
       checkIn: searchData.checkIn,
@@ -96,7 +113,6 @@ const BookingStepper = () => {
     setSelectedItems([]);
     setCurrentStep(1);
 
-    // Smooth scroll to the room selection area
     setTimeout(() => {
       stepContentRef.current?.scrollIntoView({
         behavior: "smooth",
@@ -114,10 +130,7 @@ const BookingStepper = () => {
       );
     } else {
       if (selectedItems.length >= searchData.rooms) {
-        showToast(
-          `You can only select ${searchData.rooms} room(s).`,
-          "info"
-        );
+        showToast(`You can only select ${searchData.rooms} room(s).`, "info");
         return;
       }
       setSelectedItems((prev) => [...prev, room]);
@@ -136,12 +149,21 @@ const BookingStepper = () => {
     const errors: Record<string, string> = {};
     if (!formData.firstName.trim()) errors.firstName = "First name is required";
     if (!formData.lastName.trim()) errors.lastName = "Last name is required";
-    
-    // Modified Phone Validation - Only numbers allowed
-    if (!formData.phone.trim()) {
+
+    // if (!formData.phone.trim()) {
+    //   errors.phone = "Phone number is required";
+    // } else if (!/^\d+$/.test(formData.phone.trim())) {
+    //   errors.phone = "Phone number must contain only digits (0-9)";
+    // }
+
+    const phone = formData.phone.trim();
+
+    if (!phone) {
       errors.phone = "Phone number is required";
-    } else if (!/^\d+$/.test(formData.phone.trim())) {
+    } else if (!/^\d+$/.test(phone)) {
       errors.phone = "Phone number must contain only digits (0-9)";
+    } else if (phone.length !== 11) {
+      errors.phone = "Phone number must be exactly 11 digits";
     }
 
     if (!formData.email.trim()) {
@@ -161,23 +183,17 @@ const BookingStepper = () => {
 
   const prevStep = () => setCurrentStep((prev) => prev - 1);
 
-  // Navigation guard for step indicator clicks
   const handleStepClick = (targetStep: number) => {
     if (targetStep === currentStep) return;
 
-    // Going backwards is always allowed
     if (targetStep < currentStep) {
       setCurrentStep(targetStep);
       return;
     }
 
-    // Forward checks
     if (currentStep === 1 || targetStep > 2) {
       if (selectedItems.length !== searchData.rooms) {
-        showToast(
-          `Please select exactly ${searchData.rooms} room(s) to continue.`,
-          "info"
-        );
+        showToast(`Please select exactly ${searchData.rooms} room(s) to continue.`, "info");
         return;
       }
     }
@@ -220,10 +236,7 @@ const BookingStepper = () => {
       BookingRequestRooms: selectedItems.map((room) => ({
         RoomRequestId: 0,
         BookingRequestId: 0,
-        RoomType:
-          room.RoomName ||
-          room.roomName ||
-          `Room ${room.RoomNumber || ""}`,
+        RoomType: room.RoomName || room.roomName || `Room ${room.RoomNumber || ""}`,
         NumberOfGuests: room.MaxOccupancy || 2,
         ExtraBedNeeded: false,
         SmokingPreference: false,
@@ -232,6 +245,12 @@ const BookingStepper = () => {
 
     try {
       await createConfirmRoom(finalPayload);
+      console.log("Successfully booking", finalPayload);
+
+      // const ref = `RRB-${Date.now().toString().slice(-8)}`;
+      // setBookingReference(ref);
+      setIsBookingSuccess(true);
+
       showToast("Booking request submitted successfully!", "success");
     } catch (err) {
       console.error("Booking error:", err);
@@ -241,21 +260,11 @@ const BookingStepper = () => {
     }
   };
 
-  const totalPriceSum = selectedItems.reduce(
-    (acc, item) => acc + (item.PricePerNight || 3500),
-    0
-  );
-
-  // Determine if room selection is complete
-  const isRoomSelectionComplete =
-    currentStep === 1 && selectedItems.length === searchData.rooms;
+  const isRoomSelectionComplete = currentStep === 1 && selectedItems.length === searchData.rooms;
 
   return (
     <>
-      <PageHero
-        title="Book Now"
-        backgroundImage="/images/viproom/viproom.webp"
-      />
+      <PageHero title="Book Now" backgroundImage="/images/viproom/viproom.webp" />
 
       <BookingSearch
         searchData={searchData}
@@ -287,13 +296,12 @@ const BookingStepper = () => {
                     className="flex flex-col items-center z-10 group relative focus:outline-none cursor-pointer"
                   >
                     <div
-                      className={`w-12 h-12 rounded-full flex items-center justify-center border-2 font-semibold text-sm transition-all duration-300 shadow-md ${
-                        currentStep === step
+                      className={`w-12 h-12 rounded-full flex items-center justify-center border-2 font-semibold text-sm transition-all duration-300 shadow-md ${currentStep === step
                           ? "bg-primary text-background border-primary scale-110 ring-4 ring-primary/20"
                           : currentStep > step
-                          ? "bg-secondary border-secondary text-foreground group-hover:opacity-80"
-                          : "bg-card border-border text-text-muted backdrop-blur-sm group-hover:border-primary/40"
-                      }`}
+                            ? "bg-secondary border-secondary text-foreground group-hover:opacity-80"
+                            : "bg-card border-border text-text-muted backdrop-blur-sm group-hover:border-primary/40"
+                        }`}
                     >
                       {currentStep > step ? (
                         <FiCheck className="text-lg stroke-[3]" />
@@ -302,11 +310,10 @@ const BookingStepper = () => {
                       )}
                     </div>
                     <p
-                      className={`text-xs mt-3 font-semibold tracking-wide uppercase transition-colors duration-200 ${
-                        currentStep === step
+                      className={`text-xs mt-3 font-semibold tracking-wide uppercase transition-colors duration-200 ${currentStep === step
                           ? "text-primary"
                           : "text-text-muted group-hover:text-foreground"
-                      }`}
+                        }`}
                     >
                       {step === 1 && "Select Rooms"}
                       {step === 2 && "Guest Details"}
@@ -315,7 +322,6 @@ const BookingStepper = () => {
                   </button>
                 ))}
 
-                {/* Horizontal Progress Lines */}
                 <div className="absolute top-6 left-6 right-6 h-[2px] bg-border -z-10 flex">
                   <div
                     className="bg-secondary h-full transition-all duration-500 ease-out"
@@ -324,8 +330,8 @@ const BookingStepper = () => {
                         currentStep === 1
                           ? "0%"
                           : currentStep === 2
-                          ? "50%"
-                          : "100%",
+                            ? "50%"
+                            : "100%",
                     }}
                   />
                 </div>
@@ -333,11 +339,8 @@ const BookingStepper = () => {
             </div>
           </div>
 
-          {/* Step Content – ref attached for scrolling */}
-          <div
-            ref={stepContentRef}
-            className="p-6 md:p-14 min-h-[520px] bg-background/40"
-          >
+          {/* Step Content */}
+          <div ref={stepContentRef} className="p-6 md:p-14 min-h-[520px] bg-background/40">
             <div className="max-w-6xl mx-auto">
               {currentStep === 1 && (
                 <Step1RoomSelection
@@ -356,9 +359,11 @@ const BookingStepper = () => {
               {currentStep === 2 && (
                 <Step2GuestDetails
                   selectedItems={selectedItems}
+                  searchDate={searchData}
                   formData={formData}
                   formErrors={formErrors}
                   totalPriceSum={totalPriceSum}
+                  numberOfNights={numberOfNights}
                   onFormChange={handleFormChange}
                 />
               )}
@@ -369,12 +374,13 @@ const BookingStepper = () => {
                   searchData={searchData}
                   formData={formData}
                   totalPriceSum={totalPriceSum}
+                  numberOfNights={numberOfNights}
                 />
               )}
             </div>
           </div>
 
-          {/* Navigation Footer – hide Next button on step 1 if we have the inline one */}
+          {/* Navigation Footer */}
           <div className="border-t border-border p-6 md:p-8 flex justify-between bg-card items-center">
             <button
               type="button"
@@ -413,20 +419,78 @@ const BookingStepper = () => {
         </div>
       </div>
 
-      {/* Theme Aware Notification Toast */}
+      {/* Success Confirmation Modal */}
+      {isBookingSuccess && (
+        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-[200] p-4">
+          <div className="bg-card rounded-3xl max-w-lg w-full p-8 shadow-2xl border border-border text-center">
+            <div className="mx-auto w-16 h-16 bg-green-100 dark:bg-green-900/30 text-green-600 rounded-full flex items-center justify-center mb-6">
+              <FiCheck className="text-4xl" />
+            </div>
+
+            <h2 className="text-2xl font-bold text-primary mb-2">Booking Confirmed!</h2>
+            <p className="text-text-muted mb-6">
+              Your booking has been successfully submitted.
+            </p>
+
+            <div className="bg-background/70 rounded-2xl p-5 text-left space-y-4 mb-8">
+              <div className="flex justify-between text-sm">
+                <span className="text-text-muted">Booking Reference:</span>
+                <span className="font-mono font-bold text-primary">{bookingReference}</span>
+              </div>
+              <div className="flex justify-between text-sm">
+                <span className="text-text-muted">Guest Name:</span>
+                <span className="font-medium">{formData.firstName} {formData.lastName}</span>
+              </div>
+              <div className="flex justify-between text-sm">
+                <span className="text-text-muted">Check-In Date:</span>
+                <span>{searchData.checkIn}</span>
+              </div>
+              <div className="flex justify-between text-sm">
+                <span className="text-text-muted">Check-Out Date:</span>
+                <span>{searchData.checkOut}</span>
+              </div>
+              <div className="flex justify-between text-sm">
+                <span className="text-text-muted">Duration & Rooms:</span>
+                <span className="font-medium">
+                  {numberOfNights} Night{numberOfNights > 1 ? "s" : ""} • {searchData.rooms} Room{searchData.rooms > 1 ? "s" : ""}
+                </span>
+              </div>
+              <div className="flex justify-between text-sm">
+                <span className="text-text-muted">Total Amount:</span>
+                <span className="font-bold text-primary">BDT {totalPriceSum.toLocaleString()}</span>
+              </div>
+            </div>
+
+            <div className="text-sm text-text-muted mb-6">
+              A confirmation email with all booking details has been sent to <br />
+              <span className="font-medium text-foreground">{formData.email}</span>
+            </div>
+
+            <button
+              onClick={() => {
+                setIsBookingSuccess(false);
+                setCurrentStep(1);
+                setSelectedItems([]);
+              }}
+              className="w-full py-3.5 bg-primary text-background font-bold rounded-2xl hover:bg-primary/90 transition-all active:scale-[0.98]"
+            >
+              Done
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Toast */}
       {toast.visible && (
         <div
-          className={`fixed top-6 right-6 px-6 py-4 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.3)] flex items-center gap-3.5 z-[100] min-w-[340px] text-foreground border transition-all duration-300 backdrop-blur-md ${
-            toast.type === "success"
+          className={`fixed top-6 right-6 px-6 py-4 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.3)] flex items-center gap-3.5 z-[100] min-w-[340px] text-foreground border transition-all duration-300 backdrop-blur-md ${toast.type === "success"
               ? "bg-secondary/95 border-secondary"
               : toast.type === "error"
-              ? "bg-red-900/95 border-red-700"
-              : "bg-card/95 border-border"
-          }`}
+                ? "bg-red-900/95 border-red-700"
+                : "bg-card/95 border-border"
+            }`}
         >
-          {toast.type === "error" && (
-            <FiAlertCircle className="text-xl shrink-0 text-accent" />
-          )}
+          {toast.type === "error" && <FiAlertCircle className="text-xl shrink-0 text-accent" />}
           {toast.type === "success" && (
             <FiCheck className="text-xl shrink-0 bg-foreground/20 p-0.5 rounded-full" />
           )}
