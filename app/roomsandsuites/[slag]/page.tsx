@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, use } from "react";
 import Image from "next/image";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { useParams } from "next/navigation";
@@ -17,12 +17,13 @@ import { FaLongArrowAltRight } from "react-icons/fa";
 import { IoCloseSharp } from "react-icons/io5";
 
 interface RoomPageProps {
-  params: {
+  params: Promise<{
     slag: string;
-  };
+  }>;
 }
 
-const RoomPage = ({ params: initialParams }: RoomPageProps) => {
+const RoomPage = (props: RoomPageProps) => {
+  const initialParams = use(props.params);
   const params = useParams();
 
   const [formData, setFormData] = useState({

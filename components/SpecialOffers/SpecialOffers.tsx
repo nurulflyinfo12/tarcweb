@@ -60,9 +60,9 @@ const SpecialOffers = ({ offers = defaultOffers }: SpecialOffersProps) => {
                 key={offer.id}
                 className="bg-white rounded-2xl overflow-hidden shadow-2xl max-w-[1200px] mx-auto border border-[#2E7D32]/20 relative z-10"
               >
-                <div className="flex flex-col lg:flex-row pl-10 pr-10 pt-6 pb-6">
+                <div className="flex flex-col lg:flex-row px-3 lg:px-10 py-3 lg:py-6">
                   {/* Left Side - Text Content */}
-                  <div className="lg:w-1/2 p-10 lg:p-16 bg-secondary/15 lg:rounded-l-2xl!">
+                  <div className="lg:w-1/2 p-8 lg:p-16 bg-secondary/15 lg:rounded-l-2xl!">
                     <h2 className="text-3xl font-semibold text-[#0A2F1F] mb-1">
                       {offer.title}
                     </h2>
