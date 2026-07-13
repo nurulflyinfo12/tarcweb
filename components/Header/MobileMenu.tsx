@@ -116,7 +116,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
               ))}
 
               {/* Sign In - Added as new item */}
-              {/* <Link
+              <Link
                 href="/signin"
                 onClick={onClose}
                 className="group flex flex-col items-center justify-center
@@ -134,7 +134,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                 <span className="text-[14px] sm:text-base md:text-lg font-light tracking-wider text-white group-hover:text-primary text-center leading-tight px-1">
                   Sign In
                 </span>
-              </Link> */}
+              </Link>
             </div>
           </div>
         </div>
