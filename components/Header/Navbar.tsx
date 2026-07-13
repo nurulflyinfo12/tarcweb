@@ -112,12 +112,12 @@ export default function Navbar() {
               </Link> */}
 
               {/* Sign In Link - Now opens Modal */}
-              <button
+              {/* <button
                 onClick={() => setIsSignInOpen(true)}
                 className="hidden md:flex items-center text-sm font-medium hover:text-secondary transition-colors cursor-pointer"
               >
                 Sign In
-              </button>
+              </button> */}
 
               {/* <ThemeToggle scrolled={scrolled} /> */}
 

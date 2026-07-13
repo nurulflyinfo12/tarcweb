@@ -75,7 +75,7 @@ export default function SignInPage() {
 
   return (
     <div 
-      className="py-25"
+      className="min-h-screen bg-background text-foreground flex items-center justify-center px-4 py-12"
     //   onClick={handleBackdropClick}   
     >
       <div 

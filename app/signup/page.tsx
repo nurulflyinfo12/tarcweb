@@ -114,7 +114,7 @@ export default function SignUpPage() {
       : "/logo.png";
 
   return (
-    <div className="min-h-screen bg-background text-foreground flex items-center justify-center px-4 py-12">
+    <div className="min-h-screen bg-background text-foreground flex items-center justify-center px-4 pt-35 pb-20">
       <div className="max-w-md w-full">
         {/* Logo */}
         <div className="flex justify-center mb-8">
@@ -157,7 +157,7 @@ export default function SignUpPage() {
                   name="fullName"
                   value={formData.fullName}
                   onChange={handleChange}
-                  placeholder="John Doe"
+                  placeholder="Name"
                   className={`w-full pl-11 pr-4 py-3 bg-background border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-foreground placeholder:text-text-muted ${
                     errors.fullName ? "border-red-500" : "border-border"
                   }`}
